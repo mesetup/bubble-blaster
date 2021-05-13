@@ -1,0 +1,32 @@
+# Directories
+/**/log/
+/**/venv/
+/out/
+
+# Files.
+/result.png
+
+# Recusive Directories
+/**/__pycache__/
+/**/.gradle/
+/**/.idea/
+/**/build/
+/**/logs/
+/**/out/
+/**/run/
+
+# Test files.
+/test.bson
+/test.data
+/test.qdat
+
+# File types.
+*.qdat
+*.iml
+*.ipr
+*.log
+*.tmp
+*.temp
+
+# Lombok config
+/QPreLoader/lombok.config

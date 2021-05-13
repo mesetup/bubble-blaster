@@ -1,0 +1,217 @@
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.stream.JsonWriter
+import org.apache.commons.io.IOUtils
+
+import java.time.LocalDateTime
+import java.time.ZoneId
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url = "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            name = "sonatype"
+        }
+        maven {
+            url = "https://maven.atlassian.com/3rdparty/"
+        }
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath group: 'commons-io', name: 'commons-io', version: '2.8.0'
+        classpath "com.google.code.gson:gson:2.8.+"
+        classpath "io.freefair.gradle:lombok-plugin:4.1.6"
+    }
+}
+
+plugins {
+    id "groovy"
+    id 'java'
+    id "idea"
+}
+
+apply plugin: "io.freefair.lombok"
+
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+// Read build number file.
+int vers = Integer.parseInt("${version1}")
+int release = Integer.parseInt(project.property("versionRelease").toString())
+String stage = project.property("versionStage").toString()
+int stageRelease = Integer.parseInt(project.property("versionStageRelease").toString())
+
+Integer buildNumber
+try {
+    FileInputStream fileInputStream = new FileInputStream("buildnumber.txt")
+    String buildNrString = new String(IOUtils.toByteArray(fileInputStream))
+    fileInputStream.close()
+    try {
+        buildNumber = Integer.valueOf(buildNrString)
+    } catch (NumberFormatException e) {
+        buildNumber = 0
+    }
+} catch(IOException e) {
+    buildNumber = 0
+}
+
+
+// Advance build number.
+buildNumber++
+println("Executing build " + buildNumber)
+String newBuild = buildNumber.toString()
+
+// Write new build number.
+if (!new File("buildnumber.txt").exists()) {
+    new File("buildnumber.txt").createNewFile()
+}
+FileOutputStream output = new FileOutputStream("buildnumber.txt")
+output.write(newBuild.getBytes())
+output.flush()
+output.close()
+
+version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
+group = 'com.qsoftware.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'bubbles-preloader'
+jar.version = version
+jar.archiveVersion.set(version)
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+//GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), this.binding);
+//shell.run(file, arguments);
+
+println("Current version: " + version)
+println("Project: " + group + ":" + archivesBaseName)
+println("Bulding a Java " + compileJava.targetCompatibility + " project...")
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+
+    extraLibs group: 'org.ow2.asm', name: 'asm', version: '+'
+    extraLibs group: 'org.ow2.asm', name: 'asm-tree', version: '+'
+    extraLibs group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.3.2.1'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    extraLibs group: 'it.unimi.dsi', name: 'fastutil', version: '7.0.12'
+    implementation group: 'org.ow2.asm', name: 'asm', version: '+'
+    implementation group: 'org.ow2.asm', name: 'asm-tree', version: '+'
+    implementation group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.+'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    implementation group: 'it.unimi.dsi', name: 'fastutil', version: '7.0.12'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'QBubbles',
+                'Implementation-Vendor': 'QTech Community',
+                'Implementation-Version': "1.0-indev1",
+                'Main-Class': 'com.qsoftware.preloadr.PreLoader'
+    }
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+test {
+    useJUnitPlatform()
+}
+
+task("uploadJars", dependsOn: "build") {
+
+    description = "uploads JARs"
+
+    if (project.hasProperty("local_maven") || project.hasProperty("sftp_maven")) {
+        apply plugin: 'maven'
+        uploadArchives {
+            repositories {
+                if (project.hasProperty("local_maven")) {
+                    mavenDeployer {
+                        repository(url: "file://${local_maven}")
+                    }
+                }
+                if (project.hasProperty("sftp_maven")) {
+                    repositories.mavenDeployer {
+                        configuration = configurations.deployerJars
+                        repository(url: "sftp://${sftp_maven}") {
+                            authentication(userName: "${sftp_username}", privateKey: "${sftp_key}")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//jar.finalizedBy('uploadJars')
+//jar.finalizedBy("uploadArchives")
+
+Gson gson = new Gson()
+JsonObject json = new JsonObject()
+
+// \version
+JsonObject versionJ = new JsonObject()
+versionJ.addProperty "name", version.toString()
+versionJ.addProperty "version", vers
+versionJ.addProperty "release", release
+versionJ.addProperty "build", buildNumber
+versionJ.addProperty "stage", stage
+versionJ.addProperty "stage_release", stageRelease
+
+// \flags
+JsonObject buildInfoJ = new JsonObject()
+buildInfoJ.addProperty("date", LocalDateTime.now(ZoneId.systemDefault()).toString())
+
+// \compile
+JsonObject compileJ = new JsonObject()
+compileJ.addProperty "name", compileJava.name
+compileJ.addProperty "source_compat", compileJava.sourceCompatibility
+compileJ.addProperty "target_compat", compileJava.targetCompatibility
+
+// \project
+JsonObject projectJ = new JsonObject()
+projectJ.addProperty "name", project.name != null ? project.name : ""
+projectJ.addProperty "display_name", project.displayName != null ? project.displayName : ""
+
+// \project\gradle
+JsonObject gradleJ = new JsonObject()
+gradleJ.addProperty "version", gradle.gradleVersion
+
+compileJ  .add "gradle",     gradleJ
+buildInfoJ.add "compile",    compileJ
+buildInfoJ.add "project",    projectJ
+json      .add "version",    versionJ
+json      .add "build_info", buildInfoJ
+
+File qfmArgsFile = new File("${projectDir}/src/main/resources/META-INF/preloader_build_args.json")
+//File qfmArgsFile = new File("qfm_args.json")
+if (qfmArgsFile.exists()) {
+    qfmArgsFile.delete()
+}
+qfmArgsFile.createNewFile()
+FileWriter fileWriter = new FileWriter(qfmArgsFile)
+JsonWriter jsonWriter = new JsonWriter(fileWriter)
+jsonWriter.setIndent("   ")
+gson.toJson(json, jsonWriter)
+fileWriter.flush()
+fileWriter.close()

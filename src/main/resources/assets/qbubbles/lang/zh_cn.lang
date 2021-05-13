@@ -1,0 +1,93 @@
+# Others
+other.prev=以前
+other.next=下一个
+other.true=是
+other.false=无
+other.cancel=取消
+other.ok=好
+other.download=下载
+other.install=安装
+other.buy=购买
+other.random=随机
+other.save=保存
+
+# Effects.
+effect.qbubbles.poison.name=中毒
+effect.qbubbles.blindness.name=瞎了
+effect.qbubbles.multi_score.name=多得分
+effect.qbubbles.speed_boost.name=提速
+effect.qbubbles.attack_boost.name=攻击助推
+effect.qbubbles.defense_boost.name=防御助推
+
+# Informations
+info.qbubbles.score=得分
+info.qbubbles.level=水平
+info.qbubbles.health=健康
+
+# Scene texts.
+scene.qbubbles.title.start=开始游戏
+scene.qbubbles.title.options=选件
+scene.qbubbles.title.language=语言
+
+scene.qbubbles.options.language=语言
+
+scene.qbubbles.saves.new=新
+scene.qbubbles.saves.open=打开
+scene.qbubbles.saves.delete=删除
+scene.qbubbles.saves.duplicate=复制
+scene.qbubbles.saves.edit=编辑
+scene.qbubbles.saves.rename=改名
+scene.qbubbles.saves.reset=重设
+
+# Screen texts.
+screen.qbubbles.pause.text=暂停
+screen.qbubbles.pause.exit=退出并退出游戏
+screen.qbubbles.pause.min_radius=最小半径：
+screen.qbubbles.pause.max_radius=最大半径：
+screen.qbubbles.pause.min_speed=最低速度：
+screen.qbubbles.pause.max_speed=最大速度：
+screen.qbubbles.pause.default_chance=默认机会：
+screen.qbubbles.pause.current_chance=当前机会：
+screen.qbubbles.pause.score_modifier=得分修饰符：
+screen.qbubbles.pause.attack_modifier=攻击修饰符：
+screen.qbubbles.pause.defense_modifier=防御修饰符：
+screen.qbubbles.pause.can_spawn=现在可以产生：
+screen.qbubbles.pause.description=描述：
+
+# Bubble names
+bubble.qbubbles.normal.name=普通泡泡
+bubble.qbubbles.damage.name=伤害泡泡
+bubble.qbubbles.level_up.name=等级提升泡泡
+bubble.qbubbles.double.name=双重价值泡沫
+bubble.qbubbles.triple.name=三重价值泡沫
+bubble.qbubbles.double_state.name=双得分持续时间泡泡
+bubble.qbubbles.triple_state.name=三得分持续时间泡泡
+bubble.qbubbles.blindness.name=失明泡泡
+bubble.qbubbles.poison.name=毒泡泡
+bubble.qbubbles.bounce.name=弹力泡泡
+bubble.qbubbles.heal.name=治愈泡泡
+bubble.qbubbles.hyper.name=超级泡泡
+bubble.qbubbles.attack.name=攻击助力泡泡
+bubble.qbubbles.defense.name=防御助推泡泡
+bubble.qbubbles.speed_boost.name=速度提升泡泡
+bubble.qbubbles.bubble_freeze.name=气泡冰柜
+bubble.qbubbles.paralyze.name=麻痹泡泡
+
+# Bubble descriptions
+bubble.qbubbles.normal.description=普通的普通气泡只有1个得分修饰符，非常常见，并且没有攻击力。
+bubble.qbubbles.damage.description=这个气泡攻击，它的静态攻击修正值为1，当心！
+bubble.qbubbles.level_up.description=如果你可以去一个水平这个泡沫才会出现。 对于一些数学：等级<分数÷10'000+1
+bubble.qbubbles.double.description=此气泡的得分价值更高，你会得到双倍的分数比普通泡沫。
+bubble.qbubbles.triple.description=此气泡的得分价值更高，你会得到三倍的分数比普通泡沫。
+bubble.qbubbles.double_state.description=这个气泡使您在一段时间内的气泡得分翻倍。
+bubble.qbubbles.triple_state.description=这个气泡在一段时间内为您提供气泡得分的三倍。
+bubble.qbubbles.blindness.description=这个泡沫是烦人，触摸时，它会变暗屏幕一样，如果你失明。 将是暂时的，气泡有多大，屏幕将变暗。
+bubble.qbubbles.poison.description=这个泡沫将“毒药”的球员，这意味着它将很难看到泡沫至极，并且随着时间的推移，玩家将受到伤害。 顺便说一句，效果是暂时的。
+bubble.qbubbles.bounce.description=进展中的工作（WIP），反弹气泡会从它反弹的球员。 当前已与它的问题。
+bubble.qbubbles.heal.description=这个泡沫将恢复健康，就这么简单。
+bubble.qbubbles.hyper.description=进展中的工作（WIP），这个泡沫有目前没有特别的说明。
+bubble.qbubbles.attack.description=给你一个“攻击”升压，当感动你可以更快地破坏气泡在一段时期。
+bubble.qbubbles.defense.description=给你一个“防御”提振，触动你的伤害，你需要将在一段时间内减少的时候。
+bubble.qbubbles.speed_boost.description=这个气泡会在一段时间内提高玩家的速度。 顺便说一句，效果是暂时的。
+bubble.qbubbles.bubble_freeze.description=此气泡将冻结所有气泡一段时间。
+bubble.qbubbles.paralyze.description=这个气泡会使玩家瘫痪一段时间。
