@@ -58,7 +58,7 @@ apply plugin: 'eclipse'
 // Util
 apply plugin: 'application'
 
-group 'com.qsoftware'
+group 'com.qtech'
 version '1.0-indev1'
 archivesBaseName = 'bubbles'
 
@@ -81,7 +81,7 @@ try {
     } catch (NumberFormatException e) {
         buildNumber = 0
     }
-} catch(IOException e) {
+} catch (IOException e) {
     buildNumber = 0
 }
 
@@ -101,7 +101,7 @@ output.flush()
 output.close()
 
 version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
-group = 'com.qsoftware.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'com.qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bubbles'
 jar.version = version
 jar.archiveVersion.set(version)
@@ -138,7 +138,7 @@ sourceSets {
  */
 application {
     //noinspection GroovyAccessibility,  GroovyAssignabilityCheck
-    mainClass = 'com.qsoftware.preloader.PreLoader'
+    mainClass = 'com.qtech.preloader.PreLoader'
 }
 
 /***************
@@ -181,8 +181,8 @@ dependencies {
     implementation fileTree(dir: '.\\libs', include: ['*.jar'])
 
     // QSoftware.
-//    extraLibs group: 'com.qsoftware.bubbles', name: 'bubbles-preloader', version: '1.+'
-//    implementation group: 'com.qsoftware.bubbles', name: 'bubbles-preloader', version: '1.+'
+//    extraLibs group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
+//    implementation group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
 
     compile project(":preloader")
 
@@ -378,7 +378,7 @@ jar {
         attributes 'Implementation-Title': 'QBubbles',
                 'Implementation-Vendor': 'QTech Community',
                 'Implementation-Version': "1.0-indev1",
-                'Main-Class': 'com.qsoftware.preloader.PreLoader'
+                'Main-Class': 'com.qtech.preloader.PreLoader'
     }
 //    from {
 //        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
@@ -386,9 +386,9 @@ jar {
     zip64 true
 }
 
-task runQBubbles (type: JavaExec){
+task runQBubbles(type: JavaExec) {
     description = "Run QBubbles"
-    main = 'com.qsoftware.preloader.PreLoader'
+    main = 'com.qtech.preloader.PreLoader'
     classpath = sourceSets.main.compileClasspath
     args('gameDir="./run"')
 }
@@ -397,7 +397,7 @@ test {
     useJUnitPlatform()
 }
 
-task uploadJars (dependsOn: "build") {
+task uploadJars(dependsOn: "build") {
 
     description = "Uploads JARs"
 
@@ -460,11 +460,11 @@ projectJ.addProperty "display_name", project.displayName != null ? project.displ
 JsonObject gradleJ = new JsonObject()
 gradleJ.addProperty "version", gradle.gradleVersion
 
-compileJ  .add "gradle",     gradleJ
-buildInfoJ.add "compile",    compileJ
-buildInfoJ.add "project",    projectJ
-json      .add "version",    versionJ
-json      .add "build_info", buildInfoJ
+compileJ.add "gradle", gradleJ
+buildInfoJ.add "compile", compileJ
+buildInfoJ.add "project", projectJ
+json.add "version", versionJ
+json.add "build_info", buildInfoJ
 
 File qfmArgsFile = new File("${projectDir}/src/main/resources/META-INF/qbubbles_build_args.json")
 //File qfmArgsFile = new File("qfm_args.json")

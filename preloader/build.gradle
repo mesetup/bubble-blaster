@@ -58,7 +58,7 @@ try {
     } catch (NumberFormatException e) {
         buildNumber = 0
     }
-} catch(IOException e) {
+} catch (IOException e) {
     buildNumber = 0
 }
 
@@ -78,7 +78,7 @@ output.flush()
 output.close()
 
 version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
-group = 'com.qsoftware.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'com.qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bubbles-preloader'
 jar.version = version
 jar.archiveVersion.set(version)
@@ -127,7 +127,7 @@ jar {
         attributes 'Implementation-Title': 'QBubbles',
                 'Implementation-Vendor': 'QTech Community',
                 'Implementation-Version': "1.0-indev1",
-                'Main-Class': 'com.qsoftware.preloadr.PreLoader'
+                'Main-Class': 'com.qtech.preloadr.PreLoader'
     }
     from {
         configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
@@ -197,11 +197,11 @@ projectJ.addProperty "display_name", project.displayName != null ? project.displ
 JsonObject gradleJ = new JsonObject()
 gradleJ.addProperty "version", gradle.gradleVersion
 
-compileJ  .add "gradle",     gradleJ
-buildInfoJ.add "compile",    compileJ
-buildInfoJ.add "project",    projectJ
-json      .add "version",    versionJ
-json      .add "build_info", buildInfoJ
+compileJ.add "gradle", gradleJ
+buildInfoJ.add "compile", compileJ
+buildInfoJ.add "project", projectJ
+json.add "version", versionJ
+json.add "build_info", buildInfoJ
 
 File qfmArgsFile = new File("${projectDir}/src/main/resources/META-INF/preloader_build_args.json")
 //File qfmArgsFile = new File("qfm_args.json")
