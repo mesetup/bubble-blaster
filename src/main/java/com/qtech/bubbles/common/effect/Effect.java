@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 
-public abstract class Effect<T extends Effect<T>> extends RegistryEntry {
+public abstract class Effect extends RegistryEntry {
     // Empty Image.
     protected static final Image image;
 
@@ -79,7 +79,7 @@ public abstract class Effect<T extends Effect<T>> extends RegistryEntry {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Effect<?> that = (Effect<?>) o;
+        Effect that = (Effect) o;
         return Objects.equals(getRegistryName(), that.getRegistryName());
     }
 
@@ -88,16 +88,16 @@ public abstract class Effect<T extends Effect<T>> extends RegistryEntry {
         return Objects.hash(getRegistryName());
     }
 
-    public void tick(Entity evt, EffectInstance effectInstance) {
-        if (canExecute()) {
-            execute();
+    public final void tick(Entity entity, EffectInstance effectInstance) {
+        if (canExecute(entity, effectInstance)) {
+            execute(entity, effectInstance);
         }
     }
 
-    protected abstract boolean canExecute();
+    protected abstract boolean canExecute(Entity entity, EffectInstance effectInstance);
 
     @SuppressWarnings("EmptyMethod")
-    public void execute() {
+    public void execute(Entity entity, EffectInstance effectInstance) {
 
     }
 

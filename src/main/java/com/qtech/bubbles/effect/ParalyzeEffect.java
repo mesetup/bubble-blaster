@@ -6,18 +6,13 @@ import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.utilities.python.builtins.ValueError;
 
-public class ParalyzeEffect extends Effect<ParalyzeEffect> {
+public class ParalyzeEffect extends Effect {
     public ParalyzeEffect() throws ValueError {
         super();
     }
 
     @Override
-    public void tick(Entity evt, EffectInstance effectInstance) {
-        // Do nothing.
-    }
-
-    @Override
-    protected boolean canExecute() {
+    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
         return false;
     }
 

@@ -32,7 +32,7 @@ public class EffectCommand implements CommandExecutor {
             if (args[0].equals("give")) {
                 EffectInstance effectInstance;
                 try {
-                    Effect<?> effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
+                    Effect effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
                     if (effect == null) {
                         effectInstance = null;
                     } else {
@@ -62,7 +62,7 @@ public class EffectCommand implements CommandExecutor {
 
                 EffectInstance effectInstance;
                 try {
-                    Effect<?> effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
+                    Effect effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
                     if (effect == null) {
                         effectInstance = null;
                     } else {
@@ -110,7 +110,7 @@ public class EffectCommand implements CommandExecutor {
 
                 EffectInstance effectInstance;
                 try {
-                    Effect<?> effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
+                    Effect effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
                     if (effect == null) {
                         effectInstance = null;
                     } else {

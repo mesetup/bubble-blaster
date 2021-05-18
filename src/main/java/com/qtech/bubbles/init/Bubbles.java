@@ -30,21 +30,21 @@ public class Bubbles implements ObjectInit<AbstractBubble> {
     public static final RegistryObject<AbstractBubble> NORMAL_BUBBLE = register("normal", () -> AbstractBubble.builder()
             .priority(150_000_000L)
             .radius(new IntRange(12, 105))
-            .speed(new DoubleRange(0.875d, 2.200d))
+            .speed(new DoubleRange(4, 8.7))
             .colors(Color.white)
             .score(1f)
             .build());
     public static final RegistryObject<AbstractBubble> DOUBLE_BUBBLE = register("double", () -> AbstractBubble.builder()
             .priority(4_600_000L)
             .radius(new IntRange(24, 75))
-            .speed(new DoubleRange(1.000d, 2.700d))
+            .speed(new DoubleRange(8, 17.4))
             .colors(Color.orange, Color.orange)
             .score(2f)
             .build());
     public static final RegistryObject<AbstractBubble> TRIPLE_BUBBLE = register("triple", () -> AbstractBubble.builder()
             .priority(1_150_000L)
             .radius(new IntRange(48, 60))
-            .speed(new DoubleRange(2.000d, 3.825d))
+            .speed(new DoubleRange(12, 38.8))
             .colors(Color.cyan, Color.cyan, Color.cyan)
             .score(3f)
             .build());
@@ -62,7 +62,7 @@ public class Bubbles implements ObjectInit<AbstractBubble> {
             .speed(new DoubleRange(4.115d, 6.845d))
             .score(1.3125f)
             .effect((source, target) -> (new EffectInstance(Effects.BUBBLE_FREEZE.get(), source.getRadius() / 8, (byte) ((byte) source.getSpeed() * 4))))
-            .colors(ColorUtils.parseColorString("#ff0000,#ff7f00,#ffff00,#ffffff")) // Color.decode("#ff0000"), Color.decode("#ff3f00"), Color.decode("#ff7f00"), Color.decode("#ffaf00"))
+            .colors(ColorUtils.parseColorString("#ff0000,#ff7f00,#ffff00,#ffff7f,#ffffff", false))
             .build());
     public static final RegistryObject<AbstractBubble> PARALYZE_BUBBLE = register("paralyze", () -> AbstractBubble.builder()
             .priority(3_325_000L)
@@ -70,7 +70,7 @@ public class Bubbles implements ObjectInit<AbstractBubble> {
             .speed(new DoubleRange(1.215d, 2.845d))
             .score(0.325f)
             .effect((source, target) -> (new EffectInstance(Effects.PARALYZE.get(), source.getRadius() / 16, (byte) 1)))
-            .colors(ColorUtils.parseColorString("#ffff00,#ffff00,#ffff7f,#ffffff")) // Color.decode("#ff0000"), Color.decode("#ff3f00"), Color.decode("#ff7f00"), Color.decode("#ffaf00"))
+            .colors(ColorUtils.parseColorString("#ffff00,#ffff5f,#ffffdf,#ffffff"))
             .build());
     //    public static final BubbleType DAMAGE_BUBBLE = new BubbleType.Builder().priority(8850000L).radius(new IntRange(15, 85)).speed(new DoubleRange(3.215d, 4.845d)).colors(Color.red, new Color(255, 63, 0), Color.red).attackMod(1d).build();
     public static final RegistryObject<DamageBubble> DAMAGE_BUBBLE = register("damage", DamageBubble::new);
@@ -84,7 +84,7 @@ public class Bubbles implements ObjectInit<AbstractBubble> {
             .score(0.375f)
             .hardness(1.0d)
             .colors(ColorUtils.parseColorString("#7fff00,#9faf1f,#bf7f3f,#df3f5f,#ff007f")) // new Color[]{new Color(128, 255, 0), new Color(160, 192, 32), new Color(192, 128, 64), new Color(224, 64, 96), new Color(255, 0, 128)})
-            .effect((source, target) -> (new EffectInstance(Effects.POISON.get(), source.getRadius() / 8, (byte) ((byte) source.getSpeed() * 4))))
+            .effect((source, target) -> (new EffectInstance(Effects.POISON.get(), source.getRadius() / 8, 4)))
             .build());
 
     public static final RegistryObject<HealBubble> HEAL_BUBBLE = register("heal", HealBubble::new);

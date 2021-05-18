@@ -6,18 +6,13 @@ import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.utilities.python.builtins.ValueError;
 
-public class BubbleFreezeEffect extends Effect<BubbleFreezeEffect> {
+public class BubbleFreezeEffect extends Effect {
     public BubbleFreezeEffect() throws ValueError {
         super();
     }
 
     @Override
-    public void tick(Entity evt, EffectInstance effectInstance) {
-
-    }
-
-    @Override
-    protected boolean canExecute() {
+    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
         return false;
     }
 

@@ -7,14 +7,9 @@ import com.qtech.bubbles.common.entity.Attribute;
 import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.utilities.python.builtins.ValueError;
 
-public class SpeedBoostEffect extends Effect<SpeedBoostEffect> {
+public class SpeedBoostEffect extends Effect {
     public SpeedBoostEffect() throws ValueError {
         super();
-    }
-
-    @Override
-    public void tick(Entity evt, EffectInstance effectInstance) {
-        // Do nothing.
     }
 
     @Override
@@ -25,7 +20,7 @@ public class SpeedBoostEffect extends Effect<SpeedBoostEffect> {
     }
 
     @Override
-    protected boolean canExecute() {
+    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
         return false;
     }
 

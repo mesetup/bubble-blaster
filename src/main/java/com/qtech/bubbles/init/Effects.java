@@ -20,7 +20,6 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 //@ObjectHolder(addonId = QInternalAddon.ADDON_ID)
 public class Effects {
-    @SuppressWarnings("rawtypes")
     public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(QInternalAddon.ADDON_ID, Registers.EFFECTS);
 
     public static final RegistryObject<DefenseBoostEffect> DEFENSE_BOOST = register("defense", DefenseBoostEffect::new);
@@ -33,7 +32,7 @@ public class Effects {
     public static final RegistryObject<PoisonEffect> POISON = register("poison", PoisonEffect::new);
     public static final RegistryObject<LuckEffect> LUCK = register("luck", LuckEffect::new);
 
-    private static <T extends Effect<T>> RegistryObject<T> register(String name, Supplier<T> effectSupplier) {
+    private static <T extends Effect> RegistryObject<T> register(String name, Supplier<T> effectSupplier) {
         return EFFECTS.register(name, effectSupplier);
     }
 

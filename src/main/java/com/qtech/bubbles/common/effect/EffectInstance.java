@@ -22,7 +22,7 @@ import java.util.Objects;
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class EffectInstance implements TagHolder {
-    private final Effect<?> type;
+    private final Effect type;
     private int strength;
     private long endTime;
 
@@ -40,7 +40,7 @@ public class EffectInstance implements TagHolder {
         this.baseDuration = document.getInt64("BaseDuration").getValue();
     }
 
-    public EffectInstance(Effect<?> type, long duration, int strength) throws ValueError {
+    public EffectInstance(Effect type, long duration, int strength) throws ValueError {
         if (strength < 1) {
             throw new ValueError("Cannot create effect instance with strength < 1");
         }
@@ -72,7 +72,7 @@ public class EffectInstance implements TagHolder {
         active = false;
     }
 
-    public final Effect<?> getType() {
+    public final Effect getType() {
         return type;
     }
 

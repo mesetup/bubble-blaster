@@ -6,16 +6,11 @@ import com.qtech.bubbles.common.effect.EffectInstance;
 import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.event.FilterEvent;
 
-public class BlindnessEffect extends Effect<BlindnessEffect> {
+public class BlindnessEffect extends Effect {
     private long startTime;
 
     public BlindnessEffect() {
         super();
-    }
-
-    @Override
-    public void tick(Entity evt, EffectInstance effectInstance) {
-        // Do nothing.
     }
 
     @Override
@@ -48,7 +43,7 @@ public class BlindnessEffect extends Effect<BlindnessEffect> {
     }
 
     @Override
-    protected boolean canExecute() {
+    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
         return false;
     }
 

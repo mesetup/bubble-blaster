@@ -127,7 +127,7 @@ public final class PlayerEntity extends DamageableEntity {
         this.velY = 0;
 
         // Set attributes.
-        this.attributes.setBase(Attribute.DEFENSE, 0.1f);
+        this.attributes.setBase(Attribute.DEFENSE, 1f);
         this.attributes.setBase(Attribute.ATTACK, 0.75f);
         this.attributes.setBase(Attribute.MAX_DAMAGE, 100f);
         this.attributes.setBase(Attribute.SPEED, 16f);
@@ -236,7 +236,7 @@ public final class PlayerEntity extends DamageableEntity {
     /**
      * @return the shape of the ship.
      */
-    public Area getShipShape() {
+    public Area getShipArea() {
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(rotation), shipShape.getBounds().getCenterX(), shipShape.getBounds().getCenterY());
 
@@ -255,7 +255,7 @@ public final class PlayerEntity extends DamageableEntity {
     /**
      * @return the arrow shape of the ship.
      */
-    public Area getArrowShape() {
+    public Area getArrowArea() {
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(rotation), shipShape.getBounds().getCenterX(), shipShape.getBounds().getCenterY());
 
@@ -517,13 +517,13 @@ public final class PlayerEntity extends DamageableEntity {
         // Fill the ship with the correct color. //
         ///////////////////////////////////////////
         gg.setColor(Color.red);
-        gg.fill(getShipShape());
+        gg.fill(getShipArea());
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Fill the arrow with the correct color. //
         ////////////////////////////////////////////
         gg.setColor(Color.white);
-        gg.fill(getArrowShape());
+        gg.fill(getArrowArea());
     }
 
     /////////////////////////////////////////////////////////////////////////////////////

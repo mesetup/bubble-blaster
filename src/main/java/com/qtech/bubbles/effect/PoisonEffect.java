@@ -11,7 +11,7 @@ import com.qtech.utilities.python.builtins.ValueError;
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
 
-public class PoisonEffect extends Effect<PoisonEffect> {
+public class PoisonEffect extends Effect {
     public PoisonEffect() throws ValueError {
         super();
     }
@@ -24,18 +24,16 @@ public class PoisonEffect extends Effect<PoisonEffect> {
     }
 
     @Override
-    public void tick(Entity entity, EffectInstance effectInstance) {
-        if (System.currentTimeMillis() >= effectInstance.getTag().getInt64("nextDamage").getValue()) {
-            entity.getGameType().attack(entity, (double) effectInstance.getStrength() / 2, new DamageSource(null, DamageSourceType.POISON));
-            BsonDocument tag = effectInstance.getTag();
-            BsonInt64 nextDamage = tag.getInt64("nextDamage");
-            tag.put("nextDamage", new BsonInt64(nextDamage.getValue() + 2000));
-        }
+    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
+        return System.currentTimeMillis() >= effectInstance.getTag().getInt64("nextDamage").getValue();
     }
 
     @Override
-    protected boolean canExecute() {
-        return true;
+    public void execute(Entity entity, EffectInstance effectInstance) {
+        entity.getGameType().attack(entity, (double) effectInstance.getStrength() / 2, new DamageSource(null, DamageSourceType.POISON));
+        BsonDocument tag = effectInstance.getTag();
+        BsonInt64 nextDamage = tag.getInt64("nextDamage");
+        tag.put("nextDamage", new BsonInt64(nextDamage.getValue() + 2000));
     }
 
     @Override

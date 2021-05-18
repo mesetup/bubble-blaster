@@ -2,16 +2,18 @@ package com.qtech.bubbles.effect;
 
 import com.qtech.bubbles.common.AttributeMap;
 import com.qtech.bubbles.common.effect.Effect;
+import com.qtech.bubbles.common.effect.EffectInstance;
 import com.qtech.bubbles.common.entity.Attribute;
+import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.utilities.python.builtins.ValueError;
 
-public class AttackBoostEffect extends Effect<AttackBoostEffect> {
+public class AttackBoostEffect extends Effect {
     public AttackBoostEffect() throws ValueError {
         super();
     }
 
     @Override
-    public void execute() {
+    public void execute(Entity entity, EffectInstance effectInstance) {
 
     }
 
@@ -21,7 +23,7 @@ public class AttackBoostEffect extends Effect<AttackBoostEffect> {
     }
 
     @Override
-    protected boolean canExecute() {
+    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
         return false;
     }
 

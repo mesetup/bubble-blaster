@@ -2,11 +2,13 @@ package com.qtech.bubbles.effect;
 
 import com.qtech.bubbles.common.AttributeMap;
 import com.qtech.bubbles.common.effect.Effect;
+import com.qtech.bubbles.common.effect.EffectInstance;
 import com.qtech.bubbles.common.entity.Attribute;
+import com.qtech.bubbles.common.entity.Entity;
 
-public class LuckEffect extends Effect<LuckEffect> {
+public class LuckEffect extends Effect {
     @Override
-    protected boolean canExecute() {
+    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
         return false;
     }
 
