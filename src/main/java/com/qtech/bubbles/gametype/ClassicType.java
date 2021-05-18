@@ -78,7 +78,7 @@ public class ClassicType extends AbstractGameType {
 
                 if (bubble != Bubbles.LEVEL_UP_BUBBLE.get()) {
                     Point pos = new Point(this.bubblesXPosRng.getNumber(0, QBubbles.getInstance().getWidth(), -i - 1), this.bubblesYPosRng.getNumber(0, QBubbles.getInstance().getWidth(), -i - 1));
-                    environment.spawn(Entities.BUBBLE.get().create(scene, this), pos);
+                    environment.spawn(Entities.BUBBLE.get().create(this), pos);
                 }
 
                 ticks--;
@@ -223,7 +223,8 @@ public class ClassicType extends AbstractGameType {
      */
     @SuppressWarnings("RedundantThrows")
     @Override
-    public void loadSaveData(SavedGame savedGame, InfoTransporter infoTransporter) throws IOException {
+    public void loadSaveData(SavedGame savedGame, InfoTransporter infoTransporter) {
+
     }
 
     /**
@@ -408,7 +409,7 @@ public class ClassicType extends AbstractGameType {
 
         if (environment.getEntities().stream().filter((entity) -> entity instanceof BubbleEntity).count() < GameSettings.instance().getMaxBubbles()) {
             EntityType<? extends BubbleEntity> entityType = BubbleEntity.getRandomType(scene, this);
-            BubbleEntity bubbleEntity = entityType.create(scene, this);
+            BubbleEntity bubbleEntity = entityType.create(this);
             if (bubbleEntity.getBubbleType().canSpawn(this)) {
                 environment.spawn(entityType);
             }

@@ -20,7 +20,7 @@ public class HealBubble extends AbstractBubble {
 
         setPriority(4000000);
         setRadius(new IntRange(17, 70));
-        setSpeed(new DoubleRange(1.0d, 2.5d));
+        setSpeed(new DoubleRange(10.2d, 18.6d));
         setDefense(0.3f);
         setAttack(0.0f);
         setScore(1);
@@ -35,7 +35,7 @@ public class HealBubble extends AbstractBubble {
 
         if (target instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) target;
-            player.heal(1.8f * (source.getGameType().getLocalDifficulty() / 20.0f + (1.8f / 20.0f)));
+            player.restoreDamage(1.8f * (source.getGameType().getLocalDifficulty() / 20.0f + (1.8f / 20.0f)));
         }
     }
 }

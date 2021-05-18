@@ -6,7 +6,7 @@ public class Attribute {
     private static final HashMap<String, Attribute> attributeMap = new HashMap<>();
 
     public static final Attribute SCORE_MULTIPLIER = new Attribute("qbubbles.score_multiplier");
-    public static final Attribute MAX_HEALTH = new Attribute("qbubbles.max_health");
+    public static final Attribute MAX_DAMAGE = new Attribute("qbubbles.max_health");
     public static final Attribute DEFENSE = new Attribute("qbubbles.defense");
     public static final Attribute ATTACK = new Attribute("qbubbles.attack");
     public static final Attribute SPEED = new Attribute("qbubbles.speed");

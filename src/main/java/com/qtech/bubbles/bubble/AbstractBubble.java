@@ -100,7 +100,7 @@ public abstract class AbstractBubble extends RegistryEntry implements Serializab
     }
 
     public double getMaxSpeed() {
-        return speed.getMaximumInteger();
+        return speed.getMaximumDouble();
     }
 
     protected final void setMinRadius(int radius) {

@@ -3,6 +3,7 @@ package com.qtech.bubbles.bubble;
 import com.jhlabs.image.HSBAdjustFilter;
 import com.qtech.bubbles.common.effect.EffectInstance;
 import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.core.utils.categories.ColorUtils;
 import com.qtech.bubbles.entity.BubbleEntity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.init.Effects;
@@ -14,12 +15,11 @@ import java.util.ArrayList;
 
 public class UltraBubble extends AbstractBubble {
     public UltraBubble() {
-//        colors = ColorUtils.multiConvertHexToRgb("#ffffff");
-        colors = new Color[]{new Color(255, 0, 0), new Color(255, 128, 0), new Color(255, 255, 0), new Color(128, 255, 0), new Color(0, 255, 0)};
+        colors = ColorUtils.parseColorString("#007fff,#0000ff,#7f00ff,#ff00ff,#ff007f");
 
         setPriority(4600d);
         setRadius(new IntRange(21, 55));
-        setSpeed(new DoubleRange(1.0, 2.7));
+        setSpeed(new DoubleRange(19.2, 38.4));
         setDefense(0.573f);
         setAttack(0.0f);
         setScore(2);

@@ -20,7 +20,7 @@ public class Window extends JXFrame {
     private static final long serialVersionUID = -240840600533728354L;
     private final GraphicsDevice fullscreenDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-    public Window(QBubbles main) {
+    public Window(QBubbles main, boolean fullscreen) {
 
         try {
 //            this.setPreferredSize(new Dimension(width, height));
@@ -29,16 +29,25 @@ public class Window extends JXFrame {
             this.setBackground(new Color(64, 64, 64));
             this.setExtendedState(JFrame.MAXIMIZED_BOTH);
             Rectangle bounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getBounds();
-            this.setBounds(bounds);
+            if (fullscreen) {
+                this.setBounds(bounds);
+            } else {
+                this.setBounds(new Rectangle((int) bounds.getCenterX() - 800 / 2, (int) bounds.getCenterY() - 450 / 2, 800, 450));
+                this.setMaximumSize(new Dimension(1280, 640));
+                this.setMinimumSize(new Dimension(1280, 640));
+            }
 
 //            this.setAlwaysOnTop(true);
-            this.setUndecorated(true);
+            if (fullscreen) {
+                this.setUndecorated(true);
+            }
 //            this.setVisible(true);
 
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setLayout(new StackLayout());
             this.getContentPane().setLayout(new StackLayout());
             this.setResizable(false);
+            this.setMaximizedBounds(getBounds());
             this.setLocationRelativeTo(null);
             if (main != null) {
                 this.getContentPane().add(main);
@@ -58,7 +67,9 @@ public class Window extends JXFrame {
             this.setVisible(true);
             GraphicsDevice device = GraphicsEnvironment
                     .getLocalGraphicsEnvironment().getScreenDevices()[0];
-            device.setFullScreenWindow(this);
+            if (fullscreen) {
+                device.setFullScreenWindow(this);
+            }
 //            this.setIdle(true);
             this.repaint();
             this.requestFocus();

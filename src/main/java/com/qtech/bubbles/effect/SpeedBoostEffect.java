@@ -20,7 +20,7 @@ public class SpeedBoostEffect extends Effect<SpeedBoostEffect> {
     @Override
     public AttributeMap getAttributeModifiers() {
         AttributeMap attributeMap = new AttributeMap();
-        attributeMap.set(Attribute.SPEED, 1f);
+        attributeMap.setBase(Attribute.SPEED, 1f);
         return attributeMap;
     }
 

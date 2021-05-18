@@ -4,7 +4,7 @@ import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.addon.loader.AddonClassLoader;
 import com.qtech.bubbles.common.crash.CrashCategory;
 import com.qtech.bubbles.common.crash.CrashReport;
-import com.qtech.bubbles.scene.LoadScreen;
+import com.qtech.bubbles.screen.LoadScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;

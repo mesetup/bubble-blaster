@@ -20,7 +20,7 @@ public class DefenseBoostBubble extends AbstractBubble {
 
         setPriority(131_072);
         setRadius(new IntRange(21, 70));
-        setSpeed(new DoubleRange(2.1, 3.9));
+        setSpeed(new DoubleRange(8.8, 16.4));
         setDefense(0.327f);
         setAttack(0.0f);
         setScore(2);

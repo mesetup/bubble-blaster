@@ -3,8 +3,6 @@ package com.qtech.bubbles.entity.types;
 import com.qtech.bubbles.common.RegistryEntry;
 import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
-import com.qtech.bubbles.common.scene.Scene;
-import com.qtech.bubbles.common.screen.Screen;
 import org.bson.BsonDocument;
 
 import java.util.Objects;
@@ -24,8 +22,8 @@ public class EntityType<T extends Entity> extends RegistryEntry {
         return Objects.equals(getRegistryName(), that.getRegistryName());
     }
 
-    public T create(Screen scene, AbstractGameType gameType) {
-        return entityFactory.create(scene, gameType);
+    public T create(AbstractGameType gameType) {
+        return entityFactory.create(gameType);
     }
 
     @Override
@@ -33,8 +31,8 @@ public class EntityType<T extends Entity> extends RegistryEntry {
         return Objects.hash(getRegistryName());
     }
 
-    public T create(Screen scene, AbstractGameType gameType, BsonDocument document) {
-        T t = entityFactory.create(scene, gameType);
+    public T create(AbstractGameType gameType, BsonDocument document) {
+        T t = entityFactory.create(gameType);
         t.setState(document);
         return t;
     }

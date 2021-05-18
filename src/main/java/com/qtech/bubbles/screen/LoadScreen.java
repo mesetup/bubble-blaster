@@ -1,13 +1,11 @@
-package com.qtech.bubbles.scene;
+package com.qtech.bubbles.screen;
 
 import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.addon.Scanner;
 import com.qtech.bubbles.addon.loader.AddonContainer;
 import com.qtech.bubbles.addon.loader.AddonLoader;
 import com.qtech.bubbles.command.*;
-import com.qtech.bubbles.common.Pair;
-import com.qtech.bubbles.common.RegistryEntry;
-import com.qtech.bubbles.common.ResourceLocation;
+import com.qtech.bubbles.common.*;
 import com.qtech.bubbles.common.bubble.BubbleSystem;
 import com.qtech.bubbles.common.command.CommandConstructor;
 import com.qtech.bubbles.common.screen.Screen;
@@ -32,9 +30,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -49,6 +48,12 @@ public final class LoadScreen extends Screen implements Runnable {
     private AddonLoader addonLoader = null;
     private EventBus.Handler binding;
     private static boolean done;
+    private LoggableProgress mainProgress = null;
+    private LoggableProgress subProgress1 = null;
+    private final InfoTransporter mainLogger = new InfoTransporter(this::logMain);
+    private final InfoTransporter subLogger1 = new InfoTransporter(this::logSub1);
+    private String mainMessage = "";
+    private String subMessage1 = "";
 
     public LoadScreen() {
         instance = this;
@@ -95,30 +100,68 @@ public final class LoadScreen extends Screen implements Runnable {
     }
 
     public void render(QBubbles game, Graphics2D gg) {
-        gg.setColor(new Color(0, 72, 96));
+        gg.setColor(new Color(72, 72, 72));
         gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
 //        if (GameSettings.instance().isTextAntialiasEnabled())
 //            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         int i = 0;
-        for (int j = Math.min(messages.size() - 1, 7); j > -1; j--) {
-            Pair<String, Long> pair = messages.get(j);
-            String message = pair.getFirst();
-            long startTime = pair.getSecond();
-            long secondsToLive = startTime - System.currentTimeMillis() + 2000;
-            float alpha;
-            if (secondsToLive <= 0) {
-                alpha = 0f;
-            } else if (secondsToLive >= 2000) {
-                alpha = 1f;
-            } else {
-                alpha = secondsToLive / 2000f;
+//        for (int j = Math.min(messages.size() - 1, 7); j > -1; j--) {
+//            Pair<String, Long> pair = messages.get(j);
+//            String message = pair.getFirst();
+//            long startTime = pair.getSecond();
+//            long secondsToLive = startTime - System.currentTimeMillis() + 2000;
+//            float alpha;
+//            if (secondsToLive <= 0) {
+//                alpha = 0f;
+//            } else if (secondsToLive >= 2000) {
+//                alpha = 1f;
+//            } else {
+//                alpha = secondsToLive / 2000f;
+//            }
+//
+//            gg.setColor(new Color(1f, 1f, 1f, alpha));
+//            GraphicsUtils.drawLeftAnchoredString(gg, message, new Point2D.Float(10, game.getHeight() - 35f - (25f * i)), 25, new Font(game.getSansFontName(), Font.PLAIN, 20));
+//            i++;
+//
+//        }
+
+        if (mainProgress != null) {
+            {
+                int progress = mainProgress.getProgress();
+                int max = mainProgress.getMax();
+
+                if (mainMessage != null) {
+                    gg.setColor(new Color(128, 128, 128));
+                    GraphicsUtils.drawCenteredString(gg, mainMessage, new Rectangle2D.Double(0, (double)QBubbles.getInstance().getHeight() / 2 - 15, QBubbles.getInstance().getWidth(), 30), new Font(game.getSansFontName(), Font.PLAIN, 20));
+                }
+
+                gg.setColor(new Color(128, 128, 128));
+                gg.fillRect(QBubbles.getInstance().getWidth() / 2 - 150, QBubbles.getInstance().getHeight() / 2 + 15, 300, 3);
+
+                gg.setColor(new Color(0, 192, 255));
+                GradientPaint p = new GradientPaint(0, (float)QBubbles.getInstance().getWidth() / 2 - 150, new Color(0, 192, 255), (float)QBubbles.getInstance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
+                gg.setPaint(p);
+                gg.fillRect(QBubbles.getInstance().getWidth() / 2 - 150, QBubbles.getInstance().getHeight() / 2 + 15, (int)(300d * (double)progress / (double) max), 3);
             }
 
-            gg.setColor(new Color(1f, 1f, 1f, alpha));
-            GraphicsUtils.drawLeftAnchoredString(gg, message, new Point2D.Float(10, game.getHeight() - 35f - (25f * i)), 25, new Font(game.getSansFontName(), Font.PLAIN, 20));
-            i++;
+            if (subProgress1 != null) {
+                int progress = subProgress1.getProgress();
+                int max = subProgress1.getMax();
 
+                if (subMessage1 != null) {
+                    gg.setColor(new Color(128, 128, 128));
+                    GraphicsUtils.drawCenteredString(gg, subMessage1, new Rectangle2D.Double(0, (double)QBubbles.getInstance().getHeight() / 2 + 60, QBubbles.getInstance().getWidth(), 30), new Font(game.getSansFontName(), Font.PLAIN, 20));
+                }
+
+                gg.setColor(new Color(128, 128, 128));
+                gg.fillRect(QBubbles.getInstance().getWidth() / 2 - 150, QBubbles.getInstance().getHeight() / 2 + 90, 300, 3);
+
+                gg.setColor(new Color(0, 192, 255));
+                GradientPaint p = new GradientPaint(0, (float)QBubbles.getInstance().getWidth() / 2 - 150, new Color(0, 192, 255), (float)QBubbles.getInstance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
+                gg.setPaint(p);
+                gg.fillRect(QBubbles.getInstance().getWidth() / 2 - 150, QBubbles.getInstance().getHeight() / 2 + 90, (int)(300d * (double)progress / (double) max), 3);
+            }
         }
 
         gg.setColor(new Color(127, 127, 127));
@@ -135,6 +178,8 @@ public final class LoadScreen extends Screen implements Runnable {
 
     @Override
     public void run() {
+        this.mainProgress = new LoggableProgress(mainLogger, 10);
+
         // Get game directory in Java's File format.
         File gameDir = QBubbles.getGameDir();
 
@@ -148,66 +193,91 @@ public final class LoadScreen extends Screen implements Runnable {
         // Initialize registries.
         new AddonManager();
 
-        logInfo("Loading addons...");
         LOGGER.info("Loading addons...");
+        mainProgress.log("Loading addons...");
+        mainProgress.increment();
         this.addonLoader = new AddonLoader(this);
+        this.subProgress1 = null;
 
-        logInfo("Constructing addons...");
         LOGGER.info("Constructing addons...");
+        mainProgress.log("Constructing addons...");
+        mainProgress.increment();
         this.addonLoader.constructAddons();
-
-        logInfo("Pre-Initialize Addons");
-        LOGGER.info("Pre-Initialize addons...");
-//        this.addonLoader.preInitialize();
-
-        initialize();
-        logInfo("Initialize Addons");
-        LOGGER.info("Initialize addons...");
-//        this.addonLoader.initialize();
-
-        logInfo("Post-Initialize Addons");
-        LOGGER.info("Post-Initialize addons...");
-//        this.addonLoader.postInitialize();
+        this.subProgress1 = null;
 
         // Loading object holders
-        logInfo("Loading object-holders...");
+        mainProgress.log("Loading object-holders...");
+        mainProgress.increment();
         loadObjectHolders();
+        this.subProgress1 = null;
+
+        mainProgress.log("Initializing Bubble Blaster");
+        mainProgress.increment();
+        initialize();
+        this.subProgress1 = null;
+
+        LOGGER.info("Setup addons...");
+        mainProgress.log("Setup Addons");
+        mainProgress.increment();
+        this.addonLoader.addonSetup();
+        this.subProgress1 = null;
 
         // GameScene and ClassicType initialization.
-        logInfo("Registering...");
-        logInfo("Registering: Effects");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.EFFECTS));
-        logInfo("Registering: Abilities");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.ABILITIES));
-        logInfo("Registering: Ammo Types");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.AMMO_TYPES));
-        logInfo("Registering: Entities");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.ENTITIES));
-        logInfo("Registering: Bubbles");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.BUBBLES));
-        logInfo("Registering: Game States");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.GAME_EVENTS));
-        logInfo("Registering: Game Types");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.GAME_TYPES));
-        logInfo("Registering: Cursors");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.CURSORS));
-        logInfo("Registering: Texture Collections");
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.TEXTURE_COLLECTIONS));
+        mainProgress.log("Registering...");
+        mainProgress.increment();
 
-        for (TextureCollection collection : Registers.TEXTURE_COLLECTIONS.values()) {
+        subProgress1 = new LoggableProgress(subLogger1, 9);
+        subProgress1.log("Effects");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.EFFECTS));
+        subProgress1.log("Abilities");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.ABILITIES));
+        subProgress1.log("Ammo Types");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.AMMO_TYPES));
+        subProgress1.log("Entities");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.ENTITIES));
+        subProgress1.log("Bubbles");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.BUBBLES));
+        subProgress1.log("Game States");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.GAME_EVENTS));
+        subProgress1.log("Game Types");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.GAME_TYPES));
+        subProgress1.log("Cursors");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.CURSORS));
+        subProgress1.log("Texture Collections");
+        subProgress1.increment();
+        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.TEXTURE_COLLECTIONS));
+        this.subProgress1 = null;
+
+        mainProgress.log("");
+        mainProgress.increment();
+        Collection<TextureCollection> values = Registers.TEXTURE_COLLECTIONS.values();
+        subProgress1 = new LoggableProgress(subLogger1, values.size());
+        for (TextureCollection collection : values) {
             Bus.getQBubblesEventBus().post(new TextureRenderEvent(collection));
+            subProgress1.increment();
         }
 
         // BubbleSystem
-        logInfo("Initialize bubble system...");
+        mainProgress.log("Initialize bubble system...");
+        mainProgress.increment();
         BubbleSystem.init();
 
         // Load complete.
-        logInfo("Load Complete!");
+        mainProgress.log("Load Complete!");
+        mainProgress.increment();
         QBubbles.getEventBus().post(new LoaderLoadCompleteEvent(addonLoader));
 
         // Registry dump.
-        logInfo("Registry Dump.");
+        mainProgress.log("Registry Dump.");
+        mainProgress.increment();
         QBubbles.getEventBus().post(new RegistryEvent.Dump());
 
         done = true;
@@ -343,5 +413,13 @@ public final class LoadScreen extends Screen implements Runnable {
 
     public void logInfo(String description) {
         this.messages.add(new Pair<>(description, System.currentTimeMillis()));
+    }
+
+    private void logSub1(String s) {
+        this.subMessage1 = s;
+    }
+
+    private void logMain(String s) {
+        this.mainMessage = s;
     }
 }

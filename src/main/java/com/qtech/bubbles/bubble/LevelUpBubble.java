@@ -24,7 +24,7 @@ public class LevelUpBubble extends AbstractBubble {
         // Set initial data values.
         setPriority(128000000L);
         setRadius(new IntRange(21, 60));
-        setSpeed(new DoubleRange(0.875, 2.5));
+        setSpeed(new DoubleRange(6.4, 19.2));
         setDefense(0.0001f);
         setAttack(0.0f);
         setScore(1);

@@ -34,8 +34,8 @@ public class BasicAmmoType extends AmmoType {
     @Override
     public AttributeMap getDefaultAttributes() {
         AttributeMap map = new AttributeMap();
-        map.set(Attribute.ATTACK, 1f);
-        map.set(Attribute.DEFENSE, 4f);
+        map.setBase(Attribute.ATTACK, 1f);
+        map.setBase(Attribute.DEFENSE, 4f);
         return map;
     }
 }

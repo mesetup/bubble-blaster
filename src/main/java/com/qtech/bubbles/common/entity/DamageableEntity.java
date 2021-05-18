@@ -23,28 +23,28 @@ import java.util.List;
  * @see Entity
  */
 @SuppressWarnings("unused")
-public abstract class LivingEntity extends Entity {
-    protected float health;
+public abstract class DamageableEntity extends Entity {
+    protected float damageValue;
     protected double speed;
     protected double baseSpeed;
     private final List<Modifier> modifiers = new ArrayList<>();
 
     // Constructor.
-    public LivingEntity(EntityType<?> type, AbstractGameType gameType) {
+    public DamageableEntity(EntityType<?> type, AbstractGameType gameType) {
         super(type, gameType);
     }
 
     // Properties
-    public float getHealth() {
-        return health;
+    public float getDamageValue() {
+        return damageValue;
     }
 
-    public void setHealth(float health) {
-        this.health = MathHelper.clamp(health, 0f, attributes.get(Attribute.MAX_HEALTH));
+    public void setDamageValue(float damageValue) {
+        this.damageValue = MathHelper.clamp(damageValue, 0f, attributes.getBase(Attribute.MAX_DAMAGE));
     }
 
-    public float getMaxHealth() {
-        return attributes.get(Attribute.MAX_HEALTH);
+    public float getMaxDamageValue() {
+        return attributes.getBase(Attribute.MAX_DAMAGE);
     }
 
     public double getSpeed() {
@@ -71,16 +71,16 @@ public abstract class LivingEntity extends Entity {
      * <h1>Attack!!!</h1>
      *
      * @param value The attack value.
-     * @deprecated Use {@link #attack(double, DamageSource)} instead.
+     * @deprecated Use {@link #damage(double, DamageSource)} instead.
      */
     @Deprecated
-    public void attack(double value) {
-        if (attributes.get(Attribute.DEFENSE) == 0f) {
-            this.instantDeath();
+    public void damage(double value) {
+        if (attributes.getBase(Attribute.DEFENSE) == 0f) {
+            this.destroy();
         }
 
-        this.health -= value / attributes.get(Attribute.DEFENSE);
-        this.checkHealth();
+        this.damageValue -= value / attributes.getBase(Attribute.DEFENSE);
+        this.checkDamage();
     }
 
     /**
@@ -90,77 +90,77 @@ public abstract class LivingEntity extends Entity {
      * @param source the damage source.
      */
     @SuppressWarnings("unused")
-    public void attack(double value, DamageSource source) {
-        if (attributes.get(Attribute.DEFENSE) == 0f) {
-            this.instantDeath();
+    public void damage(double value, DamageSource source) {
+        if (attributes.getBase(Attribute.DEFENSE) == 0f) {
+            this.destroy();
         }
 
-        this.health -= value / attributes.get(Attribute.DEFENSE);
-        this.checkHealth();
+        this.damageValue -= value / attributes.getBase(Attribute.DEFENSE);
+        this.checkDamage();
     }
 
-    public void instantDeath() {
-        this.health = 0;
-        checkHealth();
+    public void destroy() {
+        this.damageValue = 0;
+        checkDamage();
     }
 
-    public void heal(float value) {
-        this.health += value;
-        this.health = MathHelper.clamp(health, 0f, attributes.get(Attribute.MAX_HEALTH));
+    public void restoreDamage(float value) {
+        this.damageValue += value;
+        this.damageValue = MathHelper.clamp(damageValue, 0f, attributes.getBase(Attribute.MAX_DAMAGE));
     }
 
-    protected void checkHealth() {
-        if (this.health <= 0) {
+    protected void checkDamage() {
+        if (this.damageValue <= 0) {
             this.delete();
         }
     }
 
     @Override
     public @NotNull BsonDocument getState() {
-        BsonDocument document = super.getState();
-
-        document.put("Health", new BsonDouble(health));
+        BsonDocument state = super.getState();
 
         BsonArray bases = this.bases.write(new BsonArray());
-        document.put("Bases", bases);
+        state.put("Bases", bases);
 
         BsonArray attributes = new BsonArray();
         attributes = this.attributes.write(attributes);
-        document.put("Attributes", attributes);
+        state.put("Attributes", attributes);
 
         BsonArray effects = new BsonArray();
         for (EffectInstance effectInstance : activeEffects) {
             BsonDocument effectDocument = effectInstance.write(new BsonDocument());
             effects.add(effectDocument);
         }
-        document.put("Effects", effects);
+        state.put("Effects", effects);
 
         BsonDocument position = new BsonDocument();
-        position.put("X", new BsonDouble(getX()));
-        position.put("Y", new BsonDouble(getY()));
-        document.put("Position", position);
+        position.put("x", new BsonDouble(getX()));
+        position.put("y", new BsonDouble(getY()));
+        state.put("position", position);
 
-        document.put("ID", new BsonInt64(entityId));
-        document.put("Name", new BsonString(this.type.getRegistryName().toString()));
+        state.put("id", new BsonInt64(entityId));
+        state.put("name", new BsonString(this.type.getRegistryName().toString()));
 
-        return document;
+        state.put("damageValue", new BsonDouble(damageValue));
+
+        return state;
     }
 
     @Override
-    public void setState(BsonDocument document) {
-        BsonArray attributes = document.getArray("Attributes");
+    public void setState(BsonDocument state) {
+        BsonArray attributes = state.getArray("Attributes");
         this.attributes = new AttributeMap().read(attributes);
 
-        BsonArray bases = document.getArray("Bases");
+        BsonArray bases = state.getArray("Bases");
         this.bases = new AttributeMap().read(bases);
 //        this.baseSpeed = bases.getDouble("Speed").getValue();
 
-        BsonDocument position = document.getDocument("position");
+        BsonDocument position = state.getDocument("position");
         this.x = (float) position.getDouble("x").getValue();
         this.y = (float) position.getDouble("y").getValue();
 
         // TODO: Update to locate entity class, from ResourceLocation using EntityType.
-        ResourceLocation entityTypeKey = ResourceLocation.fromString(document.getString("Name").getValue());
+        ResourceLocation entityTypeKey = ResourceLocation.fromString(state.getString("Name").getValue());
 //        this.type = EntityTypeRegistry.INSTANCE.get(entityTypeKey);
         this.type = Registry.getRegistry(EntityType.class).get(entityTypeKey);
     }

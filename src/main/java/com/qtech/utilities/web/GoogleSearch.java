@@ -22,7 +22,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class GoogleSearch implements Iterable<GoogleResult>, Serializable {
-    public static final String API_KEY = null;
+    public static String API_KEY = null;
     public static final String SEARCH_ENGINE_ID = null;
 
     private long count;
@@ -39,6 +39,7 @@ public class GoogleSearch implements Iterable<GoogleResult>, Serializable {
         this(query, count, startIndex, false);
     }
 
+    @SuppressWarnings("ConstantConditions")
     public GoogleSearch(String query, long count, long startIndex, boolean safeSearch) {
         this.safeSearch = safeSearch;
         if (API_KEY == null) {
@@ -158,12 +159,13 @@ public class GoogleSearch implements Iterable<GoogleResult>, Serializable {
      *
      * @return the google result iterator.
      */
+    @SuppressWarnings("Convert2Diamond")
     @NotNull
     @Override
     public Iterator<GoogleResult> iterator() {
         GoogleSearch googleSearch = new GoogleSearch(query, 1, 1, safeSearch);
 
-        return new Iterator<>() {
+        return new Iterator<GoogleResult>() {
             GoogleResults currentResults = googleSearch.getResults();
 
             @Override

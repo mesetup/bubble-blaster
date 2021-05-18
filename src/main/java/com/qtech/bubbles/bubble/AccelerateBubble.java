@@ -18,7 +18,7 @@ public class AccelerateBubble extends AbstractBubble {
 //        setPriority(244000);
         setPriority(2440000);
         setRadius(new IntRange(25, 54));
-        setSpeed(new DoubleRange(0.75, 3.5));
+        setSpeed(new DoubleRange(6.0, 28.0));
         setDefense(1.0f);
         setAttack(0.001f);
         setScore(1);

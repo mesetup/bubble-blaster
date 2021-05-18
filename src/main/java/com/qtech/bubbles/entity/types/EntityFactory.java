@@ -6,5 +6,5 @@ import com.qtech.bubbles.common.scene.Scene;
 import com.qtech.bubbles.common.screen.Screen;
 
 public interface EntityFactory<T extends Entity> {
-    T create(Screen scene, AbstractGameType gameType);
+    T create(AbstractGameType gameType);
 }

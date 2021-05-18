@@ -22,28 +22,13 @@ import java.awt.*;
  * @see Entity
  */
 @SuppressWarnings("unused")
-public abstract class AbstractBubbleEntity extends Entity {
-    protected double hardness;
-    protected double maxHardness;
+public abstract class AbstractBubbleEntity extends DamageableEntity {
     protected double speed;
     protected double baseSpeed;
 
     // Constructor
     public AbstractBubbleEntity(EntityType<?> type, AbstractGameType gameType) {
         super(type, gameType);
-    }
-
-    // Properties.
-    public double getHardness() {
-        return hardness;
-    }
-
-    public void setHardness(double hardness) {
-        this.hardness = MathHelper.clamp(hardness, 0, maxHardness);
-    }
-
-    public double getMaxHardness() {
-        return maxHardness;
     }
 
     public double getSpeed() {
@@ -66,96 +51,63 @@ public abstract class AbstractBubbleEntity extends Entity {
 
     @Override
     public void onSpawn(Point pos, Environment environment) {
-        this.hardness = maxHardness;
+        this.damageValue = getMaxDamageValue();
     }
 
-    @Deprecated
-    public void damage(double value) {
-        if (attributes.get(Attribute.DEFENSE) == 0f) {
-            this.instantDestroy();
-        }
-
-        this.hardness -= value / attributes.get(Attribute.DEFENSE);
-        checkHardness();
-    }
-
-
-    public void damage(double value, DamageSource source) {
-        if (attributes.get(Attribute.DEFENSE) == 0f) {
-            this.instantDestroy();
-        }
-
-        if (source.getEntity().isCollidingWith(this) && isCollidingWith(source.getEntity())) {
-            this.hardness -= value / attributes.get(Attribute.DEFENSE);
-            checkHardness();
-        }
-    }
-
-    public void instantDestroy() {
-        this.hardness = 0;
-        checkHardness();
-    }
-
-    public void repair(double value) {
-        if (hardness + value > maxHardness) {
-            this.hardness = maxHardness;
+    public void restoreDamage(double value) {
+        if (damageValue + value > getMaxDamageValue()) {
+            this.damageValue = getMaxDamageValue();
             return;
         }
-        this.hardness += value;
-    }
-
-    protected void checkHardness() {
-        if (this.hardness <= 0) {
-            this.delete();
-        }
+        this.damageValue += value;
     }
 
     @Override
     public @NotNull BsonDocument getState() {
-        BsonDocument document = super.getState();
+        BsonDocument superState = super.getState();
 
-        document.put("hardness", new BsonDouble(hardness));
+        superState.put("hardness", new BsonDouble(damageValue));
 
         BsonArray bases = this.bases.write(new BsonArray());
-        document.put("Bases", bases);
+        superState.put("Bases", bases);
 
         BsonArray attributes = new BsonArray();
         attributes = this.attributes.write(attributes);
-        document.put("Attributes", attributes);
+        superState.put("Attributes", attributes);
 
         BsonArray effects = new BsonArray();
         for (EffectInstance effectInstance : activeEffects) {
             BsonDocument effectDocument = effectInstance.write(new BsonDocument());
             effects.add(effectDocument);
         }
-        document.put("Effects", effects);
+        superState.put("Effects", effects);
 
         BsonDocument position = new BsonDocument();
         position.put("x", new BsonDouble(getX()));
         position.put("y", new BsonDouble(getY()));
-        document.put("Position", position);
+        superState.put("Position", position);
 
-        document.put("id", new BsonInt64(entityId));
-        document.put("entityType", new BsonString(this.type.getRegistryName().toString()));
+        superState.put("id", new BsonInt64(entityId));
+        superState.put("entityType", new BsonString(this.type.getRegistryName().toString()));
 
-        return document;
+        return superState;
     }
 
     @Override
-    public void setState(BsonDocument document) {
-        BsonDocument attributes = document.getDocument("attributes");
+    public void setState(BsonDocument state) {
+        super.setState(state);
+
+        BsonDocument attributes = state.getDocument("attributes");
         this.speed = attributes.getDouble("speed").doubleValue();
-        this.hardness = attributes.getDouble("hardness").doubleValue();
 
-        BsonDocument bases = document.getDocument("bases");
+        BsonDocument bases = state.getDocument("bases");
         this.baseSpeed = bases.getDouble("speed").doubleValue();
-        this.maxHardness = bases.getDouble("hardness").doubleValue();
 
-        BsonDocument position = document.getDocument("position");
+        BsonDocument position = state.getDocument("position");
         this.x = (float) position.getDouble("x").getValue();
         this.y = (float) position.getDouble("y").getValue();
 
-        ResourceLocation entityTypeKey = ResourceLocation.fromString(document.getString("key").getValue());
+        ResourceLocation entityTypeKey = ResourceLocation.fromString(state.getString("key").getValue());
         this.type = Registry.getRegistry(EntityType.class).get(entityTypeKey);
     }
 

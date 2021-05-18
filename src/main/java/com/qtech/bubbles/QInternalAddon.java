@@ -14,7 +14,7 @@ import com.qtech.bubbles.graphics.ITexture;
 import com.qtech.bubbles.graphics.TextureCollection;
 import com.qtech.bubbles.init.*;
 import com.qtech.bubbles.registry.Registers;
-import com.qtech.bubbles.scene.LoadScreen;
+import com.qtech.bubbles.screen.LoadScreen;
 import org.apache.logging.log4j.Logger;
 
 import java.awt.*;

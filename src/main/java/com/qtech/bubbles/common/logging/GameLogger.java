@@ -49,7 +49,7 @@ public class GameLogger {
         this.formatter.publish(record, printer);
     }
 
-    private static final PrintWriter printer = null;
+    private static PrintWriter printer = null;
 
     static {
         try {

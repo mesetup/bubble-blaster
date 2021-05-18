@@ -5,7 +5,6 @@ import com.qtech.bubbles.common.entity.AbstractBubbleEntity;
 import com.qtech.bubbles.common.entity.Attribute;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.random.BubbleRandomizer;
-import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.entity.types.EntityType;
 import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.init.Entities;
@@ -46,17 +45,17 @@ public class GiantBubbleEntity extends BubbleEntity {
         this.bubbleType = properties.getType();
 
         // Attributes.
-        this.attributes.set(Attribute.ATTACK, bubbleType.getAttack(gameType, gameType.getBubbleRandomizer().getAttackRng()));
-        this.attributes.set(Attribute.DEFENSE, bubbleType.getDefense(gameType, gameType.getBubbleRandomizer().getDefenseRng()));
-        this.attributes.set(Attribute.SCORE_MULTIPLIER, bubbleType.getScore(gameType, gameType.getBubbleRandomizer().getScoreMultiplierRng()));
+        this.attributes.setBase(Attribute.ATTACK, bubbleType.getAttack(gameType, gameType.getBubbleRandomizer().getAttackRng()));
+        this.attributes.setBase(Attribute.DEFENSE, bubbleType.getDefense(gameType, gameType.getBubbleRandomizer().getDefenseRng()));
+        this.attributes.setBase(Attribute.SCORE_MULTIPLIER, bubbleType.getScore(gameType, gameType.getBubbleRandomizer().getScoreMultiplierRng()));
 
         // Dynamic values
         this.radius = properties.getRadius() * 4 + 80;
         this.speed = properties.getSpeed() / (Math.PI);
-        this.baseSpeed = properties.getSpeed() / (Math.PI);
+        this.attributes.setBase(Attribute.SPEED, (float) (properties.getSpeed() / (Math.PI)));
         this.baseRadius = properties.getRadius() * 4 + 80;
-        this.maxHardness = properties.getHardness() * 4 + 80;
-        this.hardness = properties.getHardness() * 4 + 80;
+        this.attributes.setBase(Attribute.MAX_DAMAGE, properties.getDamageValue() * 4 + 80);
+        this.damageValue = properties.getDamageValue() * 4 + 80;
 
         // Static values.
         this.bounceAmount = bubbleType.getBounceAmount();

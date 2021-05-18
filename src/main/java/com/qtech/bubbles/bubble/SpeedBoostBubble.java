@@ -20,7 +20,7 @@ public class SpeedBoostBubble extends AbstractBubble {
 
         setPriority(460000L);
         setRadius(new IntRange(21, 55));
-        setSpeed(new DoubleRange(4.1, 6.4));
+        setSpeed(new DoubleRange(16.2, 24.8));
         setDefense(0.1f);
         setAttack(0.0f);
         setScore(0);

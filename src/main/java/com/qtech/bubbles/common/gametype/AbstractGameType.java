@@ -9,7 +9,7 @@ import com.qtech.bubbles.common.bubble.BubbleSystem;
 import com.qtech.bubbles.common.entity.AbstractBubbleEntity;
 import com.qtech.bubbles.common.entity.DamageSource;
 import com.qtech.bubbles.common.entity.Entity;
-import com.qtech.bubbles.common.entity.LivingEntity;
+import com.qtech.bubbles.common.entity.DamageableEntity;
 import com.qtech.bubbles.common.gamestate.GameEvent;
 import com.qtech.bubbles.common.interfaces.DefaultStateHolder;
 import com.qtech.bubbles.common.interfaces.Listener;
@@ -32,7 +32,6 @@ import com.qtech.bubbles.registry.Registry;
 import com.qtech.bubbles.util.CollectionsUtils;
 import org.bson.*;
 import org.bson.codecs.BsonDocumentCodec;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -403,16 +402,17 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
 
     /**
      * <h1>Attack an entity.</h1>
-     * Attacks an entity no matter if it is a {@link LivingEntity} or a {@link AbstractBubbleEntity}.
+     * Attacks an entity no matter if it is a {@link DamageableEntity} or a {@link AbstractBubbleEntity}.
      *
      * @param entity The {@link Entity} to attack.
      * @param value  The <b>’raw‘</b> attack value.
      */
+    @SuppressWarnings("ConstantConditions")
     @Deprecated
     public void attack(Entity entity, double value) {
-        if (entity instanceof LivingEntity) {
-            LivingEntity e = (LivingEntity) entity;
-            e.attack(value);
+        if (entity instanceof DamageableEntity) {
+            DamageableEntity e = (DamageableEntity) entity;
+            e.damage(value);
         } else if (entity instanceof AbstractBubbleEntity) {
             AbstractBubbleEntity e = (AbstractBubbleEntity) entity;
             e.damage(value);
@@ -535,10 +535,11 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
 //        Main.getLogger().info("Added Entity");
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void attack(Entity target, double damage, DamageSource damageSource) {
-        if (target instanceof LivingEntity) {
-            LivingEntity e = (LivingEntity) target;
-            e.attack(damage, damageSource);
+        if (target instanceof DamageableEntity) {
+            DamageableEntity e = (DamageableEntity) target;
+            e.damage(damage, damageSource);
         } else if (target instanceof AbstractBubbleEntity) {
             AbstractBubbleEntity e = (AbstractBubbleEntity) target;
             e.damage(damage, damageSource);

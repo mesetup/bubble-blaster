@@ -166,16 +166,20 @@ public class TitleButton extends AbstractButton implements Listener {
 
         Stroke oldStroke = gg.getStroke();
 
-        gg.setColor(new Color(0, 0, 0, 128));
+        gg.setColor(new Color(96, 96, 96));
         gg.fill(bounds);
 
         if (pressed && MouseController.instance().getCurrentPoint() != null && bounds.contains(MouseController.instance().getCurrentPoint())) {
-
             // Shadow
             Paint old = gg.getPaint();
-            GradientPaint p = new GradientPaint(0, bounds.y, new Color(0, 192, 255), 0f, bounds.y + bounds.height, new Color(0, 255, 192));
-            gg.setPaint(p);
+            double shiftX = ((double)bounds.width * 2) * QBubbles.getTicks() / (QBubbles.TPS * 10);
+            GradientPaint p = new GradientPaint(bounds.x + ((float) shiftX - bounds.width), 0, new Color(0, 192, 255), bounds.x + (float)shiftX, 0f, new Color(0, 255, 192), true);
+            gg.setColor(new Color(72, 72, 72));
             gg.fill(bounds);
+
+            Border border = new Border(0, 0, 1, 0);
+            border.setPaint(p);
+            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
             gg.setPaint(old);
 
 //            gg.setColor(new Color(0, 96, 128));
@@ -188,10 +192,12 @@ public class TitleButton extends AbstractButton implements Listener {
 
             // Shadow
             Paint old = gg.getPaint();
-            GradientPaint p = new GradientPaint(0, bounds.y, new Color(0, 192, 255), 0f, bounds.y + bounds.height, new Color(0, 255, 192));
+
+            double shiftX = ((double)bounds.width * 2) * QBubbles.getTicks() / (QBubbles.TPS * 10);
+            GradientPaint p = new GradientPaint(bounds.x + ((float) shiftX - bounds.width), 0, new Color(0, 192, 255), bounds.x + (float)shiftX, 0f, new Color(0, 255, 192), true);
 //            gg.setPaint(p);
 //            gg.draw(new Rectangle(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2));
-            Border border = new Border(2, 2, 2, 2);
+            Border border = new Border(0, 0, 2, 0);
             border.setPaint(p);
             border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
             gg.setPaint(old);
@@ -205,9 +211,9 @@ public class TitleButton extends AbstractButton implements Listener {
 
 //            gg.setColor(new Color(255, 255, 255, 128));
 //            gg.draw(bounds);
-            Border border = new Border(1, 1, 1, 1);
-            border.setPaint(new Color(255, 255, 255, 128));
-            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
+//            Border border = new Border(1, 1, 1, 1);
+//            border.setPaint(new Color(255, 255, 255, 128));
+//            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
             textColor = new Color(224, 224, 224);
         }
 

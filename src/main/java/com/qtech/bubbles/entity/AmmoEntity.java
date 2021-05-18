@@ -23,7 +23,7 @@ public class AmmoEntity extends Entity {
     private AmmoType ammoType;
     private double rotation;
 
-    public AmmoEntity(Screen scene, AbstractGameType gameType) {
+    public AmmoEntity(AbstractGameType gameType) {
         this(null, gameType);
     }
 

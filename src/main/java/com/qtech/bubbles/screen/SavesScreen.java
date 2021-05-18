@@ -1,4 +1,4 @@
-package com.qtech.bubbles.scene;
+package com.qtech.bubbles.screen;
 
 import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.annotation.FieldsAreNonnullByDefault;

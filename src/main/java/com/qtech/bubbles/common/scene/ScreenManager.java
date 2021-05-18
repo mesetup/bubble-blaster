@@ -5,7 +5,7 @@ import com.qtech.bubbles.annotation.FieldsAreNonnullByDefault;
 import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
 import com.qtech.bubbles.common.ResourceLocation;
 import com.qtech.bubbles.common.screen.Screen;
-import com.qtech.bubbles.scene.LoadScreen;
+import com.qtech.bubbles.screen.LoadScreen;
 import com.qtech.bubbles.util.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

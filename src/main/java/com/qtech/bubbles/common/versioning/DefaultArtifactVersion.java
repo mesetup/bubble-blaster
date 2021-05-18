@@ -27,11 +27,6 @@ public class DefaultArtifactVersion implements ArtifactVersion {
         this.label = label;
     }
 
-    public DefaultArtifactVersion(String string) {
-        this.label = string;
-        this.unbounded = true;
-    }
-
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     @Override
     public boolean equals(Object obj) {

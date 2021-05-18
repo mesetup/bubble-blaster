@@ -106,20 +106,20 @@ public class BubbleEntity extends AbstractBubbleEntity {
         this.speed = properties.getSpeed();
         this.baseSpeed = properties.getSpeed();
         this.baseRadius = properties.getRadius();
-        this.maxHardness = properties.getHardness();
-        this.hardness = properties.getHardness();
+        attributes.setBase(Attribute.MAX_DAMAGE, properties.getDamageValue());
+        this.damageValue = properties.getDamageValue();
 
         // Set attributes.
-        this.attributes.set(Attribute.ATTACK, properties.getAttack());
-        this.attributes.set(Attribute.DEFENSE, properties.getDefense());
-        this.attributes.set(Attribute.SCORE_MULTIPLIER, properties.getScoreMultiplier());
+        this.attributes.setBase(Attribute.ATTACK, properties.getAttack());
+        this.attributes.setBase(Attribute.DEFENSE, properties.getDefense());
+        this.attributes.setBase(Attribute.SCORE_MULTIPLIER, properties.getScoreMultiplier());
         this.bounceAmount = bubbleType.getBounceAmount();
 
         // Set velocity
         this.velX = -baseSpeed;
 
         // Set attributes.
-        this.attributes.set(Attribute.DEFENSE, 0.5f);
+        this.attributes.setBase(Attribute.DEFENSE, 0.5f);
     }
 
     /**
@@ -149,7 +149,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
 
         if (KeyboardController.instance().isPressed(KeyEvent.VK_F2)) {
             if (getShape().contains(evt.getParentEvent().getPoint())) {
-                instantDestroy();
+                destroy();
             }
         }
     }
@@ -253,17 +253,8 @@ public class BubbleEntity extends AbstractBubbleEntity {
     @Override
     @SubscribeEvent
     public void tick(Environment environment) {
-//        if (!areEventsBinded) return;
-
         // Check player and current scene.
         PlayerEntity player = this.gameType.getPlayer();
-//        if (player == null) {
-//            throw new IllegalStateException("Player of default game-type is null.");
-//        }
-//        if (!(Util.getSceneManager().getCurrentScene() instanceof GameScene) ){
-//            throw new IllegalStateException("Invalid scene for entities: " + Util.getSceneManager().getCurrentScene().getClass().getSimpleName());
-//        }
-
         @Nullable Screen currentScreen = Util.getSceneManager().getCurrentScreen();
         if (player == null || !(QBubbles.getInstance().isGameLoaded())) return;
 
@@ -286,8 +277,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
     @Override
     public synchronized void renderEntity(Graphics2D gg) {
         if (!areEventsBinded) return;
-        gg.drawImage(TextureCollections.BUBBLE_TEXTURES.get().get(new ResourceLocation(getBubbleType().getRegistryName().getNamespace(), getBubbleType().getRegistryName().getPath() + "/" + radius)), (int) x, (int) y, QBubbles.getInstance());
-        gameType.drawBubble(gg, x, y, (int) ((double) radius + ((double) bubbleType.colors.length * 3.0d)), bubbleType.colors);
+        gg.drawImage(TextureCollections.BUBBLE_TEXTURES.get().get(new ResourceLocation(getBubbleType().getRegistryName().getNamespace(), getBubbleType().getRegistryName().getPath() + "/" + radius)), (int) x - radius / 2, (int) y - radius / 2, QBubbles.getInstance());
     }
 
     @Override
@@ -338,17 +328,17 @@ public class BubbleEntity extends AbstractBubbleEntity {
     }
 
     @Override
-    public void checkHardness() {
-        if (this.hardness <= 0d) {
+    public void checkDamage() {
+        if (this.damageValue <= 0d) {
             delete();
         }
     }
 
     @Override
-    public void setHardness(double hardness) {
-        super.setHardness(hardness);
+    public void setDamageValue(float hardness) {
+        super.setDamageValue(hardness);
         radius = (int) hardness + 4;
-        checkHardness();
+        checkDamage();
     }
 
     @Override
@@ -357,8 +347,8 @@ public class BubbleEntity extends AbstractBubbleEntity {
 //        System.out.println(defenseModifier);
 //        System.out.println(value / defenseModifier);
 
-        super.damage(value / attributes.get(Attribute.DEFENSE), source);
-        radius = (int) hardness + 4;
+        super.damage(value / attributes.getBase(Attribute.DEFENSE), source);
+        radius = (int) damageValue + 4;
     }
 
     @Override
@@ -377,17 +367,17 @@ public class BubbleEntity extends AbstractBubbleEntity {
     }
 
     @Override
-    public void setState(BsonDocument document) {
-        super.setState(document);
+    public void setState(BsonDocument state) {
+        super.setState(state);
 
-        this.radius = document.getInt32("Radius").getValue();
-        this.baseRadius = document.getInt32("BaseRadius").getValue();
+        this.radius = state.getInt32("Radius").getValue();
+        this.baseRadius = state.getInt32("BaseRadius").getValue();
 
-        this.bounceAmount = document.getInt32("BounceAmount").getValue();
-        this.baseBounceAmount = document.getInt32("BaseBounceAmount").getValue();
+        this.bounceAmount = state.getInt32("BounceAmount").getValue();
+        this.baseBounceAmount = state.getInt32("BaseBounceAmount").getValue();
 
-        ResourceLocation bubbleTypeKey = ResourceLocation.fromString(document.getString("bubbleType").getValue());
-        this.effectApplied = document.getBoolean("IsEffectApplied").getValue();
+        ResourceLocation bubbleTypeKey = ResourceLocation.fromString(state.getString("bubbleType").getValue());
+        this.effectApplied = state.getBoolean("IsEffectApplied").getValue();
         this.bubbleType = Registry.getRegistry(AbstractBubble.class).get(bubbleTypeKey);
     }
 

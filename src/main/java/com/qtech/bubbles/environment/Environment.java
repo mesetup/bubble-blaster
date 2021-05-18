@@ -45,7 +45,7 @@ public class Environment {
             QBubbles.getInstance().runLater(() -> {
                 String type = entityData.getString("Type").getValue();
                 EntityType<?> entityType = Registers.ENTITIES.get(ResourceLocation.fromString(type));
-                Entity entity = entityType.create(gameType.getScene(), gameType, entityData);
+                Entity entity = entityType.create(gameType, entityData);
                 entity.prepareSpawn(EntitySpawnData.fromLoadSpawn(entityData));
                 entity.setState(entityData);
 
@@ -55,7 +55,7 @@ public class Environment {
         }
         String type = entityData.getString("Type").getValue();
         EntityType<?> entityType = Registers.ENTITIES.get(ResourceLocation.fromString(type));
-        Entity entity = entityType.create(gameType.getScene(), gameType, entityData);
+        Entity entity = entityType.create(gameType, entityData);
         entity.prepareSpawn(EntitySpawnData.fromLoadSpawn(entityData));
         entity.setState(entityData);
 
@@ -88,13 +88,13 @@ public class Environment {
     public final void spawn(EntityType<?> entityType) {
         if (!QBubbles.getInstance().isOnMainThread()) {
             QBubbles.getInstance().runLater(() -> {
-                Entity entity = entityType.create(gameType.getScene(), gameType);
+                Entity entity = entityType.create(gameType);
                 Point pos = gameType.getSpawnLocation(entity);
                 spawn(entity, pos);
             });
             return;
         }
-        Entity entity = entityType.create(gameType.getScene(), gameType);
+        Entity entity = entityType.create(gameType);
         Point pos = gameType.getSpawnLocation(entity);
         spawn(entity, pos);
     }
@@ -126,29 +126,8 @@ public class Environment {
     public void tick() {
         if (gameType.isInitialized()) {
             this.entities.removeIf(Entity::isMarkedForDeletion);
-            List<Entity> entityList = this.entities;
-            for (int i = 0; i < entityList.size(); i++) {
-                Entity entity = entityList.get(i);
+            for (Entity entity : this.entities) {
                 entity.tick(this);
-                Screen scene = QBubbles.getInstance().getCurrentScene();
-
-                if (QBubbles.getInstance().isGameLoaded() && (scene == null || scene.doesPauseGame())) {
-                    for (int j = i + 1; j < entities.size(); j++) {
-                        Entity target = entities.get(j);
-                        // Check is collisionable with each other
-                        if (entity.isCollidingWith(target)) {
-                            // Check intersection.
-                            if (ShapeUtils.checkIntersection(entity.getShape(), target.getShape())) {
-                                // Handling collision by posting collision event, and let the intersected entities attack each other.
-                                QBubbles.getEventBus().post(new CollisionEvent(QBubbles.getInstance(), 1, entity, target));
-                                QBubbles.getEventBus().post(new CollisionEvent(QBubbles.getInstance(), 1, target, entity));
-
-                                gameType.attack(target, entity.getAttributeMap().get(Attribute.ATTACK) * 1 / 2, new DamageSource(entity, DamageSourceType.COLLISION));
-                                gameType.attack(entity, target.getAttributeMap().get(Attribute.ATTACK) * 1 / 2, new DamageSource(target, DamageSourceType.COLLISION));
-                            }
-                        }
-                    }
-                }
             }
             gameType.tick();
         }
@@ -197,5 +176,6 @@ public class Environment {
     @Deprecated
     public void quit() {
         this.gameEventHandlerThread.interrupt();
+        this.gameType.quit();
     }
 }

@@ -46,10 +46,6 @@ public class DeferredRegister<T extends IRegistryEntry> {
 
     @SubscribeEvent
     public void onRegister(RegistryEvent.Register<T> event) {
-        if (QBubbles.isDevMode()) {
-            System.out.println("Hello registry! " + event.getRegistry().getType());
-        }
-
         if (!event.getRegistry().getType().equals(registry.getType())) {
             return;
         }

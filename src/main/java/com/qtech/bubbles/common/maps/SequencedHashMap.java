@@ -497,8 +497,9 @@ public class SequencedHashMap<K, V> implements Map<K, V>, Cloneable, Externaliza
     /**
      * Implements {@link Map#keySet()}.
      */
+    @SuppressWarnings("Convert2Diamond")
     public @NotNull Set<K> keySet() {
-        return new AbstractSet<>() {
+        return new AbstractSet<K>() {
             // required impls
             public @NotNull Iterator<K> iterator() {
                 return new OrderedIterator<>(KEY);
@@ -532,8 +533,9 @@ public class SequencedHashMap<K, V> implements Map<K, V>, Cloneable, Externaliza
     /**
      * Implements {@link Map#values()}.
      */
+    @SuppressWarnings("Convert2Diamond")
     public @NotNull Collection<V> values() {
-        return new AbstractCollection<>() {
+        return new AbstractCollection<V>() {
             // required impl
             public @NotNull Iterator<V> iterator() {
                 return new OrderedIterator<>(VALUE);
@@ -585,8 +587,9 @@ public class SequencedHashMap<K, V> implements Map<K, V>, Cloneable, Externaliza
      *
      * @return
      */
+    @SuppressWarnings("Convert2Diamond")
     public @NotNull Set<Map.Entry<K, V>> entrySet() {
-        return new AbstractSet<>() {
+        return new AbstractSet<Map.Entry<K, V>>() {
             // helper
             private Entry<K, V> findEntry(Map.Entry<K, V> o) {
                 if (o == null) {

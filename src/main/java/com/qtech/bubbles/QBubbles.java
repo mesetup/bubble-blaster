@@ -24,8 +24,8 @@ import com.qtech.bubbles.graphics.GraphicsEngine;
 import com.qtech.bubbles.gui.Window;
 import com.qtech.bubbles.init.GameTypes;
 import com.qtech.bubbles.media.AudioPlayer;
-import com.qtech.bubbles.scene.CrashScreen;
-import com.qtech.bubbles.scene.EnvLoadScreen;
+import com.qtech.bubbles.screen.CrashScreen;
+import com.qtech.bubbles.screen.EnvLoadScreen;
 import com.qtech.bubbles.settings.GameSettings;
 import com.qtech.bubbles.util.Util;
 import com.qtech.preloader.PreClassLoader;
@@ -60,7 +60,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @ParametersAreNonnullByDefault
 @SuppressWarnings({"ResultOfMethodCallIgnored", "unused", "RedundantSuppression"})
 public final class QBubbles extends Canvas {
-    private static final int TPS = 20;
+    public static final int TPS = 20;
 
     // Initial game information / types.
     @Getter
@@ -70,7 +70,7 @@ public final class QBubbles extends Canvas {
     @Getter
     private static File gameDir = null;
     @Getter
-    private static boolean debug;
+    private static boolean debugMode;
     @Getter
     private static boolean devMode;
 
@@ -135,6 +135,7 @@ public final class QBubbles extends Canvas {
     private final EnvironmentRenderer environmentRenderer = new EnvironmentRenderer();
     private final List<Runnable> tasks = new CopyOnWriteArrayList<>();
     private LoadedGame loadedGame;
+    private static long ticks = 0L;
 
     // Graphical getters.
     public static double getMiddleX() {
@@ -147,6 +148,40 @@ public final class QBubbles extends Canvas {
 
     public static Point2D getMiddlePoint() {
         return new Point2D.Double(getMiddleX(), getMiddleY());
+    }
+
+    public static long getTicks() {
+        return ticks;
+    }
+    
+    public static byte reduceTicks2Secs(byte value, byte seconds) {
+        return (byte) ((double) value / ((double)TPS * seconds));
+    }
+    
+    public static short reduceTicks2Secs(short value, short seconds) {
+        return (short) ((double) value / ((double)TPS * seconds));
+    }
+    
+    public static int reduceTicks2Secs(int value, int seconds) {
+        return (int) ((double) value / ((double)TPS * seconds));
+    }
+
+    public static long reduceTicks2Secs(long value, long seconds) {
+        return (long) ((double) value / ((double)TPS * seconds));
+    }
+
+    public static float reduceTicks2Secs(float value, float seconds) {
+        return (float) ((double) value / ((double)TPS * seconds));
+    }
+
+    public static double reduceTicks2Secs(double value, double seconds) {
+        return value / ((double)TPS * seconds);
+    }
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public static boolean isPaused() {
+        Screen currentScreen = getInstance().getCurrentScreen();
+        return currentScreen != null && currentScreen.doesPauseGame();
     }
 
     // Font-getters.
@@ -314,7 +349,7 @@ public final class QBubbles extends Canvas {
         this.graphicsEngine = new GraphicsEngine();
 
         // Internal canvas.
-        this.window = new Window(this);
+        this.window = new Window(this, !isDevMode());
         this.window.setCursor(defaultCursor);
 
         // Request focus
@@ -448,7 +483,7 @@ public final class QBubbles extends Canvas {
 
                 if (canTick) {
                     try {
-                        tick(1);
+                        tick();
                     } catch (Throwable t) {
                         CrashReport crashReport = new CrashReport("Game being ticked.", t);
                         throw crashReport.getReportedException();
@@ -489,11 +524,12 @@ public final class QBubbles extends Canvas {
     /**
      * Update method, for updating values and doing things.
      *
-     * @param delta the delta-time for calculating speed for tick/
      */
     @SuppressWarnings("SameParameterValue")
-    private void tick(double delta) {
-        @Nullable Screen currentScreen = Objects.requireNonNull(Util.getSceneManager()).getCurrentScreen();
+    private void tick() {
+        ticks++;
+
+        @Nullable Screen currentScreen = Util.getSceneManager().getCurrentScreen();
         if (currentScreen != null) {
             currentScreen.tick();
         }
@@ -505,15 +541,10 @@ public final class QBubbles extends Canvas {
 
         // Call tick event.
         if (isGameLoaded() && (currentScreen == null || !currentScreen.doesPauseGame())) {
-            eventBus.post(new TickEvent(this, delta));
+            eventBus.post(new TickEvent(this));
         } else {
-            eventBus.post(new PauseTickEvent(this, delta));
+            eventBus.post(new PauseTickEvent(this));
         }
-    }
-
-    @SuppressWarnings("EmptyMethod")
-    private void backgroundAnimationThread() {
-
     }
 
     /**
@@ -546,24 +577,13 @@ public final class QBubbles extends Canvas {
 
         eventBus.post(filterEvent);
 
-        renderScene(g2d);
-
-        if (graphicsEngine.isAntialiasingEnabled() && GameSettings.instance().isTextAntialiasEnabled())
-            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
-        if (graphicsEngine.isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
-            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        renderScreenEnv(g2d);
 
         // Set filter gotten from filter event-handlers.
         filterApplier.setFilters(filterEvent.getFilters());
 
         // Draw filtered image.
         gg.drawImage(filterApplier.done(), 0, 0, this);
-
-        // Enable Antialias
-        if (graphicsEngine.isAntialiasingEnabled() && GameSettings.instance().isTextAntialiasEnabled())
-            gg.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        if (graphicsEngine.isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
-            gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         if (getScreenManager().getCurrentScreen() != null)
             getScreenManager().getCurrentScreen().renderGUI(this, gg);
@@ -579,15 +599,11 @@ public final class QBubbles extends Canvas {
         bs.show();
     }
 
-    private void renderScene(Graphics2D gg) {
+    private void renderScreenEnv(Graphics2D gg) {
         @Nullable Screen screen = screenManager.getCurrentScreen();
         if (screen != null) {
-            // Reset background.
-            gg.setColor(Color.BLACK);
-            gg.fillRect(0, 0, WIDTH, HEIGHT);
-
             // Clear background.
-            gg.setBackground(new Color(0, 120, 160));
+            gg.setBackground(Color.BLACK);
             gg.clearRect(0, 0, getWidth(), getHeight());
 
             if (environment != null) {
@@ -596,10 +612,6 @@ public final class QBubbles extends Canvas {
 
             screen.render(this, gg);
         } else {
-//            // Reset background.
-//            gg.setColor(new Color(0, 0, 0));
-//            gg.fillRect(0, 0, WIDTH, HEIGHT);
-
             // Clear background
             gg.setBackground(new Color(0, 0, 0));
             gg.clearRect(0, 0, getWidth(), getHeight());
@@ -620,7 +632,7 @@ public final class QBubbles extends Canvas {
                 QBubbles.gameDir = new File(arg.substring(8));
             }
             if (arg.equals("--debug")) {
-                QBubbles.debug = true;
+                QBubbles.debugMode = true;
             }
             if (arg.equals("--dev")) {
                 QBubbles.devMode = true;
@@ -671,7 +683,7 @@ public final class QBubbles extends Canvas {
         this.screenManager.displayScreen(scene, force);
     }
 
-    public @Nullable Screen getCurrentScene() {
+    public @Nullable Screen getCurrentScreen() {
         return this.screenManager.getCurrentScreen();
     }
 
@@ -701,6 +713,13 @@ public final class QBubbles extends Canvas {
 
     public LoadedGame getLoadedGame() {
         return loadedGame;
+    }
+
+    public void quitLoadedGame() {
+        LoadedGame loadedGame = getLoadedGame();
+        if (loadedGame != null) {
+            loadedGame.quit();
+        }
     }
 
     public boolean isGameLoaded() {

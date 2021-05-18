@@ -1,4 +1,4 @@
-package com.qtech.bubbles.scene;
+package com.qtech.bubbles.screen;
 
 import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.InfoTransporter;
@@ -26,6 +26,7 @@ public class TitleScreen extends Screen {
     private final TitleButton optionsButton;
     private final InfoTransporter infoTransporter = new InfoTransporter(this::setLoadMessage);
     private String message;
+    private int ticks;
 
     private void setLoadMessage(String s) {
         this.message = s;
@@ -96,6 +97,9 @@ public class TitleScreen extends Screen {
 
     @Override
     public void renderGUI(QBubbles game, Graphics2D gg) {
+        gg.setColor(new Color(128, 128, 128));
+        gg.fill(QBubbles.getInstance().getBounds());
+
         startButton.setText(I18n.translateToLocal("scene.qbubbles.title.start"));
         optionsButton.setText(I18n.translateToLocal("scene.qbubbles.title.options"));
         languageButton.setText(I18n.translateToLocal("scene.qbubbles.title.language"));
@@ -107,6 +111,12 @@ public class TitleScreen extends Screen {
 
         gg.setColor(new Color(64, 64, 64));
         gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), 175);
+
+        double shiftX = ((double)QBubbles.getInstance().getWidth() * 2) * QBubbles.getTicks() / (QBubbles.TPS * 10);
+
+        GradientPaint p = new GradientPaint((float)shiftX - QBubbles.getInstance().getWidth(), 0f, new Color(0, 192, 255), (float) shiftX, 0f, new Color(0, 255, 192), true);
+        gg.setPaint(p);
+        gg.fillRect(0, 175, QBubbles.getInstance().getWidth(), 3);
 
         gg.setColor(new Color(255, 255, 255));
         GraphicsUtils.drawCenteredString(gg, "Q-Bubbles", new Rectangle2D.Double(0, 0, QBubbles.getInstance().getWidth(), 145), new Font(QBubbles.getInstance().getGameFont().getFontName(), Font.PLAIN, 87));
@@ -121,30 +131,12 @@ public class TitleScreen extends Screen {
 
     @Override
     public void render(QBubbles game, Graphics2D gg) {
-//        if (this.classicType.isInitialized()) {
-//            this.classicType.render(gg);
-//        }
-//        gg.setBackground(Color.WHITE);
-//        gg.clearRect(0, 0, game.getWindow().getWidth(), game.getWindow().getHeight());
-//        gg.setColor(Color.WHITE);
-//        gg.fillRect(0, 0, game.getWindow().getWidth(), game.getWindow().getHeight());
-//
-//        Shape shape1 = Background.getShape(0, game.getWindow().getHeight() / 2 + 50, 100, game.getWindow().getHeight());
-//        gg.setColor(new Color(128, 128, 128));
-//        gg.fill(shape1);
-//
-//        Shape shape2 = Background.getShape(150, game.getWindow().getHeight() / 2 + 150, game.getWindow().getWidth() - 300, game.getWindow().getHeight());
-//        gg.setColor(new Color(192, 192, 192));
-//        gg.fill(shape2);
-//
-//        Shape shape3 = Background.getShape(game.getWindow().getWidth() - 150, game.getWindow().getHeight() / 2 + 150, 100, game.getWindow().getHeight());
-//        gg.setColor(new Color(128, 128, 128));
-//        gg.fill(shape3);
+
     }
 
     @SuppressWarnings("EmptyMethod")
     @Override
     public void tick() {
-//        this.classicType.tick();
+        ticks = (ticks + 1) % (QBubbles.TPS * 10);
     }
 }

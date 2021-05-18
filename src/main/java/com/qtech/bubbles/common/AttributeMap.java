@@ -1,12 +1,13 @@
 package com.qtech.bubbles.common;
 
 import com.qtech.bubbles.common.entity.Attribute;
+import com.qtech.bubbles.common.function.BiFloat2FloatFunction;
+import com.qtech.bubbles.common.function.Float2FloatFunction;
 import com.qtech.bubbles.common.holders.IArrayDataHolder;
 import org.bson.*;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class AttributeMap implements IArrayDataHolder<AttributeMap> {
     private final HashMap<Attribute, Float> map = new HashMap<>();
@@ -15,16 +16,60 @@ public class AttributeMap implements IArrayDataHolder<AttributeMap> {
 
     }
 
-    public void set(Attribute attribute, float value) {
+    public void setBase(Attribute attribute, float value) {
         this.map.put(attribute, value);
     }
 
-    public float get(Attribute attribute) {
+    public float getBase(Attribute attribute) {
         @Nullable Float value = this.map.get(attribute);
         if (value == null) {
-            throw new NullPointerException("Attribute \"" + attribute.getName() + "\" is not defined!");
+            throw new NoSuchElementException("Attribute \"" + attribute.getName() + "\" has no set base value.");
         }
         return value;
+    }
+
+    public void getModified(Attribute attribute, BiFloat2FloatFunction function, List<AttributeMap> attributeMaps) {
+        if (!this.map.containsKey(attribute)) {
+            throw new NoSuchElementException("Attribute \"" + attribute.getName() + "\" has no set base value.");
+        }
+
+        float f = getBase(attribute);
+        for (AttributeMap map : attributeMaps) {
+            f *= function.apply(f, map.getBase(attribute));
+        }
+    }
+
+    public void getModified(Attribute attribute, BiFloat2FloatFunction function, AttributeMap... attributeMaps) {
+        if (!this.map.containsKey(attribute)) {
+            throw new NoSuchElementException("Attribute \"" + attribute.getName() + "\" has no set base value.");
+        }
+
+        float f = getBase(attribute);
+        for (AttributeMap map : attributeMaps) {
+            f *= function.apply(f, map.getBase(attribute));
+        }
+    }
+
+    public void getModified(Attribute attribute, List<Float2FloatFunction> functions) {
+        if (!this.map.containsKey(attribute)) {
+            throw new NoSuchElementException("Attribute \"" + attribute.getName() + "\" has no set base value.");
+        }
+
+        float f = getBase(attribute);
+        for (Float2FloatFunction function : functions) {
+            f *= function.apply(f);
+        }
+    }
+
+    public void getModified(Attribute attribute, Float2FloatFunction... functions) {
+        if (!this.map.containsKey(attribute)) {
+            throw new NoSuchElementException("Attribute \"" + attribute.getName() + "\" has no set base value.");
+        }
+
+        float f = getBase(attribute);
+        for (Float2FloatFunction function : functions) {
+            f *= function.apply(f);
+        }
     }
 
     public BsonArray write(BsonArray array) {

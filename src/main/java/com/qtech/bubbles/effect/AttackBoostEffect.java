@@ -28,7 +28,7 @@ public class AttackBoostEffect extends Effect<AttackBoostEffect> {
     @Override
     public AttributeMap getAttributeModifiers() {
         AttributeMap attributes = new AttributeMap();
-        attributes.set(Attribute.ATTACK, 1f);
+        attributes.setBase(Attribute.ATTACK, 1f);
 
         return attributes;
     }

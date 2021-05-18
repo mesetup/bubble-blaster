@@ -13,7 +13,7 @@ public class LuckEffect extends Effect<LuckEffect> {
     @Override
     public AttributeMap getAttributeModifiers() {
         AttributeMap map = new AttributeMap();
-        map.set(Attribute.LUCK, 2.0f);
+        map.setBase(Attribute.LUCK, 2.0f);
         return map;
     }
 }

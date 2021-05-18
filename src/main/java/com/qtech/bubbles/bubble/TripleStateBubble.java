@@ -20,7 +20,7 @@ public class TripleStateBubble extends AbstractBubble {
 
         setPriority(115000L);
         setRadius(new IntRange(21, 55));
-        setSpeed(new DoubleRange(1.0, 2.7));
+        setSpeed(new DoubleRange(4.1, 10.4));
         setDefense(0.335f);
         setAttack(0.0f);
         setScore(3);

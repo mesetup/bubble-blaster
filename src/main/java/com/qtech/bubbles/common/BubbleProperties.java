@@ -18,7 +18,7 @@ import java.awt.geom.Point2D;
  */
 @SuppressWarnings("unused")
 public class BubbleProperties extends EntityProperties {
-    private final double hardness;
+    private final float damageValue;
     private final double speed;
     private final int radius;
     private final float defense;
@@ -30,21 +30,21 @@ public class BubbleProperties extends EntityProperties {
      * Bubble properties: Constructor.
      *
      * @param type     the bubble type.
-     * @param hardness the bubble hardness.
+     * @param damageValue the bubble hardness.
      * @param speed    the bubble speed.
      * @param radius   the bubble radius.
      * @param x        the bubble x coordinate.
      * @param y        the bubble y coordinate.
      * @param gameType the game-type.
      */
-    public BubbleProperties(AbstractBubble type, double hardness, double speed, int radius, int x, int y, AbstractGameType gameType) {
+    public BubbleProperties(AbstractBubble type, float damageValue, double speed, int radius, int x, int y, AbstractGameType gameType) {
         super(x, y);
 
         // Type.
         this.type = type;
 
         // Values.
-        this.hardness = hardness;
+        this.damageValue = damageValue;
         this.speed = speed;
         this.radius = radius;
 
@@ -56,9 +56,8 @@ public class BubbleProperties extends EntityProperties {
 
     /**
      * Bubble properties: Constructor.
-     *
-     * @param type     the bubble type.
-     * @param hardness the bubble hardness.
+     *  @param type     the bubble type.
+     * @param damageValue the bubble hardness.
      * @param speed    the bubble speed.
      * @param radius   the bubble radius.
      * @param x        the bubble x coordinate.
@@ -66,14 +65,14 @@ public class BubbleProperties extends EntityProperties {
      * @param gameType the game-type where the randomizing would be used.
      * @param rng      the RNG for the bubble to generate unsolved values.
      */
-    public BubbleProperties(AbstractBubble type, double hardness, double speed, int radius, int x, int y, AbstractGameType gameType, Rng rng) {
+    public BubbleProperties(AbstractBubble type, float damageValue, double speed, int radius, int x, int y, AbstractGameType gameType, Rng rng) {
         super(x, y);
 
         // Type.
         this.type = type;
 
         // Values.
-        this.hardness = hardness;
+        this.damageValue = damageValue;
         this.speed = speed;
         this.radius = radius;
 
@@ -85,9 +84,8 @@ public class BubbleProperties extends EntityProperties {
 
     /**
      * Bubble properties: Constructor/
-     *
-     * @param type     the bubble type.
-     * @param hardness the bubble hardness.
+     *  @param type     the bubble type.
+     * @param damageValue the bubble hardness.
      * @param speed    the bubble speed.
      * @param radius   the bubble radius.
      * @param x        the bubble x coordinate.
@@ -96,14 +94,14 @@ public class BubbleProperties extends EntityProperties {
      * @param attack   the bubble attack value.
      * @param score    the bubble score value.
      */
-    public BubbleProperties(AbstractBubble type, double hardness, double speed, int radius, int x, int y, float defense, float attack, float score) {
+    public BubbleProperties(AbstractBubble type, float damageValue, double speed, int radius, int x, int y, float defense, float attack, float score) {
         super(x, y);
 
         // Type.
         this.type = type;
 
         // Values.
-        this.hardness = hardness;
+        this.damageValue = damageValue;
         this.speed = speed;
         this.radius = radius;
 
@@ -161,8 +159,8 @@ public class BubbleProperties extends EntityProperties {
     /**
      * @return the bubble hardness.
      */
-    public double getHardness() {
-        return hardness;
+    public float getDamageValue() {
+        return damageValue;
     }
 
     /**

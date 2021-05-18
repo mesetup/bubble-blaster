@@ -1,25 +1,25 @@
 {
-  "version": {
-    "name": "1.0.988-a1",
-    "version": 1,
-    "release": 0,
-    "build": 988,
-    "stage": "a",
-    "stage_release": 1
-  },
-  "build_info": {
-    "date": "2021-05-18T11:28:25.347213",
-    "compile": {
-      "name": "compileJava",
-      "source_compat": "1.8",
-      "target_compat": "1.8",
-      "gradle": {
-        "version": "6.7.1"
+   "version": {
+      "name": "1.0.1304-a1",
+      "version": 1,
+      "release": 0,
+      "build": 1304,
+      "stage": "a",
+      "stage_release": 1
+   },
+   "build_info": {
+      "date": "2021-05-18T23:30:57.115137",
+      "compile": {
+         "name": "compileJava",
+         "source_compat": "1.8",
+         "target_compat": "1.8",
+         "gradle": {
+            "version": "6.7.1"
+         }
+      },
+      "project": {
+         "name": "preloader",
+         "display_name": "project \u0027:preloader\u0027"
       }
-    },
-    "project": {
-      "name": "preloader",
-      "display_name": "project \u0027:preloader\u0027"
-    }
-  }
+   }
 }

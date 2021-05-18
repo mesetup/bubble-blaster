@@ -22,7 +22,7 @@ public class DefenseBoostEffect extends Effect<DefenseBoostEffect> {
     @Override
     public AttributeMap getAttributeModifiers() {
         AttributeMap map = new AttributeMap();
-        map.set(Attribute.DEFENSE, 1f);
+        map.setBase(Attribute.DEFENSE, 1f);
         return map;
     }
 }

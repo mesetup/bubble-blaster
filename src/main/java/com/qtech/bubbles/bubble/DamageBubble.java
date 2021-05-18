@@ -15,7 +15,7 @@ public class DamageBubble extends AbstractBubble {
 
         setPriority(10000000d);
         setRadius(new IntRange(17, 70));
-        setSpeed(new DoubleRange(1.0d, 2.5d));
+        setSpeed(new DoubleRange(4.0d, 10.0d));
         setDefense(0.2f);
         setAttack(1.0f);
         setScore(1);

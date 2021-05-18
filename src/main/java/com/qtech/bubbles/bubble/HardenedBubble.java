@@ -14,7 +14,7 @@ public class HardenedBubble extends AbstractBubble {
 
         setPriority(387_500L);
         setRadius(new IntRange(21, 60));
-        setSpeed(new DoubleRange(0.875, 2.5));
+        setSpeed(new DoubleRange(4.5, 7.0));
         setAttack(0.0f);
         setScore(1f);
         setHardness(1.0d);

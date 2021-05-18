@@ -1,7 +1,7 @@
-package com.qtech.bubbles.scene;
+package com.qtech.bubbles.screen;
 
-import com.qtech.bubbles.LoadedGame;
 import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
 import com.qtech.bubbles.common.InfoTransporter;
 import com.qtech.bubbles.common.crash.CrashReport;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
@@ -14,49 +14,40 @@ import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
-/**
- * Environment loading scene.
- * When showing this scene, a new thread will be created and in that thread the loading will be done.
- * The thread is located in the method {@link #init()}.
- *
- * Todo: update docstring.
- *
- * @author Quinten Jungblut
- * @since 1.0.615
- */
-public class EnvLoadScreen extends Screen {
-    private final boolean create;
-    private final SavedGame savedGame;
-    private final Supplier<AbstractGameType> gameType;
-    private final AtomicReference<LoadedGame> loadedGameReference;
+@SuppressWarnings("unused")
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public class SaveLoadingScreen extends Screen {
     private final InfoTransporter infoTransporter = new InfoTransporter(this::setDescription);
+    private final Supplier<AbstractGameType> gameType;
+    private final SavedGame savedGame;
+    private final boolean create;
     private String description = "";
 
-    public EnvLoadScreen(SavedGame savedGame, AtomicReference<LoadedGame> loadedGameReference) {
-        this(false, savedGame, null, loadedGameReference);
+    private void setDescription(String s) {
+        this.description = s;
     }
 
-    public EnvLoadScreen(SavedGame savedGame, @NotNull Supplier<AbstractGameType> gameType, AtomicReference<LoadedGame> loadedGameReference) {
-        this(true, savedGame, gameType, loadedGameReference);
+    public SaveLoadingScreen(SavedGame savedGame) {
+        this(false, savedGame, null);
     }
 
-    private EnvLoadScreen(boolean create, SavedGame savedGame, @Nullable Supplier<AbstractGameType> gameType, AtomicReference<LoadedGame> loadedGameReference) {
+    public SaveLoadingScreen(SavedGame savedGame, @NotNull Supplier<AbstractGameType> gameType) {
+        this(true, savedGame, gameType);
+    }
+
+    private SaveLoadingScreen(boolean create, SavedGame savedGame, @Nullable Supplier<AbstractGameType> gameType) {
         this.create = create;
         this.savedGame = savedGame;
         this.gameType = gameType;
-        this.loadedGameReference = loadedGameReference;
-    }
-
-    private void setDescription(String description) {
-        this.description = description;
     }
 
     @Override
@@ -94,8 +85,6 @@ public class EnvLoadScreen extends Screen {
             } else {
                 gameType.load(environment, this.infoTransporter);
             }
-
-            loadedGameReference.set(new LoadedGame(savedGame, game.environment));
         } catch (Throwable t) {
             CrashReport crashReport = new CrashReport("Save being loaded", t);
             crashReport.add("Save Directory", this.savedGame.getDirectory());
@@ -105,13 +94,6 @@ public class EnvLoadScreen extends Screen {
         this.game.displayScene(null);
     }
 
-    /**
-     * Renders the environment loading scene.<br>
-     * Shows the title in the blue accent color (#00b0ff), and the description in a 50% black color (#7f7f7f).
-     *
-     * @param game the QBubbles game.
-     * @param gg   the graphics 2D processor.
-     */
     @Override
     public void render(QBubbles game, Graphics2D gg) {
         gg.setColor(new Color(64, 64, 64));
@@ -119,11 +101,15 @@ public class EnvLoadScreen extends Screen {
         if (GameSettings.instance().isTextAntialiasEnabled())
             gg.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        gg.setColor(new Color(0, 192, 255));
-        GraphicsUtils.drawCenteredString(gg, "Loading Environment...", new Rectangle2D.Double(0, ((double) QBubbles.getInstance().getHeight() / 2) - 24, QBubbles.getInstance().getWidth(), 64d), new Font("Helvetica", Font.PLAIN, 48));
         gg.setColor(new Color(127, 127, 127));
         GraphicsUtils.drawCenteredString(gg, this.description, new Rectangle2D.Double(0, ((double) QBubbles.getInstance().getHeight() / 2) + 40, QBubbles.getInstance().getWidth(), 50d), new Font("Helvetica", Font.PLAIN, 20));
         if (GameSettings.instance().isTextAntialiasEnabled())
             gg.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+    }
+
+    @Override
+    public void renderGUI(QBubbles game, Graphics2D gg) {
+
     }
 }

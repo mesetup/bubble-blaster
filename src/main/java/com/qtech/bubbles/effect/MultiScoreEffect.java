@@ -20,7 +20,7 @@ public class MultiScoreEffect extends Effect<MultiScoreEffect> {
     @Override
     public AttributeMap getAttributeModifiers() {
         AttributeMap attributeMap = new AttributeMap();
-        attributeMap.set(Attribute.SCORE_MULTIPLIER, 1f);
+        attributeMap.setBase(Attribute.SCORE_MULTIPLIER, 1f);
         return attributeMap;
     }
 

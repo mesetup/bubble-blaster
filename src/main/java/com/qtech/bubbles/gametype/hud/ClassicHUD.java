@@ -124,12 +124,12 @@ public class ClassicHUD extends HUD {
                 GraphicsUtils.drawCenteredString(gg, I18n.translateToLocal("info.qbubbles.health"), new Rectangle(210, 10, 80, 20), infoTitleFont);
                 int greenValue;
                 int redValue;
-                double val = player.getMaxHealth() / 2;
-                double HEALTH = player.getHealth();
+                double val = player.getMaxDamageValue() / 2;
+                double HEALTH = player.getDamageValue();
 
 
-                HEALTH = MathHelper.clamp(HEALTH, 0, player.getMaxHealth());
-                if (player.getHealth() > player.getMaxHealth() / 2) {
+                HEALTH = MathHelper.clamp(HEALTH, 0, player.getMaxDamageValue());
+                if (player.getDamageValue() > player.getMaxDamageValue() / 2) {
                     redValue = (int) ((val - ((HEALTH - val))) * 255 / val);
                     redValue = (int) MathHelper.clamp((double) redValue, 0, 255);
                     greenValue = 255;
@@ -143,7 +143,7 @@ public class ClassicHUD extends HUD {
                 gg.setColor(new Color(redValue, greenValue, 0).darker());
                 gg.fillRect(210, 40, 80, 20);
                 gg.setColor(new Color(redValue, greenValue, 0));
-                gg.fillRect(210, 40, (int) (HEALTH / player.getMaxHealth() * 80), 20);
+                gg.fillRect(210, 40, (int) (HEALTH / player.getMaxDamageValue() * 80), 20);
                 gg.setColor(new Color(redValue, greenValue, 0).brighter());
                 gg.drawRect(210, 40, 80, 20);
             }

@@ -21,7 +21,7 @@ public class BlindnessBubble extends AbstractBubble {
         setPriority(640_000L);
 //        setPriority(640_000_000L);
         setRadius(new IntRange(21, 70));
-        setSpeed(new DoubleRange(2.1, 3.9));
+        setSpeed(new DoubleRange(7.4, 12.6));
         setDefense(0.2369f);
         setAttack(0.0f);
         setScore(2);

@@ -8,7 +8,7 @@ import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
 import com.qtech.bubbles.common.scene.ScreenManager;
 import com.qtech.bubbles.core.common.SavedGame;
 import com.qtech.bubbles.gui.Window;
-import com.qtech.bubbles.scene.LoadScreen;
+import com.qtech.bubbles.screen.LoadScreen;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 @ParametersAreNonnullByDefault
 @FieldsAreNonnullByDefault
 public class Util {
-
     public static ScreenManager getSceneManager() {
         return QBubbles.getInstance().getScreenManager();
     }

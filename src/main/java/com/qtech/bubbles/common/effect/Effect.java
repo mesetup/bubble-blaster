@@ -42,6 +42,9 @@ public abstract class Effect<T extends Effect<T>> extends RegistryEntry {
             return (InputStream) cache.get("icon-stream");
         }
         InputStream inputStream = Effect.class.getClassLoader().getResourceAsStream("assets/" + getRegistryName().getNamespace() + "/vectors/effects/" + getRegistryName().getPath() + ".svg");
+        if (inputStream == null && getIconResource() == null) {
+            QBubbles.getLogger().warn("Cannot find effect-icon: " + "/assets/" + getRegistryName().getNamespace() + "/vectors/effects/" + getRegistryName().getPath() + ".svg");
+        }
         return (InputStream) cache.put("icon-stream", inputStream);
     }
 
@@ -68,10 +71,8 @@ public abstract class Effect<T extends Effect<T>> extends RegistryEntry {
         if (inputStream != null && getIconResource() != null) {
             SvgHelper svgHelper = new SvgHelper(getIconResource());
             return svgHelper.getColoredImage(w, h, color);
-        } else {
-            QBubbles.getLogger().warn("Cannot find effect-icon: " + "/assets/" + getRegistryName().getNamespace() + "/vectors/effects/" + getRegistryName().getPath() + ".svg");
-            return image;
         }
+        return image;
     }
 
     @Override

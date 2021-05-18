@@ -1,5 +1,6 @@
 package com.qtech.bubbles.common.entity;
 
+import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.AttributeMap;
 import com.qtech.bubbles.common.ResourceLocation;
 import com.qtech.bubbles.common.ability.AbilityType;
@@ -7,7 +8,6 @@ import com.qtech.bubbles.common.effect.EffectInstance;
 import com.qtech.bubbles.common.entity.meta.MetaData;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.interfaces.StateHolder;
-import com.qtech.bubbles.common.scene.Scene;
 import com.qtech.bubbles.entity.types.EntityType;
 import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.event.CollisionEvent;
@@ -29,7 +29,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * The base for all entities, such as the player or a bubble.
  *
  * @author Quinten Jungblut
- * @see LivingEntity
+ * @see DamageableEntity
  * @see AbstractBubbleEntity
  * @since 1.0.0
  */
@@ -170,8 +170,8 @@ public abstract class Entity implements StateHolder {
 
         this.activeEffects.removeIf((effectInstance -> effectInstance.getRemainingTime() < 0d));
 
-        this.x += this.motionEnabled ? this.velX * 0.2 : 0;
-        this.y += this.motionEnabled ? this.velY * 0.2 : 0;
+        this.x += this.motionEnabled ? this.velX / QBubbles.TPS : 0;
+        this.y += this.motionEnabled ? this.velY / QBubbles.TPS : 0;
     }
 
     public abstract void renderEntity(Graphics2D gg);
@@ -357,17 +357,17 @@ public abstract class Entity implements StateHolder {
     }
 
     @Override
-    public void setState(BsonDocument document) {
-        this.tag = document.getDocument("Tag");
+    public void setState(BsonDocument state) {
+        this.tag = state.getDocument("Tag");
     }
 
     @Override
     @NotNull
     public BsonDocument getState() {
-        BsonDocument document = new BsonDocument();
-        document.put("Tag", this.tag);
-        document.put("Type", new BsonString(this.type.getRegistryName().toString()));
-        return document;
+        BsonDocument state = new BsonDocument();
+        state.put("Tag", this.tag);
+        state.put("Type", new BsonString(this.type.getRegistryName().toString()));
+        return state;
     }
 
     public void setMotionEnabled(boolean motionEnabled) {
@@ -391,11 +391,11 @@ public abstract class Entity implements StateHolder {
     }
 
     @Deprecated
-    public static Entity getEntity(Scene scene, AbstractGameType gameType, BsonDocument document) {
+    public static Entity getEntity(AbstractGameType gameType, BsonDocument document) {
         String name = document.getString("Name").getValue();
         ResourceLocation rl = ResourceLocation.fromString(name);
         EntityType<?> entityType = Registers.ENTITIES.get(rl);
-        return entityType.create(scene, gameType, document);
+        return entityType.create(gameType, document);
     }
 
     public double getScale() {

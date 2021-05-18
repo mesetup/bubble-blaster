@@ -159,19 +159,30 @@ public class PauseButton extends Widget implements Listener {
             Paint old = gg.getPaint();
             GradientPaint p = new GradientPaint(0, bounds.y, new Color(0, 192, 255), 0f, bounds.y + bounds.height, new Color(0, 255, 192));
             gg.setPaint(p);
-            gg.fill(bounds);
+            Border border = new Border(1, 1, 1, 1);
+            border.setPaint(new Color(255, 255, 255, 128));
+            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
             gg.setPaint(old);
+
+            Border border1 = new Border(0, 0, 2, 0);
+            border1.setPaint(p);
+            border1.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
 
             textColor = Color.white;
         } else if (hovered) {
             gg.setStroke(new BasicStroke(4.0f));
 
             Paint old = gg.getPaint();
-            GradientPaint p = new GradientPaint(0, bounds.y, new Color(0, 192, 255), 0f, bounds.y + bounds.height, new Color(0, 255, 192));
+            double shiftX = ((double)bounds.width * 2) * QBubbles.getTicks() / (QBubbles.TPS * 10);
+            GradientPaint p = new GradientPaint(bounds.x + ((float) shiftX - bounds.width), 0, new Color(0, 192, 255), bounds.x + (float)shiftX, 0f, new Color(0, 255, 192), true);
             gg.setPaint(p);
-            Border border = new OuterBorder(2, 2, 2, 2);
-            border.setPaint(p);
-            border.paintBorder(QBubbles.getInstance(), gg, bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);
+
+            gg.setColor(new Color(255, 255, 255, 128));
+            gg.fill(bounds);
+
+            Border border1 = new Border(0, 0, 2, 0);
+            border1.setPaint(p);
+            border1.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
 //            gg.draw(new Rectangle(bounds.x - 2, bounds.y - 2, bounds.width + 4, bounds.height + 4));
 
             gg.setPaint(old);
@@ -181,9 +192,10 @@ public class PauseButton extends Widget implements Listener {
             gg.setStroke(new BasicStroke(1.0f));
 
             gg.setColor(new Color(255, 255, 255, 128));
-            Border border = new Border(1, 1, 1, 1);
-            border.setPaint(new Color(255, 255, 255, 128));
-            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
+            gg.fill(bounds);
+//            Border border = new Border(1, 1, 1, 1);
+//            border.setPaint(new Color(255, 255, 255, 128));
+//            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
 //            gg.draw(new Rectangle(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2));
 
             textColor = new Color(255, 255, 255, 128);

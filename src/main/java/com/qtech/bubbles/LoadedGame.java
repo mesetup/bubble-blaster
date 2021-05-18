@@ -1,10 +1,7 @@
 package com.qtech.bubbles;
 
 import com.qtech.bubbles.common.GraphicsProcessor;
-import com.qtech.bubbles.common.entity.Attribute;
-import com.qtech.bubbles.common.entity.DamageSource;
-import com.qtech.bubbles.common.entity.DamageSourceType;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.entity.*;
 import com.qtech.bubbles.common.gamestate.GameEvent;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.random.PseudoRandom;
@@ -19,13 +16,11 @@ import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.event.type.KeyEventType;
 import com.qtech.bubbles.event.type.MouseEventType;
 import com.qtech.bubbles.media.AudioSlot;
-import com.qtech.bubbles.scene.GameOverScreen;
+import com.qtech.bubbles.screen.GameOverScreen;
 import com.qtech.bubbles.screen.CommandScreen;
 import com.qtech.bubbles.screen.PauseScreen;
 import com.qtech.bubbles.util.Util;
 import lombok.Getter;
-import lombok.Setter;
-import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -71,9 +66,6 @@ public class LoadedGame implements Runnable {
 
     // Flags.
     @SuppressWarnings("FieldCanBeLocal")
-    @Getter
-    @Setter
-    private boolean paused = false;
     private boolean gameActive = false;
 
     // Event
@@ -131,19 +123,21 @@ public class LoadedGame implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.gc();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //     Pause methods     //
     ///////////////////////////
+    @Deprecated
     public void pause() {
-        this.paused = true;
-        QBubbles.getEventBus().post(new PauseEvent(QBubbles.getInstance(), true));
+
     }
 
+    @Deprecated
     public void unpause() {
-        this.paused = false;
-        QBubbles.getEventBus().post(new PauseEvent(QBubbles.getInstance(), false));
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -211,37 +205,38 @@ public class LoadedGame implements Runnable {
             // Calculate tick delta-time.
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
-            double deltaTime = (now - lastTime) / ns;
             lastTime = now;
 
             java.util.List<Entity> entities = this.environment.getEntities();
-            handleCollision(entities);
 
             if (entities.isEmpty()) {
                 System.out.println("ERROR");
             }
+            
+            List<Entity> loopingEntities = new ArrayList<>(entities);
 
             if (gameType.isInitialized()) {
-                for (int i = 0; i < entities.size(); i++) {
-                    Entity entity = entities.get(i);
-                    entity.tick(environment);
-
-                    if (!isPaused()) {
-                        for (int j = i; j < entities.size(); j++) {
-                            Entity target = entities.get(j);
+                if (!QBubbles.isPaused()) {
+                    for (int i = 0; i < loopingEntities.size(); i++) {
+                        for (int j = i + 1; j < loopingEntities.size(); j++) {
+                            Entity source = loopingEntities.get(i);
+                            Entity target = loopingEntities.get(j);
                             try {
                                 // Check is collisionable with each other
-                                if (entity.isCollidingWith(target)) {
+                                if (source.isCollidingWith(target)) {
 
                                     // Check intersection.
-                                    if (ShapeUtils.checkIntersection(entity.getShape(), target.getShape())) {
-
+                                    if (ShapeUtils.checkIntersection(source.getShape(), target.getShape())) {
                                         // Handling collision by posting collision event, and let the intersected entities attack each other.
-                                        QBubbles.getEventBus().post(new CollisionEvent(QBubbles.getInstance(), 1, entity, target));
-                                        QBubbles.getEventBus().post(new CollisionEvent(QBubbles.getInstance(), 1, target, entity));
+                                        QBubbles.getEventBus().post(new CollisionEvent(QBubbles.getInstance(), delta, source, target));
+                                        QBubbles.getEventBus().post(new CollisionEvent(QBubbles.getInstance(), delta, target, source));
 
-                                        gameType.attack(target, entity.getAttributeMap().get(Attribute.ATTACK) * 1 / 2, new DamageSource(entity, DamageSourceType.COLLISION));
-                                        gameType.attack(entity, target.getAttributeMap().get(Attribute.ATTACK) * 1 / 2, new DamageSource(target, DamageSourceType.COLLISION));
+                                        if (target instanceof DamageableEntity) {
+                                            ((DamageableEntity) target).damage(source.getAttributeMap().getBase(Attribute.ATTACK) * delta / target.getAttributeMap().getBase(Attribute.DEFENSE), new DamageSource(source, DamageSourceType.COLLISION));
+                                        }
+                                        if (source instanceof DamageableEntity) {
+                                            ((DamageableEntity) source).damage(target.getAttributeMap().getBase(Attribute.ATTACK) * delta / source.getAttributeMap().getBase(Attribute.DEFENSE), new DamageSource(target, DamageSourceType.COLLISION));
+                                        }
                                     }
                                 }
                             } catch (ArrayIndexOutOfBoundsException exception) {
@@ -250,48 +245,11 @@ public class LoadedGame implements Runnable {
                         }
                     }
                 }
-                gameType.tick();
             }
+            gameType.tick();
         }
 
         QBubbles.getLogger().info("Collision thread will die now.");
-    }
-
-    private void handleCollision(List<Entity> entities) {
-        // Loop all game objects twice (because there'll be checked for intersection between 2 entities..
-
-        List<Entity> entityList = this.environment.getEntities();
-
-        @Nullable Screen scene = QBubbles.getInstance().getScreenManager().getCurrentScreen();
-        if (scene != null) {
-            if (!scene.doesPauseGame()) {
-                for (int i = 0; i < entityList.size(); i++) {
-                    Entity entity = entityList.get(i);
-
-                    for (int j = i; j < entities.size(); j++) {
-                        Entity target = entities.get(j);
-                        try {
-                            // Check is collisionable with each other
-                            if (entity.isCollidingWith(target)) {
-
-                                // Check intersection.
-                                if (ShapeUtils.checkIntersection(entity.getShape(), target.getShape())) {
-
-                                    // Handling collision by posting collision event, and let the intersected entities attack each other.
-                                    QBubbles.getEventBus().post(new CollisionEvent(QBubbles.getInstance(), 0.05f, entity, target)); // 0.05f = 1 of 20 seconds = 1 tick.
-                                    QBubbles.getEventBus().post(new CollisionEvent(QBubbles.getInstance(), 0.05f, target, entity)); // 0.05f = 1 of 20 seconds = 1 tick.
-
-                                    gameType.attack(target, entity.getAttributeMap().get(Attribute.ATTACK) * 1 / 2, new DamageSource(entity, DamageSourceType.COLLISION));
-                                    gameType.attack(entity, target.getAttributeMap().get(Attribute.ATTACK) * 1 / 2, new DamageSource(target, DamageSourceType.COLLISION));
-                                }
-                            }
-                        } catch (ArrayIndexOutOfBoundsException exception) {
-                            QBubbles.getLogger().info("Array index was out of bounds! Check check double check!");
-                        }
-                    }
-                }
-            }
-        }
     }
 
     private void autoSaveThread() {
@@ -439,23 +397,23 @@ public class LoadedGame implements Runnable {
     public void onKeyboard(KeyboardEvent evt) {
         if (evt.getType() == KeyEventType.PRESS) {
             if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_ESCAPE) {
-                if (!isPaused()) {
+                if (!QBubbles.isPaused()) {
                     QBubbles.getInstance().displayScene(new PauseScreen());
                 }
             } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_SLASH) {
-                if (!isPaused()) {
+                if (!QBubbles.isPaused()) {
                     QBubbles.getInstance().displayScene(new CommandScreen());
                 }
-            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F1 && QBubbles.isDebug()) {
+            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F1 && QBubbles.isDebugMode()) {
                 this.gameType.triggerBloodMoon();
-            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F3 && QBubbles.isDebug()) {
-                Objects.requireNonNull(this.gameType.getPlayer()).instantDeath();
-            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F4 && QBubbles.isDebug()) {
+            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F3 && QBubbles.isDebugMode()) {
+                Objects.requireNonNull(this.gameType.getPlayer()).destroy();
+            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F4 && QBubbles.isDebugMode()) {
                 Objects.requireNonNull(this.gameType.getPlayer()).levelUp();
-            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F5 && QBubbles.isDebug()) {
+            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F5 && QBubbles.isDebugMode()) {
                 Objects.requireNonNull(this.gameType.getPlayer()).addScore(1000);
-            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F6 && QBubbles.isDebug()) {
-                Objects.requireNonNull(this.gameType.getPlayer()).setHealth(this.gameType.getPlayer().getMaxHealth());
+            } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F6 && QBubbles.isDebugMode()) {
+                Objects.requireNonNull(this.gameType.getPlayer()).setDamageValue(this.gameType.getPlayer().getMaxDamageValue());
             }
         } else if (evt.getType() == KeyEventType.TYPE) {
             if (evt.getKeyChar() == ' ') {

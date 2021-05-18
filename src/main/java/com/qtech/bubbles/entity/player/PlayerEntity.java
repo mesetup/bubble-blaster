@@ -4,9 +4,7 @@ import com.google.common.annotations.Beta;
 import com.qtech.bubbles.LoadedGame;
 import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.AttributeMap;
-import com.qtech.bubbles.common.ability.Ability;
 import com.qtech.bubbles.common.ability.AbilityContainer;
-import com.qtech.bubbles.common.ability.AbilityType;
 import com.qtech.bubbles.common.ammo.AmmoType;
 import com.qtech.bubbles.common.entity.*;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
@@ -22,8 +20,8 @@ import com.qtech.bubbles.event.type.KeyEventType;
 import com.qtech.bubbles.init.AmmoTypes;
 import com.qtech.bubbles.init.Entities;
 import com.qtech.bubbles.item.inventory.PlayerInventory;
-import com.qtech.bubbles.scene.EnvLoadScreen;
-import com.qtech.bubbles.scene.SaveLoadingScreen;
+import com.qtech.bubbles.screen.EnvLoadScreen;
+import com.qtech.bubbles.screen.SaveLoadingScreen;
 import com.qtech.bubbles.util.Util;
 import com.qtech.bubbles.util.helpers.MathHelper;
 import org.apache.batik.ext.awt.geom.Polygon2D;
@@ -38,8 +36,10 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.*;
 import java.util.Objects;
 
+import static com.qtech.bubbles.QBubbles.TPS;
+
 @SuppressWarnings({"RedundantSuppression", "unused"})
-public final class PlayerEntity extends LivingEntity {
+public final class PlayerEntity extends DamageableEntity {
 
     // These are the vertex coordinates:
     //
@@ -74,7 +74,7 @@ public final class PlayerEntity extends LivingEntity {
     private boolean right = false;
 
     // Speed.
-    private final double rotationSpeed = 128f;
+    private final double rotationSpeed = 16f;
 
     // Delta velocity.
     private double velDelta;
@@ -104,7 +104,7 @@ public final class PlayerEntity extends LivingEntity {
      * <h1>Player entity.</h1>
      * The player is controlled be the keyboard and is one of the important features of the game. (Almost any game).
      *
-     * @see LivingEntity
+     * @see DamageableEntity
      */
     public PlayerEntity(AbstractGameType gameType) {
         super(Entities.PLAYER.get(), gameType);
@@ -127,14 +127,14 @@ public final class PlayerEntity extends LivingEntity {
         this.velY = 0;
 
         // Set attributes.
-        this.attributes.set(Attribute.DEFENSE, 0.1f);
-        this.attributes.set(Attribute.ATTACK, 0.75f);
-        this.attributes.set(Attribute.MAX_HEALTH, 100f);
-        this.attributes.set(Attribute.SPEED, 0.325f);
+        this.attributes.setBase(Attribute.DEFENSE, 0.1f);
+        this.attributes.setBase(Attribute.ATTACK, 0.75f);
+        this.attributes.setBase(Attribute.MAX_DAMAGE, 100f);
+        this.attributes.setBase(Attribute.SPEED, 16f);
 
         // Health
-        this.speed = 128.325f;
-        this.health = 100f;
+        this.speed = 16f;
+        this.damageValue = 100f;
     }
 
     /**
@@ -289,6 +289,10 @@ public final class PlayerEntity extends LivingEntity {
     public void tick(Environment environment) {
         super.tick(environment);
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Spawn and load checks //
+        ///////////////////////////
+
         LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
 
         if (loadedGame == null) {
@@ -297,53 +301,60 @@ public final class PlayerEntity extends LivingEntity {
 
         if (!isSpawned()) return;
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Player component ticking //
+        //////////////////////////////
+
         this.abilityContainer.onEntityTick();
         this.inventory.tick();
 
-        this.accelerateX = this.accelerateX / 1.05;
-        this.accelerateY = this.accelerateY / 1.05;
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Player motion. //
         ////////////////////
 
-        double tempVelMotion = 0.0f;
-        double tempVelRotation = 0.0f;
+        this.accelerateX = accelerateX / ((double)TPS / 20d) / 1.1;
+        this.accelerateY = accelerateY / ((double)TPS / 20d) / 1.1;
+
+        double tempVelMotSpeed = 0.0f;
+        double tempVelRotSpeed = 0.0f;
 
         // Check each direction, to create velocity
-        if (this.forward) tempVelMotion += this.speed;
-        if (this.backward) tempVelMotion -= this.speed;
-        if (this.left) tempVelRotation -= this.rotationSpeed;
-        if (this.right) tempVelRotation += this.rotationSpeed;
-        if (this.xInputY != 0) tempVelMotion = this.xInputY * this.speed;
-        if (this.xInputX != 0) tempVelRotation = this.xInputX * this.rotationSpeed;
+        if (this.forward) tempVelMotSpeed += this.speed;
+        if (this.backward) tempVelMotSpeed -= this.speed;
+        if (this.left) tempVelRotSpeed -= this.rotationSpeed;
+        if (this.right) tempVelRotSpeed += this.rotationSpeed;
+        if (this.xInputY != 0) tempVelMotSpeed = this.xInputY * this.speed;
+        if (this.xInputX != 0) tempVelRotSpeed = this.xInputX * this.rotationSpeed;
 
         // Update rotation
-        double delta = 0.05;
+        double delta = 1d / TPS;
+
         // Update X, and Y.
         if (isMotionEnabled()) {
-            this.rotation += tempVelRotation * delta;
-//                rotation = MathHelper.clamp(rotation, -80f, 80f);
+            this.rotation += (tempVelRotSpeed) / TPS * 20;
         }
 
         // Calculate Velocity X and Y.
         double angelRadians = Math.toRadians(this.rotation);
-        double tempVelX = Math.cos(angelRadians) * tempVelMotion;
-        double tempVelY = Math.sin(angelRadians) * tempVelMotion;
+        double tempVelX = Math.cos(angelRadians) * tempVelMotSpeed;
+        double tempVelY = Math.sin(angelRadians) * tempVelMotSpeed;
+
+        System.out.println("Acc_X[0] = " + accelerateX);
+        System.out.println("Acc_Y[0] = " + accelerateY);
 
         if (isMotionEnabled()) {
-            this.accelerateX += Math.cos(Math.toRadians(this.rotation)) * delta * tempVelMotion;
-            this.accelerateY += Math.sin(Math.toRadians(this.rotation)) * delta * tempVelMotion;
+            this.accelerateX += tempVelX / ((double)TPS);
+            this.accelerateY += tempVelY / ((double)TPS);
         }
 
-//            // Set Velocity.
-//            velX = tempVelX;
-//            velY = tempVelY;
+        System.out.println("Acc_X[1] = " + accelerateX);
+        System.out.println("Acc_Y[1] = " + accelerateY);
 
         // Update X, and Y.
-        this.x += ((this.accelerateX + this.velX) * 0.05);
-        this.y += ((this.accelerateY + this.velY) * 0.05);
+        this.x += (this.accelerateX) + this.velX / ((double)TPS * 1);
+        this.y += (this.accelerateY) + this.velY / ((double)TPS * 1);
 
+        // Velocity.
         if (this.velX > 0) {
             if (this.velX + this.velDelta < 0) {
                 this.velX = 0;
@@ -372,30 +383,29 @@ public final class PlayerEntity extends LivingEntity {
             }
         }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Collision detection. //
         //////////////////////////
 
-        Rectangle2D gameBounds = loadedGame.getGameType().getGameBounds();
-
         // Game border.
-        this.x = (float) MathHelper.clamp(this.x, gameBounds.getX() + this.getBounds().getWidth(), gameBounds.getMaxX() - this.getBounds().getWidth());
-        this.y = (float) MathHelper.clamp(this.y, gameBounds.getY() + this.getBounds().getHeight(), gameBounds.getY() + gameBounds.getHeight());
+        Rectangle2D gameBounds = loadedGame.getGameType().getGameBounds();
+        this.x = (float) MathHelper.clamp(this.x, gameBounds.getMinX() - this.getBounds().getWidth(), gameBounds.getMaxX() + this.getBounds().getWidth());
+        this.y = (float) MathHelper.clamp(this.y, gameBounds.getMinY() - this.getBounds().getHeight(), gameBounds.getMaxY() + this.getBounds().getHeight());
     }
 
     @Override
-    public void attack(double value, DamageSource source) {
-        float defense = attributes.get(Attribute.DEFENSE);
+    public void damage(double value, DamageSource source) {
+        float defense = attributes.getBase(Attribute.DEFENSE);
         if (defense <= 0.0d) {
-            this.instantDeath();
+            this.destroy();
             return;
         }
 
         // Deal damage to the player.
-        this.health -= value / defense;
+        this.damageValue -= value / defense;
 
         // Check health.
-        this.checkHealth();
+        this.checkDamage();
 
         // Check if source has attack modifier.
         if (value > 0.0d) {
@@ -427,9 +437,9 @@ public final class PlayerEntity extends LivingEntity {
             GiantBubbleEntity bubble = (GiantBubbleEntity) targetEntity;
 
             // Modifiers
-            double scoreMod = bubble.getAttributeMap().get(Attribute.SCORE_MULTIPLIER);
-            double attackMod = bubble.getAttributeMap().get(Attribute.ATTACK);
-            double defenseMod = bubble.getAttributeMap().get(Attribute.DEFENSE);
+            double scoreMod = bubble.getAttributeMap().getBase(Attribute.SCORE_MULTIPLIER);
+            double attackMod = bubble.getAttributeMap().getBase(Attribute.ATTACK);
+            double defenseMod = bubble.getAttributeMap().getBase(Attribute.DEFENSE);
 
             // Attributes
             double radius = bubble.getRadius();
@@ -438,7 +448,7 @@ public final class PlayerEntity extends LivingEntity {
             // Calculate score value.
             double visibleValue = radius * speed;
             double nonVisibleValue = attackMod * defenseMod;
-            double scoreValue = ((visibleValue * (nonVisibleValue + 1)) * scoreMod * attributes.get(Attribute.SCORE_MULTIPLIER)) * evt.getDeltaTime() / 8;
+            double scoreValue = ((visibleValue * (nonVisibleValue + 1)) * scoreMod * attributes.getBase(Attribute.SCORE_MULTIPLIER)) * evt.getDeltaTime() / 8;
 
             // Add score.
             addScore(scoreValue);
@@ -448,9 +458,9 @@ public final class PlayerEntity extends LivingEntity {
 
             // Modifiers
             AttributeMap attributeMap = bubble.getAttributeMap();
-            double scoreMultiplier = attributeMap.get(Attribute.SCORE_MULTIPLIER);
-            double attack = attributeMap.get(Attribute.ATTACK);  // Maybe used.
-            double defense = attributeMap.get(Attribute.DEFENSE);  // Maybe used.
+            double scoreMultiplier = attributeMap.getBase(Attribute.SCORE_MULTIPLIER);
+            double attack = attributeMap.getBase(Attribute.ATTACK);  // Maybe used.
+            double defense = attributeMap.getBase(Attribute.DEFENSE);  // Maybe used.
 
             // Attributes
             double radius = bubble.getRadius();
@@ -555,8 +565,8 @@ public final class PlayerEntity extends LivingEntity {
      * Checks health, if health is zero or less, it will trigger game-over.
      */
     @Override
-    public void checkHealth() {
-        if (health <= 0)
+    public void checkDamage() {
+        if (damageValue <= 0)
             if (!getGameType().isGameOver())
                 getGameType().triggerGameOver();
     }
@@ -574,11 +584,11 @@ public final class PlayerEntity extends LivingEntity {
     }
 
     @Override
-    public void setState(BsonDocument document) {
+    public void setState(BsonDocument state) {
         super.getState();
 
-        this.score = document.getDouble("score").getValue();
-        this.rotation = document.getDouble("rotation").getValue();
+        this.score = state.getDouble("score").getValue();
+        this.rotation = state.getDouble("rotation").getValue();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -640,66 +650,6 @@ public final class PlayerEntity extends LivingEntity {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //     Modifiers     //
     ///////////////////////
-
-    /**
-     * Subtract ability value.
-     *
-     * @param amount amount to subtract.
-     * @deprecated Use {@link Ability#subtractValue(int)} instead. To get the ability use {@link AbilityContainer#get(AbilityType)} with {@link #getAbilityContainer()}
-     */
-    @Deprecated
-    public void subtractAbilityEnergy(int amount) {
-        setAbilityEnergy(getAbilityEnergy() - amount);
-    }
-
-    /**
-     * Add ability value.
-     *
-     * @param amount amount to add.
-     * @deprecated Use {@link Ability#addValue(int)} instead. To get the ability use {@link AbilityContainer#get(AbilityType)} with {@link #getAbilityContainer()}
-     */
-    @Deprecated
-    public void addAbilityEnergy(int amount) {
-        setAbilityEnergy(getAbilityEnergy() + amount);
-    }
-
-
-    /**
-     * Get the ability value (most likely energy).
-     *
-     * @return the ability value.
-     * @deprecated Use {@link Ability#getValue()} instead. To get the ability use {@link AbilityContainer#get(AbilityType)} with {@link #getAbilityContainer()}
-     */
-    @Deprecated
-    public int getAbilityEnergy() {
-        return this.abilityContainer.getCurrent().getValue();
-    }
-
-    /**
-     * Set the ability value (most likely energy).
-     *
-     * @param amount the ability value.
-     * @deprecated Use {@link Ability#setValue(int)} instead. To get the ability use {@link AbilityContainer#get(AbilityType)} with {@link #getAbilityContainer()}
-     */
-    @Deprecated
-    public void setAbilityEnergy(int amount) {
-        this.abilityContainer.getCurrent().setValue(amount);
-    }
-
-    /**
-     * Set the ability use cooldown.
-     * Cooldown is in ticks.
-     *
-     * @param type  the ability type.
-     * @param ticks the ticks of cooldown.
-     * @see AbilityType
-     * @deprecated Use {@link Ability#setCooldown(int)} instead. To get the ability use {@link AbilityContainer#get(AbilityType)} with {@link #getAbilityContainer()}
-     */
-    @Deprecated
-    public void setAbilityCooldown(AbilityType<Ability<?>> type, int ticks) {
-        this.abilityContainer.get(type).setCooldown(ticks);
-    }
-
     /**
      * Get the ability container of the entity.
      *

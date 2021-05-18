@@ -18,7 +18,7 @@ import com.qtech.bubbles.common.text.translation.LanguageMap;
 import com.qtech.bubbles.event.old.ADLAddonSetupEvent;
 import com.qtech.bubbles.registry.AddonManager;
 import com.qtech.bubbles.registry.LocaleManager;
-import com.qtech.bubbles.scene.LoadScreen;
+import com.qtech.bubbles.screen.LoadScreen;
 import com.qtech.bubbles.settings.GameSettings;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;

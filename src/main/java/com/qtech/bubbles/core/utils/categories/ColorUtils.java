@@ -64,13 +64,29 @@ public class ColorUtils {
         return colorsOut;
     }
 
+    /**
+     * Parse a color string into a color array.<br>
+     * <b>Note: <i>this doesn't add the ‘#’ prefixes, so use only hex digits for the colors.</i></b><br>
+     * <br>
+     * Same as <code>parseColorString(colorString, false)</code>.<br>
+     *
+     * @param colorString the color string, hex colors separated by a comma.
+     * @return an array of colors parsed from the color string.
+     */
     public static Color[] parseColorString(String colorString) {
         return parseColorString(colorString, false);
     }
 
-    public static Color[] parseColorString(String colorString, boolean doPrefix) {
+    /**
+     * Parse a color string into a color array.<br>
+     *
+     * @param colorString the color string, hex colors separated by a comma.
+     * @param addPrefix add the ‘#’ for every item in the color string.
+     * @return an array of colors parsed from the color string.
+     */
+    public static Color[] parseColorString(String colorString, boolean addPrefix) {
         String[] strings = colorString.split(",");
-        if (doPrefix) {
+        if (addPrefix) {
             for (int i = 0; i < strings.length; i++) {
                 strings[i] = "#" + strings[i];
             }

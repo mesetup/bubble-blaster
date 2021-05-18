@@ -35,8 +35,9 @@ public class Range {
         return (start <= value) && (end > value);
     }
 
+    @SuppressWarnings("Convert2Diamond")
     public @NotNull Iterator<Double> iterator() {
-        return new Iterator<>() {
+        return new Iterator<Double>() {
             private double current = start;
 
             @Override
