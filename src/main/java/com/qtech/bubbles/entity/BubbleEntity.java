@@ -19,6 +19,7 @@ import com.qtech.bubbles.event.SubscribeEvent;
 import com.qtech.bubbles.event.TickEvent;
 import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.event.RenderEvent;
+import com.qtech.bubbles.init.Bubbles;
 import com.qtech.bubbles.init.Entities;
 import com.qtech.bubbles.init.TextureCollections;
 import com.qtech.bubbles.registry.Registry;
@@ -99,7 +100,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
         BubbleProperties properties = randomizer.getRandomProperties(gameType.getGameBounds(), gameType);
 
         // Bubble Type
-        this.bubbleType = properties.getType();
+        this.bubbleType = properties.getType().canSpawn(gameType) ? properties.getType() : Bubbles.NORMAL_BUBBLE.get();
 
         // Dynamic values
         this.radius = properties.getRadius();

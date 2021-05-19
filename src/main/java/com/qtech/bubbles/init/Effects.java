@@ -18,7 +18,6 @@ import java.util.function.Supplier;
  * @see DeferredRegister<Effect>
  */
 @SuppressWarnings("unused")
-//@ObjectHolder(addonId = QInternalAddon.ADDON_ID)
 public class Effects {
     public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(QInternalAddon.ADDON_ID, Registers.EFFECTS);
 

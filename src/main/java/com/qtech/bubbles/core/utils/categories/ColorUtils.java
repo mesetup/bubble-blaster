@@ -17,7 +17,7 @@ public class ColorUtils {
     public static Color hex2Rgb(String colorStr) {
         QBubbles.getLogger().debug("" + colorStr.length());
 
-        if (colorStr.length() > 9) throw new ValueError("Too large color hex code, must be a length of 7 or 9");
+        if (colorStr.length() > 9) throw new ValueError("Too large color hex code, must be a length of 7 or 9, got: " + colorStr.length());
         if (colorStr.length() == 9) {
             if (colorStr.charAt(0) != '#') throw new ValueError("Invalid color hex code, must start with '#'");
             char[] chars = colorStr.toCharArray();
@@ -35,8 +35,8 @@ public class ColorUtils {
         }
 
         if (colorStr.length() == 8)
-            throw new ValueError("Too large or small color hex code, must be a length of 7 or 9");
-        if (colorStr.length() < 7) throw new ValueError("Too small color hex code, must be a length of 7 or 9");
+            throw new ValueError("Too large or small color hex code, must be a length of 7 or 9, got: " + colorStr.length());
+        if (colorStr.length() < 7) throw new ValueError("Too small color hex code, must be a length of 7 or 9, got: " + colorStr.length());
         if (colorStr.charAt(0) != '#') throw new ValueError("Invalid color hex code, must start with '#'");
         char[] chars = colorStr.toCharArray();
         for (int i = 0; i < chars.length; i++) {
