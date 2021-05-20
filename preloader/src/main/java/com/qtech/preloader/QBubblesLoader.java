@@ -4,7 +4,7 @@ package com.qtech.preloader;
 public class QBubblesLoader implements IGameLoader {
     @Override
     public String getLoadingTarget() {
-        return "com.qtech.bubbles.Main";
+        return "com.qtech.bubbleblaster.desktop.DesktopLauncher";
     }
 
 }
