@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <filters>
+        <MarkerFilter marker="NETWORK_PACKETS" onMatch="DENY" onMismatch="NEUTRAL"/>
+        <MarkerFilter marker="CLASSLOADING" onMatch="DENY" onMismatch="NEUTRAL"/>
+        <MarkerFilter marker="LAUNCHPLUGIN" onMatch="DENY" onMismatch="NEUTRAL"/>
+    </filters>
+    <Appenders>
+        <Console name="SysOut" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{dd/MM/yyyy HH:mm:ss.SSS}] [%t/%level] [%c{-3}]: %msg\n}"/>
+        </Console>
+        <RollingRandomAccessFile name="File" fileName="Logs/latest.log" filePattern="Logs/%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="[%d{dd/MM/yyyy HH:mm:ss.SSS}] [%t/%level] [%logger/%C{1.2.}]: %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <OnStartupTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="DebugFile" fileName="Logs/debug.log" filePattern="Logs/debug-%i.log.gz">
+            <PatternLayout pattern="[%d{dd/MM/yyyy HH:mm:ss.SSS}] [%t/%level] [%logger/%markerSimpleName]: %msg%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="200MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="7" fileIndex="min"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level="all">
+            <AppenderRef ref="SysOut" level="TRACE"/>
+            <AppenderRef ref="File" level="INFO"/>
+            <AppenderRef ref="DebugFile" level="TRACE"/>
+        </Root>
+    </Loggers>
+</Configuration>

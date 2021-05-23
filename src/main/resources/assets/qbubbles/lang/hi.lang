@@ -1,0 +1,93 @@
+# Other
+other.prev=पिछला
+other.next=आगे
+other.true=हाँ
+other.false=नहीं
+other.cancel=रद्द करना
+other.ok=ठीक है
+other.download=डाउनलोड
+other.install=इंस्टॉल
+other.buy=खरीदें
+other.random=यादृच्छिक
+other.save=सहेजें
+
+# Effects
+effect.qbubbles.poison.name=जहर
+effect.qbubbles.blindness.name=अंधा
+effect.qbubbles.multi_score.name=मल्टी स्कोर
+effect.qbubbles.speed_boost.name=गति वृद्धि
+effect.qbubbles.attack_boost.name=हमला बूस्ट
+effect.qbubbles.defense_boost.name=रक्षा बूस्ट
+
+# Informations
+info.qbubbles.score=स्कोर
+info.qbubbles.level=स्तर
+info.qbubbles.health=स्वास्थ्य
+
+# Scene text
+scene.qbubbles.title.start=खेल शुरू
+scene.qbubbles.title.options=विकल्प
+scene.qbubbles.title.language=भाषा: हिन्दी
+
+scene.qbubbles.options.language=भाषा: हिन्दी
+
+scene.qbubbles.saves.new=नया
+scene.qbubbles.saves.duplicate=डुप्लिकेट
+scene.qbubbles.saves.edit=संपादित करें
+scene.qbubbles.saves.rename=नाम बदलें
+scene.qbubbles.saves.reset=रीसेट
+scene.qbubbles.saves.open=खुला हुआ
+scene.qbubbles.saves.delete=हटाएं
+
+# Screen text
+screen.qbubbles.pause.text=Pause (ठहराव)
+screen.qbubbles.pause.exit=बाहर निकलें और खेल से बाहर निकलें
+screen.qbubbles.pause.min_radius=मिन। त्रिज्या:
+screen.qbubbles.pause.max_radius=मैक्स। त्रिज्या:
+screen.qbubbles.pause.min_speed=मिन। गति:
+screen.qbubbles.pause.max_speed=मैक्स। गति:
+screen.qbubbles.pause.default_chance=डिफ़ॉल्ट संभावना:
+screen.qbubbles.pause.current_chance=वर्तमान संभावना:
+screen.qbubbles.pause.score_modifier=स्कोर संशोधक:
+screen.qbubbles.pause.attack_modifier=हमला संशोधक:
+screen.qbubbles.pause.defense_modifier=रक्षा संशोधक:
+screen.qbubbles.pause.can_spawn=वर्तमान में स्पॉन कर सकते हैं:
+screen.qbubbles.pause.description=विवरण:
+
+# Bubble names
+bubble.qbubbles.normal.name=सामान्य बुलबुला
+bubble.qbubbles.damage.name=नुकसान का बुलबुला
+bubble.qbubbles.level_up.name=स्तर-अप बुलबुला
+bubble.qbubbles.double.name=डबल वैल्यू बुलबुला
+bubble.qbubbles.triple.name=ट्रिपल वैल्यू बुलबुला
+bubble.qbubbles.double_state.name=डबल-स्कोर इफ़ेक्ट बुलबुला
+bubble.qbubbles.triple_state.name=ट्रिपल-स्कोर इफ़ेक्ट बुलबुला
+bubble.qbubbles.blindness.name=अंधेपन का बुलबुला
+bubble.qbubbles.poison.name=जहरीला बुलबुला
+bubble.qbubbles.bounce.name=उछलता हुआ बुलबुला
+bubble.qbubbles.heal.name=हील का बुलबुला
+bubble.qbubbles.hyper.name=हाइपर बुलबुला
+bubble.qbubbles.attack.name=हमला बूस्ट बबल
+bubble.qbubbles.defense.name=डिफेंस बूस्ट बबल
+bubble.qbubbles.speed_boost.name=स्पीड बूस्ट बबल
+bubble.qbubbles.bubble_freeze.name=बुलबुला फ्रीजर
+bubble.qbubbles.paralyze.name=लकवा का बुलबुला
+
+# Bubble descriptions
+bubble.qbubbles.normal.description=सामान्य सामान्य बुलबुला, केवल 1 स्कोर संशोधक है, बहुत आम है, और कोई हमला नहीं है।
+bubble.qbubbles.damage.description=यह बुलबुला हमला करता है, इसमें 1 का स्थैतिक हमला संशोधक है, देखो!
+bubble.qbubbles.level_up.description=यह बुलबुला केवल तभी प्रकट होता है जब आपका स्तर उच्च स्तर पर जा सकता है।\nकुछ गणित के लिए: S = स्कोर, L = स्तर: L <S 000 10'000 + 1
+bubble.qbubbles.double.description=इस बुलबुले का स्कोर में अधिक मूल्य है, आपको सामान्य बुलबुले की तुलना में दोगुना स्कोर मिलेगा।
+bubble.qbubbles.triple.description=इस बबल का डबल वैल्यू बबल की तुलना में स्कोर में और भी अधिक मूल्य है, आपको सामान्य बबल की तुलना में तिगुना अंक मिलेगा।
+bubble.qbubbles.double_state.description=यह बुलबुला आपको कुछ समय के लिए बुलबुले के स्कोर को दोगुना कर देता है।
+bubble.qbubbles.triple_state.description=यह बुलबुला आपको कुछ समय के लिए बुलबुले के स्कोर को तिगुना कर देता है।
+bubble.qbubbles.blindness.description=यह बुलबुला कष्टप्रद है, स्पर्श करते समय, यह स्क्रीन को अंधेरा कर देगा जैसे कि आप अंधे थे। अस्थायी हो जाएगा, कैसे बड़ा बुलबुला कैसे गहरा स्क्रीन हो जाएगा।
+bubble.qbubbles.poison.description=यह बुलबुला खिलाड़ी को 'जहर' देगा, जिसका अर्थ यह देखना कठिन होगा कि कौन सा बुलबुला है, और समय के साथ खिलाड़ी नुकसान उठाएगा। वैसे, प्रभाव अस्थायी है।
+bubble.qbubbles.bounce.description=वर्क इन प्रोग्रेस (WIP), बाउंस बबल इसमें से खिलाड़ी को उछाल देगा। वर्तमान में इसके साथ समस्याएं हैं।
+bubble.qbubbles.heal.description=यह बुलबुला स्वास्थ्य को बहाल करेगा, इसलिए यह सरल है।
+bubble.qbubbles.hyper.description=वर्क इन प्रोग्रेस (WIP), इस बुलबुले में वर्तमान में कोई विशेष नोट नहीं है।
+bubble.qbubbles.attack.description=आप एक 'हमले' को बढ़ावा देने, जब छुआ आप समय की एक अवधि के लिए तेजी से बुलबुले को नष्ट कर सकते देता है।
+bubble.qbubbles.defense.description=आप एक 'रक्षा' को बढ़ावा देने, जब अपने नुकसान है कि आप ले समय की एक अवधि के लिए कम हो जाएगा छुआ देता है।
+bubble.qbubbles.speed_boost.description=यह बुलबुला समय की एक अवधि के लिए खिलाड़ी की गति में वृद्धि होगी। वैसे, प्रभाव अस्थायी है।
+bubble.qbubbles.bubble_freeze.description=यह बुलबुला समय की अवधि के लिए सभी बुलबुले फ्रीज होगा।
+bubble.qbubbles.paralyze.description=यह बुलबुला समय की एक अवधि के लिए खिलाड़ी को पंगु बना देगा।

@@ -1,0 +1,94 @@
+# Others
+other.prev=Prec
+other.next=Pross
+other.true=Si
+other.false=No
+other.cancel=Annulla
+other.ok=Ok
+other.download=Scarica
+other.install=Installare
+other.buy=Acquistare
+other.random=Casuale
+other.save=Salva
+
+# Effect names
+effect.qbubbles.poison.name=Avvelenato
+effect.qbubbles.blindness.name=Blinded
+effect.qbubbles.multi_score.name=Punteggio Multi
+effect.qbubbles.speed_boost.name=Aumento di Velocità
+effect.qbubbles.attack_boost.name=Aumento di Attacco
+effect.qbubbles.defense_boost.name=Aumento di Difesa
+
+# Informations
+info.qbubbles.score=Punto
+info.qbubbles.level=Livella
+info.qbubbles.health=Salute
+
+# Scene text
+scene.qbubbles.title.start=Inizia il Gioco
+scene.qbubbles.title.options=Opzioni
+scene.qbubbles.title.language=Linguaggio
+
+scene.qbubbles.options.language=Linguaggio
+
+scene.qbubbles.saves.new=Nuovo
+scene.qbubbles.saves.duplicate=Duplicare
+scene.qbubbles.saves.edit=Modificare
+scene.qbubbles.saves.rename=Rinomina
+scene.qbubbles.saves.reset=Ripristina
+scene.qbubbles.saves.open=Aperto
+scene.qbubbles.saves.delete=Elimina
+
+# Screen text
+screen.qbubbles.pause.text=Pausa
+screen.qbubbles.pause.exit=Esci e esci dal gioco
+screen.qbubbles.pause.min_radius=Min. Raggio:
+screen.qbubbles.pause.max_radius=Max. Raggio:
+screen.qbubbles.pause.min_speed=Min. Velocità:
+screen.qbubbles.pause.max_speed=Max. Velocità:
+screen.qbubbles.pause.default_chance=Possibil Predef:
+screen.qbubbles.pause.current_chance=Possibil Attuale:
+screen.qbubbles.pause.score_modifier=Modificat Punteggio:
+screen.qbubbles.pause.attack_modifier=Modificat Attacco:
+screen.qbubbles.pause.defense_modifier=Modificat Difesa:
+screen.qbubbles.pause.can_spawn=Può attual. spawnare:
+screen.qbubbles.pause.description=Descrizione:
+
+# Bubble names
+bubble.qbubbles.normal.name=Bolla Normale
+bubble.qbubbles.damage.name=Bolla di Danno
+bubble.qbubbles.level_up.name=Bolla per salire di livello
+bubble.qbubbles.double.name=Doppia Bolla di Valore
+bubble.qbubbles.triple.name=Tripla Bolla di Valore
+bubble.qbubbles.double_state.name=Bolla Effetto Doppio Punteggio
+bubble.qbubbles.triple_state.name=Bolla Effetto Triplo Punteggio
+bubble.qbubbles.blindness.name=Bolla di Cecità
+bubble.qbubbles.poison.name=Bolla Velenosa
+bubble.qbubbles.bounce.name=Bolla di Rimbalzo
+bubble.qbubbles.heal.name=Bolla Guarisci
+bubble.qbubbles.hyper.name=Bolla di Hyper
+bubble.qbubbles.attack.name=Bolla di Potenziamento Dell'attacco
+bubble.qbubbles.defense.name=Bolla di Potenziamento Della difesa
+bubble.qbubbles.speed_boost.name=Bolla Aumento di Velocità
+bubble.qbubbles.bubble_freeze.name=Congelamento delle Bolle
+bubble.qbubbles.paralyze.name=Bolla Paralizzante
+
+# Bubble descriptions
+bubble.qbubbles.normal.description=La normale bolla normale, ha solo 1 modificatore di punteggio, è molto comune e non ha attacco.
+bubble.qbubbles.damage.description=Questa bolla attacca, ha un modificatore di attacco statico di 1, attenzione!
+bubble.qbubbles.level_up.description=Questa bolla appare solo se puoi salire di livello.\nPer un po 'di matematica: P = punteggio, L = livello: L < P ÷ 10'000 + 1
+bubble.qbubbles.double.description=Questa bolla ha più valore in punteggio, otterrai il doppio del punteggio rispetto alla bolla normale.
+bubble.qbubbles.triple.description=Questa bolla ha un punteggio ancora più alto rispetto alla bolla doppia, otterrai il triplo del punteggio rispetto alla bolla normale.
+bubble.qbubbles.double_state.description=Questa bolla ti dà per un periodo di tempo il doppio del punteggio delle bolle.
+bubble.qbubbles.triple_state.description=Questa bolla ti dà per un periodo di tempo il triplo del punteggio delle bolle.
+bubble.qbubbles.blindness.description=Questa bolla è fastidiosa, quando si tocca, oscurerà lo schermo come se fossi cieco. Sarà temporaneo, quanto sarà grande la bolla quanto più scuro sarà lo schermo.
+bubble.qbubbles.poison.description=Questa bolla "avvelenerà" il giocatore, il che significa che sarà difficile vedere quale bolla è cosa e per il tempo il giocatore subirà danni. A proposito, l'effetto è temporaneo.
+bubble.qbubbles.bounce.description=Work In Progress (WIP), la bolla di rimbalzo fa rimbalzare il giocatore da essa. Al momento ho problemi con esso.
+bubble.qbubbles.heal.description=Questa bolla ripristinare la salute, così semplice è.
+bubble.qbubbles.hyper.description=Work In Progress (WIP), questa bolla non ha attualmente note speciali.
+bubble.qbubbles.attack.description=Ti dà una spinta di "attacco", quando toccato puoi distruggere le bolle più velocemente per un periodo di tempo.
+bubble.qbubbles.defense.description=Ti dà una spinta di "difesa", quando toccato il tuo danno che subisci verrà ridotto per un periodo di tempo.
+bubble.qbubbles.speed_boost.description=Questa bolla aumenterà la velocità del giocatore per un periodo di tempo. A proposito, l'effetto è temporaneo.
+bubble.qbubbles.bubble_freeze.description=Questa bolla congela tutte le bolle per un periodo di tempo.
+bubble.qbubbles.paralyze.description=Questa bolla paralizzerà il giocatore per un periodo di tempo.
+

@@ -1,0 +1,27 @@
+{
+  "license": "(C) Copyright 2021 - QTech Community - All Rights Reserved",
+  "addons": [
+    {
+      "description": [
+        "The core of the Game. Containing core features."
+      ],
+      "dependencies": [
+        {
+          "builds": [
+            {
+              "minBuild": 0,
+              "maxBuild": 0
+            }
+          ],
+          "id": ""
+        }
+      ],
+      "addonId": "qbubbles",
+      "name": "QBubbles",
+      "version": "$$ADDON_VERSION$$",
+      "license": "(C) Copyright 2021 - QTech Community - All Rights Reserved",
+      "website": "https://quintenjungblut.wixsite.com/qplaysoftware",
+      "build": 153
+    }
+  ]
+}

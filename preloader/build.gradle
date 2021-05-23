@@ -78,12 +78,12 @@ output.flush()
 output.close()
 
 version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
-group = 'com.qtech.bubbleblaster' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'com.qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bubbles-preloader'
 jar.version = version
 jar.archiveVersion.set(version)
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '11' // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 //GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), this.binding);
 //shell.run(file, arguments);
