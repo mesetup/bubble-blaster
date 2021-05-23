@@ -397,6 +397,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     public void tick() {
         if (initialized) {
             this.ticks++;
+            bloodMoonUpdate();
         }
     }
 
@@ -656,8 +657,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         return bloodMoonActive;
     }
 
-    @SubscribeEvent
-    public void bloodMoonUpdate(TickEvent event) {
+    public void bloodMoonUpdate() {
         LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
         if (loadedGame == null) {
             return;
@@ -681,9 +681,12 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
                 setGlobalBubbleSpeedModifier(bloodMoonAnimation.animate());
                 if (bloodMoonAnimation.isEnded()) {
                     GameEvents.BLOOD_MOON_EVENT.get().activate();
+                    this.environment.setCurrentGameEvent(GameEvents.BLOOD_MOON_EVENT.get());
                     bloodMoonActive = true;
 
-                    loadedGame.getAmbientAudio().stop();
+                    if (loadedGame != null && loadedGame.getAmbientAudio() != null) {
+                        loadedGame.getAmbientAudio().stop();
+                    }
                     bloodMoonAnimation = null;
                     bloodMoonAnimation1 = new Animation(8d, 1d, 1000d);
                 }

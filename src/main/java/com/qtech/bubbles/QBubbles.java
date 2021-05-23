@@ -711,6 +711,7 @@ public final class QBubbles extends Canvas {
         loadedGame = loadedGameReference.get();
     }
 
+    @Nullable
     public LoadedGame getLoadedGame() {
         return loadedGame;
     }

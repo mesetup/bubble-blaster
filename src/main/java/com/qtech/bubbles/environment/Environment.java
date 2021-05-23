@@ -11,6 +11,7 @@ import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.entity.types.EntityType;
 import com.qtech.bubbles.event.CollisionEvent;
 import com.qtech.bubbles.registry.Registers;
+import com.qtech.bubbles.state.BloodMoonEvent;
 import com.qtech.utilities.datetime.DateTime;
 import org.bson.BsonDocument;
 
@@ -177,5 +178,10 @@ public class Environment {
     public void quit() {
         this.gameEventHandlerThread.interrupt();
         this.gameType.quit();
+    }
+
+    public void setCurrentGameEvent(GameEvent currentGameEvent) {
+        this.currentGameEvent = currentGameEvent;
+//        this.currentGameEvent.activate();
     }
 }
