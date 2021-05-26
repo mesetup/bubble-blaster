@@ -1,0 +1,25 @@
+{
+  "version": {
+    "name": "49.0.141-a1",
+    "version": 49,
+    "release": 0,
+    "build": 141,
+    "stage": "a",
+    "stage_release": 1
+  },
+  "build_info": {
+    "date": "2021-02-03T20:25:52.568485100",
+    "compile": {
+      "name": "compileJava",
+      "source_compat": "1.8",
+      "target_compat": "1.8",
+      "gradle": {
+        "version": "6.7.1"
+      }
+    },
+    "project": {
+      "name": "QBubbles-Java",
+      "display_name": "root project \u0027QBubbles-Java\u0027"
+    }
+  }
+}

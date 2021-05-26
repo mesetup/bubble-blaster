@@ -1,0 +1,93 @@
+# Other
+other.prev=Mëparshme
+other.next=Tjetra
+other.true=Po
+other.false=Jo
+other.cancel=Anuloni
+other.ok=Ne rregull
+other.download=Shkarko
+other.install=Instaloni
+other.buy=Blej
+other.random=Të rastit
+other.save=Ruaj
+
+# Effects
+effect.bubbleblaster.poison.name=Helmuar
+effect.bubbleblaster.blindness.name=Të verbër
+effect.bubbleblaster.multi_score.name=Vlerësimi i Shumëfishtë
+effect.bubbleblaster.speed_boost.name=Rritja e shpejtësisë
+effect.bubbleblaster.attack_boost.name=Rritja e sulmit
+effect.bubbleblaster.defense_boost.name=Rritja e mbrojtjes
+
+# Informations
+info.bubbleblaster.score=Vota
+info.bubbleblaster.level=Niveli
+info.bubbleblaster.health=Shëndeti
+
+# Scene text
+scene.bubbleblaster.title.start=Fillo Lojen
+scene.bubbleblaster.title.options=Opsione
+scene.bubbleblaster.title.language=Gjuhe
+
+scene.bubbleblaster.options.language=Gjuhe
+
+scene.bubbleblaster.saves.new=I ri
+scene.bubbleblaster.saves.duplicate=Dublikatë
+scene.bubbleblaster.saves.edit=Modifikoni
+scene.bubbleblaster.saves.rename=Riemërto
+scene.bubbleblaster.saves.reset=Rivendosni
+scene.bubbleblaster.saves.open=Hapur
+scene.bubbleblaster.saves.delete=Fshij
+
+# Screen text
+screen.bubbleblaster.pause.text=Pusho
+screen.bubbleblaster.pause.exit=Dalja dhe lënia e lojës
+screen.bubbleblaster.pause.min_radius=Min. Radius:
+screen.bubbleblaster.pause.max_radius=Maksi. Radius:
+screen.bubbleblaster.pause.min_speed=Min. Shpejtësia:
+screen.bubbleblaster.pause.max_speed=Maksi. Shpejtësia:
+screen.bubbleblaster.pause.default_chance=Shansi Paracaktuar:
+screen.bubbleblaster.pause.current_chance=Shansi Aktual:
+screen.bubbleblaster.pause.score_modifier=Modifikuesi Pikëve:
+screen.bubbleblaster.pause.attack_modifier=Modifikuesi Sulmit:
+screen.bubbleblaster.pause.defense_modifier=Modifikuesi Mbrojtjes:
+screen.bubbleblaster.pause.can_spawn=Aktualisht Mund të pjellem:
+screen.bubbleblaster.pause.description=Përshkrim:
+
+# Bubble names
+bubble.bubbleblaster.normal.name=Flluskë Normale
+bubble.bubbleblaster.damage.name=Flluskë Dëmi
+bubble.bubbleblaster.level_up.name=Flluskë Niveli
+bubble.bubbleblaster.double.name=Flluskë me Vlerë Dyfish
+bubble.bubbleblaster.triple.name=Flluskë me Vlera Trefish
+bubble.bubbleblaster.double_state.name=Flluskë me Efekt Dyfish
+bubble.bubbleblaster.triple_state.name=Flluskë me Efekt Trefish
+bubble.bubbleblaster.blindness.name=Flluskë Verbërie
+bubble.bubbleblaster.poison.name=Flluskë Helmuese
+bubble.bubbleblaster.bounce.name=Reflektoni flluskë
+bubble.bubbleblaster.heal.name=Flluskë Shëruese
+bubble.bubbleblaster.hyper.name=Flluskë Hiper
+bubble.bubbleblaster.attack.name=Flluskë Rritja e Sulmit
+bubble.bubbleblaster.defense.name=Flluskë Rritja e Mbrojtjes
+bubble.bubbleblaster.speed_boost.name=Flluskë Shpejtësie
+bubble.bubbleblaster.bubble_freeze.name=Flluskë Pauzë
+bubble.bubbleblaster.paralyze.name=Flluskë Paralizuese
+
+# Bubble descriptions
+bubble.bubbleblaster.normal.description=Flluskë normale e zakonshme, ka vetëm një modifikues 1 pikë, është shumë e zakonshme, dhe nuk ka sulm.
+bubble.bubbleblaster.damage.description=Kjo flluskë sulmon, ajo ka një modifikues statik të sulmit prej 1, ki kujdes!
+bubble.bubbleblaster.level_up.description=Kjo flluskë shfaqet vetëm nëse mund të shkoni një nivel më të lartë. Për disa matematikë: V = vota, N = niveli: N < V ÷ 10'000 + 1
+bubble.bubbleblaster.double.description=Kjo flluskë ka më shumë vlerë në rezultat, ju do të merrni dyfishin e rezultatit sesa Flluskë Normale.
+bubble.bubbleblaster.triple.description=Kjo flluskë ka edhe më shumë vlerë në rezultat sesa Flluskë me Vlerë Dyfish, do të merrni rezultatin e trefishtë se Flluskë Normale.
+bubble.bubbleblaster.double_state.description=Kjo flluskë ju jep për një periudhë kohe të dyfishtë rezultatin e flluska.
+bubble.bubbleblaster.triple_state.description=Kjo flluskë ju jep për një periudhë kohe të trefishtë rezultatin e flluska.
+bubble.bubbleblaster.blindness.description=Kjo flluskë është e bezdisshme, kur prekni, do të errësojë ekranin sikur të ishit i verbër. Do të jetë e përkohshme, sa më e madhe të jetë flluska sa e errët do të jetë ekrani.
+bubble.bubbleblaster.poison.description=Kjo flluskë do ta ‘helmojë’ lojtarin, do të thotë se do të jetë e vështirë të shihet se cila flluskë është e cila dhe me kalimin e kohës lojtari do të dëmtojë. Nga rruga, efekti është i përkohshëm.
+bubble.bubbleblaster.bounce.description=Puna Në Progres (WIP), Reflektoni flluskë do të reflektonte lojtarin nga ai. Aktualisht ka probleme me të.
+bubble.bubbleblaster.heal.description=Kjo flluskë do të rivendosë shëndetin, kaq e thjeshtë është kjo.
+bubble.bubbleblaster.hyper.description=Puna Në Progres (WIP), kjo flluskë aktualisht nuk ka shënime të veçanta.
+bubble.bubbleblaster.attack.description=Ju jep një forcë "sulmi", kur preken ju mund të shkatërroni flluska më shpejt për një periudhë kohe.
+bubble.bubbleblaster.defense.description=Ju jep një forcë 'mbrojtjeje', kur prekni dëmin tuaj që merrni do të zvogëlohen për një humbje kohe.
+bubble.bubbleblaster.speed_boost.description=Kjo flluskë do të rrisë shpejtësinë e lojtarit për një periudhë kohe. Nga rruga, efekti është i përkohshëm.
+bubble.bubbleblaster.bubble_freeze.description=Kjo flluskë do të ngrijë të gjitha flluskat për një periudhë kohe.
+bubble.bubbleblaster.paralyze.description=Kjo flluskë do të paralizojë lojtarin për një periudhë kohe.

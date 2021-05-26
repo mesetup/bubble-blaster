@@ -55,7 +55,7 @@ public class PreGameLoader {
             final Class<?> clazz = Class.forName(loadTarget, false, classLoader);
             final Method mainMethod = clazz.getMethod("main", String[].class, PreClassLoader.class);
 
-            LOGGER.info(String.format("Loading QBubbles {%s}", loadTarget));
+            LOGGER.info(String.format("Loading Bubble Blaster {%s}", loadTarget));
             mainMethod.invoke(null, args, classLoader);
         } catch (Exception e) {
             LOGGER.fatal("Problem occurred when trying to load a game.", e);

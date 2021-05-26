@@ -1,0 +1,13 @@
+{
+  "priority": 150000000,
+  "radius": {
+    "min": 12,
+    "max": 105
+  },
+  "speed": {
+    "min": 0.875,
+    "max": 2.200
+  },
+  "colors": "#ffffff",
+  "score": 1
+}

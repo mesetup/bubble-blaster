@@ -1,318 +1,479 @@
+import com.google.gson.*
+import com.google.gson.streams.*
+import com.google.gson.stream.JsonWriter
+import org.apache.commons.io.FileUtils
+import org.apache.commons.io.IOUtils
+import java.time.LocalDateTime
+import java.time.ZoneId
+
 buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
-        gradlePluginPortal()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
         google()
+        maven {
+            url = "https://plugins.gradle.org/m2/"
+        }
+
+        maven {
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            name = "sonatype"
+        }
+
+        maven {
+            url = "https://maven.atlassian.com/3rdparty/"
+        }
     }
+
     dependencies {
+        classpath group: 'commons-io', name: 'commons-io', version: '2.8.0'
+        classpath "com.google.code.gson:gson:2.8.+"
         classpath "io.freefair.gradle:lombok-plugin:4.1.6"
     }
 }
 
+/**********
+ * Plugins
+ */
+plugins {
+    id "net.octyl.elivi" version "0.1.3"
+}
 
+apply plugin: "io.freefair.lombok"
 
-allprojects {
-    apply plugin: "eclipse"
-    apply plugin: "io.freefair.lombok"
+// Languages.
+apply plugin: 'groovy'
+apply plugin: 'java'
 
-    version = '1.0'
-    ext {
-        appName = "bubble-blaster"
-        gdxVersion = '1.10.0'
-        roboVMVersion = '2.3.12'
-        box2DLightsVersion = '1.5'
-        ashleyVersion = '1.7.3'
-        aiVersion = '1.8.2'
-        gdxControllersVersion = '2.1.0'
-        shapedrawerVersion = '2.4.0'
+// Api
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+// IDE's
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+// Util
+apply plugin: 'application'
+
+group 'com.qtech'
+version '1.0-indev1'
+archivesBaseName = 'bubbles'
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+println("OS: " + System.getProperty("os.name") + " Version: " + System.getProperty("os.version"))
+
+// Read build number file.
+int vers = Integer.parseInt("${version1}")
+int release = Integer.parseInt(project.property("versionRelease").toString())
+String stage = project.property("versionStage").toString()
+int stageRelease = Integer.parseInt(project.property("versionStageRelease").toString())
+
+Integer buildNumber
+try {
+    FileInputStream fileInputStream = new FileInputStream("buildnumber.txt")
+    String buildNrString = new String(IOUtils.toByteArray(fileInputStream))
+    fileInputStream.close()
+    try {
+        buildNumber = Integer.valueOf(buildNrString)
+    } catch (NumberFormatException e) {
+        buildNumber = 0
     }
+} catch (IOException e) {
+    buildNumber = 0
+}
 
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        google()
-        gradlePluginPortal()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-        maven { url "https://maven.atlassian.com/3rdparty/" }
-        maven { url "http://maven.imagej.net/content/repositories/public/" }
-        maven { url 'https://jitpack.io' }
-        flatDir {
-            dirs './libs'
+
+// Advance build number.
+buildNumber++
+println("Executing build " + buildNumber)
+String newBuild = buildNumber.toString()
+
+// Write new build number.
+if (!new File("buildnumber.txt").exists()) {
+    new File("buildnumber.txt").createNewFile()
+}
+FileOutputStream output = new FileOutputStream("buildnumber.txt")
+output.write(newBuild.getBytes())
+output.flush()
+output.close()
+
+version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
+group = 'com.qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'bubbles'
+jar.version = version
+jar.archiveVersion.set(version)
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '11' // Need this here so eclipse task generates correctly.
+
+//GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), this.binding);
+//shell.run(file, arguments);
+
+println("Current version: " + version)
+println("Project: " + group + ":" + archivesBaseName)
+println("Bulding a Java " + compileJava.targetCompatibility + " project...")
+
+/***************
+ * Source sets.
+ */
+sourceSets {
+    /**
+     * Main set.
+     */
+    main {
+        /**
+         * Main resources set.
+         */
+        resources {
+            srcDirs "src/main/resources"
         }
     }
 }
 
-project(":desktop") {
-    apply plugin: "java-library"
 
-    sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '11' // Need this here so eclipse task generates correctly.
+/***********
+ * Manifest
+ */
+application {
+    //noinspection GroovyAccessibility,  GroovyAssignabilityCheck
+    mainClass = 'com.qtech.preloader.PreLoader'
+}
 
-    /*****************
-     * Configurations
-     */
-    configurations {
-        // configuration that holds jars to include in the jar
-        extraLibs
+/***************
+ * Repositories
+ */
+repositories {
+    mavenCentral()
+    mavenLocal()
+    google()
+    maven { url "https://maven.atlassian.com/3rdparty/" }
+//    maven { url "https://repo.spring.io/libs-milestone/" }
+    maven { url "http://maven.imagej.net/content/repositories/public/" }
+    maven {
+        url = "file://${local_maven}"
     }
-
-    dependencies {
-        implementation project(":core")
-        implementation project(":preloader")
-        api "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
-        api "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdxControllersVersion"
-    }
-
-    /**
-     * Sources jar task, this jar-task makes a jar file from the sources.
-     * @see org.gradle.jvm.tasks.Jar
-     */
-    task sourcesJar(type: Jar) {
-        from sourceSets.main.java.srcDirs
-        classifier 'sources'
-    }
-
-    /**
-     * Api jar task, this jar-task makes a jar file for API uses.
-     * @see org.gradle.jvm.tasks.Jar
-     */
-    task apiJar(type: Jar) {
-        from processResources.destinationDir
-        from sourceSets.main.java.outputDir
-        classifier 'api'
-        dependsOn compileJava
-        dependsOn processResources
-        dependsOn classes
-    }
-
-    /**
-     * The artifacts.
-     */
-    artifacts {
-        archives sourcesJar
-        archives apiJar
-    }
-
-    jar {
-        manifest {
-            attributes 'Implementation-Title': 'QBubbles',
-                    'Implementation-Vendor': 'QTech Community',
-                    'Implementation-Version': "1.0-indev1",
-                    'Main-Class': 'com.qtech.preloader.PreLoader'
-        }
-//        from {
-//            configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
-//        }
-        zip64 true
+    flatDir {
+        dirs './libs'
     }
 }
 
-project(":core") {
-    apply plugin: "java-library"
+/*****************
+ * Configurations
+ */
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
 
-    sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '11' // Need this here so eclipse task generates correctly.
+/***************
+ * Dependencies
+ */
+dependencies {
+    // Misc
+    compile 'org.jetbrains:annotations:20.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
-    /*****************
-     * Configurations
-     */
-    configurations {
-        // configuration that holds jars to include in the jar
-        extraLibs
+    // Local jars.
+    extraLibs fileTree(dir: '.\\libs', include: ['*.jar'])
+    implementation fileTree(dir: '.\\libs', include: ['*.jar'])
+
+    // QSoftware.
+//    extraLibs group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
+//    implementation group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
+
+    compile project(":preloader")
+
+    // Objectweb
+    extraLibs group: 'org.ow2.asm', name: 'asm-all', version: '5.2'
+    implementation group: 'org.ow2.asm', name: 'asm-all', version: '5.2'
+
+    // Google
+    extraLibs group: 'com.google.guava', name: 'guava', version: '30.1-jre'
+    extraLibs group: 'com.google.code.gson', name: 'gson', version: '2.8.+'
+
+    implementation group: 'com.google.guava', name: 'guava', version: '30.1-jre'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.+'
+
+    // Apache
+    extraLibs group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+    extraLibs group: 'org.apache.commons', name: 'commons-collections4', version: '4.+'
+    extraLibs group: 'org.apache.commons', name: 'commons-compress', version: '+'
+    extraLibs group: 'org.apache.commons', name: 'commons-configuration2', version: '2.+'
+    extraLibs group: 'org.apache.commons', name: 'commons-math3', version: '3.+'
+    extraLibs group: 'org.apache.commons', name: 'commons-text', version: '+'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-web', version: '2.14.0'
+    extraLibs group: 'org.apache.xmlgraphics', name: 'batik-svg-dom', version: '1.13'
+    extraLibs group: 'org.apache.xmlgraphics', name: 'batik-dom', version: '1.13'
+    extraLibs group: 'org.apache.xmlgraphics', name: 'batik-all', version: '1.13'
+    extraLibs group: 'org.apache.xmlgraphics', name: 'batik-util', version: '1.13'
+    extraLibs group: 'org.apache.xmlgraphics', name: 'batik-swing', version: '1.13'
+    extraLibs group: 'org.apache.xmlgraphics', name: 'batik-awt-util', version: '1.13'
+    extraLibs group: 'org.apache.ant', name: 'ant', version: '1.10.9'
+
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.+'
+    implementation group: 'org.apache.commons', name: 'commons-compress', version: '+'
+    implementation group: 'org.apache.commons', name: 'commons-configuration2', version: '2.+'
+    implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.+'
+    implementation group: 'org.apache.commons', name: 'commons-text', version: '+'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    implementation group: 'org.apache.xmlgraphics', name: 'batik-svg-dom', version: '1.13'
+    implementation group: 'org.apache.xmlgraphics', name: 'batik-dom', version: '1.13'
+    implementation group: 'org.apache.xmlgraphics', name: 'batik-all', version: '1.13'
+    implementation group: 'org.apache.xmlgraphics', name: 'batik-swing', version: '1.13'
+    implementation group: 'org.apache.xmlgraphics', name: 'batik-awt-util', version: '1.13'
+    implementation group: 'org.apache.ant', name: 'ant', version: '1.10.9'
+
+    // JHLabs
+    extraLibs group: 'com.jhlabs', name: 'filters', version: '2.0.235-1'
+    implementation group: 'com.jhlabs', name: 'filters', version: '2.0.235-1'
+
+    // SwingLabs
+    extraLibs group: 'org.swinglabs.swingx', name: 'swingx-all', version: '1.6.5-1'
+    implementation group: 'org.swinglabs.swingx', name: 'swingx-all', version: '1.6.5-1'
+
+    // FuseSource
+    extraLibs group: 'org.fusesource.jansi', name: 'jansi', version: '2.1.1'
+    implementation group: 'org.fusesource.jansi', name: 'jansi', version: '2.1.1'
+
+    // OpenJFX
+    extraLibs 'org.openjfx:javafx-swing:15.+'
+    extraLibs 'org.openjfx:javafx-media:15.+'
+    extraLibs 'org.openjfx:javafx-controls:15.+'
+    extraLibs 'org.openjfx:javafx-graphics:15.+'
+    extraLibs 'org.openjfx:javafx:15.+'
+
+    implementation 'org.openjfx:javafx-swing:15.+'
+    implementation 'org.openjfx:javafx-media:15.+'
+    implementation 'org.openjfx:javafx-controls:15.+'
+    implementation 'org.openjfx:javafx-graphics:15.+'
+    implementation 'org.openjfx:javafx:15.+'
+
+    // OpenJFX Natives
+    extraLibs 'org.openjfx:javafx-swing:15.+:win'
+    extraLibs 'org.openjfx:javafx-swing:15.+:mac'
+    extraLibs 'org.openjfx:javafx-swing:15.+:linux'
+    extraLibs 'org.openjfx:javafx-media:15.+:win'
+    extraLibs 'org.openjfx:javafx-media:15.+:mac'
+    extraLibs 'org.openjfx:javafx-media:15.+:linux'
+    extraLibs 'org.openjfx:javafx-controls:15.+:win'
+    extraLibs 'org.openjfx:javafx-controls:15.+:mac'
+    extraLibs 'org.openjfx:javafx-controls:15.+:linux'
+    extraLibs 'org.openjfx:javafx-graphics:15.+:win'
+    extraLibs 'org.openjfx:javafx-graphics:15.+:mac'
+    extraLibs 'org.openjfx:javafx-graphics:15.+:linux'
+    extraLibs 'org.openjfx:javafx-base:15.+:win'
+    extraLibs 'org.openjfx:javafx-base:15.+:mac'
+    extraLibs 'org.openjfx:javafx-base:15.+:linux'
+
+    implementation 'org.openjfx:javafx-swing:15.+:win'
+    implementation 'org.openjfx:javafx-swing:15.+:mac'
+    implementation 'org.openjfx:javafx-swing:15.+:linux'
+    implementation 'org.openjfx:javafx-media:15.+:win'
+    implementation 'org.openjfx:javafx-media:15.+:mac'
+    implementation 'org.openjfx:javafx-media:15.+:linux'
+    implementation 'org.openjfx:javafx-controls:15.+:win'
+    implementation 'org.openjfx:javafx-controls:15.+:mac'
+    implementation 'org.openjfx:javafx-controls:15.+:linux'
+    implementation 'org.openjfx:javafx-graphics:15.+:win'
+    implementation 'org.openjfx:javafx-graphics:15.+:mac'
+    implementation 'org.openjfx:javafx-graphics:15.+:linux'
+    implementation 'org.openjfx:javafx-base:15.+:win'
+    implementation 'org.openjfx:javafx-base:15.+:mac'
+    implementation 'org.openjfx:javafx-base:15.+:linux'
+
+    // Studios Hartman
+    extraLibs group: 'com.github.WilliamAHartman', name: 'Jamepad', version: '1.3.2'
+    implementation group: 'com.github.WilliamAHartman', name: 'Jamepad', version: '1.3.2'
+
+    // Fast Util
+    extraLibs group: 'it.unimi.dsi', name: 'fastutil', version: '8.4.+'
+    implementation group: 'it.unimi.dsi', name: 'lama4j', version: '+'
+
+    // MongoDB
+    extraLibs group: 'org.mongodb', name: 'bson', version: '4.1.1'
+    implementation group: 'org.mongodb', name: 'bson', version: '4.1.1'
+
+    // OSHi (For system info in crash reports)
+    extraLibs 'com.github.oshi:oshi-core:5.3.7'
+    implementation 'com.github.oshi:oshi-core:5.3.7'
+}
+
+// task to add addons.json to all relevant folders
+task replaceResources(type: Copy) {
+    from("src/main/resources/META-INF/addons.json")
+    outputs.upToDateWhen {
+        false
     }
 
-    dependencies {    // Misc
-        compile 'org.jetbrains:annotations:20.1.0'
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    filter { line -> line.replaceAll('\\\$\\\$ADDON_VERSION\\\$\\\$', version.toString()) }
+    into new File(processResources.destinationDir, "META-INF")
+}
 
-        implementation project(":preloader")
-        implementation "space.earlygrey:shapedrawer:$shapedrawerVersion"
-        api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        api "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
-        api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
+processResources {
+    exclude 'META-INF/addons.json'
+    finalizedBy replaceResources
+}
 
-        extraLibs project(":preloader")
-        extraLibs "com.badlogicgames.gdx:gdx:$gdxVersion"
-        extraLibs "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        extraLibs "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
-        extraLibs "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
+/**
+ * Sources jar task, this jar-task makes a jar file from the sources.
+ * @see org.gradle.jvm.tasks.Jar
+ */
+task sourcesJar(type: Jar) {
+    from sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
 
-        // Objectweb
-        extraLibs group: 'org.ow2.asm', name: 'asm-all', version: '5.2'
-        implementation group: 'org.ow2.asm', name: 'asm-all', version: '5.2'
+/**
+ * Api jar task, this jar-task makes a jar file for API uses.
+ * @see org.gradle.jvm.tasks.Jar
+ */
+task apiJar(type: Jar) {
+    from processResources.destinationDir
+    from sourceSets.main.java.outputDir
+    classifier 'api'
+    dependsOn compileJava
+    dependsOn processResources
+    dependsOn classes
+}
 
-        // Visual Effects
-        extraLibs 'com.crashinvaders.vfx:gdx-vfx-core:0.5.0'
-        extraLibs 'com.crashinvaders.vfx:gdx-vfx-effects:0.5.0'    // Optional, if you need standard filter/effects.
-        implementation 'com.crashinvaders.vfx:gdx-vfx-core:0.5.0'
-        implementation 'com.crashinvaders.vfx:gdx-vfx-effects:0.5.0'    // Optional, if you need standard filter/effects.
-
-        // Google
-        extraLibs group: 'com.google.guava', name: 'guava', version: '30.1-jre'
-        extraLibs group: 'com.google.code.gson', name: 'gson', version: '2.8.+'
-
-        implementation group: 'com.google.guava', name: 'guava', version: '30.1-jre'
-        implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.+'
-
-        // Apache
-        extraLibs group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
-        extraLibs group: 'org.apache.commons', name: 'commons-collections4', version: '4.+'
-        extraLibs group: 'org.apache.commons', name: 'commons-compress', version: '+'
-        extraLibs group: 'org.apache.commons', name: 'commons-configuration2', version: '2.+'
-        extraLibs group: 'org.apache.commons', name: 'commons-math3', version: '3.+'
-        extraLibs group: 'org.apache.commons', name: 'commons-text', version: '+'
-        extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
-        extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
-        extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
-        extraLibs group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.14.0'
-        extraLibs group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.14.0'
-        extraLibs group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.14.0'
-        extraLibs group: 'org.apache.logging.log4j', name: 'log4j-web', version: '2.14.0'
-        extraLibs group: 'org.apache.xmlgraphics', name: 'batik-svg-dom', version: '1.13'
-        extraLibs group: 'org.apache.xmlgraphics', name: 'batik-dom', version: '1.13'
-        extraLibs group: 'org.apache.xmlgraphics', name: 'batik-all', version: '1.13'
-        extraLibs group: 'org.apache.xmlgraphics', name: 'batik-util', version: '1.13'
-        extraLibs group: 'org.apache.xmlgraphics', name: 'batik-swing', version: '1.13'
-        extraLibs group: 'org.apache.xmlgraphics', name: 'batik-awt-util', version: '1.13'
-        extraLibs group: 'org.apache.ant', name: 'ant', version: '1.10.9'
-
-        implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
-        implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.+'
-        implementation group: 'org.apache.commons', name: 'commons-compress', version: '+'
-        implementation group: 'org.apache.commons', name: 'commons-configuration2', version: '2.+'
-        implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.+'
-        implementation group: 'org.apache.commons', name: 'commons-text', version: '+'
-        implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
-        implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
-        implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
-        implementation group: 'org.apache.xmlgraphics', name: 'batik-svg-dom', version: '1.13'
-        implementation group: 'org.apache.xmlgraphics', name: 'batik-dom', version: '1.13'
-        implementation group: 'org.apache.xmlgraphics', name: 'batik-all', version: '1.13'
-        implementation group: 'org.apache.xmlgraphics', name: 'batik-swing', version: '1.13'
-        implementation group: 'org.apache.xmlgraphics', name: 'batik-awt-util', version: '1.13'
-        implementation group: 'org.apache.ant', name: 'ant', version: '1.10.9'
-
-        // JHLabs
-        extraLibs group: 'com.jhlabs', name: 'filters', version: '2.0.235-1'
-        implementation group: 'com.jhlabs', name: 'filters', version: '2.0.235-1'
-
-        // SwingLabs
-        extraLibs group: 'org.swinglabs.swingx', name: 'swingx-all', version: '1.6.5-1'
-        implementation group: 'org.swinglabs.swingx', name: 'swingx-all', version: '1.6.5-1'
-
-        // FuseSource
-        extraLibs group: 'org.fusesource.jansi', name: 'jansi', version: '2.1.1'
-        implementation group: 'org.fusesource.jansi', name: 'jansi', version: '2.1.1'
-
-        // OpenJFX
-        extraLibs 'org.openjfx:javafx-swing:15.+'
-        extraLibs 'org.openjfx:javafx-media:15.+'
-        extraLibs 'org.openjfx:javafx-controls:15.+'
-        extraLibs 'org.openjfx:javafx-graphics:15.+'
-        extraLibs 'org.openjfx:javafx:15.+'
-
-        implementation 'org.openjfx:javafx-swing:15.+'
-        implementation 'org.openjfx:javafx-media:15.+'
-        implementation 'org.openjfx:javafx-controls:15.+'
-        implementation 'org.openjfx:javafx-graphics:15.+'
-        implementation 'org.openjfx:javafx:15.+'
-
-        // OpenJFX Natives
-        extraLibs 'org.openjfx:javafx-swing:15.+:win'
-        extraLibs 'org.openjfx:javafx-swing:15.+:mac'
-        extraLibs 'org.openjfx:javafx-swing:15.+:linux'
-        extraLibs 'org.openjfx:javafx-media:15.+:win'
-        extraLibs 'org.openjfx:javafx-media:15.+:mac'
-        extraLibs 'org.openjfx:javafx-media:15.+:linux'
-        extraLibs 'org.openjfx:javafx-controls:15.+:win'
-        extraLibs 'org.openjfx:javafx-controls:15.+:mac'
-        extraLibs 'org.openjfx:javafx-controls:15.+:linux'
-        extraLibs 'org.openjfx:javafx-graphics:15.+:win'
-        extraLibs 'org.openjfx:javafx-graphics:15.+:mac'
-        extraLibs 'org.openjfx:javafx-graphics:15.+:linux'
-        extraLibs 'org.openjfx:javafx-base:15.+:win'
-        extraLibs 'org.openjfx:javafx-base:15.+:mac'
-        extraLibs 'org.openjfx:javafx-base:15.+:linux'
-
-        implementation 'org.openjfx:javafx-swing:15.+:win'
-        implementation 'org.openjfx:javafx-swing:15.+:mac'
-        implementation 'org.openjfx:javafx-swing:15.+:linux'
-        implementation 'org.openjfx:javafx-media:15.+:win'
-        implementation 'org.openjfx:javafx-media:15.+:mac'
-        implementation 'org.openjfx:javafx-media:15.+:linux'
-        implementation 'org.openjfx:javafx-controls:15.+:win'
-        implementation 'org.openjfx:javafx-controls:15.+:mac'
-        implementation 'org.openjfx:javafx-controls:15.+:linux'
-        implementation 'org.openjfx:javafx-graphics:15.+:win'
-        implementation 'org.openjfx:javafx-graphics:15.+:mac'
-        implementation 'org.openjfx:javafx-graphics:15.+:linux'
-        implementation 'org.openjfx:javafx-base:15.+:win'
-        implementation 'org.openjfx:javafx-base:15.+:mac'
-        implementation 'org.openjfx:javafx-base:15.+:linux'
-
-        // Studios Hartman
-        extraLibs group: 'com.github.WilliamAHartman', name: 'Jamepad', version: '1.3.2'
-        implementation group: 'com.github.WilliamAHartman', name: 'Jamepad', version: '1.3.2'
-
-        // Fast Util
-        extraLibs group: 'it.unimi.dsi', name: 'fastutil', version: '8.4.+'
-        implementation group: 'it.unimi.dsi', name: 'lama4j', version: '+'
-
-        // MongoDB
-        extraLibs group: 'org.mongodb', name: 'bson', version: '4.1.1'
-        implementation group: 'org.mongodb', name: 'bson', version: '4.1.1'
-
-        // OSHi (For system info in crash reports)
-        extraLibs 'com.github.oshi:oshi-core:5.3.7'
-        implementation 'com.github.oshi:oshi-core:5.3.7'
-    }
-
-    /**
-     * Sources jar task, this jar-task makes a jar file from the sources.
-     * @see org.gradle.jvm.tasks.Jar
-     */
-    task sourcesJar(type: Jar) {
-        from sourceSets.main.java.srcDirs
-        classifier 'sources'
-    }
-
-    /**
-     * Api jar task, this jar-task makes a jar file for API uses.
-     * @see org.gradle.jvm.tasks.Jar
-     */
-    task apiJar(type: Jar) {
-        from processResources.destinationDir
-        from sourceSets.main.java.outputDir
-        classifier 'api'
-        dependsOn compileJava
-        dependsOn processResources
-        dependsOn classes
-    }
-
-    /**
-     * The artifacts.
-     */
-    artifacts {
-        archives sourcesJar
-        archives apiJar
-    }
-
-    jar {
-        manifest {
-            attributes 'Implementation-Title': 'QBubbles',
-                    'Implementation-Vendor': 'QTech Community',
-                    'Implementation-Version': "1.0-indev1",
-                    'Main-Class': 'com.qtech.preloader.PreLoader'
+/**
+ * Game jar task, the default jar file. No classifier. Used for executing the game.
+ * @see org.gradle.jvm.tasks.Jar
+ */
+task gameJar(type: Jar) {
+    from {
+        (configurations.extraLibs).collect {
+            it.getPath().startsWith(projectDir.getPath()) ? [] : it.isDirectory() ? it : zipTree(it)
         }
-//        from {
-//            configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
-//        }
-        zip64 true
+    }
+    classifier null
+    dependsOn compileJava
+    dependsOn processResources
+    dependsOn classes
+}
+
+/**
+ * The artifacts.
+ */
+artifacts {
+    archives sourcesJar
+    archives apiJar
+    archives gameJar
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'QBubbles',
+                'Implementation-Vendor': 'QTech Community',
+                'Implementation-Version': "1.0-indev1",
+                'Main-Class': 'com.qtech.preloader.PreLoader'
+    }
+//    from {
+//        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+    zip64 true
+}
+
+task runQBubbles(type: JavaExec) {
+    description = "Run QBubbles"
+    main = 'com.qtech.preloader.PreLoader'
+    classpath = sourceSets.main.compileClasspath
+    args('gameDir="./run"')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task uploadJars(dependsOn: "build") {
+
+    description = "Uploads JARs"
+
+    if (project.hasProperty("local_maven") || project.hasProperty("sftp_maven")) {
+        apply plugin: 'maven'
+        uploadArchives {
+            repositories {
+                if (project.hasProperty("local_maven")) {
+                    mavenDeployer {
+                        repository(url: "file://${local_maven}")
+                    }
+                }
+                if (project.hasProperty("sftp_maven")) {
+                    repositories.mavenDeployer {
+                        configuration = configurations.deployerJars
+                        repository(url: "sftp://${sftp_maven}") {
+                            authentication(userName: "${sftp_username}", privateKey: "${sftp_key}")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
+//jar.finalizedBy('uploadJars')
+//jar.finalizedBy("uploadArchives")
+
+// Upload jars to local of sftp maven.
+//jar.finalizedBy(uploadJars)
+
+Gson gson = new Gson()
+JsonObject json = new JsonObject()
+
+// \version
+JsonObject versionJ = new JsonObject()
+versionJ.addProperty "name", version.toString()
+versionJ.addProperty "version", vers
+versionJ.addProperty "release", release
+versionJ.addProperty "build", buildNumber
+versionJ.addProperty "stage", stage
+versionJ.addProperty "stage_release", stageRelease
+
+// \flags
+JsonObject buildInfoJ = new JsonObject()
+buildInfoJ.addProperty("date", LocalDateTime.now(ZoneId.systemDefault()).toString())
+
+// \compile
+JsonObject compileJ = new JsonObject()
+compileJ.addProperty "name", compileJava.name
+compileJ.addProperty "source_compat", compileJava.sourceCompatibility
+compileJ.addProperty "target_compat", compileJava.targetCompatibility
+
+// \project
+JsonObject projectJ = new JsonObject()
+projectJ.addProperty "name", project.name != null ? project.name : ""
+projectJ.addProperty "display_name", project.displayName != null ? project.displayName : ""
+
+// \project\gradle
+JsonObject gradleJ = new JsonObject()
+gradleJ.addProperty "version", gradle.gradleVersion
+
+compileJ.add "gradle", gradleJ
+buildInfoJ.add "compile", compileJ
+buildInfoJ.add "project", projectJ
+json.add "version", versionJ
+json.add "build_info", buildInfoJ
+
+File qfmArgsFile = new File("${projectDir}/src/main/resources/META-INF/qbubbles_build_args.json")
+//File qfmArgsFile = new File("qfm_args.json")
+if (qfmArgsFile.exists()) {
+    qfmArgsFile.delete()
+}
+qfmArgsFile.createNewFile()
+FileWriter fileWriter = new FileWriter(qfmArgsFile)
+JsonWriter jsonWriter = new JsonWriter(fileWriter)
+jsonWriter.setIndent("   ")
+gson.toJson(json, jsonWriter)
+fileWriter.flush()
+fileWriter.close()

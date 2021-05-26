@@ -52,7 +52,7 @@ public class PreClassLoader extends URLClassLoader {
         addInternalPackage("org.apache.batik.");
         addInternalPackage("org.apache.logging.");
         addInternalPackage("com.qtech.bubbleblaster.");
-        addInternalPackage("com.qtech.bubbleblaster.");
+        addInternalPackage("com.qtech.bubbles.");
         addInternalPackage("com.qtech.preloader.");
         addInternalPackage("com.qtech.dev.");
     }

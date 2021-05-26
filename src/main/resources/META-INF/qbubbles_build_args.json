@@ -1,0 +1,25 @@
+{
+   "version": {
+      "name": "2.0.78-a1",
+      "version": 2,
+      "release": 0,
+      "build": 78,
+      "stage": "a",
+      "stage_release": 1
+   },
+   "build_info": {
+      "date": "2021-05-26T19:10:58.808142500",
+      "compile": {
+         "name": "compileJava",
+         "source_compat": "11",
+         "target_compat": "11",
+         "gradle": {
+            "version": "6.7.1"
+         }
+      },
+      "project": {
+         "name": "qbubbles",
+         "display_name": "root project \u0027qbubbles\u0027"
+      }
+   }
+}
