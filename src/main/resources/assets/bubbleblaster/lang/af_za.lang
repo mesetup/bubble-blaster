@@ -1,0 +1,93 @@
+# Other
+other.prev=Vorige
+other.next=Volgende
+other.true=Ja
+other.false=Geen
+other.cancel=Kanselleer
+other.ok=OK
+other.download=Aflaai
+other.install=Installeer
+other.buy=Koop
+other.random=Onwillekeurig
+other.save=Stoor
+
+# Effects
+effect.bubbleblaster.poison.name=Vergifde
+effect.bubbleblaster.blindness.name=Verblind
+effect.bubbleblaster.multi_score.name=Multi-telling
+effect.bubbleblaster.speed_boost.name=Spoedversterking
+effect.bubbleblaster.attack_boost.name=Aanval Boost
+effect.bubbleblaster.defense_boost.name=Verdediging Boost
+
+# Informations
+info.bubbleblaster.score=Telling
+info.bubbleblaster.level=Level
+info.bubbleblaster.health=Lewens
+
+# Scene text
+scene.bubbleblaster.title.start=Begin die Spel
+scene.bubbleblaster.title.options=Opsies
+scene.bubbleblaster.title.language=Taal
+
+scene.bubbleblaster.options.language=Taal
+
+scene.bubbleblaster.saves.new=Nuwe
+scene.bubbleblaster.saves.open=Oop
+scene.bubbleblaster.saves.delete=Verwyder
+scene.bubbleblaster.saves.duplicate=Dupliseer
+scene.bubbleblaster.saves.edit=Wysig
+scene.bubbleblaster.saves.rename=Hernoem
+scene.bubbleblaster.saves.reset=Stel weer in
+
+# Screen text
+screen.bubbleblaster.pause.text=Onderbreek
+screen.bubbleblaster.pause.exit=Verlaat en Stop Spel
+screen.bubbleblaster.pause.min_radius=Min. Radius:
+screen.bubbleblaster.pause.max_radius=Maks. Radius:
+screen.bubbleblaster.pause.min_speed=Min. Spoed:
+screen.bubbleblaster.pause.max_speed=Maks. Spoed:
+screen.bubbleblaster.pause.default_chance=Standaard Kans:
+screen.bubbleblaster.pause.current_chance=Huidige Kans:
+screen.bubbleblaster.pause.score_modifier=Puntwysiger:
+screen.bubbleblaster.pause.attack_modifier=Attack Wysiger:
+screen.bubbleblaster.pause.defense_modifier=Defense Wysiger:
+screen.bubbleblaster.pause.can_spawn=Kan tans spawn:
+screen.bubbleblaster.pause.description=Beskrywing:
+
+# Bubble names
+bubble.bubbleblaster.normal.name=Normale Bubbel
+bubble.bubbleblaster.damage.name=Skade Bubbel
+bubble.bubbleblaster.level_up.name=Level-up Bubbel
+bubble.bubbleblaster.double.name=Dubbelwaarde Bubbel
+bubble.bubbleblaster.triple.name=Drievoudige Bubbel
+bubble.bubbleblaster.double_state.name=Dubbel-telling Effekbubbel
+bubble.bubbleblaster.triple_state.name=Drievoudig-score Effekbubbel
+bubble.bubbleblaster.blindness.name=Verblindyngs Bubbel
+bubble.bubbleblaster.poison.name=Giftige Bubbel
+bubble.bubbleblaster.bounce.name=Weiering Bubbel
+bubble.bubbleblaster.heal.name=Genees Bubbel
+bubble.bubbleblaster.hyper.name=Hiperbubbel
+bubble.bubbleblaster.attack.name=Aanval Boost Bubble
+bubble.bubbleblaster.defense.name=Verdedigig Boost Bubble
+bubble.bubbleblaster.speed_boost.name=Spoedverhogingbubbel
+bubble.bubbleblaster.bubble_freeze.name=Bevries Bubbel
+bubble.bubbleblaster.paralyze.name=Verlam Bubbel
+
+# Bubble descriptions
+bubble.bubbleblaster.normal.description=Die gewone normale bubbel, het slegs 1 tellingwysiger, is baie algemeen en het geen aanval nie.
+bubble.bubbleblaster.damage.description=Hierdie bubbel aanval, dit het 'n statiese aanval wysiger van 1, pasop!
+bubble.bubbleblaster.level_up.description=Hierdie bubbel verskyn slegs as u 'n level hoër kan gaan.\nVir wiskunde: T = telling, L = level: L < T ÷ 10'000 + 1
+bubble.bubbleblaster.double.description=Hierdie bubbel het meer waarde in die telling, jy kry dubbel die telling as die Normale Bubbel.
+bubble.bubbleblaster.triple.description=Hierdie bubbel het selfs meer waarde in die telling as die Dubbelwaarde Bubbel, jy sal die telling drieledig kry as die Normale Bubbel.
+bubble.bubbleblaster.double_state.description=Hierdie bubbel gee u vir 'n periode van dubbel die telling van bubbels.
+bubble.bubbleblaster.triple_state.description=Hierdie bubbel gee u vir 'n periode van driedubbel die telling van bubbels.
+bubble.bubbleblaster.blindness.description=Hierdie bubbel is irriterend, as dit aanraak, sal dit die skerm donkerder maak asof jy blind was. Sal tydelik wees, hoe groter die bubbel hoe donkerder die skerm sal wees.r
+bubble.bubbleblaster.poison.description=Hierdie bubbel sal die speler 'vergiftig', wat beteken dat dit moeilik sal wees om te sien wat die bubbel is, en mettertyd sal die speler skade berokken. Btw, die effek is tydelik.
+bubble.bubbleblaster.bounce.description=Werk aan die gang (WIP), sou die Weiering Bubble die speler daarvan weerkaats. Daar is tans probleme daarmee.
+bubble.bubbleblaster.heal.description=Hierdie bubbel sal die levens herstel, so eenvoudig is dit.
+bubble.bubbleblaster.hyper.description=Werk aan die gang (WIP), hierdie bubbel het tans geen spesiale aantekeninge nie.
+bubble.bubbleblaster.attack.description=Gee jou 'n 'aanval'-hupstoot, as jy aanraak, kan jy bubbels vinniger vernietig.
+bubble.bubbleblaster.defense.description=Gee jou 'n 'verdedigings'-hupstoot; as jy aanraak word, sal u skade wat u aanrig vir 'n periode verminder word.
+bubble.bubbleblaster.speed_boost.description=Hierdie bubbel verhoog die spoed van die speler vir 'n periode. Tussenin is die effek tydelik.
+bubble.bubbleblaster.bubble_freeze.description=Hierdie bubbel vries alle bubbels vir 'n periode.
+bubble.bubbleblaster.paralyze.description=Hierdie bubbel sal die speler vir 'n periode verlam.
