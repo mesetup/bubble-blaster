@@ -51,8 +51,7 @@ public class PreClassLoader extends URLClassLoader {
         addInternalPackage("org.apache.");
         addInternalPackage("org.apache.batik.");
         addInternalPackage("org.apache.logging.");
-        addInternalPackage("com.qtech.bubbleblaster.");
-        addInternalPackage("com.qtech.bubbleblaster.");
+        addInternalPackage("com.qtech.bubbles.");
         addInternalPackage("com.qtech.preloader.");
         addInternalPackage("com.qtech.dev.");
     }
@@ -90,7 +89,7 @@ public class PreClassLoader extends URLClassLoader {
             URLConnection urlConnection = getResourceConnection(dataLocation);
 
             // Check for external.
-            if (lastDot > 0 && !name.startsWith("com.qtech.bubbleblaster.")) {
+            if (lastDot > 0 && !name.startsWith("com.qtech.bubbles.")) {
                 Package pkg = getPackage(packageName);
                 if (pkg == null) { // Package is non-existent.
                     definePackage(packageName, null, null, null, null, null, null, null);

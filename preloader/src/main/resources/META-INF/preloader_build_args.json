@@ -1,18 +1,18 @@
 {
    "version": {
-      "name": "1.0.20-a1",
+      "name": "1.0.26-a1",
       "version": 1,
       "release": 0,
-      "build": 20,
+      "build": 26,
       "stage": "a",
       "stage_release": 1
    },
    "build_info": {
-      "date": "2021-05-23T16:11:38.431652500",
+      "date": "2021-05-23T20:07:06.687978500",
       "compile": {
          "name": "compileJava",
-         "source_compat": "11",
-         "target_compat": "11",
+         "source_compat": "1.8",
+         "target_compat": "1.8",
          "gradle": {
             "version": "6.7.1"
          }
