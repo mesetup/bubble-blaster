@@ -84,6 +84,8 @@ bubble.bubbleblaster.accelerate.name=Versnellings Bel
 bubble.bubbleblaster.speed_boost.name=Shelheids Boost Bel
 bubble.bubbleblaster.bubble_freeze.name=Bellen Bevriezer
 bubble.bubbleblaster.paralyze.name=Verlammings Bel
+bubble.bubbleblaster.ultra.name=‘‘DE’’ Ultra Bel
+bubble.bubbleblaster.hardened.name=Verharde Bel
 
 # Bubble descriptions
 bubble.bubbleblaster.normal.description=De ‘ordinaire’ normale bel, heeft alleen 1 score modifier, is veel voorkomend, en heeft geen aanval.
@@ -104,3 +106,5 @@ bubble.bubbleblaster.accelerate.description=Deze bel zal de snelheid van de spel
 bubble.bubbleblaster.speed_boost.description=Deze bel zal je voor een bepaalde tijd laten versnellen. Het effect is echter wel tijdelijk.
 bubble.bubbleblaster.bubble_freeze.description=Deze bel zal voor een bepaalde tijd alle bellen bevriezen.
 bubble.bubbleblaster.paralyze.description=Deze bel zal de speler voor een bepaalde tijd verstenen.
+bubble.bubbleblaster.ultra.description=De meest OP bel, heeft alle goede effecten op de speler. Voor een bepaalde tijd. (GEEN ADDON ONDERSTEUNING)
+bubble.bubbleblaster.hardened.description=Heeft een random verdedigings waarde op basis van de level van de speler.

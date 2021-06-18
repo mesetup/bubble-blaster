@@ -12,82 +12,82 @@ other.random=Τυχαίος
 other.save=Σώσει
 
 # Effects
-effect.qbubbles.poison.name=Δηλητηριασμένο
-effect.qbubbles.blindness.name=Τυφλός
-effect.qbubbles.multi_score.name=Πολυ Βαθμολογία
-effect.qbubbles.speed_boost.name=Ωθηση ταχύτητας
-effect.qbubbles.attack_boost.name=Ενίσχυση επίθεσης
-effect.qbubbles.defense_boost.name=Ενίσχυση άμυνας
+effect.bubbleblaster.poison.name=Δηλητηριασμένο
+effect.bubbleblaster.blindness.name=Τυφλός
+effect.bubbleblaster.multi_score.name=Πολυ Βαθμολογία
+effect.bubbleblaster.speed_boost.name=Ωθηση ταχύτητας
+effect.bubbleblaster.attack_boost.name=Ενίσχυση επίθεσης
+effect.bubbleblaster.defense_boost.name=Ενίσχυση άμυνας
 
 # Informations
-info.qbubbles.score=Σκορ
-info.qbubbles.level=Επίπεδο
-info.qbubbles.health=ζωές
+info.bubbleblaster.score=Σκορ
+info.bubbleblaster.level=Επίπεδο
+info.bubbleblaster.health=ζωές
 
 # Scene text
-scene.qbubbles.title.start=Ξεκινήστε το παιχνίδι
-scene.qbubbles.title.options=Επιλογές
-scene.qbubbles.title.language=Γλώσσα
+scene.bubbleblaster.title.start=Ξεκινήστε το παιχνίδι
+scene.bubbleblaster.title.options=Επιλογές
+scene.bubbleblaster.title.language=Γλώσσα
 
-scene.qbubbles.options.language=Γλώσσα
+scene.bubbleblaster.options.language=Γλώσσα
 
-scene.qbubbles.saves.new=Νέος
-scene.qbubbles.saves.open=Ανοιξε
-scene.qbubbles.saves.delete=Διαγράφω
-scene.qbubbles.saves.duplicate=Αντίγραφο
-scene.qbubbles.saves.edit=Επεξεργασία
-scene.qbubbles.saves.rename=Μετονομάζω
-scene.qbubbles.saves.reset=Επαναφορά
+scene.bubbleblaster.saves.new=Νέος
+scene.bubbleblaster.saves.open=Ανοιξε
+scene.bubbleblaster.saves.delete=Διαγράφω
+scene.bubbleblaster.saves.duplicate=Αντίγραφο
+scene.bubbleblaster.saves.edit=Επεξεργασία
+scene.bubbleblaster.saves.rename=Μετονομάζω
+scene.bubbleblaster.saves.reset=Επαναφορά
 
 # Screen text
-screen.qbubbles.pause.text=Παύση
-screen.qbubbles.pause.exit=Έξοδος και έξοδος από το παιχνίδι
-screen.qbubbles.pause.min_radius=Ελάχ. Ακτίνα:
-screen.qbubbles.pause.max_radius=Μέγ. Ακτίνα:
-screen.qbubbles.pause.min_speed=Ελάχ. Ταχύτητα:
-screen.qbubbles.pause.max_speed=Μέγ. Ταχύτητα:
-screen.qbubbles.pause.default_chance=Προεπιλεγμένη πιθαν.:
-screen.qbubbles.pause.current_chance=Τρέχουσα πιθαν.:
-screen.qbubbles.pause.score_modifier=Τροποποιητής βαθμο.:
-screen.qbubbles.pause.attack_modifier=Τροποποιητής επίθεσης:
-screen.qbubbles.pause.defense_modifier=Τροποποιητής άμυνας:
-screen.qbubbles.pause.can_spawn=Μπορεί να γεννήσει τώρα:
-screen.qbubbles.pause.description=Περιγραφή:
+screen.bubbleblaster.pause.text=Παύση
+screen.bubbleblaster.pause.exit=Έξοδος και έξοδος από το παιχνίδι
+screen.bubbleblaster.pause.min_radius=Ελάχ. Ακτίνα:
+screen.bubbleblaster.pause.max_radius=Μέγ. Ακτίνα:
+screen.bubbleblaster.pause.min_speed=Ελάχ. Ταχύτητα:
+screen.bubbleblaster.pause.max_speed=Μέγ. Ταχύτητα:
+screen.bubbleblaster.pause.default_chance=Προεπιλεγμένη πιθαν.:
+screen.bubbleblaster.pause.current_chance=Τρέχουσα πιθαν.:
+screen.bubbleblaster.pause.score_modifier=Τροποποιητής βαθμο.:
+screen.bubbleblaster.pause.attack_modifier=Τροποποιητής επίθεσης:
+screen.bubbleblaster.pause.defense_modifier=Τροποποιητής άμυνας:
+screen.bubbleblaster.pause.can_spawn=Μπορεί να γεννήσει τώρα:
+screen.bubbleblaster.pause.description=Περιγραφή:
 
 # Bubble names
-bubble.qbubbles.normal.name=Κανονική φούσκα
-bubble.qbubbles.damage.name=Φυσαλίδα ζημιάς
-bubble.qbubbles.level_up.name=Φούσκα επιπέδου
-bubble.qbubbles.double.name=Φούσκα διπλής αξίας
-bubble.qbubbles.triple.name=Φούσκα τριπλής αξίας
-bubble.qbubbles.double_state.name=Φούσκα εφέ διπλού σκορ
-bubble.qbubbles.triple_state.name=Φούσκα εφέ τριπλού σκορ
-bubble.qbubbles.blindness.name=Φούσκα τύφλωσης
-bubble.qbubbles.poison.name=Δηλητηριώδης φούσκα
-bubble.qbubbles.bounce.name=Φούσκα αναπήδηση
-bubble.qbubbles.heal.name=Φούσκα θεραπεύστε
-bubble.qbubbles.hyper.name=Υπερ φούσκα
-bubble.qbubbles.attack.name=Φούσκα ενίσχυσης επίθεσης
-bubble.qbubbles.defense.name=Φούσκα ενίσχυσης άμυνας
-bubble.qbubbles.speed_boost.name=Φούσκα ενίσχυσης ταχύτητας
-bubble.qbubbles.bubble_freeze.name=Κατάψυξη φυσαλίδων
-bubble.qbubbles.paralyze.name=Παράλυση φούσκα
+bubble.bubbleblaster.normal.name=Κανονική φούσκα
+bubble.bubbleblaster.damage.name=Φυσαλίδα ζημιάς
+bubble.bubbleblaster.level_up.name=Φούσκα επιπέδου
+bubble.bubbleblaster.double.name=Φούσκα διπλής αξίας
+bubble.bubbleblaster.triple.name=Φούσκα τριπλής αξίας
+bubble.bubbleblaster.double_state.name=Φούσκα εφέ διπλού σκορ
+bubble.bubbleblaster.triple_state.name=Φούσκα εφέ τριπλού σκορ
+bubble.bubbleblaster.blindness.name=Φούσκα τύφλωσης
+bubble.bubbleblaster.poison.name=Δηλητηριώδης φούσκα
+bubble.bubbleblaster.bounce.name=Φούσκα αναπήδηση
+bubble.bubbleblaster.heal.name=Φούσκα θεραπεύστε
+bubble.bubbleblaster.hyper.name=Υπερ φούσκα
+bubble.bubbleblaster.attack.name=Φούσκα ενίσχυσης επίθεσης
+bubble.bubbleblaster.defense.name=Φούσκα ενίσχυσης άμυνας
+bubble.bubbleblaster.speed_boost.name=Φούσκα ενίσχυσης ταχύτητας
+bubble.bubbleblaster.bubble_freeze.name=Κατάψυξη φυσαλίδων
+bubble.bubbleblaster.paralyze.name=Παράλυση φούσκα
 
 # Bubble descriptions
-bubble.qbubbles.normal.description=Η συνηθισμένη κανονική φούσκα, έχει μόνο 1 τροποποιητή σκορ, είναι πολύ συχνή και δεν έχει επίθεση.
-bubble.qbubbles.damage.description=Αυτή η φούσκα επιτίθεται, έχει έναν στατικό τροποποιητή επίθεσης 1, προσέξτε!
-bubble.qbubbles.level_up.description=Αυτή η φούσκα εμφανίζεται μόνο αν μπορείτε να πάτε ένα υψηλότερο επίπεδο. Για ορισμένα μαθηματικά: L = σκορ, S = επίπεδο: L < S ÷ 10'000 + 1
-bubble.qbubbles.double.description=Αυτή η φούσκα έχει μεγαλύτερη αξία στο σκορ, θα έχετε διπλάσιο το σκορ από την κανονική φούσκα..
-bubble.qbubbles.triple.description=Αυτή η φούσκα έχει ακόμη μεγαλύτερη αξία στο σκορ από τη φούσκα διπλής τιμής, θα έχετε τριπλή βαθμολογία από την κανονική φούσκα.
-bubble.qbubbles.double_state.description=Αυτή η φούσκα σας δίνει για μια χρονική περίοδο διπλάσιο από το σκορ των φυσαλίδων.
-bubble.qbubbles.triple_state.description=Αυτή η φούσκα σας δίνει για μια χρονική περίοδο τριπλασιασμό της βαθμολογίας των φυσαλίδων.
-bubble.qbubbles.blindness.description=Αυτή η φούσκα είναι ενοχλητική, όταν αγγίζετε, θα σκουραίνει την οθόνη σαν να ήσασταν τυφλοί. Θα είναι προσωρινό, πόσο μεγαλύτερη είναι η φούσκα πόσο πιο σκοτεινή θα είναι η οθόνη.
-bubble.qbubbles.poison.description=Αυτή η φούσκα θα «δηλητηριάσει» τον παίκτη, που σημαίνει ότι θα είναι δύσκολο να δούμε ποια είναι η φούσκα και, με την πάροδο του χρόνου, ο παίκτης θα κάνει ζημιά. Προς, το αποτέλεσμα είναι προσωρινό.
-bubble.qbubbles.bounce.description=Εργασίες σε εξέλιξη (WIP), η φούσκα αναπήδηση θα σπάσουμε τον παίκτη από αυτό. Προς το παρόν υπάρχουν προβλήματα με αυτό.
-bubble.qbubbles.heal.description=Αυτή η φούσκα θα αποκαταστήσει την υγεία, τόσο απλή είναι.
-bubble.qbubbles.hyper.description=Εργασίες σε εξέλιξη (WIP), αυτή η φούσκα σήμερα δεν έχει ειδικές σημειώσεις.
-bubble.qbubbles.attack.description=Σας δίνει μια ώθηση «επίθεσης», όταν αγγίξετε, μπορείτε να καταστρέψετε τις φυσαλίδες γρηγορότερα για μια χρονική περίοδο.
-bubble.qbubbles.defense.description=Σας δίνει μια «άμυνα» ώθηση, όταν αγγίξετε τη ζημιά που παίρνετε θα μειωθεί για μια χρονική περίοδο.
-bubble.qbubbles.speed_boost.description=Αυτή η φούσκα θα αυξήσει την ταχύτητα του παίκτη για ένα χρονικό διάστημα. Παρεμπιπτόντως, το αποτέλεσμα είναι προσωρινό.
-bubble.qbubbles.bubble_freeze.description=Αυτή η φούσκα θα παγώσει όλες τις φυσαλίδες για μια χρονική περίοδο.
-bubble.qbubbles.paralyze.description=Αυτή η φούσκα θα παραλύσει τον παίκτη για μια χρονική περίοδο.
+bubble.bubbleblaster.normal.description=Η συνηθισμένη κανονική φούσκα, έχει μόνο 1 τροποποιητή σκορ, είναι πολύ συχνή και δεν έχει επίθεση.
+bubble.bubbleblaster.damage.description=Αυτή η φούσκα επιτίθεται, έχει έναν στατικό τροποποιητή επίθεσης 1, προσέξτε!
+bubble.bubbleblaster.level_up.description=Αυτή η φούσκα εμφανίζεται μόνο αν μπορείτε να πάτε ένα υψηλότερο επίπεδο. Για ορισμένα μαθηματικά: L = σκορ, S = επίπεδο: L < S ÷ 10'000 + 1
+bubble.bubbleblaster.double.description=Αυτή η φούσκα έχει μεγαλύτερη αξία στο σκορ, θα έχετε διπλάσιο το σκορ από την κανονική φούσκα..
+bubble.bubbleblaster.triple.description=Αυτή η φούσκα έχει ακόμη μεγαλύτερη αξία στο σκορ από τη φούσκα διπλής τιμής, θα έχετε τριπλή βαθμολογία από την κανονική φούσκα.
+bubble.bubbleblaster.double_state.description=Αυτή η φούσκα σας δίνει για μια χρονική περίοδο διπλάσιο από το σκορ των φυσαλίδων.
+bubble.bubbleblaster.triple_state.description=Αυτή η φούσκα σας δίνει για μια χρονική περίοδο τριπλασιασμό της βαθμολογίας των φυσαλίδων.
+bubble.bubbleblaster.blindness.description=Αυτή η φούσκα είναι ενοχλητική, όταν αγγίζετε, θα σκουραίνει την οθόνη σαν να ήσασταν τυφλοί. Θα είναι προσωρινό, πόσο μεγαλύτερη είναι η φούσκα πόσο πιο σκοτεινή θα είναι η οθόνη.
+bubble.bubbleblaster.poison.description=Αυτή η φούσκα θα «δηλητηριάσει» τον παίκτη, που σημαίνει ότι θα είναι δύσκολο να δούμε ποια είναι η φούσκα και, με την πάροδο του χρόνου, ο παίκτης θα κάνει ζημιά. Προς, το αποτέλεσμα είναι προσωρινό.
+bubble.bubbleblaster.bounce.description=Εργασίες σε εξέλιξη (WIP), η φούσκα αναπήδηση θα σπάσουμε τον παίκτη από αυτό. Προς το παρόν υπάρχουν προβλήματα με αυτό.
+bubble.bubbleblaster.heal.description=Αυτή η φούσκα θα αποκαταστήσει την υγεία, τόσο απλή είναι.
+bubble.bubbleblaster.hyper.description=Εργασίες σε εξέλιξη (WIP), αυτή η φούσκα σήμερα δεν έχει ειδικές σημειώσεις.
+bubble.bubbleblaster.attack.description=Σας δίνει μια ώθηση «επίθεσης», όταν αγγίξετε, μπορείτε να καταστρέψετε τις φυσαλίδες γρηγορότερα για μια χρονική περίοδο.
+bubble.bubbleblaster.defense.description=Σας δίνει μια «άμυνα» ώθηση, όταν αγγίξετε τη ζημιά που παίρνετε θα μειωθεί για μια χρονική περίοδο.
+bubble.bubbleblaster.speed_boost.description=Αυτή η φούσκα θα αυξήσει την ταχύτητα του παίκτη για ένα χρονικό διάστημα. Παρεμπιπτόντως, το αποτέλεσμα είναι προσωρινό.
+bubble.bubbleblaster.bubble_freeze.description=Αυτή η φούσκα θα παγώσει όλες τις φυσαλίδες για μια χρονική περίοδο.
+bubble.bubbleblaster.paralyze.description=Αυτή η φούσκα θα παραλύσει τον παίκτη για μια χρονική περίοδο.
