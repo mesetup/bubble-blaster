@@ -1,15 +1,16 @@
 import os
+import time
 
 print(os.getpid())
 # time.sleep(60)
 
 # os.kill(os.getpid(), 0xcfffffff)
 
-from com.qtech.bubbles.common.entity import Entity
-from kotlin.util.function import Consumer
-from kotlin.lang import String
-from kotlin.lang import Object
-from kotlin.util import Objects
+from com.qtech.bubbles.entity.core import Entity
+from java.util.function import Consumer
+from java.lang import String
+from java.lang import Object
+from java.util import Objects
 
 from com.qtech.bubbles.util import Fluid
 

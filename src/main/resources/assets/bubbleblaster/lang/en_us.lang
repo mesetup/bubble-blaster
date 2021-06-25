@@ -77,8 +77,6 @@ bubble.bubbleblaster.accelerate.name=Acceleration Bubble
 bubble.bubbleblaster.speed_boost.name=Speedboost Bubble
 bubble.bubbleblaster.bubble_freeze.name=Bubble Freezer
 bubble.bubbleblaster.paralyze.name=Paralyze Bubble
-bubble.bubbleblaster.ultra.name=‘‘THE’’ Ultra Bubble
-bubble.bubbleblaster.hardened.name=Hardened Bubble
 
 # Bubble descriptions
 bubble.bubbleblaster.normal.description=The ordinary normal bubble, only has 1 score modifier, is very common, and has no attack.
@@ -99,5 +97,3 @@ bubble.bubbleblaster.accelerate.description=This bubble will boost the player's 
 bubble.bubbleblaster.speed_boost.description=This bubble will increase the speed of the player for an period of time. Btw, the effect is temporary.
 bubble.bubbleblaster.bubble_freeze.description=This bubble will freeze all bubbles for an period of time.
 bubble.bubbleblaster.paralyze.description=This bubble will paralyze the player for an period of time.
-bubble.bubbleblaster.ultra.description=The most OP bubble, will have every good effect on the player. For a period of time. (NO ADDON SUPPORT)
-bubble.bubbleblaster.hardened.description=Has a random defense value based on the level of the player.

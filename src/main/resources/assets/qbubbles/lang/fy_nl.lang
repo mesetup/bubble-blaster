@@ -12,82 +12,82 @@ other.random=Ûnbekend
 other.save=Rêde
 
 # Effects
-effect.bubbleblaster.poison.name=Fergiftige
-effect.bubbleblaster.blindness.name=Blinded
-effect.bubbleblaster.multi_score.name=Aksepteare Skoare
-effect.bubbleblaster.speed_boost.name=Faasje
-effect.bubbleblaster.attack_boost.name=Oanfal Ympuls
-effect.bubbleblaster.defense_boost.name=Definsje Ympuls
+effect.qbubbles.poison.name=Fergiftige
+effect.qbubbles.blindness.name=Blinded
+effect.qbubbles.multi_score.name=Aksepteare Skoare
+effect.qbubbles.speed_boost.name=Faasje
+effect.qbubbles.attack_boost.name=Oanfal Ympuls
+effect.qbubbles.defense_boost.name=Definsje Ympuls
 
 # Informations
-info.bubbleblaster.score=Punten
-info.bubbleblaster.level=Level
-info.bubbleblaster.health=Libbet
+info.qbubbles.score=Punten
+info.qbubbles.level=Level
+info.qbubbles.health=Libbet
 
 # Scene text
-scene.bubbleblaster.title.start=Begjin it spultsje
-scene.bubbleblaster.title.options=Opsjes
-scene.bubbleblaster.title.language=Taal
+scene.qbubbles.title.start=Begjin it spultsje
+scene.qbubbles.title.options=Opsjes
+scene.qbubbles.title.language=Taal
 
-scene.bubbleblaster.options.language=Taal
+scene.qbubbles.options.language=Taal
 
-scene.bubbleblaster.saves.new=Nij
-scene.bubbleblaster.saves.open=Iepenje
-scene.bubbleblaster.saves.delete=Weinimme
-scene.bubbleblaster.saves.duplicate=Kopiëer
-scene.bubbleblaster.saves.edit=Wijzigen
-scene.bubbleblaster.saves.rename=Hernoemen
-scene.bubbleblaster.saves.reset=Resetten
+scene.qbubbles.saves.new=Nij
+scene.qbubbles.saves.open=Iepenje
+scene.qbubbles.saves.delete=Weinimme
+scene.qbubbles.saves.duplicate=Kopiëer
+scene.qbubbles.saves.edit=Wijzigen
+scene.qbubbles.saves.rename=Hernoemen
+scene.qbubbles.saves.reset=Resetten
 
 # Screen text
-screen.bubbleblaster.pause.text=Skoft
-screen.bubbleblaster.pause.exit=It Spultsje Stopje en lute
-screen.bubbleblaster.pause.min_radius=Min. Straal:
-screen.bubbleblaster.pause.max_radius=Maks. Straal:
-screen.bubbleblaster.pause.min_speed=Min. Faasje:
-screen.bubbleblaster.pause.max_speed=Maks. Faasje:
-screen.bubbleblaster.pause.default_chance=Standert Kâns:
-screen.bubbleblaster.pause.current_chance=Hjoeddeistige kâns:
-screen.bubbleblaster.pause.score_modifier=Skoare Modifikaasje:
-screen.bubbleblaster.pause.attack_modifier=Oanfal Modifikaasje:
-screen.bubbleblaster.pause.defense_modifier=Definsje Modifikaasje:
-screen.bubbleblaster.pause.can_spawn=Kinne dit stuit ûntstean:
-screen.bubbleblaster.pause.description=Beskriuwing:
+screen.qbubbles.pause.text=Skoft
+screen.qbubbles.pause.exit=It Spultsje Stopje en lute
+screen.qbubbles.pause.min_radius=Min. Straal:
+screen.qbubbles.pause.max_radius=Maks. Straal:
+screen.qbubbles.pause.min_speed=Min. Faasje:
+screen.qbubbles.pause.max_speed=Maks. Faasje:
+screen.qbubbles.pause.default_chance=Standert Kâns:
+screen.qbubbles.pause.current_chance=Hjoeddeistige kâns:
+screen.qbubbles.pause.score_modifier=Skoare Modifikaasje:
+screen.qbubbles.pause.attack_modifier=Oanfal Modifikaasje:
+screen.qbubbles.pause.defense_modifier=Definsje Modifikaasje:
+screen.qbubbles.pause.can_spawn=Kinne dit stuit ûntstean:
+screen.qbubbles.pause.description=Beskriuwing:
 
 # Bubble names
-bubble.bubbleblaster.normal.name=Gewoane Bel
-bubble.bubbleblaster.damage.name=Oanfaller Bel
-bubble.bubbleblaster.level_up.name=Nivo-omheech Bel
-bubble.bubbleblaster.double.name=Dûbele Wearde Bel
-bubble.bubbleblaster.triple.name=Drîdûbele Wearde Bel
-bubble.bubbleblaster.double_state.name=Dûbelscoare Effekt Bel
-bubble.bubbleblaster.triple_state.name=Drîdûbel-scoare Effekt Bel
-bubble.bubbleblaster.blindness.name=Dazzle Bel
-bubble.bubbleblaster.poison.name=Giftige Bel
-bubble.bubbleblaster.bounce.name=Bounzende Bel
-bubble.bubbleblaster.heal.name=Healing Bel
-bubble.bubbleblaster.hyper.name=Hyper-bel
-bubble.bubbleblaster.attack.name=Oanfal Boost Bel
-bubble.bubbleblaster.defense.name=Definsje Boost Bel
-bubble.bubbleblaster.speed_boost.name=Faasje Boost Bel
-bubble.bubbleblaster.bubble_freeze.name=Bellen Fryser
-bubble.bubbleblaster.paralyze.name=Petrifikaasje Bel
+bubble.qbubbles.normal.name=Gewoane Bel
+bubble.qbubbles.damage.name=Oanfaller Bel
+bubble.qbubbles.level_up.name=Nivo-omheech Bel
+bubble.qbubbles.double.name=Dûbele Wearde Bel
+bubble.qbubbles.triple.name=Drîdûbele Wearde Bel
+bubble.qbubbles.double_state.name=Dûbelscoare Effekt Bel
+bubble.qbubbles.triple_state.name=Drîdûbel-scoare Effekt Bel
+bubble.qbubbles.blindness.name=Dazzle Bel
+bubble.qbubbles.poison.name=Giftige Bel
+bubble.qbubbles.bounce.name=Bounzende Bel
+bubble.qbubbles.heal.name=Healing Bel
+bubble.qbubbles.hyper.name=Hyper-bel
+bubble.qbubbles.attack.name=Oanfal Boost Bel
+bubble.qbubbles.defense.name=Definsje Boost Bel
+bubble.qbubbles.speed_boost.name=Faasje Boost Bel
+bubble.qbubbles.bubble_freeze.name=Bellen Fryser
+bubble.qbubbles.paralyze.name=Petrifikaasje Bel
 
 # Bubble descriptions
-bubble.bubbleblaster.normal.description=De mienskiplike normale bel, hat mar 1 skoare modifikaasje, is gewoan, en hat gjin oanfal.
-bubble.bubbleblaster.damage.description=Dizze bel is oanfallen, hat in oanfalmodifikaasje fan 1, pas op!
-bubble.bubbleblaster.level_up.description=Dizze bel ferskynt allinich as jo kinne level omheech bringe.\nFoar wat wiskunde: S = skoare, L = level: L < S ÷ 10'000 + 1
-bubble.bubbleblaster.double.description=Dizze bel hat mear wearde yn skoare, jo sille dûbel de skoare krije dan de Gewoane Bel.
-bubble.bubbleblaster.triple.description=Dizze bel hat noch mear wearde as de Dûbele Wearde Bel, jo krije sels trije kear de skoare fan 'e Gewoane Bel.
-bubble.bubbleblaster.double_state.description=Dizze bel sil jo dûbele wearde jaan fan bellen foar in bepaalde tiid dy't ja sil ferneatigje.
-bubble.bubbleblaster.triple_state.description=Dizze bel sil jo 3 kear de wearde jaan fan bellen dy't jo foar in bepaalde tiid ferneatigje.
-bubble.bubbleblaster.blindness.description=Dizze bel is ferfelend, as it oanreitsjen fan it skerm sil tsjustere as jo blyn binne. Sil tydlik wêze. Hoe grutter de bel, it tsjusterder sil it skerm wêze.
-bubble.bubbleblaster.poison.description=Dizze bel sil de spiler "fergiftigje", wat betsjuttet dat it lestich sil wêze om te fertellen hokker bel is hokker, en oer de tiid sil de spiler skea nimme. Neist, it effekt is tydlik.
-bubble.bubbleblaster.bounce.description=Yn ûntwikkeling (WIP) soe de Bounzende Bel de spiler bounce. D'r binne op it stuit problemen mei.
-bubble.bubbleblaster.heal.description=Dizze bel sil libbens restaurearje, it is sa ienfâldich.
-bubble.bubbleblaster.hyper.description=Yn ûntwikkeling (WIP) hat dizze bel op it stuit gjin spesjale opmerkings.
-bubble.bubbleblaster.attack.description=Jout jo in "oanfal" boost, as jo oanreitsje kinne jo bellen rapper oer in perioade ferneatigje.
-bubble.bubbleblaster.defense.description=Jout jo in "definsje", as jo oanreitsje, wurdt de skea dy't jo nimme fermindere. It effekt is tydlik
-bubble.bubbleblaster.speed_boost.description=Dizze bel sil jo rapper meitsje foar in perioade. It effekt is lykwols tydlik.
-bubble.bubbleblaster.bubble_freeze.description=Dizze bel sil alle bellen in skoft befrije.
-bubble.bubbleblaster.paralyze.description=Dizze bel sil de spiler in bepaalde tiid petearje.
+bubble.qbubbles.normal.description=De mienskiplike normale bel, hat mar 1 skoare modifikaasje, is gewoan, en hat gjin oanfal.
+bubble.qbubbles.damage.description=Dizze bel is oanfallen, hat in oanfalmodifikaasje fan 1, pas op!
+bubble.qbubbles.level_up.description=Dizze bel ferskynt allinich as jo kinne level omheech bringe.\nFoar wat wiskunde: S = skoare, L = level: L < S ÷ 10'000 + 1
+bubble.qbubbles.double.description=Dizze bel hat mear wearde yn skoare, jo sille dûbel de skoare krije dan de Gewoane Bel.
+bubble.qbubbles.triple.description=Dizze bel hat noch mear wearde as de Dûbele Wearde Bel, jo krije sels trije kear de skoare fan 'e Gewoane Bel.
+bubble.qbubbles.double_state.description=Dizze bel sil jo dûbele wearde jaan fan bellen foar in bepaalde tiid dy't ja sil ferneatigje.
+bubble.qbubbles.triple_state.description=Dizze bel sil jo 3 kear de wearde jaan fan bellen dy't jo foar in bepaalde tiid ferneatigje.
+bubble.qbubbles.blindness.description=Dizze bel is ferfelend, as it oanreitsjen fan it skerm sil tsjustere as jo blyn binne. Sil tydlik wêze. Hoe grutter de bel, it tsjusterder sil it skerm wêze.
+bubble.qbubbles.poison.description=Dizze bel sil de spiler "fergiftigje", wat betsjuttet dat it lestich sil wêze om te fertellen hokker bel is hokker, en oer de tiid sil de spiler skea nimme. Neist, it effekt is tydlik.
+bubble.qbubbles.bounce.description=Yn ûntwikkeling (WIP) soe de Bounzende Bel de spiler bounce. D'r binne op it stuit problemen mei.
+bubble.qbubbles.heal.description=Dizze bel sil libbens restaurearje, it is sa ienfâldich.
+bubble.qbubbles.hyper.description=Yn ûntwikkeling (WIP) hat dizze bel op it stuit gjin spesjale opmerkings.
+bubble.qbubbles.attack.description=Jout jo in "oanfal" boost, as jo oanreitsje kinne jo bellen rapper oer in perioade ferneatigje.
+bubble.qbubbles.defense.description=Jout jo in "definsje", as jo oanreitsje, wurdt de skea dy't jo nimme fermindere. It effekt is tydlik
+bubble.qbubbles.speed_boost.description=Dizze bel sil jo rapper meitsje foar in perioade. It effekt is lykwols tydlik.
+bubble.qbubbles.bubble_freeze.description=Dizze bel sil alle bellen in skoft befrije.
+bubble.qbubbles.paralyze.description=Dizze bel sil de spiler in bepaalde tiid petearje.

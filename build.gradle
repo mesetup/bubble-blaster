@@ -7,7 +7,6 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 
 buildscript {
-    ext.kotlin_version = '1.5.10'
     repositories {
         mavenLocal()
         mavenCentral()
@@ -31,7 +30,6 @@ buildscript {
         classpath group: 'commons-io', name: 'commons-io', version: '2.8.0'
         classpath "com.google.code.gson:gson:2.8.+"
         classpath "io.freefair.gradle:lombok-plugin:4.1.6"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -46,7 +44,6 @@ apply plugin: "io.freefair.lombok"
 
 // Languages.
 apply plugin: 'groovy'
-apply plugin: 'kotlin'
 apply plugin: 'java'
 
 // Api
@@ -108,7 +105,7 @@ archivesBaseName = 'bubbles'
 jar.version = version
 jar.archiveVersion.set(version)
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '11' // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 //GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), this.binding);
 //shell.run(file, arguments);
@@ -173,8 +170,6 @@ configurations {
  * Dependencies
  */
 dependencies {
-    implementation 'junit:junit:3.8.2'
-
     // Misc
     compile 'org.jetbrains:annotations:20.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
@@ -189,9 +184,6 @@ dependencies {
 //    implementation group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
 
     compile project(":preloader")
-
-    extraLibs 'com.github.Querz:NBT:6.1'
-    implementation 'com.github.Querz:NBT:6.1'
 
     // Objectweb
     extraLibs group: 'org.ow2.asm', name: 'asm-all', version: '5.2'
@@ -211,13 +203,13 @@ dependencies {
     extraLibs group: 'org.apache.commons', name: 'commons-configuration2', version: '2.+'
     extraLibs group: 'org.apache.commons', name: 'commons-math3', version: '3.+'
     extraLibs group: 'org.apache.commons', name: 'commons-text', version: '+'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.11.0'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.0'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.11.0'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.11.0'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-web', version: '2.11.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.14.0'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-web', version: '2.14.0'
     extraLibs group: 'org.apache.xmlgraphics', name: 'batik-svg-dom', version: '1.13'
     extraLibs group: 'org.apache.xmlgraphics', name: 'batik-dom', version: '1.13'
     extraLibs group: 'org.apache.xmlgraphics', name: 'batik-all', version: '1.13'
@@ -315,39 +307,6 @@ dependencies {
     // OSHi (For system info in crash reports)
     extraLibs 'com.github.oshi:oshi-core:5.3.7'
     implementation 'com.github.oshi:oshi-core:5.3.7'
-
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: "$kotlin_version"
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-compiler', version: "$kotlin_version"
-    extraLibs group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: "$kotlin_version"
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-common', version: "$kotlin_version"
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-js', version: "$kotlin_version"
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-script-util', version: "$kotlin_version"
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-scripting-jvm', version: "$kotlin_version"
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-scripting-common', version: "$kotlin_version"
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-osgi-bundle', version: "$kotlin_version"
-    extraLibs group: 'org.jetbrains.kotlin', name: 'kotlin-serialization', version: "$kotlin_version"
-
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: "$kotlin_version"
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-compiler', version: "$kotlin_version"
-    implementation group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: "$kotlin_version"
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-common', version: "$kotlin_version"
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-js', version: "$kotlin_version"
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-script-util', version: "$kotlin_version"
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-scripting-jvm', version: "$kotlin_version"
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-scripting-common', version: "$kotlin_version"
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-osgi-bundle', version: "$kotlin_version"
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-serialization', version: "$kotlin_version"
-
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: "$kotlin_version"
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-compiler', version: "$kotlin_version"
-    testImplementation group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: "$kotlin_version"
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-common', version: "$kotlin_version"
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-js', version: "$kotlin_version"
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-script-util', version: "$kotlin_version"
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-scripting-jvm', version: "$kotlin_version"
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-scripting-common', version: "$kotlin_version"
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-osgi-bundle', version: "$kotlin_version"
-    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-serialization', version: "$kotlin_version"
 }
 
 // task to add addons.json to all relevant folders
@@ -415,7 +374,7 @@ artifacts {
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Bubble Blaster 2',
+        attributes 'Implementation-Title': 'QBubbles',
                 'Implementation-Vendor': 'QTech Community',
                 'Implementation-Version': "1.0-indev1",
                 'Main-Class': 'com.qtech.preloader.PreLoader'
@@ -427,7 +386,7 @@ jar {
 }
 
 task runQBubbles(type: JavaExec) {
-    description = "Run Bubble Blaster 2"
+    description = "Run QBubbles"
     main = 'com.qtech.preloader.PreLoader'
     classpath = sourceSets.main.compileClasspath
     args('gameDir="./run"')
@@ -506,7 +465,7 @@ buildInfoJ.add "project", projectJ
 json.add "version", versionJ
 json.add "build_info", buildInfoJ
 
-File qfmArgsFile = new File("${projectDir}/src/main/resources/META-INF/bubbleblaster_build_args.json")
+File qfmArgsFile = new File("${projectDir}/src/main/resources/META-INF/qbubbles_build_args.json")
 //File qfmArgsFile = new File("qfm_args.json")
 if (qfmArgsFile.exists()) {
     qfmArgsFile.delete()
@@ -518,13 +477,3 @@ jsonWriter.setIndent("   ")
 gson.toJson(json, jsonWriter)
 fileWriter.flush()
 fileWriter.close()
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}

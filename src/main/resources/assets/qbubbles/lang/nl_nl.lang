@@ -12,95 +12,95 @@ other.random=Onbepaald
 other.save=Opslaan
 
 # Effects
-effect.bubbleblaster.poison.name=Vergiftigd
-effect.bubbleblaster.blindness.name=Verblind
-effect.bubbleblaster.multi_score.name=Vermeerderde Score
-effect.bubbleblaster.speed_boost.name=Snelheid
-effect.bubbleblaster.attack_boost.name=Aanvals Boost
-effect.bubbleblaster.defense_boost.name=Verdedigings Boost
+effect.qbubbles.poison.name=Vergiftigd
+effect.qbubbles.blindness.name=Verblind
+effect.qbubbles.multi_score.name=Vermeerderde Score
+effect.qbubbles.speed_boost.name=Snelheid
+effect.qbubbles.attack_boost.name=Aanvals Boost
+effect.qbubbles.defense_boost.name=Verdedigings Boost
 
 # Informations
-info.bubbleblaster.score=Punten
-info.bubbleblaster.level=Level
-info.bubbleblaster.health=Levens
+info.qbubbles.score=Punten
+info.qbubbles.level=Level
+info.qbubbles.health=Levens
 
 # ----------------------------- #
 #          Scene  text          #
 # ----------- START ----------- #
 
 # Title Scene
-scene.bubbleblaster.title.start=Start het Spel
-scene.bubbleblaster.title.options=Opties
-scene.bubbleblaster.title.language=Taal
+scene.qbubbles.title.start=Start het Spel
+scene.qbubbles.title.options=Opties
+scene.qbubbles.title.language=Taal
 
 # Language scene
-scene.bubbleblaster.options.language=Taal
+scene.qbubbles.options.language=Taal
 
 # Saves scene
-scene.bubbleblaster.saves.new=Nieuw
-scene.bubbleblaster.saves.open=Openen
-scene.bubbleblaster.saves.delete=Verwijderen
-scene.bubbleblaster.saves.duplicate=Kopiëer
-scene.bubbleblaster.saves.edit=Wijzigen
-scene.bubbleblaster.saves.rename=Hernoemen
-scene.bubbleblaster.saves.reset=Resetten
+scene.qbubbles.saves.new=Nieuw
+scene.qbubbles.saves.open=Openen
+scene.qbubbles.saves.delete=Verwijderen
+scene.qbubbles.saves.duplicate=Kopiëer
+scene.qbubbles.saves.edit=Wijzigen
+scene.qbubbles.saves.rename=Hernoemen
+scene.qbubbles.saves.reset=Resetten
 # ------------ END ------------ #
 
 # Screen text
-screen.bubbleblaster.pause.text=Pauze
-screen.bubbleblaster.pause.exit=Stop en Sluit het Spel
-screen.bubbleblaster.pause.min_radius=Min. Radius:
-screen.bubbleblaster.pause.max_radius=Max. Radius:
-screen.bubbleblaster.pause.min_speed=Min. Snelheid:
-screen.bubbleblaster.pause.max_speed=Max. Snelheid:
-screen.bubbleblaster.pause.default_chance=Standaard Kans:
-screen.bubbleblaster.pause.current_chance=Actuele Kans:
-screen.bubbleblaster.pause.default_priority=Standaard Priorteit:
-screen.bubbleblaster.pause.current_priority=Actuele Priorteit:
-screen.bubbleblaster.pause.default_total_priority=Stand. Totale Priorteit:
-screen.bubbleblaster.pause.current_total_priority=Actl. Totale Priorteit:
-screen.bubbleblaster.pause.score_modifier=Score Modifier:
-screen.bubbleblaster.pause.attack_modifier=Aanval Modifier:
-screen.bubbleblaster.pause.defense_modifier=Verdediging Modifier:
-screen.bubbleblaster.pause.can_spawn=Kan momenteel onstaan:
-screen.bubbleblaster.pause.description=Beschrijving:
+screen.qbubbles.pause.text=Pauze
+screen.qbubbles.pause.exit=Stop en Sluit het Spel
+screen.qbubbles.pause.min_radius=Min. Radius:
+screen.qbubbles.pause.max_radius=Max. Radius:
+screen.qbubbles.pause.min_speed=Min. Snelheid:
+screen.qbubbles.pause.max_speed=Max. Snelheid:
+screen.qbubbles.pause.default_chance=Standaard Kans:
+screen.qbubbles.pause.current_chance=Actuele Kans:
+screen.qbubbles.pause.default_priority=Standaard Priorteit:
+screen.qbubbles.pause.current_priority=Actuele Priorteit:
+screen.qbubbles.pause.default_total_priority=Stand. Totale Priorteit:
+screen.qbubbles.pause.current_total_priority=Actl. Totale Priorteit:
+screen.qbubbles.pause.score_modifier=Score Modifier:
+screen.qbubbles.pause.attack_modifier=Aanval Modifier:
+screen.qbubbles.pause.defense_modifier=Verdediging Modifier:
+screen.qbubbles.pause.can_spawn=Kan momenteel onstaan:
+screen.qbubbles.pause.description=Beschrijving:
 
 # Bubble names
-bubble.bubbleblaster.normal.name=Normale Bel
-bubble.bubbleblaster.damage.name=Aanvaller Bel
-bubble.bubbleblaster.level_up.name=Level-up Bel
-bubble.bubbleblaster.double.name=Dubbele Waarde Bel
-bubble.bubbleblaster.triple.name=Driedubbele Waarde Bel
-bubble.bubbleblaster.double_state.name=Dubbel-score Effect Bel
-bubble.bubbleblaster.triple_state.name=Driedubbel-score Effect Bel
-bubble.bubbleblaster.blindness.name=Verblindings Bel
-bubble.bubbleblaster.poison.name=Giftige Bel
-bubble.bubbleblaster.bounce.name=Stuiterbel
-bubble.bubbleblaster.heal.name=Genezings Bel
-bubble.bubbleblaster.hyper.name=Hyper-bel
-bubble.bubbleblaster.attack.name=Aanvals Boost Bel
-bubble.bubbleblaster.defense.name=Verdedigings Boost Bel
-bubble.bubbleblaster.accelerate.name=Versnellings Bel
-bubble.bubbleblaster.speed_boost.name=Shelheids Boost Bel
-bubble.bubbleblaster.bubble_freeze.name=Bellen Bevriezer
-bubble.bubbleblaster.paralyze.name=Verlammings Bel
+bubble.qbubbles.normal.name=Normale Bel
+bubble.qbubbles.damage.name=Aanvaller Bel
+bubble.qbubbles.level_up.name=Level-up Bel
+bubble.qbubbles.double.name=Dubbele Waarde Bel
+bubble.qbubbles.triple.name=Driedubbele Waarde Bel
+bubble.qbubbles.double_state.name=Dubbel-score Effect Bel
+bubble.qbubbles.triple_state.name=Driedubbel-score Effect Bel
+bubble.qbubbles.blindness.name=Verblindings Bel
+bubble.qbubbles.poison.name=Giftige Bel
+bubble.qbubbles.bounce.name=Stuiterbel
+bubble.qbubbles.heal.name=Genezings Bel
+bubble.qbubbles.hyper.name=Hyper-bel
+bubble.qbubbles.attack.name=Aanvals Boost Bel
+bubble.qbubbles.defense.name=Verdedigings Boost Bel
+bubble.qbubbles.accelerate.name=Versnellings Bel
+bubble.qbubbles.speed_boost.name=Shelheids Boost Bel
+bubble.qbubbles.bubble_freeze.name=Bellen Bevriezer
+bubble.qbubbles.paralyze.name=Verlammings Bel
 
 # Bubble descriptions
-bubble.bubbleblaster.normal.description=De ‘ordinaire’ normale bel, heeft alleen 1 score modifier, is veel voorkomend, en heeft geen aanval.
-bubble.bubbleblaster.damage.description=Deze bel valt aan, heeft een aanval modifier van 1, dat wordt opletten!
-bubble.bubbleblaster.level_up.description=Deze bel Deze bel verschijnt alleen als je een level hoger kunt gaan.\nVoor wat wiskunde: S = score, L = level: L < S ÷ 10'000 + 1
-bubble.bubbleblaster.double.description=Deze bel heeft meer waarde in score, je zal dubbel de score krijgen dan de Normale Bel.
-bubble.bubbleblaster.triple.description=Deze bel heeft zelfs meer waarde dan de Dubbele Waarde Bel, je krijgt zelfs driedubbel de score dan de Normale Bel.
-bubble.bubbleblaster.double_state.description=Deze bel geeft je voor een bepaalde tijd dubble waarde van bubbels die ja kapot maakt.
-bubble.bubbleblaster.triple_state.description=Deze bel geeft je voor een bepaalde tijd driedubbele waarde van bubbels die je kapot maakt.
-bubble.bubbleblaster.blindness.description=Deze bel is vervelend, bij aanraking zal het scherm donkerder worden alsof je blind bent. Zal tijdelijk zijn. Hoe groter de bel, hoe donkerder het scherm zal zijn.
-bubble.bubbleblaster.poison.description=Deze bel zal de speler ‘vergiftigen’, wat betekent dat het moeilijk zal zijn om te zien welke bel welke is, en na verloop van tijd zal de speler schade oplopen. Trouwens, het effect is tijdelijk.
-bubble.bubbleblaster.bounce.description=In ontwikkeling (WIP), de Stuiterbel zou de speler ervan weerkaatsen. Er zijn momenteel problemen mee.
-bubble.bubbleblaster.heal.description=Deze bel zal de levens herstellen, zo simpel is het.
-bubble.bubbleblaster.hyper.description=In ontwikkeling (WIP), deze bel heeft momenteel geen speciale opmerkingen.
-bubble.bubbleblaster.attack.description=Geeft je een ‘aanvals’-boost, wanneer je hem aanraakt, kun je bellen sneller vernietigen over een bepaalde periode.
-bubble.bubbleblaster.defense.description=Geeft je een ‘verdedigings’-boost, bij aanraking wordt de schade die je oploopt verminderd. Het effect is tijdelijk
-bubble.bubbleblaster.accelerate.description=Deze bel zal de snelheid van de speler boosten, zolang de speler de de bel aanraakt, of in de bel bent.
-bubble.bubbleblaster.speed_boost.description=Deze bel zal je voor een bepaalde tijd laten versnellen. Het effect is echter wel tijdelijk.
-bubble.bubbleblaster.bubble_freeze.description=Deze bel zal voor een bepaalde tijd alle bellen bevriezen.
-bubble.bubbleblaster.paralyze.description=Deze bel zal de speler voor een bepaalde tijd verstenen.
+bubble.qbubbles.normal.description=De ‘ordinaire’ normale bel, heeft alleen 1 score modifier, is veel voorkomend, en heeft geen aanval.
+bubble.qbubbles.damage.description=Deze bel valt aan, heeft een aanval modifier van 1, dat wordt opletten!
+bubble.qbubbles.level_up.description=Deze bel Deze bel verschijnt alleen als je een level hoger kunt gaan.\nVoor wat wiskunde: S = score, L = level: L < S ÷ 10'000 + 1
+bubble.qbubbles.double.description=Deze bel heeft meer waarde in score, je zal dubbel de score krijgen dan de Normale Bel.
+bubble.qbubbles.triple.description=Deze bel heeft zelfs meer waarde dan de Dubbele Waarde Bel, je krijgt zelfs driedubbel de score dan de Normale Bel.
+bubble.qbubbles.double_state.description=Deze bel geeft je voor een bepaalde tijd dubble waarde van bubbels die ja kapot maakt.
+bubble.qbubbles.triple_state.description=Deze bel geeft je voor een bepaalde tijd driedubbele waarde van bubbels die je kapot maakt.
+bubble.qbubbles.blindness.description=Deze bel is vervelend, bij aanraking zal het scherm donkerder worden alsof je blind bent. Zal tijdelijk zijn. Hoe groter de bel, hoe donkerder het scherm zal zijn.
+bubble.qbubbles.poison.description=Deze bel zal de speler ‘vergiftigen’, wat betekent dat het moeilijk zal zijn om te zien welke bel welke is, en na verloop van tijd zal de speler schade oplopen. Trouwens, het effect is tijdelijk.
+bubble.qbubbles.bounce.description=In ontwikkeling (WIP), de Stuiterbel zou de speler ervan weerkaatsen. Er zijn momenteel problemen mee.
+bubble.qbubbles.heal.description=Deze bel zal de levens herstellen, zo simpel is het.
+bubble.qbubbles.hyper.description=In ontwikkeling (WIP), deze bel heeft momenteel geen speciale opmerkingen.
+bubble.qbubbles.attack.description=Geeft je een ‘aanvals’-boost, wanneer je hem aanraakt, kun je bellen sneller vernietigen over een bepaalde periode.
+bubble.qbubbles.defense.description=Geeft je een ‘verdedigings’-boost, bij aanraking wordt de schade die je oploopt verminderd. Het effect is tijdelijk
+bubble.qbubbles.accelerate.description=Deze bel zal de snelheid van de speler boosten, zolang de speler de de bel aanraakt, of in de bel bent.
+bubble.qbubbles.speed_boost.description=Deze bel zal je voor een bepaalde tijd laten versnellen. Het effect is echter wel tijdelijk.
+bubble.qbubbles.bubble_freeze.description=Deze bel zal voor een bepaalde tijd alle bellen bevriezen.
+bubble.qbubbles.paralyze.description=Deze bel zal de speler voor een bepaalde tijd verstenen.
