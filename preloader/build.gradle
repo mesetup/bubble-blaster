@@ -81,7 +81,7 @@ output.flush()
 output.close()
 
 version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
-group = 'com.qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bubbles-preloader'
 jar.version = version
 jar.archiveVersion.set(version)

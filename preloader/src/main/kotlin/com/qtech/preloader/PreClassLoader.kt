@@ -53,7 +53,7 @@ class PreClassLoader(sources: Array<URL?>) : URLClassLoader(sources, null) {
             val urlConnection = getResourceConnection(dataLocation)
 
             // Check for external.
-            if (lastDot > 0 && !name.startsWith("com.qtech.bubbles.")) {
+            if (lastDot > 0 && !name.startsWith("qtech.bubbles.")) {
                 val pkg = getPackage(packageName)
                 if (pkg == null) { // Package is non-existent.
                     definePackage(packageName, null, null, null, null, null, null, null)
@@ -220,7 +220,9 @@ class PreClassLoader(sources: Array<URL?>) : URLClassLoader(sources, null) {
         addInternalPackage("org.apache.batik.")
         addInternalPackage("org.apache.logging.")
         addInternalPackage("com.qtech.bubbles.")
+        addInternalPackage("qtech.bubbles.")
         addInternalPackage("com.qtech.preloader.")
         addInternalPackage("com.qtech.dev.")
+        addInternalPackage("qtech.dev.")
     }
 }

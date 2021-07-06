@@ -1,0 +1,10 @@
+package qtech.bubbles.core.utils
+
+import qtech.bubbles.annotation.FieldsAreNonnullByDefault
+import qtech.bubbles.annotation.MethodsReturnNonnullByDefault
+import javax.annotation.ParametersAreNonnullByDefault
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+@FieldsAreNonnullByDefault
+class Utils 

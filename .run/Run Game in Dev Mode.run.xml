@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Game in Dev + Debug Mode" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.qtech.dev.GameDevMain" />
+    <option name="MAIN_CLASS_NAME" value="qtech.dev.GameDevMain" />
     <module name="bubble-blaster.main" />
     <option name="PROGRAM_PARAMETERS" value="gameDir=&quot;$ProjectFileDir$/run/&quot; --dev --debug" />
     <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/run" />
@@ -9,7 +9,7 @@
     </method>
   </configuration>
   <configuration default="false" name="Run Game in Dev Mode" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.qtech.dev.GameDevMain" />
+    <option name="MAIN_CLASS_NAME" value="qtech.dev.GameDevMain" />
     <module name="bubble-blaster.main" />
     <option name="PROGRAM_PARAMETERS" value="gameDir=&quot;$ProjectFileDir$/run/&quot; --dev" />
     <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/run" />

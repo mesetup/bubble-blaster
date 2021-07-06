@@ -1,6 +1,6 @@
 package com.qtech.test.bubbles
 
-import com.qtech.bubbles.graphics.Animation
+import qtech.hydro.Animation
 
 object TestAnimation {
     @JvmStatic

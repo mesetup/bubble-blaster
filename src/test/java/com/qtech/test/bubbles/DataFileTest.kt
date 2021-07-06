@@ -1,6 +1,6 @@
 package com.qtech.test.bubbles
 
-import com.qtech.bubbles.common.ResourceLocation
+import qtech.bubbles.common.ResourceLocation
 import java.io.*
 
 object DataFileTest {

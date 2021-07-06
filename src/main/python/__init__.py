@@ -5,13 +5,13 @@ print(os.getpid())
 
 # os.kill(os.getpid(), 0xcfffffff)
 
-from com.qtech.bubbles.common.entity import Entity
+from qtech.bubbles.common.entity import Entity
 from kotlin.util.function import Consumer
 from kotlin.lang import String
 from kotlin.lang import Object
 from kotlin.util import Objects
 
-from com.qtech.bubbles.util import Fluid
+from qtech.bubbles.util import Fluid
 
 entityConsumer: Consumer(Entity) = lambda entity: print(entity)
 # noinspection PyTypeChecker

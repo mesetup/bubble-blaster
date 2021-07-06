@@ -103,7 +103,7 @@ output.flush()
 output.close()
 
 version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
-group = 'com.qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bubbles'
 jar.version = version
 jar.archiveVersion.set(version)
@@ -185,8 +185,8 @@ dependencies {
     implementation fileTree(dir: '.\\libs', include: ['*.jar'])
 
     // QSoftware.
-//    extraLibs group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
-//    implementation group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
+//    extraLibs group: 'qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
+//    implementation group: 'qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
 
     compile project(":preloader")
 
@@ -373,6 +373,7 @@ processResources {
 task sourcesJar(type: Jar) {
     from sourceSets.main.java.srcDirs
     classifier 'sources'
+    zip64 true
 }
 
 /**
@@ -386,6 +387,7 @@ task apiJar(type: Jar) {
     dependsOn compileJava
     dependsOn processResources
     dependsOn classes
+    zip64 true
 }
 
 /**
@@ -402,6 +404,7 @@ task gameJar(type: Jar) {
     dependsOn compileJava
     dependsOn processResources
     dependsOn classes
+    zip64 true
 }
 
 /**
