@@ -53,7 +53,7 @@ import javax.imageio.ImageIO
 open class BubbleBlaster(args: Array<String>) : Game(gameDir, args) {
     val isFocused: Boolean
         get() = window.isFocused
-    private val pixelOverlay: BufferedImage? = ImageIO.read(javaClass.getResourceAsStream("/assets/bubbleblaster/textures/pixel_overlay.png"))
+//    private val pixelOverlay: BufferedImage? = ImageIO.read(javaClass.getResourceAsStream("/assets/bubbleblaster/textures/pixel_overlay.png"))
 
     // Event-bus.
     var background: BufferedImage? = null
@@ -361,6 +361,10 @@ open class BubbleBlaster(args: Array<String>) : Game(gameDir, args) {
      * Update method, for updating values and doing things.
      */
     override fun tick() {
+        @Suppress("SENSELESS_COMPARISON")
+        if (playerController == null) {
+            return
+        }
         ticks++
         val currentScreen = sceneManager.currentScreen
         currentScreen?.tick()
@@ -385,7 +389,7 @@ open class BubbleBlaster(args: Array<String>) : Game(gameDir, args) {
     }
 
     override fun postRender(gp: GraphicsProcessor) {
-        gp.img(pixelOverlay, 0, 0)
+//        gp.img(pixelOverlay, 0, 0)
     }
 
     private fun renderScreenEnv(gg: GraphicsProcessor) {

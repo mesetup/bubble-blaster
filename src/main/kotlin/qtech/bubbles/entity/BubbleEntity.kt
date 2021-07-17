@@ -198,6 +198,8 @@ open class BubbleEntity(gameMode: AbstractGameMode) : AbstractBubbleEntity(entit
         if (!areEventsBound) return
         val composite1 = bubbleType.getComposite(ticksLived)
         val composite = gg!!.composite()
+        gg.img(TextureCollections.BUBBLE_TEXTURES.get()[ResourceLocation(bubbleType.registryName!!.namespace, bubbleType.registryName!!.path + "/" + radius)], x.toInt() - radius / 2, y.toInt() - radius / 2)
+
         if (composite1 != null) {
             println(composite)
             //        if (composite instanceof AlphaComposite) {
@@ -207,8 +209,6 @@ open class BubbleEntity(gameMode: AbstractGameMode) : AbstractBubbleEntity(entit
 //        }
             gg.composite(composite1)
         }
-        gg.img(TextureCollections.BUBBLE_TEXTURES.get()[ResourceLocation(bubbleType.registryName!!.namespace, bubbleType.registryName!!.path + "/" + radius)], x.toInt() - radius / 2, y.toInt() - radius / 2)
-        gg.composite(composite)
     }
 
     override val shape: Ellipse2D

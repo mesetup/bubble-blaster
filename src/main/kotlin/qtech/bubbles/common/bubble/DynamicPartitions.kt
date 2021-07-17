@@ -4,6 +4,7 @@ import qtech.bubbles.common.runnables.Applier
 import qtech.bubbles.core.exceptions.ValueExistsException
 import org.apache.commons.lang3.ArrayUtils
 import org.apache.commons.math3.exception.OutOfRangeException
+import java.util.concurrent.CopyOnWriteArrayList
 
 /**
  * This class is used for dynamically change ranges or get values from an index (based of all ranges merged).
@@ -12,8 +13,8 @@ import org.apache.commons.math3.exception.OutOfRangeException
  * @param <T> the type to use for the partition value.
 </T> */
 class DynamicPartitions<T> {
-    private var sizes: MutableList<Double> = ArrayList()
-    val values: MutableList<T> = ArrayList()
+    private var sizes: MutableList<Double> = CopyOnWriteArrayList()
+    val values: MutableList<T> = CopyOnWriteArrayList()
 
     @get:Synchronized
     var totalSize = 0.0
@@ -26,7 +27,6 @@ class DynamicPartitions<T> {
      * @return the partition index of the new partition.
      * @throws ValueExistsException as the exception it says: if the value already exists.
      */
-    @Synchronized
     @Throws(ValueExistsException::class)
     fun add(size: Double, value: T): Int {
         if (values.contains(value)) throw ValueExistsException()
@@ -41,7 +41,6 @@ class DynamicPartitions<T> {
      *
      * *In case of emergency.*
      */
-    @Synchronized
     fun clear() {
         sizes.clear()
         values.clear()
@@ -56,7 +55,6 @@ class DynamicPartitions<T> {
      * @param value the value.
      * @return the index.
      */
-    @Synchronized
     fun insert(index: Int, size: Double, value: T): Int {
         sizes.add(index, size)
         values.add(index, value)
@@ -70,7 +68,6 @@ class DynamicPartitions<T> {
      * @param index the partition index.
      * @return the size.
      */
-    @Synchronized
     fun getSize(index: Int): Double {
         return sizes[index]
     }
@@ -80,7 +77,6 @@ class DynamicPartitions<T> {
      *
      * @param index the partition index.
      */
-    @Synchronized
     fun remove(index: Int) {
         totalSize -= sizes[index]
         sizes.removeAt(index)
@@ -147,7 +143,6 @@ class DynamicPartitions<T> {
      * @param size  the size for the partition to set.
      * @return the new size.
      */
-    @Synchronized
     fun edit(value: T, size: Double): Double {
         val index = indexOf(value)
         if (index >= sizes.size) throw OutOfRangeException(index, 0, sizes.size)
@@ -164,7 +159,6 @@ class DynamicPartitions<T> {
      * @param newValue the value.
      * @return the new size.
      */
-    @Synchronized
     fun edit(value: T, size: Double, newValue: T): Double {
         val index = indexOf(value)
         if (index >= sizes.size) throw OutOfRangeException(index, 0, sizes.size)
@@ -212,7 +206,6 @@ class DynamicPartitions<T> {
         return getRange(index)
     }
 
-    @Synchronized
     fun editLengths(applier: Applier<T, Double>) {
         var currentSize = 0.0
         val sizes2: MutableList<Double> = ArrayList(sizes)

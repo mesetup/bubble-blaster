@@ -186,6 +186,13 @@ abstract class Game(gameDir: File, val args: Array<String>) {
             // Set font.
             canvas.font = defaultFont
 
+            // Add key listener.
+            logger.info("Loading input event listeners / threads...")
+            canvas.addKeyListener(KeyboardController.instance())
+            canvas.addMouseListener(MouseController.instance())
+            canvas.addMouseMotionListener(MouseController.instance())
+            canvas.addMouseWheelListener(MouseController.instance())
+
             // Register event bus.
             eventBus.register(this)
 
@@ -267,6 +274,11 @@ abstract class Game(gameDir: File, val args: Array<String>) {
                     fps = frames.roundToLong().toInt()
                     frames = 0.0
                 }
+
+                if (fps < 10) {
+                    println("LAG")
+                }
+
                 frames++
                 try {
                     render()
@@ -365,13 +377,6 @@ abstract class Game(gameDir: File, val args: Array<String>) {
         if (!BubbleBlaster.isHeadless()) {
             bs!!.show()
         }
-
-        // Add key listener.
-        logger.info("Loading input event listeners / threads...")
-        canvas.addKeyListener(KeyboardController.instance())
-        canvas.addMouseListener(MouseController.instance())
-        canvas.addMouseMotionListener(MouseController.instance())
-        canvas.addMouseWheelListener(MouseController.instance())
     }
 
     open fun postRender(gp: GraphicsProcessor) {
