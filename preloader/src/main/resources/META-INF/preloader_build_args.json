@@ -1,14 +1,14 @@
 {
    "version": {
-      "name": "1.0.858-a1",
+      "name": "1.0.860-a1",
       "version": 1,
       "release": 0,
-      "build": 858,
+      "build": 860,
       "stage": "a",
       "stage_release": 1
    },
    "build_info": {
-      "date": "2021-07-07T13:47:50.168582500",
+      "date": "2021-07-18T20:58:33.713820900",
       "compile": {
          "name": "compileJava",
          "source_compat": "1.8",
