@@ -1,6 +1,5 @@
 package com.qtech.bubbles.event;
 
-import com.google.common.eventbus.EventBus;
 import com.studiohartman.jamepad.ControllerManager;
 import com.studiohartman.jamepad.ControllerState;
 

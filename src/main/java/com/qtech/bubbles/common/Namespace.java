@@ -13,16 +13,16 @@ public class Namespace {
         char[] chars = namespace.toCharArray();
 
         // Check name containment.
-        if (!firstAllowed.contains(new String(new char[]{chars[0]}))) {
+        if (!firstAllowed.contains(String.valueOf(chars[0]))) {
             throw new IllegalCharacterException("Namespace starts with invalid char: ");
         }
 
-        if (!lastAllowed.contains(new String(new char[]{chars[chars.length - 1]}))) {
+        if (!lastAllowed.contains(String.valueOf(chars[chars.length - 1]))) {
             throw new IllegalCharacterException("Namespace ends with invalid char: ");
         }
 
         for (int i = 1; i < chars.length - 1; i++) {
-            if (!allowed.contains(new String(new char[]{chars[i]}))) {
+            if (!allowed.contains(String.valueOf(chars[i]))) {
                 throw new IllegalCharacterException("Namespace contains invalid char: " + chars[i]);
             }
 

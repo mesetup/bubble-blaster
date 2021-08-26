@@ -4,15 +4,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
-public class Percentage implements Serializable, Comparable<Percentage> {
-    private final double percentage;
-
-    public Percentage(double percentage) {
-        this.percentage = percentage * 100;
-    }
-
-    public Percentage(float value) {
-        this.percentage = value;
+public record Percentage(double percentage) implements Serializable, Comparable<Percentage> {
+    public static Percentage toPercentage(double value) {
+        return new Percentage(value * 100);
     }
 
     public double getPercentage() {

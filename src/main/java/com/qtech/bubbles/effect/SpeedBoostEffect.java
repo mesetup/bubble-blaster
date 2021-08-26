@@ -7,6 +7,7 @@ import com.qtech.bubbles.common.entity.Attribute;
 import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.utilities.python.builtins.ValueError;
 
+@SuppressWarnings("GrazieInspection")
 public class SpeedBoostEffect extends Effect {
     public SpeedBoostEffect() throws ValueError {
         super();

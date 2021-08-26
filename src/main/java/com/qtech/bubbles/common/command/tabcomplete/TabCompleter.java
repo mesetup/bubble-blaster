@@ -44,7 +44,7 @@ public final class TabCompleter {
     }
 
     private static List<String> addIfStartsWith(List<String> list, ResourceLocation arg, String startWith) {
-        if (arg.getPath().startsWith(startWith)) {
+        if (arg.path().startsWith(startWith)) {
             list.add(arg.toString());
         } else if (arg.toString().startsWith(startWith)) {
             list.add(arg.toString());

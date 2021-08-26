@@ -4,7 +4,6 @@ import com.qtech.bubbles.QBubbles;
 import org.apache.logging.log4j.Logger;
 
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Set;
@@ -19,16 +18,6 @@ public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
         printStackTrace(e);
         System.exit(1);
     }
-
-    /**
-     * Message for trying to suppress a null exception.
-     */
-    private static final String NULL_CAUSE_MESSAGE = "Cannot suppress a null exception.";
-
-    /**
-     * Message for trying to suppress oneself.
-     */
-    private static final String SELF_SUPPRESSION_MESSAGE = "Self-suppression not permitted";
 
     /**
      * Caption  for labeling causative exception stack traces
@@ -149,19 +138,4 @@ public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
         }
     }
 
-    private static class WrappedPrintWriter extends PrintStreamOrWriter {
-        private final PrintWriter printWriter;
-
-        WrappedPrintWriter(PrintWriter printWriter) {
-            this.printWriter = printWriter;
-        }
-
-        Object lock() {
-            return printWriter;
-        }
-
-        void println(Object o) {
-            logger.fatal(o.toString());
-        }
-    }
 }

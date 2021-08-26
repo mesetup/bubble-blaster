@@ -47,6 +47,7 @@ public class BlindnessEffect extends Effect {
         return false;
     }
 
+    @SuppressWarnings("unused")
     public long getStartTime() {
         return startTime;
     }

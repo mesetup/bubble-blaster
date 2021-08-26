@@ -2,7 +2,6 @@ package com.qtech.test.bubbles;
 
 import com.qtech.bubbles.core.controllers.MouseController;
 import com.qtech.bubbles.gui.ScrollBarUI;
-import com.qtech.bubbles.gui.Window;
 import javafx.geometry.Orientation;
 
 import javax.swing.*;
@@ -12,7 +11,7 @@ import java.awt.event.ActionListener;
 
 @SuppressWarnings("ALL")
 public class JPanelsInsideJScrollPane {
-    private JFrame frame = new Window(null).getFrame();
+    private JFrame frame = new Window(null, false).getFrame();
     private JScrollPane scrollPane = new JScrollPane();
     private JPanel parentPanel, childOne, childTwo, childThree;
     private JButton button = new JButton("Change, Switch Layout Manager to BoxLayout");

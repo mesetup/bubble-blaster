@@ -23,9 +23,9 @@ public class TickEvent extends Event {
     /**
      * Get the current tick speed. (TPS)
      *
-     * @deprecated Is since 1.0.0 always 0.05d and therefore not needed.
-     * @return always 0.05d (20th of a second).
+     * @return returns always 0.05d (20th of a second).
      * @see QBubbles#TPS
+     * @deprecated Is since 1.0.0 always 0.05d and therefore not needed.
      */
     @Deprecated
     public double getDeltaTime() {

@@ -74,31 +74,27 @@ public class LocalAddonEventBus<J extends QBubblesAddon> extends EventBus {
 
     public void unregister(Class<? extends Event> event, Class<?> clazz) {
         loopDeclaredMethods(clazz, (method) -> {
-            // Get and check event.
-            Class<? extends Event> evt = (Class<? extends Event>) method.getParameterTypes()[0];
-            if (event == evt) {
-                // Remove handler.
-                try {
-                    removeHandlers(event, null, method);
-                } catch (IllegalStateException ignored) {
-
-                }
-            }
+            uReg0(event, method, null);
         });
+    }
+
+    private void uReg0(Class<? extends Event> event, Method method, Object o) {
+        // Get and check event.
+        Class<? extends Event> evt = (Class<? extends Event>) method.getParameterTypes()[0];
+        if (event == evt) {
+            // Remove handler.
+            try {
+                removeHandlers(event, o, method);
+            } catch (IllegalStateException ignored) {
+
+            }
+        }
     }
 
     public void unregister(Class<? extends Event> event, Object o) {
         loopMethods(o, (method) -> {
             // Get types and values.
-            Class<? extends Event> evt = (Class<? extends Event>) method.getParameterTypes()[0];
-            if (event == evt) {
-                // Remove handler.
-                try {
-                    removeHandlers(event, o, method);
-                } catch (IllegalStateException ignored) {
-
-                }
-            }
+            uReg0(event, method, o);
         });
     }
 
@@ -240,7 +236,7 @@ public class LocalAddonEventBus<J extends QBubblesAddon> extends EventBus {
 //    }
 
     public AddonObject<J> getAddonObject() {
-        return (AddonObject<J>) addon;
+        return addon;
     }
 
     public J getAddon() {

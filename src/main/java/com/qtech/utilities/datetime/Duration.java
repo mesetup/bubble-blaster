@@ -52,18 +52,14 @@ public class Duration implements Comparable<Duration>, Serializable {
         int second = g.getSecond();
 
         double hourDouble = duration / 60 / 60;
-        hourDouble -= (double) minute / 60;
-        hourDouble -= (double) second / 60 / 60;
+        return format0(minute, second, hourDouble);
+    }
 
-        int hour = (int) hourDouble;
-
-        String minuteString = Integer.toString(minute);
-        String secondString = Integer.toString(second);
-
-        if (minuteString.length() == 1) minuteString = "0" + minuteString;
-        if (secondString.length() == 1) secondString = "0" + secondString;
-
-        return hour + ":" + minuteString + ":" + secondString;
+    private String format0(int minute, int second, double hourDouble) {
+//        if (hour == 0) {
+//            return ":"
+//        }
+        return minute + ":" + minute + ":" + second;
     }
 
     public int toInt() {

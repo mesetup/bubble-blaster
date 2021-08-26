@@ -95,7 +95,7 @@ public class PauseScreen extends Screen {
     private void nextPage() {
         if (helpIndex < differentBubbles - 1) {
             try {
-                AudioSlot focusChangeSFX = new AudioSlot(getClass().getResource("/assets/qbubbles/audio/sfx/ui/button/focus_change.wav"), "focusChange");
+                AudioSlot focusChangeSFX = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/qbubbles/audio/sfx/ui/button/focus_change.wav")), "focusChange");
                 focusChangeSFX.setVolume(0.1d);
                 focusChangeSFX.play();
             } catch (URISyntaxException e) {
@@ -234,7 +234,7 @@ public class PauseScreen extends Screen {
         ngg.setColor(new Color(255, 255, 255, 192));
         ngg.setFont(bubbleTitleFont);
         ngg.setFallbackFont(fallbackTitleFont);
-        ngg.drawString(I18n.translateToLocal("bubble." + bubble.getRegistryName().getNamespace() + "." + bubble.getRegistryName().getPath().replaceAll("/", ".") + ".name"), (int) QBubbles.getMiddleX() - 470, 332);
+        ngg.drawString(I18n.translateToLocal("bubble." + bubble.getRegistryName().namespace() + "." + bubble.getRegistryName().path().replaceAll("/", ".") + ".name"), (int) QBubbles.getMiddleX() - 470, 332);
 
         // Bubble icon.
         EnvironmentRenderer.drawBubble(ngg, (int) (QBubbles.getMiddleX() - 470), 350, 122, bubble.colors);
@@ -309,7 +309,7 @@ public class PauseScreen extends Screen {
         ngg.drawString(bubble.canSpawn(loadedGame.getGameType()) ? I18n.translateToLocal("other.true") : I18n.translateToLocal("other.false"), (int) (QBubbles.getMiddleX() + 72) + 200, 462);
 
         // Description
-        ngg.drawWrappedString(I18n.translateToLocal("bubble." + bubble.getRegistryName().getNamespace() + "." + bubble.getRegistryName().getPath().replaceAll("/", ".") + ".description").replaceAll("\\\\n", "\n"), (int) QBubbles.getMiddleX() - 470, 522, 940);
+        ngg.drawWrappedString(I18n.translateToLocal("bubble." + bubble.getRegistryName().namespace() + "." + bubble.getRegistryName().path().replaceAll("/", ".") + ".description").replaceAll("\\\\n", "\n"), (int) QBubbles.getMiddleX() - 470, 522, 940);
 
         ngg.setFont(oldFont);
     }

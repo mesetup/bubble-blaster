@@ -5,7 +5,6 @@ import com.qtech.preloader.PreGameLoader;
 import lombok.SneakyThrows;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 

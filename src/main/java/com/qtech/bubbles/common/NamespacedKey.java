@@ -12,19 +12,14 @@ import java.util.Objects;
  * @author Quinten Jungblut
  */
 @Deprecated
-public class NamespacedKey implements Serializable {
-    private final String namespace;
-    private final String key;
-
+public record NamespacedKey(String namespace, String key) implements Serializable {
     /**
      * The {@link NamespacedKey} is used instead of IDs, for customizing purposes
      *
      * @param namespace The key. (Like a value in a {@link java.util.HashMap})
      * @param key       The namespace. (Like a key in a {@link java.util.HashMap})
      */
-    public NamespacedKey(String namespace, String key) {
-        this.namespace = namespace;
-        this.key = key;
+    public NamespacedKey {
     }
 
     public static NamespacedKey fromString(String s) {
@@ -64,13 +59,5 @@ public class NamespacedKey implements Serializable {
     @Override
     public String toString() {
         return namespace + ':' + key;
-    }
-
-    public String getNamespace() {
-        return namespace;
-    }
-
-    public String getKey() {
-        return key;
     }
 }

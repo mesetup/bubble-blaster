@@ -11,7 +11,6 @@ import com.qtech.bubbles.event.SubscribeEvent;
 import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.event.type.MouseEventType;
 import com.qtech.bubbles.graphics.Border;
-import com.qtech.bubbles.graphics.OuterBorder;
 import com.qtech.bubbles.media.AudioSlot;
 import com.qtech.bubbles.util.Util;
 import org.jetbrains.annotations.Nullable;
@@ -150,6 +149,7 @@ public class OptionsButton extends AbstractButton implements Listener {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public void paint(Graphics2D gg) {
         Integer vx = visualX;
         if (visualX == null) vx = getX();
@@ -233,6 +233,10 @@ public class OptionsButton extends AbstractButton implements Listener {
             textColor = new Color(192, 192, 192);
         }
 
+        paint0a(gg, textColor, oldStroke, bounds, text);
+    }
+
+    static void paint0a(Graphics2D gg, Color textColor, Stroke oldStroke, Rectangle bounds, String text) {
         gg.setStroke(oldStroke);
 
         Graphics2D gg1 = (Graphics2D) gg.create(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);

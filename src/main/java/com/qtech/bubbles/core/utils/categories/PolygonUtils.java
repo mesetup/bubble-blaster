@@ -1,5 +1,7 @@
 package com.qtech.bubbles.core.utils.categories;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
@@ -32,16 +34,16 @@ public class PolygonUtils {
     public static Polygon buildPolygon(int centerX, int centerY, int[] xp, int[] yp, double rotationAngle) throws IllegalArgumentException {
         // copy the arrays so that we don't manipulate the originals, that way we can
         // reuse them if necessary
-        int[] xpoints = Arrays.copyOf(xp, xp.length);
-        int[] ypoints = Arrays.copyOf(yp, yp.length);
-        if (xpoints.length != ypoints.length) {
+        int[] xPoints = Arrays.copyOf(xp, xp.length);
+        int[] yPoints = Arrays.copyOf(yp, yp.length);
+        if (xPoints.length != yPoints.length) {
             throw new IllegalArgumentException("The provided x points are not the same length as the provided y points.");
         }
 
         // create a list of Point2D pairs
         ArrayList<Point2D> list = new ArrayList<>();
-        for (int i = 0; i < ypoints.length; i++) {
-            list.add(new Point2D.Double(xpoints[i], ypoints[i]));
+        for (int i = 0; i < yPoints.length; i++) {
+            list.add(new Point2D.Double(xPoints[i], yPoints[i]));
         }
 
         // create an array which will hold the rotated points
@@ -82,20 +84,16 @@ public class PolygonUtils {
      * @throws IllegalArgumentException when the provided x points array is not the
      *                                  same length as the provided y points array
      */
+    @SuppressWarnings("unused")
     public static Path2D buildPolygonPath(double centerX, double centerY, Double[] xp, Double[] yp, double rotationAngle) throws IllegalArgumentException {
         // copy the arrays so that we don't manipulate the originals, that way we can
         // reuse them if necessary
-        Double[] xpoints = Arrays.copyOf(xp, xp.length);
-        Double[] ypoints = Arrays.copyOf(yp, yp.length);
-        if (xpoints.length != ypoints.length) {
-            throw new IllegalArgumentException("The provided x points are not the same length as the provided y points.");
-        }
+        Double[] xPoints = Arrays.copyOf(xp, xp.length);
+        Double[] yPoints = Arrays.copyOf(yp, yp.length);
+        checkXYPoints(xPoints, yPoints);
 
         // create a list of Point2D pairs
-        ArrayList<Point2D> list = new ArrayList<>();
-        for (int i = 0; i < ypoints.length; i++) {
-            list.add(new Point2D.Double(xpoints[i], ypoints[i]));
-        }
+        ArrayList<Point2D> list = pointsAsList(xPoints, yPoints);
 
         // create an array which will hold the rotated points
         Point2D[] rotatedPoints = new Point2D[list.size()];
@@ -120,5 +118,20 @@ public class PolygonUtils {
 
         path.closePath();
         return path;
+    }
+
+    @NotNull
+    private static ArrayList<Point2D> pointsAsList(Double[] xPoints, Double[] yPoints) {
+        ArrayList<Point2D> list = new ArrayList<>();
+        for (int i = 0; i < yPoints.length; i++) {
+            list.add(new Point2D.Double(xPoints[i], yPoints[i]));
+        }
+        return list;
+    }
+
+    private static void checkXYPoints(Double[] xPoints, Double[] yPoints) {
+        if (xPoints.length != yPoints.length) {
+            throw new IllegalArgumentException("The provided x points are not the same length as the provided y points.");
+        }
     }
 }

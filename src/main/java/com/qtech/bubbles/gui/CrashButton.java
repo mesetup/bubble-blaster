@@ -3,18 +3,15 @@ package com.qtech.bubbles.gui;
 import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.interfaces.Listener;
 import com.qtech.bubbles.core.controllers.MouseController;
-import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
 import com.qtech.bubbles.event.MouseEvent;
 import com.qtech.bubbles.event.RenderEventPriority;
 import com.qtech.bubbles.event.SubscribeEvent;
-import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.event.type.MouseEventType;
 import com.qtech.bubbles.graphics.Border;
 import com.qtech.bubbles.graphics.OuterBorder;
 import com.qtech.bubbles.util.Util;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.util.Objects;
 
 public class CrashButton extends Widget implements Listener {
@@ -25,9 +22,7 @@ public class CrashButton extends Widget implements Listener {
     private boolean pressed;
     private boolean eventsActive = false;
     private Runnable command;
-    private int clickCount;
     private String text;
-    private EventBus.Handler binding;
 
     public void setText(String text) {
         this.text = text;
@@ -189,12 +184,7 @@ public class CrashButton extends Widget implements Listener {
             textColor = new Color(255, 255, 255);
         }
 
-        gg.setStroke(oldStroke);
-
-        Graphics2D gg1 = (Graphics2D) gg.create(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);
-        gg1.setColor(textColor);
-        GraphicsUtils.drawCenteredString(gg1, text, new Rectangle2D.Double(0, 0, bounds.width - 2, bounds.height - 2), new Font(QBubbles.getInstance().getFont().getName(), Font.BOLD, 16));
-        gg1.dispose();
+        OptionsNumberInput.NumberInputButton.paint0a(gg, textColor, oldStroke, bounds, text);
     }
 
     @Override

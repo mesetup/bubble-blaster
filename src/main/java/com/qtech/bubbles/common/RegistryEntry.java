@@ -10,11 +10,11 @@ public abstract class RegistryEntry implements IRegistryEntry {
     }
 
     public boolean isTempRegistryName() {
-        return registryName.getNamespace() == null;
+        return registryName.namespace() == null;
     }
 
     public void updateRegistryName(String namespace) {
-        if (registryName.getNamespace() == null) {
+        if (registryName.namespace() == null) {
             registryName = registryName.withNamespace(namespace);
         }
     }

@@ -34,16 +34,16 @@ public abstract class Effect extends RegistryEntry {
     }
 
     public URL getIconResource() {
-        return getClass().getResource("assets/" + getRegistryName().getNamespace() + "/vectors/effects/" + getRegistryName().getPath() + ".svg");
+        return getClass().getResource("assets/" + getRegistryName().namespace() + "/vectors/effects/" + getRegistryName().path() + ".svg");
     }
 
     public synchronized InputStream getIconResourceAsStream() {
         if (cache.containsKey("icon-stream")) {
             return (InputStream) cache.get("icon-stream");
         }
-        InputStream inputStream = Effect.class.getClassLoader().getResourceAsStream("assets/" + getRegistryName().getNamespace() + "/vectors/effects/" + getRegistryName().getPath() + ".svg");
+        InputStream inputStream = Effect.class.getClassLoader().getResourceAsStream("assets/" + getRegistryName().namespace() + "/vectors/effects/" + getRegistryName().path() + ".svg");
         if (inputStream == null && getIconResource() == null) {
-            QBubbles.getLogger().warn("Cannot find effect-icon: " + "/assets/" + getRegistryName().getNamespace() + "/vectors/effects/" + getRegistryName().getPath() + ".svg");
+            QBubbles.getLogger().warn("Cannot find effect-icon: " + "/assets/" + getRegistryName().namespace() + "/vectors/effects/" + getRegistryName().path() + ".svg");
         }
         return (InputStream) cache.put("icon-stream", inputStream);
     }

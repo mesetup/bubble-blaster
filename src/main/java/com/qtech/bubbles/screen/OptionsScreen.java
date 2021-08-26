@@ -111,7 +111,7 @@ public class OptionsScreen extends Screen {
         languageButton.setText(I18n.translateToLocal("scene.qbubbles.options.language"));
         languageButton.paint(gg);
 
-        maxBubblesOption.render(gg);
+        maxBubblesOption.paint(gg);
 
         saveButton.paint(gg);
         saveButton.setText(I18n.translateToLocal("other.save"));

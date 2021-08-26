@@ -9,7 +9,6 @@ import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.event.CollisionEvent;
 import com.qtech.bubbles.event.SubscribeEvent;
 import com.qtech.bubbles.registry.Registry;
-import com.qtech.bubbles.util.helpers.MathHelper;
 import org.bson.*;
 import org.jetbrains.annotations.NotNull;
 

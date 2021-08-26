@@ -30,8 +30,8 @@ public class GraphicsProcessor extends Graphics2D {
     }
 
     @Override
-    public boolean drawImage(Image img, AffineTransform xform, ImageObserver obs) {
-        return gg.drawImage(img, xform, obs);
+    public boolean drawImage(Image img, AffineTransform xForm, ImageObserver obs) {
+        return gg.drawImage(img, xForm, obs);
     }
 
     @Override
@@ -40,13 +40,13 @@ public class GraphicsProcessor extends Graphics2D {
     }
 
     @Override
-    public void drawRenderedImage(RenderedImage img, AffineTransform xform) {
-        gg.drawRenderedImage(img, xform);
+    public void drawRenderedImage(RenderedImage img, AffineTransform xForm) {
+        gg.drawRenderedImage(img, xForm);
     }
 
     @Override
-    public void drawRenderableImage(RenderableImage img, AffineTransform xform) {
-        gg.drawRenderableImage(img, xform);
+    public void drawRenderableImage(RenderableImage img, AffineTransform xForm) {
+        gg.drawRenderableImage(img, xForm);
     }
 
     @Override

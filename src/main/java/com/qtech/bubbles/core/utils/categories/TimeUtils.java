@@ -1,5 +1,7 @@
 package com.qtech.bubbles.core.utils.categories;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
@@ -45,6 +47,11 @@ def format_duration(duration: int):
         int second = g.getSecond();
 
         double hourDouble = (double) duration / 60 / 60;
+        return formatDuration(minute, second, hourDouble);
+    }
+
+    @NotNull
+    public static String formatDuration(int minute, int second, double hourDouble) {
         hourDouble -= (double) minute / 60;
         hourDouble -= (double) second / 60 / 60;
 

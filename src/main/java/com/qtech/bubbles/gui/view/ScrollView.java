@@ -1,7 +1,6 @@
 package com.qtech.bubbles.gui.view;
 
 import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.scene.Scene;
 import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.event.SubscribeEvent;
 import com.qtech.bubbles.event.TickEvent;

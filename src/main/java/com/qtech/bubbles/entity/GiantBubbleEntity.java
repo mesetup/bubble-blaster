@@ -32,7 +32,7 @@ public class GiantBubbleEntity extends BubbleEntity {
      * On-spawn.
      *
      * @param pos         the position for spawn.
-     * @param environment the evironment to spawn in.
+     * @param environment the environment to spawn in.
      */
     @Override
     public void onSpawn(Point pos, Environment environment) {

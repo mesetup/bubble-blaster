@@ -19,13 +19,7 @@ public class ColorUtils {
 
         if (colorStr.length() > 9) throw new ValueError("Too large color hex code, must be a length of 7 or 9, got: " + colorStr.length());
         if (colorStr.length() == 9) {
-            if (colorStr.charAt(0) != '#') throw new ValueError("Invalid color hex code, must start with '#'");
-            char[] chars = colorStr.toCharArray();
-            for (int i = 0; i < chars.length; i++) {
-                char c = chars[i];
-                if (i > 0 && !"0123456789abcdefABCDEF".contains(new String(new char[]{c})))
-                    throw new ValueError("Invalid color hex code, text after '#' must be hexadecimals");
-            }
+            testColorHex(colorStr);
 
             return new Color(
                     Integer.valueOf(colorStr.substring(1, 3), 16),
@@ -36,19 +30,25 @@ public class ColorUtils {
 
         if (colorStr.length() == 8)
             throw new ValueError("Too large or small color hex code, must be a length of 7 or 9, got: " + colorStr.length());
-        if (colorStr.length() < 7) throw new ValueError("Too small color hex code, must be a length of 7 or 9, got: " + colorStr.length());
-        if (colorStr.charAt(0) != '#') throw new ValueError("Invalid color hex code, must start with '#'");
-        char[] chars = colorStr.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
-            if (i > 0 && !"0123456789abcdefABCDEF".contains(new String(new char[]{c})))
-                throw new ValueError("Invalid color hex code, text after '#' must be hexadecimals");
-        }
+        if (colorStr.length() < 7)
+            throw new ValueError("Too small color hex code, must be a length of 7 or 9, got: " + colorStr.length());
+        testColorHex(colorStr);
 
         return new Color(
                 Integer.valueOf(colorStr.substring(1, 3), 16),
                 Integer.valueOf(colorStr.substring(3, 5), 16),
                 Integer.valueOf(colorStr.substring(5, 7), 16));
+    }
+
+    private static void testColorHex(String colorStr) {
+        if (colorStr.charAt(0) != '#') throw new ValueError("Invalid color hex code, must start with '#'");
+        char[] chars = colorStr.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            //noinspection SpellCheckingInspection
+            if (i > 0 && !"0123456789abcdefABCDEF".contains(String.valueOf(c)))
+                throw new ValueError("Invalid color hex code, text after '#' must be hexadecimals");
+        }
     }
 
     public static Color[] multiConvertHexToRgb(String... colorStrings) {

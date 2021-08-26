@@ -20,25 +20,26 @@ buildscript {
         maven {
             url = "https://maven.atlassian.com/3rdparty/"
         }
-        jcenter()
         google()
     }
     dependencies {
         classpath group: 'commons-io', name: 'commons-io', version: '2.8.0'
         classpath "com.google.code.gson:gson:2.8.+"
-        classpath "io.freefair.gradle:lombok-plugin:4.1.6"
+//        classpath "io.freefair.gradle:lombok-plugin:6.1.0-m3"
     }
 }
 
 plugins {
     id "groovy"
     id 'java'
+    id 'java-library'
     id "idea"
+    id "io.freefair.lombok"
 }
 
-apply plugin: "io.freefair.lombok"
+//apply plugin: "io.freefair.lombok"
 
-apply plugin: 'maven'
+//apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
@@ -83,7 +84,7 @@ archivesBaseName = 'bubbles-preloader'
 jar.version = version
 jar.archiveVersion.set(version)
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '16' // Need this here so eclipse task generates correctly.
 
 //GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), this.binding);
 //shell.run(file, arguments);
@@ -132,6 +133,7 @@ jar {
     from {
         configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
     }
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
 }
 test {
     useJUnitPlatform()
@@ -142,24 +144,24 @@ task("uploadJars", dependsOn: "build") {
     description = "uploads JARs"
 
     if (project.hasProperty("local_maven") || project.hasProperty("sftp_maven")) {
-        apply plugin: 'maven'
-        uploadArchives {
-            repositories {
-                if (project.hasProperty("local_maven")) {
-                    mavenDeployer {
-                        repository(url: "file://${local_maven}")
-                    }
-                }
-                if (project.hasProperty("sftp_maven")) {
-                    repositories.mavenDeployer {
-                        configuration = configurations.deployerJars
-                        repository(url: "sftp://${sftp_maven}") {
-                            authentication(userName: "${sftp_username}", privateKey: "${sftp_key}")
-                        }
-                    }
-                }
-            }
-        }
+//        apply plugin: 'maven'
+//        uploadArchives {
+//            repositories {
+//                if (project.hasProperty("local_maven")) {
+//                    mavenDeployer {
+//                        repository(url: "file://${local_maven}")
+//                    }
+//                }
+//                if (project.hasProperty("sftp_maven")) {
+//                    repositories.mavenDeployer {
+//                        configuration = configurations.deployerJars
+//                        repository(url: "sftp://${sftp_maven}") {
+//                            authentication(userName: "${sftp_username}", privateKey: "${sftp_key}")
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 }
 

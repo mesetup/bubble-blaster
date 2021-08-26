@@ -8,7 +8,6 @@ import com.qtech.bubbles.event.KeyboardEvent;
 import com.qtech.bubbles.event.MouseEvent;
 import com.qtech.bubbles.event.RenderEventPriority;
 import com.qtech.bubbles.event.SubscribeEvent;
-import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.event.type.KeyEventType;
 import com.qtech.bubbles.graphics.Border;
 import com.qtech.bubbles.util.Util;
@@ -17,7 +16,6 @@ import com.qtech.bubbles.util.helpers.MathHelper;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 public class OptionsNumberInput extends OptionsTextEntry {
     private final NumberInputButton upButton;
@@ -28,7 +26,6 @@ public class OptionsNumberInput extends OptionsTextEntry {
     private int value;
     private int min;
     private int max;
-    private EventBus.Handler binding;
 
     public OptionsNumberInput(Rectangle bounds, int value, int min, int max) {
         super(bounds);
@@ -199,7 +196,7 @@ public class OptionsNumberInput extends OptionsTextEntry {
         return eventsActive;
     }
 
-    public void render(Graphics2D gg) {
+    public void paint(Graphics2D gg) {
         Integer vx = visualX;
         if (visualX == null) vx = getX();
         Integer vy = visualY;
@@ -207,7 +204,6 @@ public class OptionsNumberInput extends OptionsTextEntry {
         Rectangle bounds = new Rectangle(vx, vy, getBounds().width - 24, getBounds().height);
 
         Point mousePos = MouseController.instance().getCurrentPoint();
-        boolean hoveredNew = mousePos != null && bounds.contains(mousePos);
         if (mousePos != null) {
             if (bounds.contains(mousePos)) {
                 Util.setCursor(QBubbles.getInstance().getTextCursor());
@@ -392,12 +388,7 @@ public class OptionsNumberInput extends OptionsTextEntry {
                 textColor = new Color(192, 192, 192);
             }
 
-            gg.setStroke(oldStroke);
-
-            Graphics2D gg1 = (Graphics2D) gg.create(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);
-            gg1.setColor(textColor);
-            GraphicsUtils.drawCenteredString(gg1, text, new Rectangle2D.Double(0, 0, bounds.width - 2, bounds.height - 2), new Font(QBubbles.getInstance().getFont().getName(), Font.BOLD, 16));
-            gg1.dispose();
+            paint0a(gg, textColor, oldStroke, bounds, text);
         }
 
         @Override

@@ -5,7 +5,6 @@ import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
 import com.qtech.bubbles.common.ammo.AmmoType;
 import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
-import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.event.CollisionEvent;
 import com.qtech.bubbles.init.Entities;
@@ -79,11 +78,13 @@ public class AmmoEntity extends Entity {
 
     }
 
+    @SuppressWarnings("unused")
     @Nullable
     public AmmoType getAmmoType() {
         return ammoType;
     }
 
+    @SuppressWarnings("unused")
     public void setAmmoType(@NotNull AmmoType ammoType) {
         this.ammoType = ammoType;
         this.bases.setAll(ammoType.getDefaultAttributes());

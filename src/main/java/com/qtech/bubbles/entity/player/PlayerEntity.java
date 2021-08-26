@@ -6,7 +6,6 @@ import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.AttributeMap;
 import com.qtech.bubbles.common.ability.AbilityContainer;
 import com.qtech.bubbles.common.ammo.AmmoType;
-import com.qtech.bubbles.common.entity.*;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.entity.BubbleEntity;
@@ -61,8 +60,8 @@ public final class PlayerEntity extends DamageableEntity {
     // .*................*.| 3
     // ..#..............#..| 4
 
-    protected final Area shipShape;
-    protected final Area arrowShape;
+    private final Area shipShape;
+    private final Area arrowShape;
 
     // Types
     private AmmoType currentAmmo = AmmoTypes.BASIC.get();
@@ -84,7 +83,7 @@ public final class PlayerEntity extends DamageableEntity {
     private float xInputY;
 
     // Rotation
-    protected double rotation = 0;
+    private double rotation = 0;
 
     // Normal values/
     private double score = 0d;
@@ -190,6 +189,16 @@ public final class PlayerEntity extends DamageableEntity {
     ///////////////////
     @Override
     public Area getShape() {
+        return rotateToArea();
+    }
+
+    @NotNull
+    private Area rotateToArea() {
+        return rotateToArea0(shipShape);
+    }
+
+    @NotNull
+    private Area rotateToArea0(Area shipShape) {
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(rotation), shipShape.getBounds().getCenterX(), shipShape.getBounds().getCenterY());
 
@@ -237,38 +246,14 @@ public final class PlayerEntity extends DamageableEntity {
      * @return the shape of the ship.
      */
     public Area getShipArea() {
-        AffineTransform transform = new AffineTransform();
-        transform.rotate(Math.toRadians(rotation), shipShape.getBounds().getCenterX(), shipShape.getBounds().getCenterY());
-
-        Area area = new Area(shipShape);
-        area.transform(transform);
-
-        transform = new AffineTransform();
-        transform.scale(scale, scale);
-        transform.translate(x, y);
-
-        area.transform(transform);
-
-        return area;
+        return rotateToArea();
     }
 
     /**
      * @return the arrow shape of the ship.
      */
     public Area getArrowArea() {
-        AffineTransform transform = new AffineTransform();
-        transform.rotate(Math.toRadians(rotation), shipShape.getBounds().getCenterX(), shipShape.getBounds().getCenterY());
-
-        Area area = new Area(arrowShape);
-        area.transform(transform);
-
-        transform = new AffineTransform();
-        transform.scale(scale, scale);
-        transform.translate(x, y);
-
-        area.transform(transform);
-
-        return area;
+        return rotateToArea0(arrowShape);
     }
 
     /**
@@ -431,10 +416,9 @@ public final class PlayerEntity extends DamageableEntity {
         if (evt.getSource() != this) return;
 
         Entity targetEntity = evt.getTarget();
-        if (targetEntity instanceof GiantBubbleEntity) {
 
-            // Entity bubble
-            GiantBubbleEntity bubble = (GiantBubbleEntity) targetEntity;
+        // Entity bubble
+        if (targetEntity instanceof GiantBubbleEntity bubble) {
 
             // Modifiers
             double scoreMod = bubble.getAttributeMap().getBase(Attribute.SCORE_MULTIPLIER);
@@ -452,19 +436,18 @@ public final class PlayerEntity extends DamageableEntity {
 
             // Add score.
             addScore(scoreValue);
-        } else if (targetEntity instanceof BubbleEntity) {
+        } else
             // Entity bubble
-            BubbleEntity bubble = (BubbleEntity) targetEntity;
+            if (targetEntity instanceof BubbleEntity bubble) {
+                // Modifiers
+                AttributeMap attributeMap = bubble.getAttributeMap();
+                double scoreMultiplier = attributeMap.getBase(Attribute.SCORE_MULTIPLIER);
+                double attack = attributeMap.getBase(Attribute.ATTACK);  // Maybe used.
+                double defense = attributeMap.getBase(Attribute.DEFENSE);  // Maybe used.
 
-            // Modifiers
-            AttributeMap attributeMap = bubble.getAttributeMap();
-            double scoreMultiplier = attributeMap.getBase(Attribute.SCORE_MULTIPLIER);
-            double attack = attributeMap.getBase(Attribute.ATTACK);  // Maybe used.
-            double defense = attributeMap.getBase(Attribute.DEFENSE);  // Maybe used.
-
-            // Attributes
-            double radius = bubble.getRadius();
-            double speed = bubble.getSpeed();
+                // Attributes
+                double radius = bubble.getRadius();
+                double speed = bubble.getSpeed();
 
             // Calculate score value.
             double visibleValue = radius * speed;

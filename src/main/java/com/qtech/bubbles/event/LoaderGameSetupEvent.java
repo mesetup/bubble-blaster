@@ -1,6 +1,5 @@
 package com.qtech.bubbles.event;
 
-import com.google.common.eventbus.EventBus;
 import com.qtech.bubbles.addon.loader.AddonLoader;
 
 public class LoaderGameSetupEvent extends Event {

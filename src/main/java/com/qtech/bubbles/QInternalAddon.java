@@ -12,7 +12,6 @@ import com.qtech.bubbles.event.TextureRenderEvent;
 import com.qtech.bubbles.event.bus.LocalAddonEventBus;
 import com.qtech.bubbles.graphics.ITexture;
 import com.qtech.bubbles.graphics.TextureCollection;
-import com.qtech.bubbles.init.*;
 import com.qtech.bubbles.registry.Registers;
 import com.qtech.bubbles.screen.LoadScreen;
 import org.apache.logging.log4j.Logger;
@@ -54,7 +53,7 @@ public class QInternalAddon extends QBubblesAddon {
             for (AbstractBubble bubble : bubbles) {
                 loadScreen.logInfo("Loading bubble textures: " + bubble.getRegistryName());
                 for (int i = 0; i <= bubble.getMaxRadius(); i++) {
-                    ResourceLocation resourceLocation = new ResourceLocation(bubble.getRegistryName().getNamespace(), bubble.getRegistryName().getPath() + "/" + i);
+                    ResourceLocation resourceLocation = new ResourceLocation(bubble.getRegistryName().namespace(), bubble.getRegistryName().path() + "/" + i);
                     final int finalI = i;
                     textureCollection.set(resourceLocation, new ITexture() {
                         @Override

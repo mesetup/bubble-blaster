@@ -7,7 +7,10 @@ import com.qtech.bubbles.common.holders.IArrayDataHolder;
 import org.bson.*;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class AttributeMap implements IArrayDataHolder<AttributeMap> {
     private final HashMap<Attribute, Float> map = new HashMap<>();
@@ -84,8 +87,7 @@ public class AttributeMap implements IArrayDataHolder<AttributeMap> {
 
     public AttributeMap read(BsonArray array) {
         for (BsonValue item : array.getValues()) {
-            if (item instanceof BsonDocument) {
-                BsonDocument document = (BsonDocument) item;
+            if (item instanceof BsonDocument document) {
                 Attribute key = Attribute.fromName(document.getString("name").getValue());
                 float value = (float) document.getDouble("value").getValue();
 

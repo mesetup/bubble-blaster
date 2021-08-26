@@ -4,7 +4,6 @@ import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.interfaces.Listener;
 import com.qtech.bubbles.core.controllers.MouseController;
-import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
 import com.qtech.bubbles.event.MouseEvent;
 import com.qtech.bubbles.event.RenderEventPriority;
 import com.qtech.bubbles.event.SubscribeEvent;
@@ -15,7 +14,6 @@ import com.qtech.bubbles.media.AudioSlot;
 import com.qtech.bubbles.util.Util;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.net.URISyntaxException;
 import java.util.Objects;
 
@@ -217,12 +215,7 @@ public class TitleButton extends AbstractButton implements Listener {
             textColor = new Color(224, 224, 224);
         }
 
-        gg.setStroke(oldStroke);
-
-        Graphics2D gg1 = (Graphics2D) gg.create(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);
-        gg1.setColor(textColor);
-        GraphicsUtils.drawCenteredString(gg1, text, new Rectangle2D.Double(0, 0, bounds.width - 2, bounds.height - 2), new Font(QBubbles.getInstance().getFont().getName(), Font.BOLD, 16));
-        gg1.dispose();
+        OptionsNumberInput.NumberInputButton.paint0a(gg, textColor, oldStroke, bounds, text);
     }
 
     @Override

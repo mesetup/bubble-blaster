@@ -2,16 +2,13 @@ package com.qtech.bubbles.environment;
 
 import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.entity.*;
+import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.entity.EntitySpawnData;
 import com.qtech.bubbles.common.gamestate.GameEvent;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
-import com.qtech.bubbles.common.screen.Screen;
-import com.qtech.bubbles.core.utils.categories.ShapeUtils;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.entity.types.EntityType;
-import com.qtech.bubbles.event.CollisionEvent;
 import com.qtech.bubbles.registry.Registers;
-import com.qtech.bubbles.state.BloodMoonEvent;
 import com.qtech.utilities.datetime.DateTime;
 import org.bson.BsonDocument;
 
@@ -20,7 +17,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
 
 public class Environment {
     private final List<Entity> entities = new CopyOnWriteArrayList<>();
@@ -44,16 +40,14 @@ public class Environment {
     public final void spawnEntityFromState(BsonDocument entityData) {
         if (!QBubbles.getInstance().isOnMainThread()) {
             QBubbles.getInstance().runLater(() -> {
-                String type = entityData.getString("Type").getValue();
-                EntityType<?> entityType = Registers.ENTITIES.get(ResourceLocation.fromString(type));
-                Entity entity = entityType.create(gameType, entityData);
-                entity.prepareSpawn(EntitySpawnData.fromLoadSpawn(entityData));
-                entity.setState(entityData);
-
-                this.entities.add(entity);
+                loadAndSpawnEntity(entityData);
             });
             return;
         }
+        loadAndSpawnEntity(entityData);
+    }
+
+    private void loadAndSpawnEntity(BsonDocument entityData) {
         String type = entityData.getString("Type").getValue();
         EntityType<?> entityType = Registers.ENTITIES.get(ResourceLocation.fromString(type));
         Entity entity = entityType.create(gameType, entityData);
@@ -161,8 +155,7 @@ public class Environment {
     public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> bubbleEntityClass) {
         return entities.stream()
                 .filter((entity) -> bubbleEntityClass.isAssignableFrom(entity.getClass()))
-                .map(bubbleEntityClass::cast)
-                .collect(Collectors.toUnmodifiableList());
+                .map(bubbleEntityClass::cast).toList();
     }
 
     public GameEvent getCurrentGameEvent() {

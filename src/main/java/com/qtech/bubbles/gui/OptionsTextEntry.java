@@ -1,6 +1,7 @@
 package com.qtech.bubbles.gui;
 
 import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.api.event.keyboard.KeyboardModifiers;
 import com.qtech.bubbles.common.interfaces.Listener;
 import com.qtech.bubbles.core.controllers.MouseController;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
@@ -8,7 +9,6 @@ import com.qtech.bubbles.event.KeyboardEvent;
 import com.qtech.bubbles.event.MouseEvent;
 import com.qtech.bubbles.event.RenderEventPriority;
 import com.qtech.bubbles.event.SubscribeEvent;
-import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.event.type.KeyEventType;
 import com.qtech.bubbles.util.Util;
 import com.qtech.bubbles.util.helpers.MathHelper;
@@ -17,7 +17,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 
-public class OptionsTextEntry implements Listener {
+public class OptionsTextEntry extends Widget implements com.qtech.bubbles.api.event.KeyboardEvent.KeyboardEventListener, Listener {
     // Fonts.
     protected final Font defaultFont = new Font(Util.getGame().getSansFontName(), Font.PLAIN, 24);
 
@@ -36,16 +36,11 @@ public class OptionsTextEntry implements Listener {
     // Render priority/
     private RenderEventPriority renderEventPriority;
 
-    // Colors/
-    private final Color baseColor = new Color(96, 96, 96);
-    private final Color accentColor = new Color(0, 96, 128);
-
     // State
     protected boolean activated;
     protected Integer visualX;
     protected Integer visualY;
     protected boolean hovered;
-    private EventBus.Handler binding;
 
     // Constructor.
     public OptionsTextEntry(Rectangle bounds) {
@@ -69,6 +64,56 @@ public class OptionsTextEntry implements Listener {
     public void onMouse(MouseEvent evt) {
         if (evt.getButton() == 1) {
             activated = getBounds().contains(evt.getPoint());
+        }
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    @Override
+    public void onKeyboard(KeyEventType type, char key, int keyCode, KeyboardModifiers modifiers) {
+        if (!activated) return;
+
+        if (type == KeyEventType.PRESS || type == KeyEventType.HOLD) {
+            if (keyCode == KeyEvent.VK_BACK_SPACE) {
+                if (text.length() == 0) return;
+
+                String leftText = text.substring(0, cursorIndex - 1);
+                String rightText = text.substring(cursorIndex);
+
+                text = leftText + rightText;
+
+                cursorIndex = MathHelper.clamp(cursorIndex - 1, 0, text.length());
+                return;
+            }
+
+            if (keyCode == KeyEvent.VK_LEFT) {
+                cursorIndex = MathHelper.clamp(cursorIndex - 1, 0, text.length());
+                return;
+            }
+
+            if (keyCode == KeyEvent.VK_RIGHT) {
+                cursorIndex = MathHelper.clamp(cursorIndex + 1, 0, text.length());
+                return;
+            }
+
+            char c = key;
+
+            if (keyCode == KeyEvent.VK_DEAD_ACUTE) {
+                c = '\'';
+            }
+
+            if (keyCode == KeyEvent.VK_QUOTEDBL) {
+                c = '"';
+            }
+
+            if ((short) c >= 32) {
+//                text += c;
+                String leftText = text.substring(0, cursorIndex);
+                String rightText = text.substring(cursorIndex);
+
+                text = leftText + c + rightText;
+
+                cursorIndex++;
+            }
         }
     }
 
@@ -138,7 +183,8 @@ public class OptionsTextEntry implements Listener {
         return eventsActive;
     }
 
-    public void render(Graphics2D gg) {
+    @Override
+    public void paint(Graphics2D gg) {
         Integer vx = visualX;
         if (visualX == null) vx = getX();
         Integer vy = visualY;
@@ -146,7 +192,6 @@ public class OptionsTextEntry implements Listener {
         Rectangle bounds = new Rectangle(vx, vy, getBounds().width, getBounds().height);
 
         Point mousePos = MouseController.instance().getCurrentPoint();
-        boolean hoveredNew = mousePos != null && bounds.contains(mousePos);
         if (mousePos != null) {
             if (bounds.contains(mousePos)) {
                 Util.setCursor(QBubbles.getInstance().getTextCursor());
@@ -159,7 +204,6 @@ public class OptionsTextEntry implements Listener {
             }
         }
 
-        Color currentColor;
         if (activated) {
             gg.setColor(new Color(128, 128, 128));
             gg.fill(bounds);
@@ -204,6 +248,11 @@ public class OptionsTextEntry implements Listener {
             gg.drawLine(cursorX, getY() + getHeight() - 2, cursorX + width, getY() + getHeight() - 2);
             gg.drawLine(cursorX, getY() + getHeight() - 1, cursorX + width, getY() + getHeight() - 1);
         }
+    }
+
+    @Override
+    public void destroy() {
+
     }
 
     @SuppressWarnings("EmptyMethod")

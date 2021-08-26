@@ -1,6 +1,5 @@
 package com.qtech.bubbles.registry;
 
-import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.IRegistryEntry;
 import com.qtech.bubbles.common.RegistryEntry;
 import com.qtech.bubbles.common.ResourceLocation;

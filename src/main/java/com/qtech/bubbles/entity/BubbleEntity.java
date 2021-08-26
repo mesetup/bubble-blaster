@@ -4,7 +4,6 @@ import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.bubble.AbstractBubble;
 import com.qtech.bubbles.common.BubbleProperties;
 import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.entity.*;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.random.BubbleRandomizer;
 import com.qtech.bubbles.common.scene.Scene;
@@ -13,12 +12,8 @@ import com.qtech.bubbles.core.controllers.KeyboardController;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.entity.types.EntityType;
 import com.qtech.bubbles.environment.Environment;
-import com.qtech.bubbles.event.CollisionEvent;
-import com.qtech.bubbles.event.MouseMotionEvent;
-import com.qtech.bubbles.event.SubscribeEvent;
-import com.qtech.bubbles.event.TickEvent;
+import com.qtech.bubbles.event.*;
 import com.qtech.bubbles.event.bus.EventBus;
-import com.qtech.bubbles.event.RenderEvent;
 import com.qtech.bubbles.init.Bubbles;
 import com.qtech.bubbles.init.Entities;
 import com.qtech.bubbles.init.TextureCollections;
@@ -167,8 +162,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
 
             this.bubbleType.onCollision(this, evt.getTarget());
 
-            if (evt.getTarget() instanceof PlayerEntity) {
-                PlayerEntity playerEntity = (PlayerEntity) evt.getTarget();
+            if (evt.getTarget() instanceof PlayerEntity playerEntity) {
 
 //                System.out.println(((BubbleEntity)(evt.getSource())).getHardness());
 
@@ -278,7 +272,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
     @Override
     public synchronized void renderEntity(Graphics2D gg) {
         if (!areEventsBinded) return;
-        gg.drawImage(TextureCollections.BUBBLE_TEXTURES.get().get(new ResourceLocation(getBubbleType().getRegistryName().getNamespace(), getBubbleType().getRegistryName().getPath() + "/" + radius)), (int) x - radius / 2, (int) y - radius / 2, QBubbles.getInstance());
+        gg.drawImage(TextureCollections.BUBBLE_TEXTURES.get().get(new ResourceLocation(getBubbleType().getRegistryName().namespace(), getBubbleType().getRegistryName().path() + "/" + radius)), (int) x - radius / 2, (int) y - radius / 2, QBubbles.getInstance());
     }
 
     @Override

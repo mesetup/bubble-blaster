@@ -73,7 +73,7 @@ public class ClassicHUD extends HUD {
 
         try {
             // EffectInstance image.
-            Image effectImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/qbubbles/textures/gui/effect_banner.png")));
+            Image effectImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/bubbleblaster/textures/gui/effect_banner.png")));
 
             int i = 0;
             for (EffectInstance effectInstance : Objects.requireNonNull(player).getActiveEffects()) {

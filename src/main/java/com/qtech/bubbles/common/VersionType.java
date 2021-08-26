@@ -37,4 +37,3 @@ public enum VersionType implements Translatable {
         return "misc.version_type." + name;
     }
 }
-// DOWNLOAD https://www.errors.com

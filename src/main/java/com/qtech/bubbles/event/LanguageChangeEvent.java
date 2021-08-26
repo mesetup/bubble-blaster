@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 
+@SuppressWarnings("ClassCanBeRecord")
 public class LanguageChangeEvent {
     private final Locale from;
     private final Locale to;

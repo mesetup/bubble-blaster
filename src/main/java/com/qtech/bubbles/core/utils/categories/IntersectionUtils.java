@@ -26,20 +26,19 @@ public class IntersectionUtils {
      */
     public static Point getIntersectionPoint(Line line1, Line line2) {
 
-        if (doIntersect(line1, line2))//noinspection SpellCheckingInspection
-        {
+        if (doIntersect(line1, line2)) {
             double slope1 = line1.getSlope();
-            double yintercept1 = line1.getYintercept();
+            double yIntercept1 = line1.getYintercept();
             double slope2 = line2.getSlope();
-            double yintercept2 = line2.getYintercept();
+            double yIntercept2 = line2.getYintercept();
 
             /*
               calculate the intersection point coordinates (X,Y) using the formula
-              X = (yintercept2-yintercept1)/(slope1-slope2)
-              Y = (slope1*X)+yintercept1
+              X = (yIntercept2-yIntercept1)/(slope1-slope2)
+              Y = (slope1*X)+yIntercept1
              */
-            double X = roundValue((yintercept2 - yintercept1) / (slope1 - slope2));
-            double Y = roundValue((X * slope1) + yintercept1);
+            double X = roundValue((yIntercept2 - yIntercept1) / (slope1 - slope2));
+            double Y = roundValue((X * slope1) + yIntercept1);
 
             return new Point(X, Y);
         } else
