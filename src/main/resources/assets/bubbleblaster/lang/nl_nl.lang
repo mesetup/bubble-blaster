@@ -12,12 +12,12 @@ other.random=Onbepaald
 other.save=Opslaan
 
 # Effects
-effect.bubbleblaster.poison.name=Vergiftigd
-effect.bubbleblaster.blindness.name=Verblind
-effect.bubbleblaster.multi_score.name=Vermeerderde Score
-effect.bubbleblaster.speed_boost.name=Snelheid
-effect.bubbleblaster.attack_boost.name=Aanvals-boost
-effect.bubbleblaster.defense_boost.name=Verdedigings-boost
+statusEffect.bubbleblaster.poison.name=Vergiftigd
+statusEffect.bubbleblaster.blindness.name=Verblind
+statusEffect.bubbleblaster.multi_score.name=Vermeerderde Score
+statusEffect.bubbleblaster.speed_boost.name=Snelheid
+statusEffect.bubbleblaster.attack_boost.name=Aanvals-boost
+statusEffect.bubbleblaster.defense_boost.name=Verdedigings-boost
 
 # Informaties
 info.bubbleblaster.score=Punten
@@ -94,13 +94,13 @@ bubble.bubbleblaster.triple.description=Deze Bubbel heeft zelfs meer waarde dan 
 bubble.bubbleblaster.double_state.description=Deze Bubbel geeft je voor een bepaalde tijd dubbele waarde van bubbels die ja kapot maakt.
 bubble.bubbleblaster.triple_state.description=Deze Bubbel geeft je voor een bepaalde tijd driedubbele waarde van bubbels die je kapot maakt.
 bubble.bubbleblaster.blindness.description=Deze Bubbel is vervelend, bij aanraking zal het scherm donkerder worden alsof je blind bent. Zal tijdelijk zijn. Hoe groter de Bubbel, hoe donkerder het scherm zal zijn.
-bubble.bubbleblaster.poison.description=Deze Bubbel zal de speler ‘vergiftigen’, wat betekent dat het moeilijk zal zijn om te zien welke Bubbel welke is, en na verloop van tijd zal de speler schade oplopen. Trouwens, het effect is tijdelijk.
+bubble.bubbleblaster.poison.description=Deze Bubbel zal de speler ‘vergiftigen’, wat betekent dat het moeilijk zal zijn om te zien welke Bubbel welke is, en na verloop van tijd zal de speler schade oplopen. Trouwens, het statusEffect is tijdelijk.
 bubble.bubbleblaster.bounce.description=In ontwikkeling (WIP), de Stuiterbel zou de speler ervan weerkaatsen. Er zijn momenteel problemen mee.
 bubble.bubbleblaster.heal.description=Deze Bubbel zal de levens herstellen, zo simpel is het.
 bubble.bubbleblaster.hyper.description=In ontwikkeling (WIP), deze Bubbel heeft momenteel geen speciale opmerkingen.
 bubble.bubbleblaster.attack.description=Geeft je een ‘aanvals’-boost, wanneer je hem aanraakt, kun je bellen sneller vernietigen over een bepaalde periode.
-bubble.bubbleblaster.defense.description=Geeft je een ‘verdedigings’-boost, bij aanraking wordt de schade die je oploopt verminderd. Het effect is tijdelijk
+bubble.bubbleblaster.defense.description=Geeft je een ‘verdedigings’-boost, bij aanraking wordt de schade die je oploopt verminderd. Het statusEffect is tijdelijk
 bubble.bubbleblaster.accelerate.description=Deze Bubbel zal de snelheid van de speler boosten, zolang de speler de de Bubbel aanraakt, of in de Bubbel bent.
-bubble.bubbleblaster.speed_boost.description=Deze Bubbel zal je voor een bepaalde tijd laten versnellen. Het effect is echter wel tijdelijk.
+bubble.bubbleblaster.speed_boost.description=Deze Bubbel zal je voor een bepaalde tijd laten versnellen. Het statusEffect is echter wel tijdelijk.
 bubble.bubbleblaster.bubble_freeze.description=Deze Bubbel zal voor een bepaalde tijd alle bellen bevriezen.
 bubble.bubbleblaster.paralyze.description=Deze Bubbel zal de speler voor een bepaalde tijd verstenen.

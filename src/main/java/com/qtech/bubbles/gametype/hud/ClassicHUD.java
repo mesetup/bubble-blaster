@@ -1,16 +1,16 @@
 package com.qtech.bubbles.gametype.hud;
 
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.LoadedGame;
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.effect.EffectInstance;
+import com.qtech.bubbles.common.effect.StatusEffectInstance;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.gametype.HUD;
 import com.qtech.bubbles.common.text.translation.I18n;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
 import com.qtech.bubbles.core.utils.categories.TimeUtils;
 import com.qtech.bubbles.entity.player.PlayerEntity;
-import com.qtech.bubbles.event.SubscribeEvent;
 import com.qtech.bubbles.event.TickEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.gametype.ClassicType;
 import com.qtech.bubbles.util.helpers.MathHelper;
 
@@ -39,18 +39,18 @@ public class ClassicHUD extends HUD {
     }
 
     public void renderHUD(Graphics2D gg) {
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
         if (loadedGame == null) return;
 
         AbstractGameType gameType = loadedGame.getGameType();
         PlayerEntity player = gameType.getPlayer();
 
-        Rectangle2D topBar = new Rectangle2D.Double(0, 0, QBubbles.getInstance().getWidth(), 70);
-        Rectangle2D topShade = new Rectangle2D.Double(0, 71, QBubbles.getInstance().getWidth(), 30);
+        Rectangle2D topBar = new Rectangle2D.Double(0, 0, BubbleBlaster.getInstance().getWidth(), 70);
+        Rectangle2D topShade = new Rectangle2D.Double(0, 71, BubbleBlaster.getInstance().getWidth(), 30);
 
         if (gameOver) {
             gg.setColor(new Color(0, 0, 0, 128));
-            gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
+            gg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
         }
 
         // Top-bar.
@@ -76,22 +76,22 @@ public class ClassicHUD extends HUD {
             Image effectImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/bubbleblaster/textures/gui/effect_banner.png")));
 
             int i = 0;
-            for (EffectInstance effectInstance : Objects.requireNonNull(player).getActiveEffects()) {
+            for (StatusEffectInstance statusEffectInstance : Objects.requireNonNull(player).getActiveEffects()) {
                 // Graphics 2D
                 Graphics2D graphics2D = (Graphics2D) gg.create(320 + i * 196, 16, 192, 38);
 
                 // Format duration to string.
-                String time = TimeUtils.formatDuration(effectInstance.getRemainingTime());
+                String time = TimeUtils.formatDuration(statusEffectInstance.getRemainingTime());
 
                 // EffectInstance bar.
-                graphics2D.drawImage(effectImage, 0, 0, QBubbles.getInstance());
+                graphics2D.drawImage(effectImage, 0, 0, BubbleBlaster.getInstance());
 
                 // EffectInstance icon.
-                graphics2D.drawImage(effectInstance.getType().getIcon(32, 32, new Color(0, 191, 191)), 5, 3, QBubbles.getInstance());
+                graphics2D.drawImage(statusEffectInstance.getType().getIcon(32, 32, new Color(0, 191, 191)), 5, 3, BubbleBlaster.getInstance());
                 graphics2D.setColor(new Color(255, 255, 255, 192));
 
                 // Time. 0:00:00
-                GraphicsUtils.drawLeftAnchoredString(graphics2D, time, new Point2D.Double(56, 2), 35, new Font(QBubbles.getInstance().getFont().getFontName(), Font.BOLD, 16));
+                GraphicsUtils.drawLeftAnchoredString(graphics2D, time, new Point2D.Double(56, 2), 35, new Font(BubbleBlaster.getInstance().getFont().getFontName(), Font.BOLD, 16));
                 graphics2D.dispose();
 
                 // Next
@@ -150,7 +150,7 @@ public class ClassicHUD extends HUD {
         }
 
         gg.setColor(new Color(0, 165, 220));
-        GraphicsUtils.drawRightAnchoredString(gg, ((Integer) QBubbles.getFps()).toString(), new Point2D.Double(QBubbles.getInstance().getWidth() - 10, 10), 20, infoTitleFont);
+        GraphicsUtils.drawRightAnchoredString(gg, ((Integer) BubbleBlaster.getFps()).toString(), new Point2D.Double(BubbleBlaster.getInstance().getWidth() - 10, 10), 20, infoTitleFont);
 
         gg.setColor(Color.white);
 

@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.References;
 
 import java.io.File;
@@ -31,23 +31,23 @@ public class GameSettings {
 
         String json = "{}";
 
-        QBubbles.getLogger().info("Reloading settings file...");
+        BubbleBlaster.getLogger().info("Reloading settings file...");
 
         if (!settingsFile.exists()) {
             try {
-                QBubbles.getLogger().debug("Write settings file from resource...");
+                BubbleBlaster.getLogger().debug("Write settings file from resource...");
                 Files.copy(Objects.requireNonNull(getClass().getResourceAsStream("/settings.json")), settingsFile.toPath());
             } catch (IOException e) {
-                QBubbles.getLogger().error("Cannot write settings file from resource: " + settingsFile);
+                BubbleBlaster.getLogger().error("Cannot write settings file from resource: " + settingsFile);
                 e.printStackTrace();
             }
         }
 
         try {
-            QBubbles.getLogger().debug("Reading settings file...");
+            BubbleBlaster.getLogger().debug("Reading settings file...");
             json = Files.readString(settingsFile.toPath());
         } catch (IOException e) {
-            QBubbles.getLogger().error("Cannot read settings file: " + settingsFile.toPath());
+            BubbleBlaster.getLogger().error("Cannot read settings file: " + settingsFile.toPath());
             e.printStackTrace();
         }
 
@@ -55,9 +55,9 @@ public class GameSettings {
         try {
             parsed = gson.fromJson(json, JsonObject.class);
         } catch (Exception e) {
-            QBubbles.getLogger().fatal("Cannot read Game-settings file. Traceback follows:");
+            BubbleBlaster.getLogger().fatal("Cannot read Game-settings file. Traceback follows:");
             e.printStackTrace();
-            QBubbles.getInstance().shutdown();
+            BubbleBlaster.getInstance().shutdown();
             return;
         }
         if (!parsed.has("lang")) {
@@ -96,24 +96,24 @@ public class GameSettings {
             save();
         }
 
-        QBubbles.getLogger().info("Settings file reloaded!");
+        BubbleBlaster.getLogger().info("Settings file reloaded!");
     }
 
     public synchronized void save() {
         File settingsFile = References.SETTINGS_FILE;
 
-        QBubbles.getLogger().info("Saving settings file...");
+        BubbleBlaster.getLogger().info("Saving settings file...");
 
         String json = gson.toJson(parsed, JsonObject.class);
         try {
-            QBubbles.getLogger().info("Writing settings file...");
+            BubbleBlaster.getLogger().info("Writing settings file...");
             Files.writeString(settingsFile.toPath(), json, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
         } catch (IOException e) {
-            QBubbles.getLogger().error("Cannot write settings file to: " + settingsFile);
+            BubbleBlaster.getLogger().error("Cannot write settings file to: " + settingsFile);
             e.printStackTrace();
         }
 
-        QBubbles.getLogger().info("Settings file saved!");
+        BubbleBlaster.getLogger().info("Settings file saved!");
     }
 
     public static GameSettings instance() {

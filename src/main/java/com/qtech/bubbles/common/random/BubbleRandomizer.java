@@ -4,8 +4,8 @@ import com.qtech.bubbles.annotation.FieldsAreNonnullByDefault;
 import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
 import com.qtech.bubbles.bubble.AbstractBubble;
 import com.qtech.bubbles.common.BubbleProperties;
-import com.qtech.bubbles.common.bubble.BubbleSystem;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
+import com.qtech.bubbles.entity.bubble.BubbleSystem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.geom.Rectangle2D;

@@ -1,12 +1,13 @@
 package com.qtech.bubbles.core.controllers;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.event.KeyboardEvent;
+import com.qtech.bubbles.BubbleBlaster;
+import com.qtech.bubbles.event.input.KeyboardEvent;
 import com.qtech.bubbles.event.type.KeyEventType;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * @see MouseController
@@ -14,7 +15,7 @@ import java.util.HashSet;
  */
 public class KeyboardController extends KeyAdapter {
     private static final KeyboardController INSTANCE = new KeyboardController();
-    private final HashSet<Integer> pressed = new HashSet<>();
+    private final Set<Integer> pressed = new CopyOnWriteArraySet<>();
 
     public KeyboardController() {
     }
@@ -23,34 +24,34 @@ public class KeyboardController extends KeyAdapter {
         return INSTANCE;
     }
 
-    public synchronized boolean isPressed(int keyCode) {
+    public boolean isPressed(int keyCode) {
         return pressed.contains(keyCode);
     }
 
     @Override
-    public synchronized void keyPressed(KeyEvent e) {
-        if (QBubbles.getEventBus() == null) return;
+    public void keyPressed(KeyEvent e) {
+        if (BubbleBlaster.getEventBus() == null) return;
 
         if (isPressed(e.getKeyCode())) {
-            QBubbles.getEventBus().post(new KeyboardEvent(QBubbles.getInstance(), this, e, KeyEventType.HOLD));
+            BubbleBlaster.getEventBus().post(new KeyboardEvent(BubbleBlaster.getInstance(), this, e, KeyEventType.HOLD));
         } else {
             pressed.add(e.getKeyCode());
-            QBubbles.getEventBus().post(new KeyboardEvent(QBubbles.getInstance(), this, e, KeyEventType.PRESS));
+            BubbleBlaster.getEventBus().post(new KeyboardEvent(BubbleBlaster.getInstance(), this, e, KeyEventType.PRESS));
         }
     }
 
     @Override
-    public synchronized void keyReleased(KeyEvent e) {
-        if (QBubbles.getEventBus() == null) return;
+    public void keyReleased(KeyEvent e) {
+        if (BubbleBlaster.getEventBus() == null) return;
 
         pressed.remove(e.getKeyCode());
-        QBubbles.getEventBus().post(new KeyboardEvent(QBubbles.getInstance(), this, e, KeyEventType.RELEASE));
+        BubbleBlaster.getEventBus().post(new KeyboardEvent(BubbleBlaster.getInstance(), this, e, KeyEventType.RELEASE));
     }
 
     @Override
-    public synchronized void keyTyped(KeyEvent e) {
-        if (QBubbles.getEventBus() == null) return;
+    public void keyTyped(KeyEvent e) {
+        if (BubbleBlaster.getEventBus() == null) return;
 
-        QBubbles.getEventBus().post(new KeyboardEvent(QBubbles.getInstance(), this, e, KeyEventType.TYPE));
+        BubbleBlaster.getEventBus().post(new KeyboardEvent(BubbleBlaster.getInstance(), this, e, KeyEventType.TYPE));
     }
 }

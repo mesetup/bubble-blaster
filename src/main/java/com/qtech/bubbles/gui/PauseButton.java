@@ -1,14 +1,14 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.interfaces.Listener;
 import com.qtech.bubbles.core.controllers.MouseController;
-import com.qtech.bubbles.event.MouseEvent;
-import com.qtech.bubbles.event.RenderEventPriority;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.RenderEventPriority;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.event.bus.EventBus;
+import com.qtech.bubbles.event.input.MouseEvent;
 import com.qtech.bubbles.event.type.MouseEventType;
-import com.qtech.bubbles.graphics.Border;
+import com.qtech.bubbles.gui.border.Border;
 import com.qtech.bubbles.util.Util;
 
 import java.awt.*;
@@ -137,11 +137,11 @@ public class PauseButton extends Widget implements Listener {
         boolean hoveredNew = mousePos != null && bounds.contains(mousePos);
         if (mousePos != null) {
             if (bounds.contains(mousePos)) {
-                Util.setCursor(QBubbles.getInstance().getPointerCursor());
+                Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
                 hovered = true;
             } else {
                 if (hovered) {
-                    Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+                    Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
                     hovered = false;
                 }
             }
@@ -158,20 +158,20 @@ public class PauseButton extends Widget implements Listener {
             gg.setPaint(p);
             Border border = new Border(1, 1, 1, 1);
             border.setPaint(new Color(255, 255, 255, 128));
-            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
+            border.paintBorder(BubbleBlaster.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
             gg.setPaint(old);
 
             Border border1 = new Border(0, 0, 2, 0);
             border1.setPaint(p);
-            border1.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
+            border1.paintBorder(BubbleBlaster.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
 
             textColor = Color.white;
         } else if (hovered) {
             gg.setStroke(new BasicStroke(4.0f));
 
             Paint old = gg.getPaint();
-            double shiftX = ((double)bounds.width * 2) * QBubbles.getTicks() / (QBubbles.TPS * 10);
-            GradientPaint p = new GradientPaint(bounds.x + ((float) shiftX - bounds.width), 0, new Color(0, 192, 255), bounds.x + (float)shiftX, 0f, new Color(0, 255, 192), true);
+            double shiftX = ((double) bounds.width * 2) * BubbleBlaster.getTicks() / (BubbleBlaster.TPS * 10);
+            GradientPaint p = new GradientPaint(bounds.x + ((float) shiftX - bounds.width), 0, new Color(0, 192, 255), bounds.x + (float) shiftX, 0f, new Color(0, 255, 192), true);
             gg.setPaint(p);
 
             gg.setColor(new Color(255, 255, 255, 128));
@@ -179,7 +179,7 @@ public class PauseButton extends Widget implements Listener {
 
             Border border1 = new Border(0, 0, 2, 0);
             border1.setPaint(p);
-            border1.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
+            border1.paintBorder(BubbleBlaster.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
 //            gg.draw(new Rectangle(bounds.x - 2, bounds.y - 2, bounds.width + 4, bounds.height + 4));
 
             gg.setPaint(old);
@@ -213,24 +213,24 @@ public class PauseButton extends Widget implements Listener {
 
     @Override
     public void bindEvents() {
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
         eventsActive = true;
 
         Point mousePos = MouseController.instance().getCurrentPoint();
         boolean hoveredNew = mousePos != null && bounds.contains(mousePos);
         if (mousePos != null && bounds.contains(mousePos)) {
-            Util.setCursor(QBubbles.getInstance().getPointerCursor());
+            Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
             hovered = true;
         }
     }
 
     @Override
     public void unbindEvents() {
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
         eventsActive = false;
 
         if (hovered) {
-            Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+            Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
             hovered = false;
         }
     }

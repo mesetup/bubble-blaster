@@ -2,6 +2,7 @@ package com.qtech.test.bubbles;
 
 import com.qtech.bubbles.core.controllers.MouseController;
 import com.qtech.bubbles.gui.ScrollBarUI;
+import com.qtech.bubbles.gui.Window;
 import javafx.geometry.Orientation;
 
 import javax.swing.*;

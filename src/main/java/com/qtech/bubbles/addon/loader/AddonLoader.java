@@ -5,17 +5,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.addon.Scanner;
 import com.qtech.bubbles.common.References;
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.addon.Addon;
-import com.qtech.bubbles.common.addon.AddonObject;
-import com.qtech.bubbles.common.addon.QBubblesAddon;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.common.crash.CrashCategory;
 import com.qtech.bubbles.common.crash.CrashReport;
+import com.qtech.bubbles.common.mod.Mod;
+import com.qtech.bubbles.common.mod.ModInstance;
+import com.qtech.bubbles.common.mod.ModObject;
 import com.qtech.bubbles.common.text.translation.LanguageMap;
-import com.qtech.bubbles.event.old.ADLAddonSetupEvent;
+import com.qtech.bubbles.event.load.AddonSetupEvent;
 import com.qtech.bubbles.registry.AddonManager;
 import com.qtech.bubbles.registry.LocaleManager;
 import com.qtech.bubbles.screen.LoadScreen;
@@ -50,7 +50,7 @@ public class AddonLoader {
         this.loadScreen = loadScreen;
         boolean existsBefore = true;
 
-        addonClassLoader = new AddonClassLoader(QBubbles.getMainClassLoader());
+        addonClassLoader = new AddonClassLoader(BubbleBlaster.getMainClassLoader());
 
         if (!ADDONS_DIR.exists()) {
             existsBefore = false;
@@ -71,7 +71,7 @@ public class AddonLoader {
             }
         }
 
-        URL location = QBubbles.class.getProtectionDomain().getCodeSource().getLocation();
+        URL location = BubbleBlaster.class.getProtectionDomain().getCodeSource().getLocation();
         try {
             File file = new File(location.toURI());
 
@@ -112,8 +112,8 @@ public class AddonLoader {
 
         LOGGER.info(String.format("Constructing Mods: %s", StringUtils.join(AddonManager.instance().keys(), ", ")));
 
-        AddonObject<?> addonObject;
-        for (AddonObject<?> object : AddonManager.instance().values()) {
+        ModObject<?> modObject;
+        for (ModObject<?> object : AddonManager.instance().values()) {
             loadScreen.logInfo(object.getNamespace());
             try {
                 // Create eventbus and logger for addon.
@@ -123,10 +123,10 @@ public class AddonLoader {
                 addonManager.registerAddonObject(object);
 
                 // Create java addon instance.
-                Class<? extends QBubblesAddon> addonClass = object.getAddonClass();
-                Constructor<? extends QBubblesAddon> constructor = addonClass.getConstructor(Logger.class, String.class, AddonObject.class);
+                Class<? extends ModInstance> addonClass = object.getAddonClass();
+                Constructor<? extends ModInstance> constructor = addonClass.getConstructor(Logger.class, String.class, ModObject.class);
                 constructor.setAccessible(true);
-                QBubblesAddon addon = constructor.newInstance(logger, object.getAnnotation().addonId(), object);
+                ModInstance addon = constructor.newInstance(logger, object.getAnnotation().addonId(), object);
 
                 // Register java addon.
                 addonManager.registerAddon(addon);
@@ -145,7 +145,7 @@ public class AddonLoader {
     }
 
     public void addonSetup() {
-        QBubbles.getEventBus().post(new ADLAddonSetupEvent(this));
+        BubbleBlaster.getEventBus().post(new AddonSetupEvent(this));
 
         LocaleManager.getManager().register("af_za");
         LocaleManager.getManager().register("el_gr");
@@ -171,7 +171,7 @@ public class AddonLoader {
                 langMap.injectInst(stream);
             }
 
-            for (AddonObject<?> object : AddonManager.instance().values()) {
+            for (ModObject<?> object : AddonManager.instance().values()) {
                 String addonId = object.getAnnotation().addonId();
 
                 resourcePath = "/assets/" + addonId + "/lang/" + locale.toString().toLowerCase() + ".lang";
@@ -195,7 +195,7 @@ public class AddonLoader {
         } else {
             LanguageMap.inject(stream);
         }
-        for (AddonObject<?> object : AddonManager.instance().values()) {
+        for (ModObject<?> object : AddonManager.instance().values()) {
             String addonId = object.getAnnotation().addonId();
 
             resourcePath = "/assets/" + addonId + "/lang/" + GameSettings.instance().getLanguage() + ".lang";
@@ -291,7 +291,7 @@ public class AddonLoader {
                 if (element.isJsonObject()) {
                     JsonObject addonJson = element.getAsJsonObject();
                     String addonId = addonJson.getAsJsonPrimitive("addonId").getAsString();
-                    ResourceLocation.testNamespace(addonId);
+                    ResourceEntry.testNamespace(addonId);
 
                     missing.add(addonId);
                     fromJson.add(addonId);
@@ -302,10 +302,10 @@ public class AddonLoader {
 
             scanResults.put(file, scanResult);
 
-            List<Class<?>> classes = scanResult.getClasses(Addon.class);
+            List<Class<?>> classes = scanResult.getClasses(Mod.class);
             for (Class<?> clazz : classes) {
-                Addon addon = clazz.getDeclaredAnnotation(Addon.class);
-                if (addon != null) {
+                Mod mod = clazz.getDeclaredAnnotation(Mod.class);
+                if (mod != null) {
                     boolean flag = false;
                     for (Constructor<?> constructor : clazz.getConstructors()) {
                         if (constructor.getParameterCount() == 3) {
@@ -318,18 +318,18 @@ public class AddonLoader {
                         throw new IllegalArgumentException("Addon has no constructor with 3 parameters. (" + clazz.getName() + ")");
                     }
 
-                    ResourceLocation.testNamespace(addon.addonId());
+                    ResourceEntry.testNamespace(mod.addonId());
 
                     internalAddons++;
 
                     AddonContainer addonContainer = new AddonContainer() {
                         private final AddonInfo addonInfo = new AddonInfo(this);
-                        private final AddonObject<QBubblesAddon> addonObject;
-                        private final JsonObject addonJson = addonJsons.get(addon.addonId());
+                        private final ModObject<ModInstance> addonObject;
+                        private final JsonObject addonJson = addonJsons.get(mod.addonId());
 
                         {
-                            if (QBubblesAddon.class.isAssignableFrom(clazz)) {
-                                addonObject = new AddonObject<>(addon.addonId(), this, addon, (Class<QBubblesAddon>) clazz);
+                            if (ModInstance.class.isAssignableFrom(clazz)) {
+                                addonObject = new ModObject<>(mod.addonId(), this, mod, (Class<ModInstance>) clazz);
                             } else {
                                 throw new ClassCastException("Tried to cast invalid class for addon: " + getAddonId());
                             }
@@ -337,7 +337,7 @@ public class AddonLoader {
 
                         @Override
                         public String getAddonId() {
-                            return addon.addonId();
+                            return mod.addonId();
                         }
 
                         @Override
@@ -366,23 +366,23 @@ public class AddonLoader {
                         }
 
                         @Override
-                        public AddonObject<? extends QBubblesAddon> getAddonObject() {
+                        public ModObject<? extends ModInstance> getAddonObject() {
                             return addonObject;
                         }
 
                         @Override
-                        public QBubblesAddon getJavaAddon() {
+                        public ModInstance getJavaAddon() {
                             return getAddonObject().getAddon();
                         }
                     };
 
                     com.qtech.bubbles.addon.loader.AddonManager.registerContainer(addonContainer);
-                    AddonManager.instance().register(addon.addonId(), addonContainer.getAddonObject());
+                    AddonManager.instance().register(mod.addonId(), addonContainer.getAddonObject());
 
-                    if (!fromJson.contains(addon.addonId())) {
-                        throw new IllegalArgumentException("Missing addon with ID " + addon.addonId() + " in the addon metadata.");
+                    if (!fromJson.contains(mod.addonId())) {
+                        throw new IllegalArgumentException("Missing addon with ID " + mod.addonId() + " in the addon metadata.");
                     }
-                    missing.remove(addon.addonId());
+                    missing.remove(mod.addonId());
                 }
             }
 

@@ -1,10 +1,9 @@
 package com.qtech.bubbles.entity;
 
 import com.qtech.bubbles.common.BubbleProperties;
-import com.qtech.bubbles.common.entity.AbstractBubbleEntity;
-import com.qtech.bubbles.common.entity.Attribute;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.random.BubbleRandomizer;
+import com.qtech.bubbles.entity.attribute.Attribute;
 import com.qtech.bubbles.entity.types.EntityType;
 import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.init.Entities;

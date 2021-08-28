@@ -1,8 +1,8 @@
 package com.qtech.bubbles.event.bus;
 
 import com.qtech.bubbles.event.Event;
-import com.qtech.bubbles.event.EventHandler;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.EventHandler;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

@@ -1,9 +1,8 @@
 package com.qtech.bubbles.command;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.bubble.AbstractBubble;
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.command.CommandExecutor;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.registry.Registry;
@@ -42,7 +41,7 @@ public class SpawnCommand implements CommandExecutor {
             if (args[0].equals("spawn")) {
                 AbstractBubble bubble;
                 try {
-                    bubble = Registry.getRegistry(AbstractBubble.class).get(ResourceLocation.fromString(args[1]));
+                    bubble = Registry.getRegistry(AbstractBubble.class).get(ResourceEntry.fromString(args[1]));
                 } catch (ValueError exception) {
                     player.sendMessage("Invalid key: " + args[1]);
                     return false;
@@ -57,7 +56,7 @@ public class SpawnCommand implements CommandExecutor {
                 String json = StringUtils.join(jsonParts, ' ');
 
                 try {
-                    Objects.requireNonNull(QBubbles.getInstance().getEnvironment()).spawnEntityFromState(BsonDocument.parse(json));
+                    Objects.requireNonNull(BubbleBlaster.getInstance().getEnvironment()).spawnEntityFromState(BsonDocument.parse(json));
                 } catch (Exception e) {
                     e.printStackTrace();
                     player.sendMessage("Couldn't spawn entity.");

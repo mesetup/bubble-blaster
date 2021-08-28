@@ -4,16 +4,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
+/**
+ * Percentage utility object.
+ *
+ * @author Quinten
+ * @since 1.0.0
+ */
 public record Percentage(double percentage) implements Serializable, Comparable<Percentage> {
     public static Percentage toPercentage(double value) {
         return new Percentage(value * 100);
     }
 
-    public double getPercentage() {
+    public double percentage() {
         return percentage;
     }
 
-    public double getValue() {
+    public double calue() {
         return percentage / 100;
     }
 

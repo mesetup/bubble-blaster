@@ -12,12 +12,12 @@ other.random=随机
 other.save=保存
 
 # Effects.
-effect.bubbleblaster.poison.name=中毒
-effect.bubbleblaster.blindness.name=瞎了
-effect.bubbleblaster.multi_score.name=多得分
-effect.bubbleblaster.speed_boost.name=提速
-effect.bubbleblaster.attack_boost.name=攻击助推
-effect.bubbleblaster.defense_boost.name=防御助推
+statusEffect.bubbleblaster.poison.name=中毒
+statusEffect.bubbleblaster.blindness.name=瞎了
+statusEffect.bubbleblaster.multi_score.name=多得分
+statusEffect.bubbleblaster.speed_boost.name=提速
+statusEffect.bubbleblaster.attack_boost.name=攻击助推
+statusEffect.bubbleblaster.defense_boost.name=防御助推
 
 # Informations
 info.bubbleblaster.score=得分

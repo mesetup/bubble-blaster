@@ -1,25 +1,25 @@
 package com.qtech.bubbles.event;
 
-import com.google.common.eventbus.EventBus;
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 
+@Deprecated
 public class PauseTickEvent extends Event {
-    private final QBubbles main;
+    private final BubbleBlaster main;
 
-    public PauseTickEvent(QBubbles main) {
+    public PauseTickEvent(BubbleBlaster main) {
         this.main = main;
     }
 
-    public QBubbles getMain() {
+    public BubbleBlaster getMain() {
         return main;
     }
 
     /**
      * Get the current tick speed. (TPS)
      *
-     * @deprecated Is since 1.0.0 always 0.05d and therefore not needed.
      * @return always 0.05d (20th of a second).
-     * @see QBubbles#TPS
+     * @see BubbleBlaster#TPS
+     * @deprecated Is since 1.0.0 always 0.05d and therefore not needed.
      */
     @Deprecated
     public double getDeltaTime() {

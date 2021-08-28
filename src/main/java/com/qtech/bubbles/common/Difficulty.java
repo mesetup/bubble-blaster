@@ -1,5 +1,11 @@
 package com.qtech.bubbles.common;
 
+/**
+ * Difficulty enum, used as api for difficulty information.
+ *
+ * @author Quinten
+ * @since 1.0.0
+ */
 public enum Difficulty {
     BABY(0.0625f),  // Too easy
     EASY(0.5f),
@@ -9,13 +15,13 @@ public enum Difficulty {
     APOCALYPSE(8.0f),
     IMPOSSIBLE(256.0f);
 
-    private final float defaultLocal;
+    private final float plainModifier;
 
-    Difficulty(float defaultLocal) {
-        this.defaultLocal = defaultLocal;
+    Difficulty(float modifier) {
+        this.plainModifier = modifier;
     }
 
-    public float getDefaultLocal() {
-        return defaultLocal;
+    public float getPlainModifier() {
+        return plainModifier;
     }
 }

@@ -1,15 +1,15 @@
 package com.qtech.test.bubbles;
 
-import com.qtech.bubbles.graphics.Animation;
+import com.qtech.bubbles.graphics.ValueAnimator;
 
 public class TestAnimation {
     public static void main(String[] args) {
-        Animation animation = new Animation(100, 200, 30d);
-        animation.start();
+        ValueAnimator valueAnimator = new ValueAnimator(100, 200, 30d);
+        valueAnimator.start();
 
         //noinspection InfiniteLoopStatement
         while (true) {
-            animation.animate();
+            valueAnimator.animate();
             try {
                 //noinspection BusyWait
                 Thread.sleep(1000);

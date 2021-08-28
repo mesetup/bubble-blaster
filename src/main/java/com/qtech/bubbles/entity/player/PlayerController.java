@@ -1,6 +1,6 @@
 package com.qtech.bubbles.entity.player;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.core.controllers.KeyboardController;
 import com.qtech.bubbles.environment.Environment;
@@ -14,7 +14,7 @@ public class PlayerController {
 
     public void tick() {
         KeyboardController keyboard = KeyboardController.instance();
-        Environment environment = QBubbles.getInstance().environment;
+        Environment environment = BubbleBlaster.getInstance().environment;
 
         if (environment != null) {
             AbstractGameType gameType = environment.getGameType();

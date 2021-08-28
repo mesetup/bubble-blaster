@@ -1,13 +1,13 @@
 package com.qtech.bubbles.bubble;
 
-import com.qtech.bubbles.common.RegistryEntry;
-import com.qtech.bubbles.common.effect.EffectInstance;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.effect.StatusEffectInstance;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.random.Rng;
 import com.qtech.bubbles.entity.BubbleEntity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.entity.types.EntityType;
+import com.qtech.bubbles.registry.RegistryEntry;
 import com.qtech.utilities.python.builtins.ValueError;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -80,7 +80,7 @@ public abstract class AbstractBubble extends RegistryEntry implements Serializab
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //     Effect     //
     ////////////////////
-    public EffectInstance getEffect(BubbleEntity source, Entity target) {
+    public StatusEffectInstance getEffect(BubbleEntity source, Entity target) {
         return effect.get(source, target);
     }
 
@@ -163,7 +163,7 @@ public abstract class AbstractBubble extends RegistryEntry implements Serializab
 
     @FunctionalInterface
     public interface BubbleEffectCallback {
-        EffectInstance get(BubbleEntity source, Entity target);
+        StatusEffectInstance get(BubbleEntity source, Entity target);
     }
 
     public static Builder builder() {
@@ -191,7 +191,7 @@ public abstract class AbstractBubble extends RegistryEntry implements Serializab
         public AbstractBubble build() {
             AbstractBubble bubbleType = new AbstractBubble() {
                 @Override
-                public EffectInstance getEffect(BubbleEntity source, Entity target) {
+                public StatusEffectInstance getEffect(BubbleEntity source, Entity target) {
                     return _bubbleEffect.get(source, target);
                 }
             };
@@ -301,8 +301,8 @@ public abstract class AbstractBubble extends RegistryEntry implements Serializab
     //     Collision     //
     ///////////////////////
     public void onCollision(BubbleEntity source, Entity target) {
-        EffectInstance effectInstance = getEffect(source, target);
-        if (effectInstance == null) {
+        StatusEffectInstance statusEffectInstance = getEffect(source, target);
+        if (statusEffectInstance == null) {
             return;
         }
 
@@ -312,7 +312,7 @@ public abstract class AbstractBubble extends RegistryEntry implements Serializab
             PlayerEntity player = (PlayerEntity) target;
             try {
                 source.setEffectApplied(true);
-                player.addEffect(effectInstance);
+                player.addEffect(statusEffectInstance);
             } catch (ValueError valueError) {
                 valueError.printStackTrace();
             }

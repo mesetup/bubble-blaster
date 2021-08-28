@@ -1,9 +1,9 @@
 package com.qtech.bubbles.bubble;
 
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.core.utils.categories.ColorUtils;
 import com.qtech.bubbles.entity.BubbleEntity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
@@ -16,7 +16,7 @@ public class HealBubble extends AbstractBubble {
     public HealBubble() {
         colors = ColorUtils.multiConvertHexToRgb("#ffffff");
         colors = new Color[]{new Color(0, 192, 0), new Color(0, 0, 0, 0), new Color(0, 192, 0), new Color(0, 192, 0)};
-        setRegistryName(ResourceLocation.fromString("qbubbles:heal_bubble"));
+        setRegistryName(ResourceEntry.fromString("qbubbles:heal_bubble"));
 
         setPriority(4000000);
         setRadius(new IntRange(17, 70));

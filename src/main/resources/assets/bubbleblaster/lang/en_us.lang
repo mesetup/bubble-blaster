@@ -12,12 +12,12 @@ other.random=Random
 other.save=Save
 
 # Effects
-effect.bubbleblaster.poison.name=Poisoned
-effect.bubbleblaster.blindness.name=Blinded
-effect.bubbleblaster.multi_score.name=Multi Score
-effect.bubbleblaster.speed_boost.name=Speed Boost
-effect.bubbleblaster.attack_boost.name=Attack Boost
-effect.bubbleblaster.defense_boost.name=Defense Boost
+statusEffect.bubbleblaster.poison.name=Poisoned
+statusEffect.bubbleblaster.blindness.name=Blinded
+statusEffect.bubbleblaster.multi_score.name=Multi Score
+statusEffect.bubbleblaster.speed_boost.name=Speed Boost
+statusEffect.bubbleblaster.attack_boost.name=Attack Boost
+statusEffect.bubbleblaster.defense_boost.name=Defense Boost
 
 # Informations
 info.bubbleblaster.score=Score
@@ -87,13 +87,13 @@ bubble.bubbleblaster.triple.description=This bubble has even more value in score
 bubble.bubbleblaster.double_state.description=This bubble gives you for an period of time double the score of bubbles.
 bubble.bubbleblaster.triple_state.description=This bubble gives you for an period of time triple the score of bubbles.
 bubble.bubbleblaster.blindness.description=This bubble is annoying, when touching, it will darken the screen like if you were blind. Will be temporary, how larger the bubble how darker the screen will be.
-bubble.bubbleblaster.poison.description=This bubble will ‘poison’ the player, meaning it will hard to see what bubble is which, and over time the player will take damage. Btw, the effect is temporary.
+bubble.bubbleblaster.poison.description=This bubble will ‘poison’ the player, meaning it will hard to see what bubble is which, and over time the player will take damage. Btw, the statusEffect is temporary.
 bubble.bubbleblaster.bounce.description=Work In Progress (WIP), the bounce bubble would bounce the player from it. There're currently problems with it.
 bubble.bubbleblaster.heal.description=This bubble will restore health, so simple is it.
 bubble.bubbleblaster.hyper.description=Work In Progress (WIP), this bubble has currently no special notes.
 bubble.bubbleblaster.attack.description=Gives you an ‘attack’ boost, when touched you can destroy bubbles faster for an period of time.
 bubble.bubbleblaster.defense.description=Gives you an ‘defense’ boost, when touched your damage that you take will be reduced for an perod of time.
 bubble.bubbleblaster.accelerate.description=This bubble will boost the player's speed as long it's inside or touching the bubble.
-bubble.bubbleblaster.speed_boost.description=This bubble will increase the speed of the player for an period of time. Btw, the effect is temporary.
+bubble.bubbleblaster.speed_boost.description=This bubble will increase the speed of the player for an period of time. Btw, the statusEffect is temporary.
 bubble.bubbleblaster.bubble_freeze.description=This bubble will freeze all bubbles for an period of time.
 bubble.bubbleblaster.paralyze.description=This bubble will paralyze the player for an period of time.

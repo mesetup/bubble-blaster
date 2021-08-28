@@ -1,7 +1,6 @@
 package com.qtech.bubbles.command;
 
-import com.qtech.bubbles.common.command.TabExecutor;
-import com.qtech.bubbles.common.command.tabcomplete.TabCompleter;
+import com.qtech.bubbles.command.tabcomplete.TabCompleter;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
 package com.qtech.bubbles.bubble;
 
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.effect.EffectInstance;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.ResourceEntry;
+import com.qtech.bubbles.common.effect.StatusEffectInstance;
 import com.qtech.bubbles.entity.BubbleEntity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.init.Effects;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
@@ -16,7 +16,7 @@ public class DefenseBoostBubble extends AbstractBubble {
     public DefenseBoostBubble() {
 //        colors = ColorUtils.multiConvertHexToRgb("#ffffff");
         colors = new Color[]{new Color(0, 255, 192), new Color(64, 255, 208), new Color(128, 255, 224), new Color(192, 255, 240), new Color(255, 255, 255)};
-        setRegistryName(ResourceLocation.fromString("qbubbles:defense_bubble"));
+        setRegistryName(ResourceEntry.fromString("qbubbles:defense_bubble"));
 
         setPriority(131_072);
         setRadius(new IntRange(21, 70));
@@ -30,7 +30,7 @@ public class DefenseBoostBubble extends AbstractBubble {
     }
 
     @Override
-    public EffectInstance getEffect(BubbleEntity source, Entity target) {
-        return new EffectInstance(Effects.DEFENSE_BOOST.get(), source.getRadius() / 8, (byte) ((byte) source.getRadius() / 24 + 1));
+    public StatusEffectInstance getEffect(BubbleEntity source, Entity target) {
+        return new StatusEffectInstance(Effects.DEFENSE_BOOST.get(), source.getRadius() / 8, (byte) ((byte) source.getRadius() / 24 + 1));
     }
 }

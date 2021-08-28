@@ -1,12 +1,11 @@
 package com.qtech.bubbles.screen;
 
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.LoadedGame;
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.command.CommandConstructor;
-import com.qtech.bubbles.common.screen.Screen;
+import com.qtech.bubbles.command.CommandConstructor;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
-import com.qtech.bubbles.event.KeyboardEvent;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
+import com.qtech.bubbles.event.input.KeyboardEvent;
 import com.qtech.bubbles.event.type.KeyEventType;
 import com.qtech.bubbles.util.Util;
 import com.qtech.bubbles.util.helpers.MathHelper;
@@ -30,12 +29,12 @@ public class CommandScreen extends Screen {
 
     @Override
     public void init() {
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
     }
 
     @Override
     public boolean onClose(Screen to) {
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
 
         currentText = "/";
         cursorIndex = 1;
@@ -45,7 +44,7 @@ public class CommandScreen extends Screen {
 
     @SubscribeEvent
     public void onKeyboard(KeyboardEvent evt) {
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
 
         if (loadedGame == null) {
             return;
@@ -77,7 +76,7 @@ public class CommandScreen extends Screen {
             if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_ENTER) {
                 if (currentText.charAt(0) != '/') {
                     Objects.requireNonNull(loadedGame.getGameType().getPlayer()).sendMessage("Not a command, start with a ‘/’ for a command.");
-                    QBubbles.getInstance().displayScene(null);
+                    BubbleBlaster.getInstance().showScreen(null);
                     return;
                 }
 
@@ -86,16 +85,16 @@ public class CommandScreen extends Screen {
 
                 if (!CommandConstructor.execute(parsed.get(0), loadedGame.getGameType().getPlayer(), args)) {
                     Objects.requireNonNull(loadedGame.getGameType().getPlayer()).sendMessage("Command ‘" + parsed.get(0) + "’ is non-existent.");
-                    QBubbles.getInstance().displayScene(null);
+                    BubbleBlaster.getInstance().showScreen(null);
                     return;
                 }
 
-                QBubbles.getInstance().displayScene(null);
+                BubbleBlaster.getInstance().showScreen(null);
                 return;
             }
 
             if (evt.getType() == KeyEventType.PRESS && evt.getParentEvent().getKeyCode() == KeyEvent.VK_ESCAPE) {
-                QBubbles.getInstance().displayScene(null);
+                BubbleBlaster.getInstance().showScreen(null);
                 return;
             }
 
@@ -128,19 +127,19 @@ public class CommandScreen extends Screen {
         }
     }
 
-    public void render(QBubbles game, Graphics2D gg) {
-        if (!QBubbles.getInstance().isGameLoaded()) {
+    public void render(BubbleBlaster game, Graphics2D gg) {
+        if (!BubbleBlaster.getInstance().isGameLoaded()) {
             return;
         }
 
         gg.setColor(new Color(0, 0, 0, 64));
-        gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
+        gg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
 
         gg.setColor(new Color(0, 0, 0, 128));
-        gg.fillRect(0, QBubbles.getInstance().getHeight() - 32, QBubbles.getInstance().getWidth(), 32);
+        gg.fillRect(0, BubbleBlaster.getInstance().getHeight() - 32, BubbleBlaster.getInstance().getWidth(), 32);
 
         gg.setColor(new Color(255, 255, 255, 255));
-        GraphicsUtils.drawLeftAnchoredString(gg, currentText, new Point2D.Double(2, QBubbles.getInstance().getHeight() - 28), 28, defaultFont);
+        GraphicsUtils.drawLeftAnchoredString(gg, currentText, new Point2D.Double(2, BubbleBlaster.getInstance().getHeight() - 28), 28, defaultFont);
 
         FontMetrics fontMetrics = gg.getFontMetrics(defaultFont);
 
@@ -154,8 +153,8 @@ public class CommandScreen extends Screen {
                 cursorX = 0;
             }
 
-            gg.drawLine(cursorX, QBubbles.getInstance().getHeight() - 30, cursorX, QBubbles.getInstance().getHeight() - 2);
-            gg.drawLine(cursorX + 1, QBubbles.getInstance().getHeight() - 30, cursorX + 1, QBubbles.getInstance().getHeight() - 2);
+            gg.drawLine(cursorX, BubbleBlaster.getInstance().getHeight() - 30, cursorX, BubbleBlaster.getInstance().getHeight() - 2);
+            gg.drawLine(cursorX + 1, BubbleBlaster.getInstance().getHeight() - 30, cursorX + 1, BubbleBlaster.getInstance().getHeight() - 2);
         } else {
             if (currentText.length() != 0) {
                 cursorX = fontMetrics.stringWidth(currentText.substring(0, cursorIndex));
@@ -164,8 +163,8 @@ public class CommandScreen extends Screen {
             }
 
             int width = fontMetrics.charWidth(currentText.charAt(cursorIndex));
-            gg.drawLine(cursorX, QBubbles.getInstance().getHeight() - 2, cursorX + width, QBubbles.getInstance().getHeight() - 2);
-            gg.drawLine(cursorX, QBubbles.getInstance().getHeight() - 1, cursorX + width, QBubbles.getInstance().getHeight() - 1);
+            gg.drawLine(cursorX, BubbleBlaster.getInstance().getHeight() - 2, cursorX + width, BubbleBlaster.getInstance().getHeight() - 2);
+            gg.drawLine(cursorX, BubbleBlaster.getInstance().getHeight() - 1, cursorX + width, BubbleBlaster.getInstance().getHeight() - 1);
         }
     }
 }

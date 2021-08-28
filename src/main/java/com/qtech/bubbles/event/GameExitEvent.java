@@ -1,15 +1,15 @@
 package com.qtech.bubbles.event;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 
 public class GameExitEvent extends Event {
-    private final QBubbles game;
+    private final BubbleBlaster game;
 
-    public GameExitEvent(QBubbles game) {
+    public GameExitEvent(BubbleBlaster game) {
         this.game = game;
     }
 
-    public QBubbles getGame() {
+    public BubbleBlaster getGame() {
         return game;
     }
 }

@@ -1,6 +1,6 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.graphics.Border;
+import com.qtech.bubbles.gui.border.Border;
 import javafx.geometry.Orientation;
 import org.jetbrains.annotations.NotNull;
 

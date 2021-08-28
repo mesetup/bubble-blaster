@@ -1,8 +1,8 @@
 package com.qtech.bubbles.addon.loader;
 
-import com.qtech.bubbles.common.addon.AddonObject;
-import com.qtech.bubbles.common.addon.QBubblesAddon;
 import com.qtech.bubbles.common.maps.SequencedHashMap;
+import com.qtech.bubbles.common.mod.ModInstance;
+import com.qtech.bubbles.common.mod.ModObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ public class AddonManager {
     private static final List<AddonContainer> CONTAINERS = new ArrayList<>();
     private static final List<String> ADDON_IDS = new ArrayList<>();
 
-    private final SequencedHashMap<String, AddonObject<? extends QBubblesAddon>> addonObjects;
-    private final SequencedHashMap<String, QBubblesAddon> addons;
+    private final SequencedHashMap<String, ModObject<? extends ModInstance>> addonObjects;
+    private final SequencedHashMap<String, ModInstance> addons;
 
     private AddonManager() {
         this.addonObjects = new SequencedHashMap<>();
@@ -48,7 +48,7 @@ public class AddonManager {
         return CONTAINERS;
     }
 
-    public AddonObject<? extends QBubblesAddon> getAddonObject(String id) {
+    public ModObject<? extends ModInstance> getAddonObject(String id) {
         if (!addonObjects.containsKey(id)) {
             return null;
         }
@@ -57,7 +57,7 @@ public class AddonManager {
     }
 
     @Nullable
-    public QBubblesAddon getAddon(String id) {
+    public ModInstance getAddon(String id) {
         if (!addons.containsKey(id)) {
             return null;
         }
@@ -65,19 +65,19 @@ public class AddonManager {
         return addons.get(id);
     }
 
-    public void registerAddonObject(AddonObject<? extends QBubblesAddon> addonObject) {
-        this.addonObjects.put(addonObject.getNamespace(), addonObject);
+    public void registerAddonObject(ModObject<? extends ModInstance> modObject) {
+        this.addonObjects.put(modObject.getNamespace(), modObject);
     }
 
-    public void registerAddon(QBubblesAddon addon) {
+    public void registerAddon(ModInstance addon) {
         this.addons.put(addon.getAddonId(), addon);
     }
 
-    public Collection<AddonObject<? extends QBubblesAddon>> getAddonObjects() {
+    public Collection<ModObject<? extends ModInstance>> getAddonObjects() {
         return addonObjects.values();
     }
 
-    public Collection<QBubblesAddon> getAddons() {
+    public Collection<ModInstance> getAddons() {
         return addons.values();
     }
 }

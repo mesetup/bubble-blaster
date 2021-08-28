@@ -29,13 +29,13 @@ public class BubbleProperties extends EntityProperties {
     /**
      * Bubble properties: Constructor.
      *
-     * @param type     the bubble type.
+     * @param type        the bubble type.
      * @param damageValue the bubble hardness.
-     * @param speed    the bubble speed.
-     * @param radius   the bubble radius.
-     * @param x        the bubble x coordinate.
-     * @param y        the bubble y coordinate.
-     * @param gameType the game-type.
+     * @param speed       the bubble speed.
+     * @param radius      the bubble radius.
+     * @param x           the bubble x coordinate.
+     * @param y           the bubble y coordinate.
+     * @param gameType    the game-type.
      */
     public BubbleProperties(AbstractBubble type, float damageValue, double speed, int radius, int x, int y, AbstractGameType gameType) {
         super(x, y);
@@ -56,14 +56,15 @@ public class BubbleProperties extends EntityProperties {
 
     /**
      * Bubble properties: Constructor.
-     *  @param type     the bubble type.
+     *
+     * @param type        the bubble type.
      * @param damageValue the bubble hardness.
-     * @param speed    the bubble speed.
-     * @param radius   the bubble radius.
-     * @param x        the bubble x coordinate.
-     * @param y        the bubble y coordinate.
-     * @param gameType the game-type where the randomizing would be used.
-     * @param rng      the RNG for the bubble to generate unsolved values.
+     * @param speed       the bubble speed.
+     * @param radius      the bubble radius.
+     * @param x           the bubble x coordinate.
+     * @param y           the bubble y coordinate.
+     * @param gameType    the game-type where the randomizing would be used.
+     * @param rng         the RNG for the bubble to generate unsolved values.
      */
     public BubbleProperties(AbstractBubble type, float damageValue, double speed, int radius, int x, int y, AbstractGameType gameType, Rng rng) {
         super(x, y);
@@ -84,15 +85,16 @@ public class BubbleProperties extends EntityProperties {
 
     /**
      * Bubble properties: Constructor/
-     *  @param type     the bubble type.
+     *
+     * @param type        the bubble type.
      * @param damageValue the bubble hardness.
-     * @param speed    the bubble speed.
-     * @param radius   the bubble radius.
-     * @param x        the bubble x coordinate.
-     * @param y        the bubble y coordinate.
-     * @param defense  the bubble defense value.
-     * @param attack   the bubble attack value.
-     * @param score    the bubble score value.
+     * @param speed       the bubble speed.
+     * @param radius      the bubble radius.
+     * @param x           the bubble x coordinate.
+     * @param y           the bubble y coordinate.
+     * @param defense     the bubble defense value.
+     * @param attack      the bubble attack value.
+     * @param score       the bubble score value.
      */
     public BubbleProperties(AbstractBubble type, float damageValue, double speed, int radius, int x, int y, float defense, float attack, float score) {
         super(x, y);

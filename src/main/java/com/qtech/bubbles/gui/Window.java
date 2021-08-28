@@ -1,6 +1,6 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.crash.CrashCategory;
 import com.qtech.bubbles.common.crash.CrashReport;
 import org.jdesktop.swingx.JXFrame;
@@ -20,7 +20,7 @@ public class Window extends JXFrame {
     private static final long serialVersionUID = -240840600533728354L;
     private final GraphicsDevice fullscreenDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-    public Window(QBubbles main, boolean fullscreen) {
+    public Window(BubbleBlaster main, boolean fullscreen) {
 
         try {
 //            this.setPreferredSize(new Dimension(width, height));

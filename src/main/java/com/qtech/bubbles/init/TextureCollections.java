@@ -1,7 +1,7 @@
 package com.qtech.bubbles.init;
 
-import com.qtech.bubbles.QInternalAddon;
-import com.qtech.bubbles.common.addon.QBubblesAddon;
+import com.qtech.bubbles.InternalAddon;
+import com.qtech.bubbles.common.mod.ModInstance;
 import com.qtech.bubbles.event.bus.LocalAddonEventBus;
 import com.qtech.bubbles.graphics.TextureCollection;
 import com.qtech.bubbles.registry.DeferredRegister;
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
  * @since 1.0.924-a1
  */
 public class TextureCollections {
-    private static final DeferredRegister<TextureCollection> TEXTURE_COLLECTIONS = DeferredRegister.create(QInternalAddon.ADDON_ID, Registers.TEXTURE_COLLECTIONS);
+    private static final DeferredRegister<TextureCollection> TEXTURE_COLLECTIONS = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.TEXTURE_COLLECTIONS);
 
     public static final RegistryObject<TextureCollection> BUBBLE_TEXTURES = register("bubble", TextureCollection::new);
 
@@ -26,7 +26,7 @@ public class TextureCollections {
         return TEXTURE_COLLECTIONS.register(name, supplier);
     }
 
-    public static void register(LocalAddonEventBus<? extends QBubblesAddon> eventBus) {
+    public static void register(LocalAddonEventBus<? extends ModInstance> eventBus) {
         TEXTURE_COLLECTIONS.register(eventBus);
     }
 }

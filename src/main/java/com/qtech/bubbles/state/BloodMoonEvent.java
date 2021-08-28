@@ -1,20 +1,21 @@
 package com.qtech.bubbles.state;
 
 import com.jhlabs.image.NoiseFilter;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.LoadedGame;
-import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.gamestate.GameEvent;
 import com.qtech.bubbles.core.utils.categories.ColorUtils;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.event.FilterEvent;
-import com.qtech.bubbles.event.SubscribeEvent;
 import com.qtech.bubbles.event.TickEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.utilities.datetime.Date;
 import com.qtech.utilities.datetime.DateTime;
 import com.qtech.utilities.datetime.Time;
 
 import java.time.DayOfWeek;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @SuppressWarnings("unused")
 public class BloodMoonEvent extends GameEvent {
@@ -25,7 +26,7 @@ public class BloodMoonEvent extends GameEvent {
     private boolean wasActive = false;
     private boolean wasPlayerActive = false;
 
-    private final HashMap<PlayerEntity, Double> playerDefenses = new HashMap<>();
+    private final Map<PlayerEntity, Double> playerDefenses = new ConcurrentHashMap<>();
     private boolean activating;
     private boolean deactivating;
     private long stopTime;
@@ -37,8 +38,8 @@ public class BloodMoonEvent extends GameEvent {
     }
 
     @SubscribeEvent
-    public synchronized void onUpdate(TickEvent evt) {
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+    public void onUpdate(TickEvent evt) {
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
 
         if (loadedGame == null) {
             return;
@@ -55,7 +56,7 @@ public class BloodMoonEvent extends GameEvent {
             stopTime = System.currentTimeMillis() + 60000;
 
             // Game effects.
-            if (!wasActive) QBubbles.getLogger().info("Blood Moon activated!");
+            if (!wasActive) BubbleBlaster.getLogger().info("Blood Moon activated!");
 
             loadedGame.getGameType().triggerBloodMoon();
             loadedGame.getGameType().setStateDifficultyModifier(this, 16f);
@@ -63,7 +64,7 @@ public class BloodMoonEvent extends GameEvent {
 
             // Player effects.
             if (!wasPlayerActive && loadedGame.getGameType().getPlayer() != null) {
-                QBubbles.getLogger().info("Blood Moon for player activated!");
+                BubbleBlaster.getLogger().info("Blood Moon for player activated!");
                 // Todo: implement this.
 //                playerDefenses.put(GameScene.getGameType().getPlayer(), GameScene.getGameType().getPlayer().getDefenseModifier());
                 wasPlayerActive = true;
@@ -72,7 +73,7 @@ public class BloodMoonEvent extends GameEvent {
             deactivating = false;
             // Game effects.
             if (wasActive) {
-                QBubbles.getLogger().info("Blood Moon deactivated!");
+                BubbleBlaster.getLogger().info("Blood Moon deactivated!");
                 loadedGame.getGameType().removeStateDifficultyModifier(this);
                 wasActive = false;
             }
@@ -80,7 +81,7 @@ public class BloodMoonEvent extends GameEvent {
     }
 
     @SubscribeEvent
-    public synchronized void onFilter(FilterEvent evt) {
+    public void onFilter(FilterEvent evt) {
         if (!isActive(DateTime.current())) return;
 
         NoiseFilter filter = new NoiseFilter();
@@ -94,10 +95,10 @@ public class BloodMoonEvent extends GameEvent {
     }
 
     @Override
-    public final synchronized boolean isActive(DateTime dateTime) {
+    public final boolean isActive(DateTime dateTime) {
         super.isActive(dateTime);
 
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
         if (loadedGame == null) {
             return false;
         }
@@ -105,7 +106,7 @@ public class BloodMoonEvent extends GameEvent {
         return loadedGame.getGameType().isBloodMoonActive();
     }
 
-    public final synchronized boolean wouldActive(DateTime dateTime) {
+    public final boolean wouldActive(DateTime dateTime) {
         boolean flag1 = dateTime.getTime().isBetween(timeLo, timeHi);  // Devil's hour.
         boolean flag2 = dateTime.getDate().equalsIgnoreYear(date);  // Halloween.
 
@@ -123,7 +124,7 @@ public class BloodMoonEvent extends GameEvent {
         this.activating = true;
     }
 
-    public HashMap<PlayerEntity, Double> getPlayerDefenses() {
+    public Map<PlayerEntity, Double> getPlayerDefenses() {
         return playerDefenses;
     }
 }

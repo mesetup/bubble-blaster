@@ -1,18 +1,17 @@
 package com.qtech.bubbles.screen;
 
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.LoadedGame;
-import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.bubble.AbstractBubble;
 import com.qtech.bubbles.common.GraphicsProcessor;
-import com.qtech.bubbles.common.bubble.BubbleSystem;
-import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.common.text.translation.I18n;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
+import com.qtech.bubbles.entity.bubble.BubbleSystem;
 import com.qtech.bubbles.environment.EnvironmentRenderer;
-import com.qtech.bubbles.event.KeyboardEvent;
 import com.qtech.bubbles.event.LanguageChangeEvent;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.event.bus.EventBus;
+import com.qtech.bubbles.event.input.KeyboardEvent;
 import com.qtech.bubbles.event.type.KeyEventType;
 import com.qtech.bubbles.gui.PauseButton;
 import com.qtech.bubbles.media.AudioSlot;
@@ -54,14 +53,14 @@ public class PauseScreen extends Screen {
     //    private final Font bubbleTitleFont = new Font(QBubbles.getInstance().getSansFontName(), Font.BOLD, 32);
 //    private final Font bubbleValueFont = new Font(QBubbles.getInstance().getSansFontName(), Font.BOLD + Font.ITALIC, 16);
 //    private final Font bubbleInfoFont = new Font(QBubbles.getInstance().getSansFontName(), Font.BOLD, 16);
-    private final Font bubbleTitleFont = new Font(QBubbles.getInstance().getMonospaceFontName(), Font.BOLD, 32);
-    private final Font bubbleValueFont = new Font(QBubbles.getInstance().getMonospaceFontName(), Font.BOLD + Font.ITALIC, 16);
-    private final Font bubbleInfoFont = new Font(QBubbles.getInstance().getMonospaceFontName(), Font.BOLD, 16);
-    private final Font fallbackTitleFont = new Font(QBubbles.getInstance().getFont().getFontName(), Font.BOLD, 32);
-    private final Font fallbackValueFont = new Font(QBubbles.getInstance().getFont().getFontName(), Font.BOLD + Font.ITALIC, 16);
-    private final Font fallbackInfoFont = new Font(QBubbles.getInstance().getFont().getFontName(), Font.BOLD, 16);
+    private final Font bubbleTitleFont = new Font(BubbleBlaster.getInstance().getMonospaceFontName(), Font.BOLD, 32);
+    private final Font bubbleValueFont = new Font(BubbleBlaster.getInstance().getMonospaceFontName(), Font.BOLD + Font.ITALIC, 16);
+    private final Font bubbleInfoFont = new Font(BubbleBlaster.getInstance().getMonospaceFontName(), Font.BOLD, 16);
+    private final Font fallbackTitleFont = new Font(BubbleBlaster.getInstance().getFont().getFontName(), Font.BOLD, 32);
+    private final Font fallbackValueFont = new Font(BubbleBlaster.getInstance().getFont().getFontName(), Font.BOLD + Font.ITALIC, 16);
+    private final Font fallbackInfoFont = new Font(BubbleBlaster.getInstance().getFont().getFontName(), Font.BOLD, 16);
 
-    private final Font pauseFont = new Font(QBubbles.getInstance().getGameFontName(), Font.PLAIN, 75);
+    private final Font pauseFont = new Font(BubbleBlaster.getInstance().getGameFontName(), Font.PLAIN, 75);
     private final int differentBubbles;
     private static int helpIndex = 0;
     private AbstractBubble bubble;
@@ -69,9 +68,9 @@ public class PauseScreen extends Screen {
 
     public PauseScreen() {
         super();
-        exitButton = new PauseButton.Builder().bounds((int) (QBubbles.getMiddleX() - 128), 200, 256, 48).text("Exit and Quit Game").command(QBubbles.getInstance()::shutdown).build();
-        prevButton = new PauseButton.Builder().bounds((int) (QBubbles.getMiddleX() - 480), 250, 96, 48).text("Prev").command(this::previousPage).build();
-        nextButton = new PauseButton.Builder().bounds((int) (QBubbles.getMiddleX() + 480 - 95), 250, 96, 48).text("Next").command(this::nextPage).build();
+        exitButton = new PauseButton.Builder().bounds((int) (BubbleBlaster.getMiddleX() - 128), 200, 256, 48).text("Exit and Quit Game").command(BubbleBlaster.getInstance()::shutdown).build();
+        prevButton = new PauseButton.Builder().bounds((int) (BubbleBlaster.getMiddleX() - 480), 250, 96, 48).text("Prev").command(this::previousPage).build();
+        nextButton = new PauseButton.Builder().bounds((int) (BubbleBlaster.getMiddleX() + 480 - 95), 250, 96, 48).text("Next").command(this::nextPage).build();
 
         differentBubbles = Registry.getRegistry(AbstractBubble.class).values().size();
         tickPage();
@@ -148,13 +147,13 @@ public class PauseScreen extends Screen {
         exitButton.bindEvents();
         prevButton.bindEvents();
         nextButton.bindEvents();
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
 
-        if (!QBubbles.getInstance().isGameLoaded()) {
+        if (!BubbleBlaster.getInstance().isGameLoaded()) {
             return;
         }
 
-        Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+        Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
     }
 
     @Override
@@ -162,27 +161,27 @@ public class PauseScreen extends Screen {
         exitButton.unbindEvents();
         prevButton.unbindEvents();
         nextButton.unbindEvents();
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
 
-        Util.setCursor(QBubbles.getInstance().getBlankCursor());
+        Util.setCursor(BubbleBlaster.getInstance().getBlankCursor());
         return super.onClose(to);
     }
 
     @SubscribeEvent
-    public synchronized void onKeyboard(KeyboardEvent evt) {
+    public void onKeyboard(KeyboardEvent evt) {
         if (evt.getType() == KeyEventType.PRESS) {
             if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_ESCAPE) {
-                if (!QBubbles.getInstance().isGameLoaded()) {
+                if (!BubbleBlaster.getInstance().isGameLoaded()) {
                     return;
                 }
 
-                QBubbles.getInstance().displayScene(null);
+                BubbleBlaster.getInstance().showScreen(null);
             }
         }
     }
 
-    public void render(QBubbles game, Graphics2D gg) {
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+    public void render(BubbleBlaster game, Graphics2D gg) {
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
         if (loadedGame == null) {
             return;
         }
@@ -193,7 +192,7 @@ public class PauseScreen extends Screen {
         //     Darkened background     //
         /////////////////////////////////
         ngg.setColor(new Color(0, 0, 0, 192));
-        ngg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
+        ngg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
         Font oldFont = ngg.getFont();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -201,7 +200,7 @@ public class PauseScreen extends Screen {
         ////////////////////////
         ngg.setColor(new Color(255, 255, 255, 128));
         ngg.setFont(pauseFont);
-        GraphicsUtils.drawCenteredString(ngg, I18n.translateToLocal("screen.qbubbles.pause.text"), new Rectangle2D.Double(0, 90, QBubbles.getInstance().getWidth(), ngg.getFontMetrics(pauseFont).getHeight()), pauseFont);
+        GraphicsUtils.drawCenteredString(ngg, I18n.translateToLocal("screen.qbubbles.pause.text"), new Rectangle2D.Double(0, 90, BubbleBlaster.getInstance().getWidth(), ngg.getFontMetrics(pauseFont).getHeight()), pauseFont);
 
         ngg.setFont(oldFont);
 
@@ -224,7 +223,7 @@ public class PauseScreen extends Screen {
 
         // Border
         ngg.setColor(new Color(255, 255, 255, 128));
-        ngg.drawRect((int) (QBubbles.getMiddleX() - 480), 300, 960, 300);
+        ngg.drawRect((int) (BubbleBlaster.getMiddleX() - 480), 300, 960, 300);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //     Bubble     //
@@ -234,10 +233,10 @@ public class PauseScreen extends Screen {
         ngg.setColor(new Color(255, 255, 255, 192));
         ngg.setFont(bubbleTitleFont);
         ngg.setFallbackFont(fallbackTitleFont);
-        ngg.drawString(I18n.translateToLocal("bubble." + bubble.getRegistryName().namespace() + "." + bubble.getRegistryName().path().replaceAll("/", ".") + ".name"), (int) QBubbles.getMiddleX() - 470, 332);
+        ngg.drawString(I18n.translateToLocal("bubble." + bubble.getRegistryName().namespace() + "." + bubble.getRegistryName().path().replaceAll("/", ".") + ".name"), (int) BubbleBlaster.getMiddleX() - 470, 332);
 
         // Bubble icon.
-        EnvironmentRenderer.drawBubble(ngg, (int) (QBubbles.getMiddleX() - 470), 350, 122, bubble.colors);
+        EnvironmentRenderer.drawBubble(ngg, (int) (BubbleBlaster.getMiddleX() - 470), 350, 122, bubble.colors);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //     Info Names     //
@@ -249,25 +248,25 @@ public class PauseScreen extends Screen {
         ngg.setColor(new Color(255, 255, 255, 192));
 
         // Left data.
-        ngg.drawString(minRadius, (int) (QBubbles.getMiddleX() - 326) + 10, 362);
-        ngg.drawString(maxRadius, (int) (QBubbles.getMiddleX() - 326) + 10, 382);
-        ngg.drawString(minSpeed, (int) (QBubbles.getMiddleX() - 326) + 10, 402);
-        ngg.drawString(maxSpeed, (int) (QBubbles.getMiddleX() - 326) + 10, 422);
-        ngg.drawString(defChance, (int) (QBubbles.getMiddleX() - 326) + 10, 442);
-        ngg.drawString(curChance, (int) (QBubbles.getMiddleX() - 326) + 10, 462);
+        ngg.drawString(minRadius, (int) (BubbleBlaster.getMiddleX() - 326) + 10, 362);
+        ngg.drawString(maxRadius, (int) (BubbleBlaster.getMiddleX() - 326) + 10, 382);
+        ngg.drawString(minSpeed, (int) (BubbleBlaster.getMiddleX() - 326) + 10, 402);
+        ngg.drawString(maxSpeed, (int) (BubbleBlaster.getMiddleX() - 326) + 10, 422);
+        ngg.drawString(defChance, (int) (BubbleBlaster.getMiddleX() - 326) + 10, 442);
+        ngg.drawString(curChance, (int) (BubbleBlaster.getMiddleX() - 326) + 10, 462);
 
         // Right data.
-        ngg.drawString(defTotPriority, (int) (QBubbles.getMiddleX() + 72) + 10, 322);
-        ngg.drawString(curTotPriority, (int) (QBubbles.getMiddleX() + 72) + 10, 342);
-        ngg.drawString(defPriority, (int) (QBubbles.getMiddleX() + 72) + 10, 362);
-        ngg.drawString(curPriority, (int) (QBubbles.getMiddleX() + 72) + 10, 382);
-        ngg.drawString(scoreMod, (int) (QBubbles.getMiddleX() + 72) + 10, 402);
-        ngg.drawString(attackMod, (int) (QBubbles.getMiddleX() + 72) + 10, 422);
-        ngg.drawString(defenseMod, (int) (QBubbles.getMiddleX() + 72) + 10, 442);
-        ngg.drawString(canSpawn, (int) (QBubbles.getMiddleX() + 72) + 10, 462);
+        ngg.drawString(defTotPriority, (int) (BubbleBlaster.getMiddleX() + 72) + 10, 322);
+        ngg.drawString(curTotPriority, (int) (BubbleBlaster.getMiddleX() + 72) + 10, 342);
+        ngg.drawString(defPriority, (int) (BubbleBlaster.getMiddleX() + 72) + 10, 362);
+        ngg.drawString(curPriority, (int) (BubbleBlaster.getMiddleX() + 72) + 10, 382);
+        ngg.drawString(scoreMod, (int) (BubbleBlaster.getMiddleX() + 72) + 10, 402);
+        ngg.drawString(attackMod, (int) (BubbleBlaster.getMiddleX() + 72) + 10, 422);
+        ngg.drawString(defenseMod, (int) (BubbleBlaster.getMiddleX() + 72) + 10, 442);
+        ngg.drawString(canSpawn, (int) (BubbleBlaster.getMiddleX() + 72) + 10, 462);
 
         // Description
-        ngg.drawString(description, (int) QBubbles.getMiddleX() - 470, 502);
+        ngg.drawString(description, (int) BubbleBlaster.getMiddleX() - 470, 502);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //     Values     //
@@ -279,37 +278,37 @@ public class PauseScreen extends Screen {
         ngg.setColor(new Color(255, 255, 255, 128));
 
         // Left data.
-        ngg.drawString(Integer.toString(bubble.getMinRadius()), (int) (QBubbles.getMiddleX() - 326) + 200, 362);
-        ngg.drawString(Integer.toString(bubble.getMaxRadius()), (int) (QBubbles.getMiddleX() - 326) + 200, 382);
-        ngg.drawString(Double.toString(bubble.getMinSpeed()), (int) (QBubbles.getMiddleX() - 326) + 200, 402);
-        ngg.drawString(Double.toString(bubble.getMaxSpeed()), (int) (QBubbles.getMiddleX() - 326) + 200, 422);
-        ngg.drawString(MathHelper.round((double) 100 * BubbleSystem.getDefaultPercentageChance(bubble), 5) + "%", (int) (QBubbles.getMiddleX() - 326) + 200, 442);
-        ngg.drawString(MathHelper.round((double) 100 * BubbleSystem.getPercentageChance(bubble), 5) + "%", (int) (QBubbles.getMiddleX() - 326) + 200, 462);
-        ngg.drawString(BigDecimal.valueOf(BubbleSystem.getDefaultTotalPriority()).toBigInteger().toString(), (int) (QBubbles.getMiddleX() + 72) + 200, 322);
-        ngg.drawString(BigDecimal.valueOf(BubbleSystem.getTotalPriority()).toBigInteger().toString(), (int) (QBubbles.getMiddleX() + 72) + 200, 342);
-        ngg.drawString(BigDecimal.valueOf(BubbleSystem.getDefaultPriority(bubble)).toBigInteger().toString(), (int) (QBubbles.getMiddleX() + 72) + 200, 362);
-        ngg.drawString(BigDecimal.valueOf(BubbleSystem.getPriority(bubble)).toBigInteger().toString(), (int) (QBubbles.getMiddleX() + 72) + 200, 382);
+        ngg.drawString(Integer.toString(bubble.getMinRadius()), (int) (BubbleBlaster.getMiddleX() - 326) + 200, 362);
+        ngg.drawString(Integer.toString(bubble.getMaxRadius()), (int) (BubbleBlaster.getMiddleX() - 326) + 200, 382);
+        ngg.drawString(Double.toString(bubble.getMinSpeed()), (int) (BubbleBlaster.getMiddleX() - 326) + 200, 402);
+        ngg.drawString(Double.toString(bubble.getMaxSpeed()), (int) (BubbleBlaster.getMiddleX() - 326) + 200, 422);
+        ngg.drawString(MathHelper.round((double) 100 * BubbleSystem.getDefaultPercentageChance(bubble), 5) + "%", (int) (BubbleBlaster.getMiddleX() - 326) + 200, 442);
+        ngg.drawString(MathHelper.round((double) 100 * BubbleSystem.getPercentageChance(bubble), 5) + "%", (int) (BubbleBlaster.getMiddleX() - 326) + 200, 462);
+        ngg.drawString(BigDecimal.valueOf(BubbleSystem.getDefaultTotalPriority()).toBigInteger().toString(), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 322);
+        ngg.drawString(BigDecimal.valueOf(BubbleSystem.getTotalPriority()).toBigInteger().toString(), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 342);
+        ngg.drawString(BigDecimal.valueOf(BubbleSystem.getDefaultPriority(bubble)).toBigInteger().toString(), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 362);
+        ngg.drawString(BigDecimal.valueOf(BubbleSystem.getPriority(bubble)).toBigInteger().toString(), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 382);
 
         // Right data
         if (bubble.isScoreRandom()) {
-            ngg.drawString(I18n.translateToLocal("other.random"), (int) (QBubbles.getMiddleX() + 72) + 200, 402);
+            ngg.drawString(I18n.translateToLocal("other.random"), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 402);
         } else {
-            ngg.drawString(Double.toString(bubble.getScore()), (int) (QBubbles.getMiddleX() + 72) + 200, 402);
+            ngg.drawString(Double.toString(bubble.getScore()), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 402);
         }
         if (bubble.isAttackRandom()) {
-            ngg.drawString(I18n.translateToLocal("other.random"), (int) (QBubbles.getMiddleX() + 72) + 200, 422);
+            ngg.drawString(I18n.translateToLocal("other.random"), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 422);
         } else {
-            ngg.drawString(Double.toString(bubble.getAttack()), (int) (QBubbles.getMiddleX() + 72) + 200, 422);
+            ngg.drawString(Double.toString(bubble.getAttack()), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 422);
         }
         if (bubble.isDefenseRandom()) {
-            ngg.drawString(I18n.translateToLocal("other.random"), (int) (QBubbles.getMiddleX() + 72) + 200, 442);
+            ngg.drawString(I18n.translateToLocal("other.random"), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 442);
         } else {
-            ngg.drawString(Double.toString(bubble.getDefense()), (int) (QBubbles.getMiddleX() + 72) + 200, 442);
+            ngg.drawString(Double.toString(bubble.getDefense()), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 442);
         }
-        ngg.drawString(bubble.canSpawn(loadedGame.getGameType()) ? I18n.translateToLocal("other.true") : I18n.translateToLocal("other.false"), (int) (QBubbles.getMiddleX() + 72) + 200, 462);
+        ngg.drawString(bubble.canSpawn(loadedGame.getGameType()) ? I18n.translateToLocal("other.true") : I18n.translateToLocal("other.false"), (int) (BubbleBlaster.getMiddleX() + 72) + 200, 462);
 
         // Description
-        ngg.drawWrappedString(I18n.translateToLocal("bubble." + bubble.getRegistryName().namespace() + "." + bubble.getRegistryName().path().replaceAll("/", ".") + ".description").replaceAll("\\\\n", "\n"), (int) QBubbles.getMiddleX() - 470, 522, 940);
+        ngg.drawWrappedString(I18n.translateToLocal("bubble." + bubble.getRegistryName().namespace() + "." + bubble.getRegistryName().path().replaceAll("/", ".") + ".description").replaceAll("\\\\n", "\n"), (int) BubbleBlaster.getMiddleX() - 470, 522, 940);
 
         ngg.setFont(oldFont);
     }

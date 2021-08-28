@@ -2,6 +2,10 @@ package com.qtech.bubbles.common;
 
 import java.util.Objects;
 
+/**
+ * @author Quinten
+ * @since 1.0.0
+ */
 public class Progress {
     private int progress;
     private final int max;

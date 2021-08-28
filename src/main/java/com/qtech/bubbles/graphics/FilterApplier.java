@@ -1,5 +1,6 @@
 package com.qtech.bubbles.graphics;
 
+import com.google.common.annotations.Beta;
 import com.jhlabs.image.*;
 import org.jdesktop.swingx.image.AbstractFilter;
 
@@ -8,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
+@Beta
 public class FilterApplier {
     private final Graphics2D graphics;
     private final BufferedImage buffer;

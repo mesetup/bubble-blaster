@@ -1,6 +1,6 @@
 package com.qtech.bubbles.event;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 
 /**
  * <h1>Update Event</h1>
@@ -10,25 +10,13 @@ import com.qtech.bubbles.QBubbles;
  * @see RenderEvent
  */
 public class TickEvent extends Event {
-    private final QBubbles main;
+    private final BubbleBlaster main;
 
-    public TickEvent(QBubbles main) {
+    public TickEvent(BubbleBlaster main) {
         this.main = main;
     }
 
-    public QBubbles getMain() {
+    public BubbleBlaster getGame() {
         return main;
-    }
-
-    /**
-     * Get the current tick speed. (TPS)
-     *
-     * @return returns always 0.05d (20th of a second).
-     * @see QBubbles#TPS
-     * @deprecated Is since 1.0.0 always 0.05d and therefore not needed.
-     */
-    @Deprecated
-    public double getDeltaTime() {
-        return 0.05; // Is always a 20th of a second.
     }
 }

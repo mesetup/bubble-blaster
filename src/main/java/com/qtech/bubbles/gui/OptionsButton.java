@@ -1,16 +1,16 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.interfaces.Listener;
 import com.qtech.bubbles.core.controllers.MouseController;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
-import com.qtech.bubbles.event.MouseEvent;
-import com.qtech.bubbles.event.RenderEventPriority;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.RenderEventPriority;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.event.bus.EventBus;
+import com.qtech.bubbles.event.input.MouseEvent;
 import com.qtech.bubbles.event.type.MouseEventType;
-import com.qtech.bubbles.graphics.Border;
+import com.qtech.bubbles.gui.border.Border;
 import com.qtech.bubbles.media.AudioSlot;
 import com.qtech.bubbles.util.Util;
 import org.jetbrains.annotations.Nullable;
@@ -160,7 +160,7 @@ public class OptionsButton extends AbstractButton implements Listener {
         Point mousePos = MouseController.instance().getCurrentPoint();
         if (mousePos != null) {
             if (bounds.contains(mousePos)) {
-                Util.setCursor(QBubbles.getInstance().getPointerCursor());
+                Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
 
                 if (!hovered) {
                     try {
@@ -175,7 +175,7 @@ public class OptionsButton extends AbstractButton implements Listener {
                 hovered = true;
             } else {
                 if (hovered) {
-                    Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+                    Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
                     hovered = false;
                 }
             }
@@ -208,14 +208,14 @@ public class OptionsButton extends AbstractButton implements Listener {
 
             // ShadowQ
 //            Paint old = gg.getPaint();
-            double shiftX = ((double)bounds.width * 2) * QBubbles.getTicks() / (QBubbles.TPS * 10);
-            GradientPaint p = new GradientPaint(bounds.x + ((float) shiftX - bounds.width), 0, new Color(0, 192, 255), bounds.x + (float)shiftX, 0f, new Color(0, 255, 192), true);
+            double shiftX = ((double) bounds.width * 2) * BubbleBlaster.getTicks() / (BubbleBlaster.TPS * 10);
+            GradientPaint p = new GradientPaint(bounds.x + ((float) shiftX - bounds.width), 0, new Color(0, 192, 255), bounds.x + (float) shiftX, 0f, new Color(0, 255, 192), true);
 //            gg.setPaint(p);
 //            gg.draw(new Rectangle(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2));
 //            gg.setPaint(old);
             Border border = new Border(0, 0, 2, 0);
             border.setPaint(p);
-            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
+            border.paintBorder(BubbleBlaster.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
 //            gg.setColor(new Color(0, 192, 192));
 //            gg.fill(bounds);
 //            gg.setColor(new Color(0, 96, 128));
@@ -241,7 +241,7 @@ public class OptionsButton extends AbstractButton implements Listener {
 
         Graphics2D gg1 = (Graphics2D) gg.create(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);
         gg1.setColor(textColor);
-        GraphicsUtils.drawCenteredString(gg1, text, new Rectangle2D.Double(0, 0, bounds.width - 2, bounds.height - 2), new Font(QBubbles.getInstance().getFont().getName(), Font.BOLD, 16));
+        GraphicsUtils.drawCenteredString(gg1, text, new Rectangle2D.Double(0, 0, bounds.width - 2, bounds.height - 2), new Font(BubbleBlaster.getInstance().getFont().getName(), Font.BOLD, 16));
         gg1.dispose();
     }
 
@@ -272,24 +272,24 @@ public class OptionsButton extends AbstractButton implements Listener {
 
     @Override
     public void bindEvents() {
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
         eventsActive = true;
 
         Point mousePos = MouseController.instance().getCurrentPoint();
         boolean hoveredNew = mousePos != null && bounds.contains(mousePos);
         if (mousePos != null && bounds.contains(mousePos)) {
-            Util.setCursor(QBubbles.getInstance().getPointerCursor());
+            Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
             hovered = true;
         }
     }
 
     @Override
     public void unbindEvents() {
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
         eventsActive = false;
 
         if (hovered) {
-            Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+            Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
             hovered = false;
         }
     }

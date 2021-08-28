@@ -1,6 +1,6 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import javafx.geometry.Orientation;
 
 import javax.swing.*;
@@ -44,7 +44,7 @@ public class SavesDisplay extends JScrollPane {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(800, QBubbles.getInstance().getHeight());
+        return new Dimension(800, BubbleBlaster.getInstance().getHeight());
     }
 
     public static class SavesPanel extends JPanel {

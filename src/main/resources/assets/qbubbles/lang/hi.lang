@@ -12,12 +12,12 @@ other.random=यादृच्छिक
 other.save=सहेजें
 
 # Effects
-effect.qbubbles.poison.name=जहर
-effect.qbubbles.blindness.name=अंधा
-effect.qbubbles.multi_score.name=मल्टी स्कोर
-effect.qbubbles.speed_boost.name=गति वृद्धि
-effect.qbubbles.attack_boost.name=हमला बूस्ट
-effect.qbubbles.defense_boost.name=रक्षा बूस्ट
+statusEffect.qbubbles.poison.name=जहर
+statusEffect.qbubbles.blindness.name=अंधा
+statusEffect.qbubbles.multi_score.name=मल्टी स्कोर
+statusEffect.qbubbles.speed_boost.name=गति वृद्धि
+statusEffect.qbubbles.attack_boost.name=हमला बूस्ट
+statusEffect.qbubbles.defense_boost.name=रक्षा बूस्ट
 
 # Informations
 info.qbubbles.score=स्कोर

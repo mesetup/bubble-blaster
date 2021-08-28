@@ -1,10 +1,9 @@
 package com.qtech.bubbles.registry;
 
 import com.qtech.bubbles.common.IRegistryEntry;
-import com.qtech.bubbles.common.RegistryEntry;
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.addon.QBubblesAddon;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.common.ResourceEntry;
+import com.qtech.bubbles.common.mod.ModInstance;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.event.bus.LocalAddonEventBus;
 import com.qtech.bubbles.event.registry.RegistryEvent;
 import com.qtech.bubbles.registry.object.RegistryObject;
@@ -16,7 +15,7 @@ import java.util.function.Supplier;
 public class DeferredRegister<T extends IRegistryEntry> {
     private final String addonId;
     private final Registry<T> registry;
-    private final ArrayList<HashMap.Entry<ResourceLocation, Supplier<T>>> objects = new ArrayList<>();
+    private final ArrayList<HashMap.Entry<ResourceEntry, Supplier<T>>> objects = new ArrayList<>();
 
     protected DeferredRegister(String addonId, Registry<T> registry) {
         this.addonId = addonId;
@@ -28,7 +27,7 @@ public class DeferredRegister<T extends IRegistryEntry> {
     }
 
     public <C extends T> RegistryObject<C> register(String key, Supplier<C> supplier) {
-        ResourceLocation rl = new ResourceLocation(addonId, key);
+        ResourceEntry rl = new ResourceEntry(addonId, key);
 
 //        if (!registry.getType().isAssignableFrom(supplier.get().getClass())) {
 //            throw new IllegalArgumentException("Tried to register illegal type: " + supplier.get().getClass() + " expected assignable to " + registry.getType());
@@ -39,7 +38,7 @@ public class DeferredRegister<T extends IRegistryEntry> {
         return new RegistryObject<>(registry, supplier, rl);
     }
 
-    public void register(LocalAddonEventBus<? extends QBubblesAddon> eventBus) {
+    public void register(LocalAddonEventBus<? extends ModInstance> eventBus) {
         eventBus.register(this);
     }
 
@@ -50,9 +49,9 @@ public class DeferredRegister<T extends IRegistryEntry> {
         }
 
 //        System.out.println("Deferred Register dump: " + event.getRegistry().getType());
-        for (HashMap.Entry<ResourceLocation, Supplier<T>> entry : objects) {
+        for (HashMap.Entry<ResourceEntry, Supplier<T>> entry : objects) {
             T object = entry.getValue().get();
-            ResourceLocation rl = entry.getKey();
+            ResourceEntry rl = entry.getKey();
 
             if (!event.getRegistry().getType().isAssignableFrom(object.getClass())) {
                 throw new IllegalArgumentException("Got invalid type in deferred register: " + object.getClass() + " expected assignable to " + event.getRegistry().getType());

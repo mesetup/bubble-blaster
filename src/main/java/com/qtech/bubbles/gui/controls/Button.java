@@ -1,6 +1,6 @@
 package com.qtech.bubbles.gui.controls;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.gui.Widget;
 import com.qtech.bubbles.gui.style.State;
 import com.qtech.bubbles.gui.style.Style;
@@ -67,7 +67,7 @@ public class Button extends Widget {
         this.style = style;
         this.mouseListener = new MouseListener();
 
-        QBubbles.getInstance().addMouseListener(this.mouseListener);
+        BubbleBlaster.getInstance().addMouseListener(this.mouseListener);
     }
 
     public double getHeight() {

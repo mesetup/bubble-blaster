@@ -1,14 +1,14 @@
 package com.qtech.bubbles.util;
 
 import com.google.common.annotations.Beta;
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.addon.loader.AddonLoader;
 import com.qtech.bubbles.annotation.FieldsAreNonnullByDefault;
 import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
-import com.qtech.bubbles.common.scene.ScreenManager;
 import com.qtech.bubbles.core.common.SavedGame;
 import com.qtech.bubbles.gui.Window;
 import com.qtech.bubbles.screen.LoadScreen;
+import com.qtech.bubbles.screen.ScreenManager;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -20,28 +20,28 @@ import java.util.ArrayList;
 @FieldsAreNonnullByDefault
 public class Util {
     public static ScreenManager getSceneManager() {
-        return QBubbles.getInstance().getScreenManager();
+        return BubbleBlaster.getInstance().getScreenManager();
     }
 
-    public static QBubbles getGame() {
-        return QBubbles.getInstance();
+    public static BubbleBlaster getGame() {
+        return BubbleBlaster.getInstance();
     }
 
     public static Font getGameFont() {
-        return QBubbles.getInstance().getGameFont();
+        return BubbleBlaster.getInstance().getGameFont();
     }
 
     public static java.awt.Window getWindow() {
-        return QBubbles.getInstance().getFrame();
+        return BubbleBlaster.getInstance().getFrame();
     }
 
     public static Window getWindowCanvas() {
-        return QBubbles.getInstance().getWindow();
+        return BubbleBlaster.getInstance().getWindow();
     }
 
     public static void setCursor(Cursor cursor) {
         // Set the cursor to the JFrame.
-        QBubbles.getInstance().getFrame().setCursor(cursor);
+        BubbleBlaster.getInstance().getFrame().setCursor(cursor);
     }
 
     @Beta

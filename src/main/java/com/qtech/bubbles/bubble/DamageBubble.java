@@ -1,6 +1,6 @@
 package com.qtech.bubbles.bubble;
 
-import com.qtech.bubbles.common.ResourceLocation;
+import com.qtech.bubbles.common.ResourceEntry;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 
@@ -11,7 +11,7 @@ public class DamageBubble extends AbstractBubble {
 
     public DamageBubble() {
         colors = new Color[]{new Color(255, 0, 0), new Color(255, 96, 0), new Color(255, 0, 0)};
-        setRegistryName(ResourceLocation.fromString("qbubbles:damage_bubble"));
+        setRegistryName(ResourceEntry.fromString("qbubbles:damage_bubble"));
 
         setPriority(10000000d);
         setRadius(new IntRange(17, 70));

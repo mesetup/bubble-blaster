@@ -1,9 +1,9 @@
 package com.qtech.bubbles.common.gamestate;
 
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.LoadedGame;
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.RegistryEntry;
-import com.qtech.bubbles.common.screen.Screen;
+import com.qtech.bubbles.registry.RegistryEntry;
+import com.qtech.bubbles.screen.Screen;
 import com.qtech.bubbles.util.Util;
 import com.qtech.utilities.datetime.DateTime;
 import org.jetbrains.annotations.Nullable;
@@ -15,17 +15,17 @@ public abstract class GameEvent extends RegistryEntry {
     private Color backgroundColor;
 
     public GameEvent() {
-        if (QBubbles.getEventBus() == null) {
+        if (BubbleBlaster.getEventBus() == null) {
             throw new NullPointerException();
         }
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isActive(DateTime dateTime) {
         @Nullable Screen currentScene = Util.getSceneManager().getCurrentScreen();
 
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
         if (loadedGame == null) {
             return false;
         }
@@ -37,12 +37,12 @@ public abstract class GameEvent extends RegistryEntry {
         return backgroundColor;
     }
 
-    public synchronized void renderBackground(QBubbles game, Graphics2D gg) {
+    public void renderBackground(BubbleBlaster game, Graphics2D gg) {
         if (backgroundColor == null) return;
         if (!isActive(DateTime.current())) return;
 
         gg.setColor(getBackgroundColor());
-        gg.fill(QBubbles.getInstance().getBounds());
+        gg.fill(BubbleBlaster.getInstance().getBounds());
     }
 
     public final void setBackgroundColor(Color backgroundColor) {

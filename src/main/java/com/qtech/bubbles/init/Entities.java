@@ -1,9 +1,7 @@
 package com.qtech.bubbles.init;
 
-import com.qtech.bubbles.QInternalAddon;
-import com.qtech.bubbles.common.gametype.AbstractGameType;
+import com.qtech.bubbles.InternalAddon;
 import com.qtech.bubbles.common.init.ObjectInit;
-import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.entity.AmmoEntity;
 import com.qtech.bubbles.entity.BubbleEntity;
 import com.qtech.bubbles.entity.GiantBubbleEntity;
@@ -18,7 +16,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("ALL")
 //@ObjectHolder(addonId = "qbubbles")
 public class Entities implements ObjectInit<EntityType> {
-    public static final DeferredRegister<EntityType> ENTITIES = DeferredRegister.create(QInternalAddon.ADDON_ID, Registers.ENTITIES);
+    public static final DeferredRegister<EntityType> ENTITIES = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.ENTITIES);
 
     public static final RegistryObject<EntityType<AmmoEntity>> AMMO = register("bubble", () -> new EntityType<>(AmmoEntity::new));
     public static final RegistryObject<EntityType<BubbleEntity>> BUBBLE = register("bubble", () -> new EntityType<>(BubbleEntity::new));

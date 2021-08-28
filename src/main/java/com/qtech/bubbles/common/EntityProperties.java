@@ -2,6 +2,10 @@ package com.qtech.bubbles.common;
 
 import java.io.Serializable;
 
+/**
+ * @author Quinten
+ * @since 1.0.0
+ */
 public class EntityProperties implements Serializable {
     protected final int x;
     protected final int y;

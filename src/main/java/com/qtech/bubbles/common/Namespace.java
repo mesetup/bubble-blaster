@@ -2,6 +2,14 @@ package com.qtech.bubbles.common;
 
 import com.qtech.bubbles.core.exceptions.IllegalCharacterException;
 
+/**
+ * Namespace, used for holding and checking namespaces.
+ *
+ * @author Quinten
+ * @since 1.0.0
+ * @deprecated this object is useless now.
+ */
+@Deprecated
 public class Namespace {
     private String namespace;
 

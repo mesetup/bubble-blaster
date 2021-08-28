@@ -1,10 +1,10 @@
 package com.qtech.bubbles.common;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.addon.loader.AddonContainer;
 import com.qtech.bubbles.addon.loader.AddonManager;
-import com.qtech.bubbles.common.addon.AddonObject;
-import com.qtech.bubbles.common.addon.QBubblesAddon;
+import com.qtech.bubbles.common.mod.ModInstance;
+import com.qtech.bubbles.common.mod.ModObject;
 import com.qtech.bubbles.util.TextUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +25,7 @@ public class ResourceLocationOld {
     @Nullable
     private final String namespace;
     @Nullable
-    private final Class<? extends QBubblesAddon> addonClass;
+    private final Class<? extends ModInstance> addonClass;
 
     private static final String pattern = "([a-z_]*):([a-z_/]*)";
 
@@ -46,11 +46,11 @@ public class ResourceLocationOld {
         }
 
         if (namespace != null) {
-            QBubbles instance = QBubbles.getInstance();
+            BubbleBlaster instance = BubbleBlaster.getInstance();
             AddonManager addonManager = instance.getAddonManager();
             AddonContainer containerFromId = addonManager.getContainerFromId(namespace);
             if (containerFromId != null) {
-                AddonObject<? extends QBubblesAddon> addon = containerFromId.getAddonObject();
+                ModObject<? extends ModInstance> addon = containerFromId.getAddonObject();
                 addonClass = addon.getAddonClass();
             } else {
                 addonClass = null;
@@ -81,11 +81,11 @@ public class ResourceLocationOld {
 //        this.url = namespace == null ? null : "assets/" + namespace + "/" + path;
 
         if (namespace != null) {
-            QBubbles instance = QBubbles.getInstance();
+            BubbleBlaster instance = BubbleBlaster.getInstance();
             AddonManager addonManager = instance.getAddonManager();
             AddonContainer addonContainer = addonManager.getContainerFromId(namespace);
             if (addonContainer != null) {
-                AddonObject<? extends QBubblesAddon> addon = addonContainer.getAddonObject();
+                ModObject<? extends ModInstance> addon = addonContainer.getAddonObject();
                 addonClass = addon.getAddonClass();
             } else {
                 addonClass = null;
@@ -95,7 +95,7 @@ public class ResourceLocationOld {
         }
     }
 
-    public static ResourceLocation fromString(String s) {
+    public static ResourceEntry fromString(String s) {
         // Create a Pattern object
         Pattern r = Pattern.compile(pattern);
 
@@ -107,7 +107,7 @@ public class ResourceLocationOld {
 
             path = StringUtils.stripEnd(path, "/");
 
-            return new ResourceLocation(namespace, path);
+            return new ResourceEntry(namespace, path);
         } else {
             throw new IllegalArgumentException("Could not recognize resource location from regex (" + pattern + ")");
         }
@@ -193,12 +193,12 @@ public class ResourceLocationOld {
         return namespace;
     }
 
-    public ResourceLocation withNamespace(@NotNull String namespace) {
+    public ResourceEntry withNamespace(@NotNull String namespace) {
         if (this.namespace != null) {
             throw new IllegalArgumentException("Namespace already defined");
         }
 
-        return new ResourceLocation(namespace, path);
+        return new ResourceEntry(namespace, path);
     }
 
     @Override

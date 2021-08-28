@@ -12,12 +12,12 @@ other.random=यादृच्छिक
 other.save=सहेजें
 
 # Effects
-effect.bubbleblaster.poison.name=जहर
-effect.bubbleblaster.blindness.name=अंधा
-effect.bubbleblaster.multi_score.name=मल्टी स्कोर
-effect.bubbleblaster.speed_boost.name=गति वृद्धि
-effect.bubbleblaster.attack_boost.name=हमला बूस्ट
-effect.bubbleblaster.defense_boost.name=रक्षा बूस्ट
+statusEffect.bubbleblaster.poison.name=जहर
+statusEffect.bubbleblaster.blindness.name=अंधा
+statusEffect.bubbleblaster.multi_score.name=मल्टी स्कोर
+statusEffect.bubbleblaster.speed_boost.name=गति वृद्धि
+statusEffect.bubbleblaster.attack_boost.name=हमला बूस्ट
+statusEffect.bubbleblaster.defense_boost.name=रक्षा बूस्ट
 
 # Informations
 info.bubbleblaster.score=स्कोर

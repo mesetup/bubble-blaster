@@ -1,7 +1,6 @@
 package com.qtech.bubbles.screen;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.screen.Screen;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
 import com.qtech.bubbles.data.GlobalSaveData;
 import com.qtech.bubbles.event.bus.EventBus;
@@ -10,9 +9,9 @@ import java.awt.*;
 
 public class GameOverScreen extends Screen {
     private final boolean isHighScore;
-    private final Font titleFont = new Font(QBubbles.getInstance().getSansFontName(), Font.BOLD, 64);
-    private final Font descriptionFont = new Font(QBubbles.getInstance().getSansFontName(), Font.BOLD, 14);
-    private final Font scoreFont = new Font(QBubbles.getInstance().getSansFontName(), Font.BOLD, 32);
+    private final Font titleFont = new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 64);
+    private final Font descriptionFont = new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 14);
+    private final Font scoreFont = new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 32);
     private long score;
     private EventBus.Handler binding;
 
@@ -50,24 +49,24 @@ public class GameOverScreen extends Screen {
     }
 
     @Override
-    public void render(QBubbles game, Graphics2D gg) {
-        LinearGradientPaint gradient = new LinearGradientPaint(0, 0, 0, game.getHeight(), new float[]{0.0f, 0.4f}, new Color[]{new Color(0, 0, 224), new Color(0, 0, 128)});
+    public void render(BubbleBlaster game, Graphics2D gg) {
+        LinearGradientPaint gradient = new LinearGradientPaint(0, 0, 0, game.getScaledHeight(), new float[]{0.0f, 0.4f}, new Color[]{new Color(0, 0, 224), new Color(0, 0, 128)});
         Paint old = gg.getPaint();
         gg.setPaint(gradient);
-        gg.fillRect(0, 0, game.getWidth(), game.getHeight());
+        gg.fillRect(0, 0, game.getScaledWidth(), game.getScaledHeight());
         gg.setPaint(old);
     }
 
     @Override
-    public void renderGUI(QBubbles game, Graphics2D gg) {
+    public void renderGUI(BubbleBlaster game, Graphics2D gg) {
         gg.setColor(Color.white);
 
         if (isHighScore) {
-            GraphicsUtils.drawCenteredString(gg, "Congratulations!", new Rectangle(0, 120, game.getWidth(), 64), titleFont);
-            GraphicsUtils.drawCenteredString(gg, "You beat your high-score!", new Rectangle(0, 184, game.getWidth(), 64), descriptionFont);
+            GraphicsUtils.drawCenteredString(gg, "Congratulations!", new Rectangle(0, 120, game.getScaledWidth(), 64), titleFont);
+            GraphicsUtils.drawCenteredString(gg, "You beat your high-score!", new Rectangle(0, 184, game.getScaledWidth(), 64), descriptionFont);
         }
 
-        GraphicsUtils.drawCenteredString(gg, Long.toString(score), new Rectangle(0, 248, game.getWidth(), 64), scoreFont);
+        GraphicsUtils.drawCenteredString(gg, Long.toString(score), new Rectangle(0, 248, game.getScaledWidth(), 64), scoreFont);
     }
 
     public boolean isHighScore() {

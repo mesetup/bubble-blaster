@@ -12,12 +12,12 @@ other.random=Τυχαίος
 other.save=Σώσει
 
 # Effects
-effect.bubbleblaster.poison.name=Δηλητηριασμένο
-effect.bubbleblaster.blindness.name=Τυφλός
-effect.bubbleblaster.multi_score.name=Πολυ Βαθμολογία
-effect.bubbleblaster.speed_boost.name=Ωθηση ταχύτητας
-effect.bubbleblaster.attack_boost.name=Ενίσχυση επίθεσης
-effect.bubbleblaster.defense_boost.name=Ενίσχυση άμυνας
+statusEffect.bubbleblaster.poison.name=Δηλητηριασμένο
+statusEffect.bubbleblaster.blindness.name=Τυφλός
+statusEffect.bubbleblaster.multi_score.name=Πολυ Βαθμολογία
+statusEffect.bubbleblaster.speed_boost.name=Ωθηση ταχύτητας
+statusEffect.bubbleblaster.attack_boost.name=Ενίσχυση επίθεσης
+statusEffect.bubbleblaster.defense_boost.name=Ενίσχυση άμυνας
 
 # Informations
 info.bubbleblaster.score=Σκορ

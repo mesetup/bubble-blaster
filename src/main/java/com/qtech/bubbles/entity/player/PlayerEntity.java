@@ -1,26 +1,27 @@
 package com.qtech.bubbles.entity.player;
 
 import com.google.common.annotations.Beta;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.LoadedGame;
-import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.common.AttributeMap;
-import com.qtech.bubbles.common.ability.AbilityContainer;
-import com.qtech.bubbles.common.ammo.AmmoType;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
-import com.qtech.bubbles.common.screen.Screen;
-import com.qtech.bubbles.entity.BubbleEntity;
-import com.qtech.bubbles.entity.GiantBubbleEntity;
+import com.qtech.bubbles.entity.*;
+import com.qtech.bubbles.entity.ammo.AmmoType;
+import com.qtech.bubbles.entity.attribute.Attribute;
+import com.qtech.bubbles.entity.damage.DamageSource;
+import com.qtech.bubbles.entity.player.ability.AbilityContainer;
 import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.event.CollisionEvent;
-import com.qtech.bubbles.event.KeyboardEvent;
-import com.qtech.bubbles.event.SubscribeEvent;
-import com.qtech.bubbles.event.XInputEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
+import com.qtech.bubbles.event.input.KeyboardEvent;
+import com.qtech.bubbles.event.input.XInputEvent;
 import com.qtech.bubbles.event.type.KeyEventType;
 import com.qtech.bubbles.init.AmmoTypes;
 import com.qtech.bubbles.init.Entities;
 import com.qtech.bubbles.item.inventory.PlayerInventory;
 import com.qtech.bubbles.screen.EnvLoadScreen;
 import com.qtech.bubbles.screen.SaveLoadingScreen;
+import com.qtech.bubbles.screen.Screen;
 import com.qtech.bubbles.util.Util;
 import com.qtech.bubbles.util.helpers.MathHelper;
 import org.apache.batik.ext.awt.geom.Polygon2D;
@@ -35,7 +36,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.*;
 import java.util.Objects;
 
-import static com.qtech.bubbles.QBubbles.TPS;
+import static com.qtech.bubbles.BubbleBlaster.TPS;
 
 @SuppressWarnings({"RedundantSuppression", "unused"})
 public final class PlayerEntity extends DamageableEntity {
@@ -141,7 +142,7 @@ public final class PlayerEntity extends DamageableEntity {
      */
     public void sendMessage(String s) {
         @Nullable Screen currentScene = Util.getSceneManager().getCurrentScreen();
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
         if (loadedGame != null) {
             loadedGame.triggerMessage(s);
         }
@@ -157,7 +158,7 @@ public final class PlayerEntity extends DamageableEntity {
     public void prepareSpawn(EntitySpawnData spawnData) {
         super.prepareSpawn(spawnData);
         @Nullable Screen currentScene = Objects.requireNonNull(Util.getSceneManager()).getCurrentScreen();
-        if ((currentScene == null && QBubbles.getInstance().isGameLoaded()) ||
+        if ((currentScene == null && BubbleBlaster.getInstance().isGameLoaded()) ||
                 currentScene instanceof SaveLoadingScreen ||
                 currentScene instanceof EnvLoadScreen) {
             Rectangle2D gameBounds = gameType.getGameBounds();
@@ -169,13 +170,13 @@ public final class PlayerEntity extends DamageableEntity {
 
     @Override
     protected void bindEvents() {
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
         this.areEventsBinded = true;
     }
 
     @Override
     protected void unbindEvents() {
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
         this.areEventsBinded = false;
     }
 
@@ -278,7 +279,7 @@ public final class PlayerEntity extends DamageableEntity {
         // Spawn and load checks //
         ///////////////////////////
 
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
 
         if (loadedGame == null) {
             return;
@@ -324,20 +325,20 @@ public final class PlayerEntity extends DamageableEntity {
         double tempVelX = Math.cos(angelRadians) * tempVelMotSpeed;
         double tempVelY = Math.sin(angelRadians) * tempVelMotSpeed;
 
-        System.out.println("Acc_X[0] = " + accelerateX);
-        System.out.println("Acc_Y[0] = " + accelerateY);
+//        System.out.println("Acc_X[0] = " + accelerateX);
+//        System.out.println("Acc_Y[0] = " + accelerateY);
 
         if (isMotionEnabled()) {
-            this.accelerateX += tempVelX / ((double)TPS);
-            this.accelerateY += tempVelY / ((double)TPS);
+            this.accelerateX += tempVelX / ((double) TPS);
+            this.accelerateY += tempVelY / ((double) TPS);
         }
 
-        System.out.println("Acc_X[1] = " + accelerateX);
-        System.out.println("Acc_Y[1] = " + accelerateY);
+//        System.out.println("Acc_X[1] = " + accelerateX);
+//        System.out.println("Acc_Y[1] = " + accelerateY);
 
         // Update X, and Y.
-        this.x += (this.accelerateX) + this.velX / ((double)TPS * 1);
-        this.y += (this.accelerateY) + this.velY / ((double)TPS * 1);
+        this.x += (this.accelerateX) + this.velX / ((double) TPS * 1);
+        this.y += (this.accelerateY) + this.velY / ((double) TPS * 1);
 
         // Velocity.
         if (this.velX > 0) {
@@ -396,13 +397,13 @@ public final class PlayerEntity extends DamageableEntity {
         if (value > 0.0d) {
 
             // Check if window is not focused.
-            if (!QBubbles.getInstance().getFrame().isFocused()) {
+            if (!BubbleBlaster.getInstance().getFrame().isFocused()) {
                 if (SystemUtils.IS_JAVA_9) {
                     // Let the taskbar icon flash. (Java 9+)
                     @SuppressWarnings("Since15") Taskbar taskbar = Taskbar.getTaskbar();
                     try {
                         //noinspection Since15
-                        taskbar.requestWindowUserAttention(QBubbles.getInstance().getFrame());
+                        taskbar.requestWindowUserAttention(BubbleBlaster.getInstance().getFrame());
                     } catch (UnsupportedOperationException ignored) {
 
                     }
@@ -493,7 +494,7 @@ public final class PlayerEntity extends DamageableEntity {
     }
 
     @Override
-    public synchronized void renderEntity(Graphics2D gg) {
+    public void renderEntity(Graphics2D gg) {
         if (!isSpawned()) return;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

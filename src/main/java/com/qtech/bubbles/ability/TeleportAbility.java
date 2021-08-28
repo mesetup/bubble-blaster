@@ -2,11 +2,11 @@ package com.qtech.bubbles.ability;
 
 import com.qtech.bubbles.ability.triggers.AbilityKeyTrigger;
 import com.qtech.bubbles.ability.triggers.types.AbilityKeyTriggerType;
-import com.qtech.bubbles.common.ability.Ability;
-import com.qtech.bubbles.common.ability.AbilityTrigger;
-import com.qtech.bubbles.common.ability.AbilityTriggerType;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
+import com.qtech.bubbles.entity.player.ability.Ability;
+import com.qtech.bubbles.entity.player.ability.AbilityTrigger;
+import com.qtech.bubbles.entity.player.ability.AbilityTriggerType;
 import com.qtech.bubbles.init.Abilities;
 import com.qtech.bubbles.util.helpers.MathHelper;
 import org.bson.BsonInt64;

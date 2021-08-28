@@ -1,8 +1,8 @@
 package com.qtech.bubbles.init;
 
-import com.qtech.bubbles.QInternalAddon;
+import com.qtech.bubbles.InternalAddon;
 import com.qtech.bubbles.bubble.*;
-import com.qtech.bubbles.common.effect.EffectInstance;
+import com.qtech.bubbles.common.effect.StatusEffectInstance;
 import com.qtech.bubbles.common.init.ObjectInit;
 import com.qtech.bubbles.core.utils.categories.ColorUtils;
 import com.qtech.bubbles.registry.DeferredRegister;
@@ -24,7 +24,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 //@ObjectHolder(addonId = "qbubbles")
 public class Bubbles implements ObjectInit<AbstractBubble> {
-    public static final DeferredRegister<AbstractBubble> BUBBLES = DeferredRegister.create(QInternalAddon.ADDON_ID, Registers.BUBBLES);
+    public static final DeferredRegister<AbstractBubble> BUBBLES = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.BUBBLES);
 
     // Bubbles
     public static final RegistryObject<AbstractBubble> NORMAL_BUBBLE = register("normal", () -> AbstractBubble.builder()
@@ -61,7 +61,7 @@ public class Bubbles implements ObjectInit<AbstractBubble> {
             .radius(new IntRange(17, 58))
             .speed(new DoubleRange(4.115d, 6.845d))
             .score(1.3125f)
-            .effect((source, target) -> (new EffectInstance(Effects.BUBBLE_FREEZE.get(), source.getRadius() / 8, (byte) ((byte) source.getSpeed() * 4))))
+            .effect((source, target) -> (new StatusEffectInstance(Effects.BUBBLE_FREEZE.get(), source.getRadius() / 8, (byte) ((byte) source.getSpeed() * 4))))
             .colors(ColorUtils.parseColorString("#ff0000,#ff7f00,#ffff00,#ffff7f,#ffffff", false))
             .build());
     public static final RegistryObject<AbstractBubble> PARALYZE_BUBBLE = register("paralyze", () -> AbstractBubble.builder()
@@ -69,7 +69,7 @@ public class Bubbles implements ObjectInit<AbstractBubble> {
             .radius(new IntRange(28, 87))
             .speed(new DoubleRange(1.215d, 2.845d))
             .score(0.325f)
-            .effect((source, target) -> (new EffectInstance(Effects.PARALYZE.get(), source.getRadius() / 16, (byte) 1)))
+            .effect((source, target) -> (new StatusEffectInstance(Effects.PARALYZE.get(), source.getRadius() / 16, (byte) 1)))
             .colors(ColorUtils.parseColorString("#ffff00,#ffff5f,#ffffdf,#ffffff"))
             .build());
     //    public static final BubbleType DAMAGE_BUBBLE = new BubbleType.Builder().priority(8850000L).radius(new IntRange(15, 85)).speed(new DoubleRange(3.215d, 4.845d)).colors(Color.red, new Color(255, 63, 0), Color.red).attackMod(1d).build();
@@ -84,7 +84,7 @@ public class Bubbles implements ObjectInit<AbstractBubble> {
             .score(0.375f)
             .hardness(1.0d)
             .colors(ColorUtils.parseColorString("#7fff00,#9faf1f,#bf7f3f,#df3f5f,#ff007f")) // new Color[]{new Color(128, 255, 0), new Color(160, 192, 32), new Color(192, 128, 64), new Color(224, 64, 96), new Color(255, 0, 128)})
-            .effect((source, target) -> (new EffectInstance(Effects.POISON.get(), source.getRadius() / 8, 4)))
+            .effect((source, target) -> (new StatusEffectInstance(Effects.POISON.get(), source.getRadius() / 8, 4)))
             .build());
 
     public static final RegistryObject<HealBubble> HEAL_BUBBLE = register("heal", HealBubble::new);

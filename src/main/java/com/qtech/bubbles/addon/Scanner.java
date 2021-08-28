@@ -1,6 +1,6 @@
 package com.qtech.bubbles.addon;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.addon.loader.AddonClassLoader;
 import com.qtech.bubbles.common.crash.CrashCategory;
 import com.qtech.bubbles.common.crash.CrashReport;
@@ -41,7 +41,7 @@ public final class Scanner {
         this.classLoader = classLoader;
         this.file = file;
 
-        URL location = QBubbles.class.getProtectionDomain().getCodeSource().getLocation();
+        URL location = BubbleBlaster.class.getProtectionDomain().getCodeSource().getLocation();
         try {
             qbubblesFile = new File(location.toURI());
         } catch (URISyntaxException ignored) {

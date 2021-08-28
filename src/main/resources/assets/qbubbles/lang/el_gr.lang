@@ -12,12 +12,12 @@ other.random=Τυχαίος
 other.save=Σώσει
 
 # Effects
-effect.qbubbles.poison.name=Δηλητηριασμένο
-effect.qbubbles.blindness.name=Τυφλός
-effect.qbubbles.multi_score.name=Πολυ Βαθμολογία
-effect.qbubbles.speed_boost.name=Ωθηση ταχύτητας
-effect.qbubbles.attack_boost.name=Ενίσχυση επίθεσης
-effect.qbubbles.defense_boost.name=Ενίσχυση άμυνας
+statusEffect.qbubbles.poison.name=Δηλητηριασμένο
+statusEffect.qbubbles.blindness.name=Τυφλός
+statusEffect.qbubbles.multi_score.name=Πολυ Βαθμολογία
+statusEffect.qbubbles.speed_boost.name=Ωθηση ταχύτητας
+statusEffect.qbubbles.attack_boost.name=Ενίσχυση επίθεσης
+statusEffect.qbubbles.defense_boost.name=Ενίσχυση άμυνας
 
 # Informations
 info.qbubbles.score=Σκορ

@@ -1,23 +1,23 @@
 package com.qtech.bubbles.effect;
 
 import com.qtech.bubbles.common.AttributeMap;
-import com.qtech.bubbles.common.effect.Effect;
-import com.qtech.bubbles.common.effect.EffectInstance;
-import com.qtech.bubbles.common.entity.Attribute;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.effect.StatusEffect;
+import com.qtech.bubbles.common.effect.StatusEffectInstance;
+import com.qtech.bubbles.entity.Entity;
+import com.qtech.bubbles.entity.attribute.Attribute;
 
-public class DefenseBoostEffect extends Effect {
+public class DefenseBoostEffect extends StatusEffect {
     public DefenseBoostEffect() {
         super();
     }
 
     @Override
-    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
+    protected boolean canExecute(Entity entity, StatusEffectInstance statusEffectInstance) {
         return false;
     }
 
     @Override
-    public void execute(Entity entity, EffectInstance effectInstance) {
+    public void execute(Entity entity, StatusEffectInstance statusEffectInstance) {
 
     }
 

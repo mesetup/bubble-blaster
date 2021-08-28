@@ -1,11 +1,10 @@
 package com.qtech.bubbles.screen;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.screen.Screen;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.text.translation.I18n;
-import com.qtech.bubbles.event.RenderEventPriority;
-import com.qtech.bubbles.event.SubscribeEvent;
-import com.qtech.bubbles.graphics.Animation;
+import com.qtech.bubbles.event._common.RenderEventPriority;
+import com.qtech.bubbles.event._common.SubscribeEvent;
+import com.qtech.bubbles.graphics.ValueAnimator;
 import com.qtech.bubbles.gui.OptionsButton;
 import com.qtech.bubbles.registry.LocaleManager;
 import com.qtech.bubbles.settings.GameSettings;
@@ -35,8 +34,8 @@ public final class LanguageScreen extends Screen {
     private final TreeMap<String, Locale> nameLocaleMap = new TreeMap<>();
     private Screen backScene;
     private int deltaIndex;
-    private Animation animation1;
-    private Animation animation2;
+    private ValueAnimator valueAnimator1;
+    private ValueAnimator valueAnimator2;
     private int deltaPage;
 
     private class LanguageLoader {
@@ -62,7 +61,7 @@ public final class LanguageScreen extends Screen {
         this.cancelButton.setCommand(this::back);
 
         this.loader = new LanguageLoader();
-        QBubbles.getEventBus().register(loader);
+        BubbleBlaster.getEventBus().register(loader);
     }
 
     private void back() {
@@ -81,7 +80,7 @@ public final class LanguageScreen extends Screen {
             nameLocaleMap.put(name, locale);
         }
 
-        QBubbles.getEventBus().unregister(loader);
+        BubbleBlaster.getEventBus().unregister(loader);
     }
 
     private void cmdButton6() {
@@ -120,28 +119,28 @@ public final class LanguageScreen extends Screen {
     }
 
     private void nextPage() {
-        if (animation1 == null && animation2 == null) {
+        if (valueAnimator1 == null && valueAnimator2 == null) {
 //            languageIndex += 6;
 
             deltaIndex = 6;
             deltaPage = 1;
 
-            animation1 = new Animation(0, 512 * -deltaPage, 0.05);
-            animation1.start();
+            valueAnimator1 = new ValueAnimator(0, 512 * -deltaPage, 0.05);
+            valueAnimator1.start();
 
             System.out.println("next");
         }
     }
 
     private void prevPage() {
-        if (animation1 == null && animation2 == null) {
+        if (valueAnimator1 == null && valueAnimator2 == null) {
 //            languageIndex -= 6;
 
             deltaIndex = -6;
             deltaPage = -1;
 
-            animation1 = new Animation(0, 512 * -deltaPage, 0.05);
-            animation1.start();
+            valueAnimator1 = new ValueAnimator(0, 512 * -deltaPage, 0.05);
+            valueAnimator1.start();
 
             System.out.println("prev");
         }
@@ -153,7 +152,7 @@ public final class LanguageScreen extends Screen {
 
     @Override
     public void init() {
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
 
         button1.bindEvents();
         button2.bindEvents();
@@ -169,7 +168,7 @@ public final class LanguageScreen extends Screen {
 
     @Override
     public boolean onClose(Screen to) {
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
 
         button1.unbindEvents();
         button2.unbindEvents();
@@ -189,9 +188,9 @@ public final class LanguageScreen extends Screen {
     }
 
     @Override
-    public void render(QBubbles game, Graphics2D gg) {
-        prev.setX((int) QBubbles.getMiddleX() - 322);
-        prev.setY((int) QBubbles.getMiddleY() - 149);
+    public void render(BubbleBlaster game, Graphics2D gg) {
+        prev.setX((int) BubbleBlaster.getMiddleX() - 322);
+        prev.setY((int) BubbleBlaster.getMiddleY() - 149);
         button1.setVisualX(0/*(int) Game.getMiddleX() - 256*/);
         button2.setVisualX(0/*(int) Game.getMiddleX() - 256*/);
         button3.setVisualX(0/*(int) Game.getMiddleX() - 256*/);
@@ -204,23 +203,23 @@ public final class LanguageScreen extends Screen {
         button4.setVisualY(/*(int) Game.getMiddleY() + */150/* + 1*/);
         button5.setVisualY(/*(int) Game.getMiddleY() + */200/* + 51*/);
         button6.setVisualY(/*(int) Game.getMiddleY() + */250/* + 101*/);
-        button1.setX((int) QBubbles.getMiddleX() - 256);
-        button2.setX((int) QBubbles.getMiddleX() - 256);
-        button3.setX((int) QBubbles.getMiddleX() - 256);
-        button4.setX((int) QBubbles.getMiddleX() - 256);
-        button5.setX((int) QBubbles.getMiddleX() - 256);
-        button6.setX((int) QBubbles.getMiddleX() - 256);
-        button1.setY((int) QBubbles.getMiddleY() - 149);
-        button2.setY((int) QBubbles.getMiddleY() - 99);
-        button3.setY((int) QBubbles.getMiddleY() - 49);
-        button4.setY((int) QBubbles.getMiddleY() + 1);
-        button5.setY((int) QBubbles.getMiddleY() + 51);
-        button6.setY((int) QBubbles.getMiddleY() + 101);
-        next.setX((int) QBubbles.getMiddleX() + 258);
-        next.setY((int) QBubbles.getMiddleY() - 149);
+        button1.setX((int) BubbleBlaster.getMiddleX() - 256);
+        button2.setX((int) BubbleBlaster.getMiddleX() - 256);
+        button3.setX((int) BubbleBlaster.getMiddleX() - 256);
+        button4.setX((int) BubbleBlaster.getMiddleX() - 256);
+        button5.setX((int) BubbleBlaster.getMiddleX() - 256);
+        button6.setX((int) BubbleBlaster.getMiddleX() - 256);
+        button1.setY((int) BubbleBlaster.getMiddleY() - 149);
+        button2.setY((int) BubbleBlaster.getMiddleY() - 99);
+        button3.setY((int) BubbleBlaster.getMiddleY() - 49);
+        button4.setY((int) BubbleBlaster.getMiddleY() + 1);
+        button5.setY((int) BubbleBlaster.getMiddleY() + 51);
+        button6.setY((int) BubbleBlaster.getMiddleY() + 101);
+        next.setX((int) BubbleBlaster.getMiddleX() + 258);
+        next.setY((int) BubbleBlaster.getMiddleY() - 149);
 
-        cancelButton.setX((int) QBubbles.getMiddleX() - 322);
-        cancelButton.setY((int) QBubbles.getMiddleY() + 151);
+        cancelButton.setX((int) BubbleBlaster.getMiddleX() - 322);
+        cancelButton.setY((int) BubbleBlaster.getMiddleY() + 151);
 
 //        if (evt.getPriority() == RenderEventPriority.BACKGROUND) {
 //        }
@@ -232,7 +231,7 @@ public final class LanguageScreen extends Screen {
     }
 
     @Override
-    public void renderGUI(QBubbles game, Graphics2D gg) {
+    public void renderGUI(BubbleBlaster game, Graphics2D gg) {
         Locale loc1 = null;
         Locale loc2 = null;
         Locale loc3 = null;
@@ -282,29 +281,29 @@ public final class LanguageScreen extends Screen {
 
         cancelButton.setText(I18n.translateToLocal("other.cancel"));
 
-        Graphics2D gg1 = (Graphics2D) gg.create((int) QBubbles.getMiddleX() - 256, (int) QBubbles.getMiddleY() - 149, 512, 300);
+        Graphics2D gg1 = (Graphics2D) gg.create((int) BubbleBlaster.getMiddleX() - 256, (int) BubbleBlaster.getMiddleY() - 149, 512, 300);
         Graphics2D gg2;
-        if (animation1 != null) {
-            if (animation1.isEnded()) {
+        if (valueAnimator1 != null) {
+            if (valueAnimator1.isEnded()) {
                 languageIndex += deltaIndex;
-                animation1 = null;
+                valueAnimator1 = null;
 
-                animation2 = new Animation(512 * deltaPage, 0, 0.05);
-                animation2.start();
+                valueAnimator2 = new ValueAnimator(512 * deltaPage, 0, 0.05);
+                valueAnimator2.start();
 
-                int x = (int) animation2.animate();
+                int x = (int) valueAnimator2.animate();
                 gg2 = (Graphics2D) gg1.create(x, 0, 512, 300);
             } else {
-                int x = (int) animation1.animate();
+                int x = (int) valueAnimator1.animate();
                 gg2 = (Graphics2D) gg1.create(x, 0, 512, 300);
             }
         } else {
-            if (animation2 != null) {
-                if (animation2.isEnded()) {
+            if (valueAnimator2 != null) {
+                if (valueAnimator2.isEnded()) {
                     gg2 = (Graphics2D) gg1.create(0, 0, 512, 300);
-                    animation2 = null;
+                    valueAnimator2 = null;
                 } else {
-                    int x = (int) animation2.animate();
+                    int x = (int) valueAnimator2.animate();
                     gg2 = (Graphics2D) gg1.create(x, 0, 512, 300);
                 }
             } else {
@@ -329,13 +328,8 @@ public final class LanguageScreen extends Screen {
         cancelButton.paint(gg);
     }
 
-    public synchronized void renderBackground(Graphics2D gg) {
+    public void renderBackground(Graphics2D gg) {
         gg.setColor(new Color(96, 96, 96));
-        gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
-    }
-
-    @SuppressWarnings("EmptyMethod")
-    @SubscribeEvent
-    public void onUpdate() {
+        gg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
     }
 }

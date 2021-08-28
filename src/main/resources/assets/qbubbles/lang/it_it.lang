@@ -12,12 +12,12 @@ other.random=Casuale
 other.save=Salva
 
 # Effect names
-effect.qbubbles.poison.name=Avvelenato
-effect.qbubbles.blindness.name=Blinded
-effect.qbubbles.multi_score.name=Punteggio Multi
-effect.qbubbles.speed_boost.name=Aumento di Velocità
-effect.qbubbles.attack_boost.name=Aumento di Attacco
-effect.qbubbles.defense_boost.name=Aumento di Difesa
+statusEffect.qbubbles.poison.name=Avvelenato
+statusEffect.qbubbles.blindness.name=Blinded
+statusEffect.qbubbles.multi_score.name=Punteggio Multi
+statusEffect.qbubbles.speed_boost.name=Aumento di Velocità
+statusEffect.qbubbles.attack_boost.name=Aumento di Attacco
+statusEffect.qbubbles.defense_boost.name=Aumento di Difesa
 
 # Informations
 info.qbubbles.score=Punto

@@ -1,12 +1,12 @@
 package com.qtech.bubbles.common;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 
 import java.io.File;
 
 public class References {
     // Dirs
-    public static final File QBUBBLES_DIR = QBubbles.getGameDir();
+    public static final File QBUBBLES_DIR = BubbleBlaster.getGameDir();
     public static final File LOGS_DIR = new File(QBUBBLES_DIR.getAbsolutePath(), "Logs");
     public static final File ADDONS_DIR = new File(QBUBBLES_DIR.getAbsolutePath(), "Addons");
     //    public static final String SAVES_DIR = Path.join(QBUBBLES_DIR, "saves");

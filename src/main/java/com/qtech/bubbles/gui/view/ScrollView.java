@@ -1,11 +1,11 @@
 package com.qtech.bubbles.gui.view;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.screen.Screen;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.event.TickEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.gui.Widget;
+import com.qtech.bubbles.screen.Screen;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -44,7 +44,7 @@ public class ScrollView extends View {
 //        this.tickEventCode = QUpdateEvent.addListener(QUpdateEvent.getInstance(), scene, this::tick, RenderEventPriority.HIGHER);
 //        this.renderEventCode = QRenderEvent.addListener(QRenderEvent.getInstance(), scene, this::render, RenderEventPriority.HIGHER);
 
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
         this.eventsActive = true;
     }
 
@@ -55,7 +55,7 @@ public class ScrollView extends View {
     }
 
     @SuppressWarnings("EmptyMethod")
-    private void render(QBubbles game, Graphics2D gg) {
+    private void render(BubbleBlaster game, Graphics2D gg) {
     }
 
     public void add(Widget widget) {
@@ -66,7 +66,7 @@ public class ScrollView extends View {
 //        QUpdateEvent.getInstance().removeListener(tickEventCode);
 //        QRenderEvent.getInstance().removeListener(renderEventCode);
 
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
         this.eventsActive = false;
     }
 

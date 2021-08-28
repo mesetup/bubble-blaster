@@ -1,9 +1,9 @@
 package com.qtech.bubbles.environment;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.gamestate.GameEvent;
 import com.qtech.bubbles.common.renderer.IRenderer;
+import com.qtech.bubbles.entity.Entity;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -72,11 +72,11 @@ public class EnvironmentRenderer implements IRenderer {
 
     @Nullable
     public Environment getEnvironment() {
-        if (QBubbles.getInstance() == null) {
+        if (BubbleBlaster.getInstance() == null) {
             return null;
         }
 
-        return QBubbles.getInstance().environment;
+        return BubbleBlaster.getInstance().environment;
     }
 
     @Override
@@ -91,8 +91,9 @@ public class EnvironmentRenderer implements IRenderer {
             gg.setColor(currentGameEvent.getBackgroundColor());
         } else {
             gg.setColor(new Color(0, 96, 128));
+            gg.setPaint(new GradientPaint(0f, 0f, new Color(0x008EDA), 0f, BubbleBlaster.getInstance().getHeight(), new Color(0x004BA1)));
         }
-        gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
+        gg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
 
         environment.getGameType().render(gg);
 

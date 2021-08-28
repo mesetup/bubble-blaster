@@ -1,10 +1,10 @@
 package com.qtech.bubbles.bubble;
 
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.core.utils.categories.ColorUtils;
 import com.qtech.bubbles.entity.BubbleEntity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
@@ -19,7 +19,7 @@ public class LevelUpBubble extends AbstractBubble {
     public LevelUpBubble() {
         // Color & key.
         colors = ColorUtils.parseColorString("#ffff00,#ffffff,#ff9f00");
-        setRegistryName(ResourceLocation.fromString("qbubbles:level_up_bubble"));
+        setRegistryName(ResourceEntry.fromString("qbubbles:level_up_bubble"));
 
         // Set initial data values.
         setPriority(128000000L);

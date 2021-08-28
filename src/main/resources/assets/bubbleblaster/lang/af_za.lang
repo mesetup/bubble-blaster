@@ -12,12 +12,12 @@ other.random=Onwillekeurig
 other.save=Stoor
 
 # Effects
-effect.bubbleblaster.poison.name=Vergifde
-effect.bubbleblaster.blindness.name=Verblind
-effect.bubbleblaster.multi_score.name=Multi-telling
-effect.bubbleblaster.speed_boost.name=Spoedversterking
-effect.bubbleblaster.attack_boost.name=Aanval Boost
-effect.bubbleblaster.defense_boost.name=Verdediging Boost
+statusEffect.bubbleblaster.poison.name=Vergifde
+statusEffect.bubbleblaster.blindness.name=Verblind
+statusEffect.bubbleblaster.multi_score.name=Multi-telling
+statusEffect.bubbleblaster.speed_boost.name=Spoedversterking
+statusEffect.bubbleblaster.attack_boost.name=Aanval Boost
+statusEffect.bubbleblaster.defense_boost.name=Verdediging Boost
 
 # Informations
 info.bubbleblaster.score=Telling

@@ -1,10 +1,10 @@
 package com.qtech.bubbles.ability.triggers;
 
-import com.qtech.bubbles.common.ability.AbilityTrigger;
-import com.qtech.bubbles.common.ability.AbilityTriggerType;
-import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.core.controllers.KeyboardController;
-import com.qtech.bubbles.event.KeyboardEvent;
+import com.qtech.bubbles.entity.Entity;
+import com.qtech.bubbles.entity.player.ability.AbilityTrigger;
+import com.qtech.bubbles.entity.player.ability.AbilityTriggerType;
+import com.qtech.bubbles.event.input.KeyboardEvent;
 import com.qtech.bubbles.event.type.KeyEventType;
 
 import java.util.HashMap;

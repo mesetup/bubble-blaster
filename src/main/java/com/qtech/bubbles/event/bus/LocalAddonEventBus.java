@@ -1,10 +1,10 @@
 package com.qtech.bubbles.event.bus;
 
 import com.qtech.bubbles.common.Pair;
-import com.qtech.bubbles.common.addon.AddonObject;
-import com.qtech.bubbles.common.addon.QBubblesAddon;
+import com.qtech.bubbles.common.mod.ModInstance;
+import com.qtech.bubbles.common.mod.ModObject;
 import com.qtech.bubbles.event.Event;
-import com.qtech.bubbles.event.ICancellable;
+import com.qtech.bubbles.event._common.ICancellable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
@@ -20,15 +20,15 @@ import java.util.function.Predicate;
 
 @ParametersAreNonnullByDefault
 @SuppressWarnings({"unused", "unchecked"})
-public class LocalAddonEventBus<J extends QBubblesAddon> extends EventBus {
-    private final AddonObject<? extends QBubblesAddon> addon;
+public class LocalAddonEventBus<J extends ModInstance> extends EventBus {
+    private final ModObject<J> addon;
     private static final Logger LOGGER = LogManager.getLogger("AddonEventBus");
 
     public LocalAddonEventBus(J addon) {
-        this.addon = addon.getAddonObject();
+        this.addon = (ModObject<J>) addon.getAddonObject();
     }
 
-    public LocalAddonEventBus(AddonObject<J> addon) {
+    public LocalAddonEventBus(ModObject<J> addon) {
         this.addon = addon;
     }
 
@@ -73,9 +73,8 @@ public class LocalAddonEventBus<J extends QBubblesAddon> extends EventBus {
     }
 
     public void unregister(Class<? extends Event> event, Class<?> clazz) {
-        loopDeclaredMethods(clazz, (method) -> {
-            uReg0(event, method, null);
-        });
+        //noinspection ConstantConditions
+        loopDeclaredMethods(clazz, (method) -> uReg0(event, method, null));
     }
 
     private void uReg0(Class<? extends Event> event, Method method, Object o) {
@@ -235,11 +234,11 @@ public class LocalAddonEventBus<J extends QBubblesAddon> extends EventBus {
 //        return handler;
 //    }
 
-    public AddonObject<J> getAddonObject() {
+    public ModObject<J> getAddonObject() {
         return addon;
     }
 
     public J getAddon() {
-        return (J) addon.getAddon();
+        return addon.getAddon();
     }
 }

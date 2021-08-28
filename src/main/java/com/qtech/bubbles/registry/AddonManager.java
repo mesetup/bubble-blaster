@@ -2,9 +2,9 @@ package com.qtech.bubbles.registry;
 
 import com.qtech.bubbles.addon.loader.AddonContainer;
 import com.qtech.bubbles.bubble.AbstractBubble;
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.addon.AddonObject;
-import com.qtech.bubbles.common.addon.QBubblesAddon;
+import com.qtech.bubbles.common.ResourceEntry;
+import com.qtech.bubbles.common.mod.ModInstance;
+import com.qtech.bubbles.common.mod.ModObject;
 
 import javax.management.openmbean.KeyAlreadyExistsException;
 import java.util.Collection;
@@ -17,9 +17,9 @@ import java.util.Set;
  *
  * @see AbstractRegistry
  * @see AbstractBubble
- * @see ResourceLocation
+ * @see ResourceEntry
  */
-public class AddonManager extends AbstractRegistry<String, AddonObject<? extends QBubblesAddon>> {
+public class AddonManager extends AbstractRegistry<String, ModObject<? extends ModInstance>> {
     protected static AddonManager INSTANCE;
 
     public static AddonManager instance() {
@@ -33,11 +33,11 @@ public class AddonManager extends AbstractRegistry<String, AddonObject<? extends
     }
 
     @Override
-    public AddonObject<? extends QBubblesAddon> get(String id) {
+    public ModObject<? extends ModInstance> get(String id) {
         return this.registry.get(id);
     }
 
-    public QBubblesAddon getAddon(String id) {
+    public ModInstance getAddon(String id) {
         return get(id).getAddon();
     }
 
@@ -45,11 +45,11 @@ public class AddonManager extends AbstractRegistry<String, AddonObject<? extends
         return get(id).getContainer();
     }
 
-    public void register(AddonObject<?> object) {
+    public void register(ModObject<?> object) {
         this.register(object.getNamespace(), object);
     }
 
-    public void register(QBubblesAddon addon) {
+    public void register(ModInstance addon) {
         this.register(addon.getAddonId(), addon.getAddonObject());
     }
 
@@ -58,14 +58,14 @@ public class AddonManager extends AbstractRegistry<String, AddonObject<? extends
     }
 
     @Override
-    public void register(String id, AddonObject<?> object) {
+    public void register(String id, ModObject<?> object) {
         if (registry.containsKey(id)) throw new KeyAlreadyExistsException("Key '" + id + "' already exists!");
 
         this.registry.put(id, object);
     }
 
     @Override
-    public Collection<AddonObject<?>> values() {
+    public Collection<ModObject<?>> values() {
         return Collections.unmodifiableCollection(registry.values());
     }
 
@@ -75,7 +75,7 @@ public class AddonManager extends AbstractRegistry<String, AddonObject<? extends
     }
 
     @Override
-    public Set<Map.Entry<String, AddonObject<?>>> entries() {
+    public Set<Map.Entry<String, ModObject<?>>> entries() {
         return Collections.unmodifiableSet(registry.entrySet());
     }
 }

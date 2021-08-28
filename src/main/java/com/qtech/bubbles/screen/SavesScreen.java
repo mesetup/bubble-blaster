@@ -1,12 +1,11 @@
 package com.qtech.bubbles.screen;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.annotation.FieldsAreNonnullByDefault;
 import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
-import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.core.common.SavedGame;
-import com.qtech.bubbles.event.SubscribeEvent;
 import com.qtech.bubbles.event.TickEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.save.SaveLoader;
 import com.qtech.bubbles.util.Util;
 
@@ -80,7 +79,7 @@ public class SavesScreen extends Screen {
 
     @Override
     public void init() {
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
 
 //        panel.setVisible(true);
 
@@ -91,7 +90,7 @@ public class SavesScreen extends Screen {
 
     @Override
     public boolean onClose(Screen to) {
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
 
 //        panel.setVisible(false);
 
@@ -107,7 +106,7 @@ public class SavesScreen extends Screen {
     }
 
     @Override
-    public void render(QBubbles game, Graphics2D gg) {
+    public void render(BubbleBlaster game, Graphics2D gg) {
 //        languageButton.setX((int) Game.getMiddleX() - 322);
 //        languageButton.setY((int) Game.getMiddleY() + 101);
 
@@ -124,17 +123,17 @@ public class SavesScreen extends Screen {
     }
 
     @Override
-    public synchronized void renderGUI(QBubbles game, Graphics2D gg) {
+    public void renderGUI(BubbleBlaster game, Graphics2D gg) {
 //        cancelButton.setText(I18n.translateToLocal("other.cancel"));
 //        cancelButton.render(game, gg);
 
 //        languageButton.setText(I18n.translateToLocal("scene.qbubbles.options.language"));
 //        languageButton.render(game, gg);
 
-//        scrollPane.setPreferredSize(new Dimension(800, QBubbles.getInstance().getHeight()));
-//        scrollPane.setSize(new Dimension(800, QBubbles.getInstance().getHeight()));
-//        panel.setPreferredSize(new Dimension(800, QBubbles.getInstance().getHeight()));
-//        panel.setSize(new Dimension(800, QBubbles.getInstance().getHeight()));
+//        scrollPane.setPreferredSize(new Dimension(800, QBubbles.getInstance().getScaledHeight()));
+//        scrollPane.setSize(new Dimension(800, QBubbles.getInstance().getScaledHeight()));
+//        panel.setPreferredSize(new Dimension(800, QBubbles.getInstance().getScaledHeight()));
+//        panel.setSize(new Dimension(800, QBubbles.getInstance().getScaledHeight()));
 //        scrollPane.setLocation(Game.instance().getWidth() / 2 - 300, 0);
 
 //        scrollPane.paintAll(gg.create(Game.instance().getWidth() / 2 - 400, 0, 800, Game.instance().getHeight()));
@@ -161,9 +160,9 @@ public class SavesScreen extends Screen {
 //        savesDisplay.repaint(0);
     }
 
-    public synchronized void renderBackground(QBubbles game, Graphics2D gg) {
+    public void renderBackground(BubbleBlaster game, Graphics2D gg) {
         gg.setColor(new Color(96, 96, 96));
-        gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
+        gg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
     }
 
     @SuppressWarnings("EmptyMethod")

@@ -1,9 +1,9 @@
 package com.qtech.bubbles.item;
 
-import com.qtech.bubbles.common.ResourceLocation;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.common.TagHolder;
-import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.common.interfaces.StateHolder;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.registry.Registers;
 import org.bson.BsonDocument;
 import org.bson.BsonString;
@@ -37,7 +37,7 @@ public final class Item implements IItemProvider, StateHolder, TagHolder {
 
     @Override
     public void setState(BsonDocument nbt) {
-        this.type = Registers.ITEMS.get(ResourceLocation.fromString(nbt.getString("Type").getValue()));
+        this.type = Registers.ITEMS.get(ResourceEntry.fromString(nbt.getString("Type").getValue()));
         this.tag = nbt.getDocument("Tag");
     }
 

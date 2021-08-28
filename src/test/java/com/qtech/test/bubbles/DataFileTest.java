@@ -1,6 +1,6 @@
 package com.qtech.test.bubbles;
 
-import com.qtech.bubbles.common.ResourceLocation;
+import com.qtech.bubbles.common.ResourceEntry;
 
 import java.io.*;
 
@@ -27,7 +27,7 @@ public class DataFileTest {
         }
 
         try {
-            ResourceLocation key = new ResourceLocation("qbubbles", "hello");
+            ResourceEntry key = new ResourceEntry("qbubbles", "hello");
             System.out.println(key);
 
             oos.writeObject(key);
@@ -62,7 +62,7 @@ public class DataFileTest {
         }
 
         try {
-            ResourceLocation key = (ResourceLocation) ois.readObject();
+            ResourceEntry key = (ResourceEntry) ois.readObject();
             System.out.println(key);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

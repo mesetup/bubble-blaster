@@ -1,6 +1,6 @@
 package com.qtech.bubbles.core.handler;
 
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 
 import java.util.LinkedList;

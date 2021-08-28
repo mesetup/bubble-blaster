@@ -3,19 +3,9 @@ package com.qtech.bubbles.common.filefilters;
 import java.io.File;
 import java.io.FileFilter;
 
-public class VisibilityFileFilter implements FileFilter {
-    private final boolean filterVisible;
-
-    public VisibilityFileFilter(boolean filterVisible) {
-        this.filterVisible = filterVisible;
-    }
-
+public record VisibilityFileFilter(boolean filterVisible) implements FileFilter {
     @Override
     public boolean accept(File pathname) {
-        if (filterVisible) {
-            return !pathname.isHidden();
-        } else {
-            return pathname.isHidden();
-        }
+        return filterVisible != pathname.isHidden();
     }
 }

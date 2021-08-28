@@ -1,6 +1,6 @@
 package com.qtech.bubbles.common.crash;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.core.utils.categories.StringUtils;
 
 import java.io.PrintStream;
@@ -21,7 +21,7 @@ public final class ReportedException extends RuntimeException {
         for (String string : strings) {
             System.err.println(string);
         }
-        QBubbles.getInstance().shutdown();
+        BubbleBlaster.getInstance().shutdown();
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class ReportedException extends RuntimeException {
         for (String string : strings) {
             err.println(string);
         }
-        QBubbles.getInstance().shutdown();
+        BubbleBlaster.getInstance().shutdown();
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class ReportedException extends RuntimeException {
         for (String string : strings) {
             err.println(string);
         }
-        QBubbles.getInstance().shutdown();
+        BubbleBlaster.getInstance().shutdown();
     }
 
     public CrashReport getCrashReport() {

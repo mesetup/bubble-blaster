@@ -12,12 +12,12 @@ other.random=Të rastit
 other.save=Ruaj
 
 # Effects
-effect.bubbleblaster.poison.name=Helmuar
-effect.bubbleblaster.blindness.name=Të verbër
-effect.bubbleblaster.multi_score.name=Vlerësimi i Shumëfishtë
-effect.bubbleblaster.speed_boost.name=Rritja e shpejtësisë
-effect.bubbleblaster.attack_boost.name=Rritja e sulmit
-effect.bubbleblaster.defense_boost.name=Rritja e mbrojtjes
+statusEffect.bubbleblaster.poison.name=Helmuar
+statusEffect.bubbleblaster.blindness.name=Të verbër
+statusEffect.bubbleblaster.multi_score.name=Vlerësimi i Shumëfishtë
+statusEffect.bubbleblaster.speed_boost.name=Rritja e shpejtësisë
+statusEffect.bubbleblaster.attack_boost.name=Rritja e sulmit
+statusEffect.bubbleblaster.defense_boost.name=Rritja e mbrojtjes
 
 # Informations
 info.bubbleblaster.score=Vota

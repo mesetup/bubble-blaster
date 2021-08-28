@@ -12,12 +12,12 @@ other.random=Ûnbekend
 other.save=Rêde
 
 # Effects
-effect.bubbleblaster.poison.name=Fergiftige
-effect.bubbleblaster.blindness.name=Blinded
-effect.bubbleblaster.multi_score.name=Aksepteare Skoare
-effect.bubbleblaster.speed_boost.name=Faasje
-effect.bubbleblaster.attack_boost.name=Oanfal Ympuls
-effect.bubbleblaster.defense_boost.name=Definsje Ympuls
+statusEffect.bubbleblaster.poison.name=Fergiftige
+statusEffect.bubbleblaster.blindness.name=Blinded
+statusEffect.bubbleblaster.multi_score.name=Aksepteare Skoare
+statusEffect.bubbleblaster.speed_boost.name=Faasje
+statusEffect.bubbleblaster.attack_boost.name=Oanfal Ympuls
+statusEffect.bubbleblaster.defense_boost.name=Definsje Ympuls
 
 # Informations
 info.bubbleblaster.score=Punten

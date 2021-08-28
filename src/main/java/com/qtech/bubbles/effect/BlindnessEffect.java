@@ -1,12 +1,12 @@
 package com.qtech.bubbles.effect;
 
 import com.jhlabs.image.ContrastFilter;
-import com.qtech.bubbles.common.effect.Effect;
-import com.qtech.bubbles.common.effect.EffectInstance;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.effect.StatusEffect;
+import com.qtech.bubbles.common.effect.StatusEffectInstance;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.event.FilterEvent;
 
-public class BlindnessEffect extends Effect {
+public class BlindnessEffect extends StatusEffect {
     private long startTime;
 
     public BlindnessEffect() {
@@ -14,20 +14,20 @@ public class BlindnessEffect extends Effect {
     }
 
     @Override
-    public void onFilter(EffectInstance effectInstance, FilterEvent evt) {
+    public void onFilter(StatusEffectInstance statusEffectInstance, FilterEvent evt) {
 //        HSBAdjustFilter filter = new HSBAdjustFilter();
 //        filter.setHFactor((float) (System.currentTimeMillis() - startTime) / 3000 % 1);
         ContrastFilter filter = new ContrastFilter();
-        filter.setContrast(0.25f + 0.25f / (float) effectInstance.getStrength());
+        filter.setContrast(0.25f + 0.25f / (float) statusEffectInstance.getStrength());
         evt.addFilter(filter);
 
         ContrastFilter filter1 = new ContrastFilter();
-        filter1.setBrightness(0.5f / (float) effectInstance.getStrength());
+        filter1.setBrightness(0.5f / (float) statusEffectInstance.getStrength());
         evt.addFilter(filter1);
     }
 
     @Override
-    public void onStart(EffectInstance effectInstance, Entity entity) {
+    public void onStart(StatusEffectInstance statusEffectInstance, Entity entity) {
         startTime = System.currentTimeMillis();
     }
 
@@ -43,7 +43,7 @@ public class BlindnessEffect extends Effect {
     }
 
     @Override
-    protected boolean canExecute(Entity entity, EffectInstance effectInstance) {
+    protected boolean canExecute(Entity entity, StatusEffectInstance statusEffectInstance) {
         return false;
     }
 

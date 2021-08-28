@@ -1,15 +1,15 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.core.controllers.MouseController;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
-import com.qtech.bubbles.event.KeyboardEvent;
-import com.qtech.bubbles.event.MouseEvent;
-import com.qtech.bubbles.event.RenderEventPriority;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.RenderEventPriority;
+import com.qtech.bubbles.event._common.SubscribeEvent;
+import com.qtech.bubbles.event.input.KeyboardEvent;
+import com.qtech.bubbles.event.input.MouseEvent;
 import com.qtech.bubbles.event.type.KeyEventType;
-import com.qtech.bubbles.graphics.Border;
+import com.qtech.bubbles.gui.border.Border;
 import com.qtech.bubbles.util.Util;
 import com.qtech.bubbles.util.helpers.MathHelper;
 
@@ -180,7 +180,7 @@ public class OptionsNumberInput extends OptionsTextEntry {
         eventsActive = true;
         upButton.bindEvents();
         downButton.bindEvents();
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
     }
 
     @Override
@@ -188,7 +188,7 @@ public class OptionsNumberInput extends OptionsTextEntry {
         eventsActive = false;
         upButton.unbindEvents();
         downButton.unbindEvents();
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
     }
 
     @Override
@@ -206,7 +206,7 @@ public class OptionsNumberInput extends OptionsTextEntry {
         Point mousePos = MouseController.instance().getCurrentPoint();
         if (mousePos != null) {
             if (bounds.contains(mousePos)) {
-                Util.setCursor(QBubbles.getInstance().getTextCursor());
+                Util.setCursor(BubbleBlaster.getInstance().getTextCursor());
                 hovered = true;
             } else {
                 Integer vx1 = visualX;
@@ -216,11 +216,11 @@ public class OptionsNumberInput extends OptionsTextEntry {
                 Rectangle bounds1 = new Rectangle(vx1, vy1, getBounds().width, getBounds().height);
 
                 if (bounds1.contains(mousePos)) {
-                    Util.setCursor(QBubbles.getInstance().getPointerCursor());
+                    Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
                     hovered = true;
                 } else {
                     if (hovered) {
-                        Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+                        Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
                         hovered = false;
                     }
                 }
@@ -372,7 +372,7 @@ public class OptionsNumberInput extends OptionsTextEntry {
 //                gg.draw(new Rectangle(bounds.x, bounds.y, bounds.width - 1, bounds.height - 1));
                 Border border = new Border(2, 2, 2, 2);
                 border.setPaint(p);
-                border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
+                border.paintBorder(BubbleBlaster.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
 //                gg.setPaint(old);
 
                 textColor = new Color(255, 255, 255);

@@ -1,6 +1,6 @@
 package com.qtech.bubbles.common.interfaces;
 
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 
 @FunctionalInterface
 public interface EventConsumer<T> {

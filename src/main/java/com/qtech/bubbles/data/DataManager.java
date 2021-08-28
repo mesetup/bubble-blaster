@@ -1,6 +1,6 @@
 package com.qtech.bubbles.data;
 
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.entity.Entity;
 import org.bson.BsonDocument;
 import org.bson.BsonDouble;
 

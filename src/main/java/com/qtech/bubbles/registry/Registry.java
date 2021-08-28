@@ -1,12 +1,11 @@
 package com.qtech.bubbles.registry;
 
 import com.qtech.bubbles.common.IRegistryEntry;
-import com.qtech.bubbles.common.RegistryEntry;
-import com.qtech.bubbles.common.ResourceLocation;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.common.init.ObjectInit;
 import com.qtech.bubbles.common.maps.SequencedHashMap;
-import com.qtech.bubbles.event.Bus;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
+import com.qtech.bubbles.event.bus.Bus;
 import com.qtech.bubbles.event.bus.EventBus;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,12 +16,12 @@ import java.util.*;
 
 @SuppressWarnings("unchecked")
 public class Registry<T extends IRegistryEntry> {
-    private final SequencedHashMap<ResourceLocation, T> registry = new SequencedHashMap<>();
+    private final SequencedHashMap<ResourceEntry, T> registry = new SequencedHashMap<>();
     private final Class<T> type;
     private static final HashMap<Class<?>, Registry<?>> metricsMap = new HashMap<>();
-    private final ResourceLocation registryName;
+    private final ResourceEntry registryName;
 
-    protected Registry(@NotNull Class<T> clazz, ResourceLocation registryName) throws IllegalStateException {
+    protected Registry(@NotNull Class<T> clazz, ResourceEntry registryName) throws IllegalStateException {
         if (metricsMap.containsKey(clazz)) {
             throw new IllegalStateException();
         }
@@ -34,12 +33,12 @@ public class Registry<T extends IRegistryEntry> {
         Registry.metricsMap.put(type, this);
     }
 
-    public ResourceLocation getRegistryName() {
+    public ResourceEntry getRegistryName() {
         return registryName;
     }
 
     @Deprecated
-    public static <T extends RegistryEntry> Registry<T> create(@NotNull Class<T> clazz, ResourceLocation registryName) {
+    public static <T extends RegistryEntry> Registry<T> create(@NotNull Class<T> clazz, ResourceEntry registryName) {
         return new Registry<>(clazz, registryName);
     }
 
@@ -48,20 +47,20 @@ public class Registry<T extends IRegistryEntry> {
     }
 
     /**
-     * Returns the registered instance from the given {@link ResourceLocation}
+     * Returns the registered instance from the given {@link ResourceEntry}
      *
      * @param key the namespaced key.
      * @return an registered instance of the type {@link T}.
      * @throws ClassCastException if the type is invalid.
      */
-    public T get(ResourceLocation key) {
+    public T get(ResourceEntry key) {
         if (!registry.containsKey(key)) {
             throw new IllegalArgumentException("Cannot find object for: " + key + " | type: " + type.getSimpleName());
         }
         return registry.get(key);
     }
 
-    public boolean contains(ResourceLocation rl) {
+    public boolean contains(ResourceEntry rl) {
         return registry.containsKey(rl);
     }
 
@@ -69,9 +68,9 @@ public class Registry<T extends IRegistryEntry> {
     public void onRegistryDump() {
         System.out.println("Registry dump: " + type.getSimpleName());
 //        System.out.println(hashCode());
-        for (Map.Entry<ResourceLocation, T> entry : entries()) {
+        for (Map.Entry<ResourceEntry, T> entry : entries()) {
             T object = entry.getValue();
-            ResourceLocation rl = entry.getKey();
+            ResourceEntry rl = entry.getKey();
 
             System.out.println("  (" + rl + ") -> " + object);
         }
@@ -96,7 +95,7 @@ public class Registry<T extends IRegistryEntry> {
                         if (object.isTempRegistryName()) {
                             object.updateRegistryName(addonId);
                         } else {
-                            object.setRegistryName(new ResourceLocation(addonId, field.getName().toLowerCase()));
+                            object.setRegistryName(new ResourceEntry(addonId, field.getName().toLowerCase()));
                         }
                     }
 
@@ -118,7 +117,7 @@ public class Registry<T extends IRegistryEntry> {
      * @param rl  the resource location.
      * @param val the register item value.
      */
-    public void register(ResourceLocation rl, T val) {
+    public void register(ResourceEntry rl, T val) {
         if (!type.isAssignableFrom(val.getClass())) {
             throw new IllegalArgumentException("Not allowed type detected, got " + val.getClass() + " expected assignable to " + type);
         }
@@ -130,18 +129,18 @@ public class Registry<T extends IRegistryEntry> {
         return Collections.unmodifiableCollection(registry.values());
     }
 
-    public Set<ResourceLocation> keys() {
+    public Set<ResourceEntry> keys() {
         return Collections.unmodifiableSet(registry.keySet());
     }
 
-    public Set<Map.Entry<ResourceLocation, T>> entries() {
+    public Set<Map.Entry<ResourceEntry, T>> entries() {
         // I do this because IDE won's accept dynamic values ans keys.
         ArrayList<T> values = new ArrayList<>(values());
-        ArrayList<ResourceLocation> keys = new ArrayList<>(keys());
+        ArrayList<ResourceEntry> keys = new ArrayList<>(keys());
 
         if (keys.size() != values.size()) throw new IllegalStateException("Keys and values have different lengths.");
 
-        Set<Map.Entry<ResourceLocation, T>> entrySet = new HashSet<>();
+        Set<Map.Entry<ResourceEntry, T>> entrySet = new HashSet<>();
 
         for (int i = 0; i < keys.size(); i++) {
             entrySet.add(new AbstractMap.SimpleEntry<>(keys.get(i), values.get(i)));
@@ -160,7 +159,7 @@ public class Registry<T extends IRegistryEntry> {
         return null;
     }
 
-    public void registrable(ResourceLocation rl, RegistryEntry object) {
+    public void registrable(ResourceEntry rl, RegistryEntry object) {
         if (type.isAssignableFrom(object.getClass())) {
             register(rl, (T) object);
         }

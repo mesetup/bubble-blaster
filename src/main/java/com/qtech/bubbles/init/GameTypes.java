@@ -1,7 +1,6 @@
 package com.qtech.bubbles.init;
 
-import com.qtech.bubbles.QInternalAddon;
-import com.qtech.bubbles.bubble.AbstractBubble;
+import com.qtech.bubbles.InternalAddon;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.init.ObjectInit;
 import com.qtech.bubbles.gametype.ClassicType;
@@ -19,7 +18,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 //@ObjectHolder(addonId = "qbubbles", type = GameType.class)
 public class GameTypes implements ObjectInit<AbstractGameType> {
-    public static final DeferredRegister<AbstractGameType> GAME_TYPES = DeferredRegister.create(QInternalAddon.ADDON_ID, Registers.GAME_TYPES);
+    public static final DeferredRegister<AbstractGameType> GAME_TYPES = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.GAME_TYPES);
 
     public static final RegistryObject<ClassicType> CLASSIC_TYPE = register("classic", () -> new ClassicType());
 

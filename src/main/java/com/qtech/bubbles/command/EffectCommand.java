@@ -1,9 +1,8 @@
 package com.qtech.bubbles.command;
 
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.command.CommandExecutor;
-import com.qtech.bubbles.common.effect.Effect;
-import com.qtech.bubbles.common.effect.EffectInstance;
+import com.qtech.bubbles.common.ResourceEntry;
+import com.qtech.bubbles.common.effect.StatusEffect;
+import com.qtech.bubbles.common.effect.StatusEffectInstance;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.registry.Registry;
 import com.qtech.utilities.python.builtins.ValueError;
@@ -20,8 +19,8 @@ public class EffectCommand implements CommandExecutor {
 
                 int amount = player.getActiveEffects().size();
 
-                for (EffectInstance effectInstance : player.getActiveEffects()) {
-                    player.removeEffect(effectInstance);
+                for (StatusEffectInstance statusEffectInstance : player.getActiveEffects()) {
+                    player.removeEffect(statusEffectInstance);
                 }
 
                 player.sendMessage("Removed " + amount + " effects.");
@@ -30,24 +29,24 @@ public class EffectCommand implements CommandExecutor {
             }
         } else if (args.length == 2) {
             if (args[0].equals("give")) {
-                EffectInstance effectInstance;
+                StatusEffectInstance statusEffectInstance;
                 try {
-                    Effect effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
-                    if (effect == null) {
-                        effectInstance = null;
+                    StatusEffect statusEffect = Registry.getRegistry(StatusEffect.class).get(ResourceEntry.fromString(args[1]));
+                    if (statusEffect == null) {
+                        statusEffectInstance = null;
                     } else {
-                        effectInstance = new EffectInstance(effect, 15, (byte) 1);
+                        statusEffectInstance = new StatusEffectInstance(statusEffect, 15, (byte) 1);
                     }
                 } catch (ValueError exception) {
                     player.sendMessage("Invalid key: " + args[1]);
                     return false;
                 }
 
-                if (effectInstance == null) {
+                if (statusEffectInstance == null) {
                     player.sendMessage("EffectInstance with key ‘" + args[1] + "’ was not found.");
                     return true;
                 }
-                player.addEffect(effectInstance);
+                player.addEffect(statusEffectInstance);
                 return true;
             }
         } else if (args.length == 3) {
@@ -60,24 +59,24 @@ public class EffectCommand implements CommandExecutor {
                     return false;
                 }
 
-                EffectInstance effectInstance;
+                StatusEffectInstance statusEffectInstance;
                 try {
-                    Effect effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
-                    if (effect == null) {
-                        effectInstance = null;
+                    StatusEffect statusEffect = Registry.getRegistry(StatusEffect.class).get(ResourceEntry.fromString(args[1]));
+                    if (statusEffect == null) {
+                        statusEffectInstance = null;
                     } else {
-                        effectInstance = new EffectInstance(effect, duration, 1);
+                        statusEffectInstance = new StatusEffectInstance(statusEffect, duration, 1);
                     }
                 } catch (ValueError exception) {
                     player.sendMessage("Invalid key: " + args[1]);
                     return false;
                 }
 
-                if (effectInstance == null) {
+                if (statusEffectInstance == null) {
                     player.sendMessage("EffectInstance with key ‘" + args[1] + "’ was not found.");
                     return true;
                 }
-                player.addEffect(effectInstance);
+                player.addEffect(statusEffectInstance);
                 return true;
             }
         } else if (args.length == 4) {
@@ -108,24 +107,24 @@ public class EffectCommand implements CommandExecutor {
                     return false;
                 }
 
-                EffectInstance effectInstance;
+                StatusEffectInstance statusEffectInstance;
                 try {
-                    Effect effect = Registry.getRegistry(Effect.class).get(ResourceLocation.fromString(args[1]));
-                    if (effect == null) {
-                        effectInstance = null;
+                    StatusEffect statusEffect = Registry.getRegistry(StatusEffect.class).get(ResourceEntry.fromString(args[1]));
+                    if (statusEffect == null) {
+                        statusEffectInstance = null;
                     } else {
-                        effectInstance = new EffectInstance(effect, duration, strength);
+                        statusEffectInstance = new StatusEffectInstance(statusEffect, duration, strength);
                     }
                 } catch (ValueError exception) {
                     player.sendMessage("Invalid key: " + args[1]);
                     return false;
                 }
 
-                if (effectInstance == null) {
+                if (statusEffectInstance == null) {
                     player.sendMessage("EffectInstance with key ‘" + args[1] + "’ was not found.");
                     return true;
                 }
-                player.addEffect(effectInstance);
+                player.addEffect(statusEffectInstance);
                 return true;
             }
         }

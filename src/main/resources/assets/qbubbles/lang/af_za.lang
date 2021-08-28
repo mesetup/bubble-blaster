@@ -12,12 +12,12 @@ other.random=Onwillekeurig
 other.save=Stoor
 
 # Effects
-effect.qbubbles.poison.name=Vergifde
-effect.qbubbles.blindness.name=Verblind
-effect.qbubbles.multi_score.name=Multi-telling
-effect.qbubbles.speed_boost.name=Spoedversterking
-effect.qbubbles.attack_boost.name=Aanval Boost
-effect.qbubbles.defense_boost.name=Verdediging Boost
+statusEffect.qbubbles.poison.name=Vergifde
+statusEffect.qbubbles.blindness.name=Verblind
+statusEffect.qbubbles.multi_score.name=Multi-telling
+statusEffect.qbubbles.speed_boost.name=Spoedversterking
+statusEffect.qbubbles.attack_boost.name=Aanval Boost
+statusEffect.qbubbles.defense_boost.name=Verdediging Boost
 
 # Informations
 info.qbubbles.score=Telling

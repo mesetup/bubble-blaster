@@ -1,7 +1,7 @@
 package com.qtech.bubbles.ability.triggers.types;
 
-import com.qtech.bubbles.common.RegistryEntry;
 import com.qtech.bubbles.common.init.ObjectInit;
+import com.qtech.bubbles.registry.RegistryEntry;
 
 import java.util.Objects;
 

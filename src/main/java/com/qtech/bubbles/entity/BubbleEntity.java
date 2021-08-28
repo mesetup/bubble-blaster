@@ -1,23 +1,28 @@
 package com.qtech.bubbles.entity;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.bubble.AbstractBubble;
 import com.qtech.bubbles.common.BubbleProperties;
-import com.qtech.bubbles.common.ResourceLocation;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.random.BubbleRandomizer;
-import com.qtech.bubbles.common.scene.Scene;
-import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.core.controllers.KeyboardController;
+import com.qtech.bubbles.entity.attribute.Attribute;
+import com.qtech.bubbles.entity.damage.DamageSource;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.entity.types.EntityType;
 import com.qtech.bubbles.environment.Environment;
-import com.qtech.bubbles.event.*;
+import com.qtech.bubbles.event.CollisionEvent;
+import com.qtech.bubbles.event.RenderEvent;
+import com.qtech.bubbles.event.TickEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.event.bus.EventBus;
+import com.qtech.bubbles.event.input.MouseMotionEvent;
 import com.qtech.bubbles.init.Bubbles;
 import com.qtech.bubbles.init.Entities;
 import com.qtech.bubbles.init.TextureCollections;
 import com.qtech.bubbles.registry.Registry;
+import com.qtech.bubbles.screen.Screen;
 import com.qtech.bubbles.util.Util;
 import org.bson.*;
 import org.jetbrains.annotations.NotNull;
@@ -77,7 +82,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
     private EventBus.Handler binding;
     private boolean markedForDeletion;
 
-    public static EntityType<? extends BubbleEntity> getRandomType(Scene scene, AbstractGameType gameType) {
+    public static EntityType<? extends BubbleEntity> getRandomType(Screen screen, AbstractGameType gameType) {
         if (random.nextInt(3_000) == 0) {
             return Entities.GIANT_BUBBLE.get();
         }
@@ -203,13 +208,13 @@ public class BubbleEntity extends AbstractBubbleEntity {
 //        renderEventCode = QRenderEvent.addListener(QRenderEvent.getInstance(), GameScene.getInstance(), this::render, RenderEventPriority.LOWER);
 //        collisionEventCode = QCollisionEvent.addListener(GameScene.getInstance(), this::onCollision, RenderEventPriority.NORMAL);
 
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
         areEventsBinded = true;
     }
 
     /**
      * <h1>Unbind Events</h1>
-     * <p><b>Warning: </b><i>Unsafe method! Use {@link Environment#removeEntity(Entity)}  removeBubble of GameType} instead.</i></p>
+     * <p><b>Warning: </b><i>Unsafe method! Use {@link #delete()}  removeBubble of GameType} instead.</i></p>
      * <p>Events:</p>
      * <ul>
      *     <li>{@link TickEvent}</li>
@@ -219,12 +224,12 @@ public class BubbleEntity extends AbstractBubbleEntity {
      * @throws NoSuchElementException If listener is already fully or partly removed.
      * @see TickEvent
      * @see RenderEvent
-     * @see Environment#removeEntity(Entity)
+     * @see #delete()
      */
     @Override
     protected void unbindEvents() {
         try {
-            QBubbles.getEventBus().unregister(this);
+            BubbleBlaster.getEventBus().unregister(this);
         } catch (IllegalArgumentException ignored) {
 
         }
@@ -251,10 +256,10 @@ public class BubbleEntity extends AbstractBubbleEntity {
         // Check player and current scene.
         PlayerEntity player = this.gameType.getPlayer();
         @Nullable Screen currentScreen = Util.getSceneManager().getCurrentScreen();
-        if (player == null || !(QBubbles.getInstance().isGameLoaded())) return;
+        if (player == null || !(BubbleBlaster.getInstance().isGameLoaded())) return;
 
         // Set velocity speed.
-        if (QBubbles.getInstance().isGameLoaded()) {
+        if (BubbleBlaster.getInstance().isGameLoaded()) {
             velX = -speed * (this.gameType.getPlayer().getLevel() / 10d + 1);
         } else {
             velX = -speed * (5.0);
@@ -270,9 +275,9 @@ public class BubbleEntity extends AbstractBubbleEntity {
     }
 
     @Override
-    public synchronized void renderEntity(Graphics2D gg) {
+    public void renderEntity(Graphics2D gg) {
         if (!areEventsBinded) return;
-        gg.drawImage(TextureCollections.BUBBLE_TEXTURES.get().get(new ResourceLocation(getBubbleType().getRegistryName().namespace(), getBubbleType().getRegistryName().path() + "/" + radius)), (int) x - radius / 2, (int) y - radius / 2, QBubbles.getInstance());
+        gg.drawImage(TextureCollections.BUBBLE_TEXTURES.get().get(new ResourceEntry(getBubbleType().getRegistryName().namespace(), getBubbleType().getRegistryName().path() + "/" + radius)), (int) x - radius / 2, (int) y - radius / 2, BubbleBlaster.getInstance());
     }
 
     @Override
@@ -371,7 +376,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
         this.bounceAmount = state.getInt32("BounceAmount").getValue();
         this.baseBounceAmount = state.getInt32("BaseBounceAmount").getValue();
 
-        ResourceLocation bubbleTypeKey = ResourceLocation.fromString(state.getString("bubbleType").getValue());
+        ResourceEntry bubbleTypeKey = ResourceEntry.fromString(state.getString("bubbleType").getValue());
         this.effectApplied = state.getBoolean("IsEffectApplied").getValue();
         this.bubbleType = Registry.getRegistry(AbstractBubble.class).get(bubbleTypeKey);
     }

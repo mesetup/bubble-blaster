@@ -1,6 +1,6 @@
 package com.qtech.bubbles.init;
 
-import com.qtech.bubbles.QInternalAddon;
+import com.qtech.bubbles.InternalAddon;
 import com.qtech.bubbles.common.gamestate.GameEvent;
 import com.qtech.bubbles.common.init.ObjectInit;
 import com.qtech.bubbles.registry.DeferredRegister;
@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  */
 @SuppressWarnings("unused")
 public class GameEvents implements ObjectInit<GameEvent> {
-    public static final DeferredRegister<GameEvent> GAME_EVENTS = DeferredRegister.create(QInternalAddon.ADDON_ID, Registers.GAME_EVENTS);
+    public static final DeferredRegister<GameEvent> GAME_EVENTS = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.GAME_EVENTS);
 
     // Bubbles
     public static final RegistryObject<BloodMoonEvent> BLOOD_MOON_EVENT = register("blood_moon", BloodMoonEvent::new);

@@ -19,7 +19,7 @@ public class LanguageMap {
     private static final Pattern NUMERIC_VARIABLE_PATTERN = Pattern.compile("%(\\d+\\$)?[\\d\\.]*[df]");
     private static final Splitter EQUAL_SIGN_SPLITTER = Splitter.on('=').limit(2);
     private static final LanguageMap instance = new LanguageMap(GameSettings.instance().getLanguageLocale());
-    private final Map<String, String> languageList = Maps.newHashMap();
+    private final Map<String, String> languageList = Maps.newConcurrentMap();
     private long lastUpdateTimeInMilliseconds;
 
     public LanguageMap(Locale locale) {

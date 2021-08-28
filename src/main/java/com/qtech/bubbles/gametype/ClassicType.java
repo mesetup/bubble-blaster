@@ -1,21 +1,21 @@
 package com.qtech.bubbles.gametype;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
 import com.qtech.bubbles.bubble.AbstractBubble;
 import com.qtech.bubbles.common.Difficulty;
 import com.qtech.bubbles.common.IRegistryEntry;
 import com.qtech.bubbles.common.InfoTransporter;
 import com.qtech.bubbles.common.crash.CrashReport;
-import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.core.common.SavedGame;
 import com.qtech.bubbles.entity.BubbleEntity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.entity.types.EntityType;
 import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.event.FilterEvent;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.gametype.hud.ClassicHUD;
 import com.qtech.bubbles.init.Bubbles;
@@ -77,7 +77,7 @@ public class ClassicType extends AbstractGameType {
                 }
 
                 if (bubble != Bubbles.LEVEL_UP_BUBBLE.get()) {
-                    Point pos = new Point(this.bubblesXPosRng.getNumber(0, QBubbles.getInstance().getWidth(), -i - 1), this.bubblesYPosRng.getNumber(0, QBubbles.getInstance().getWidth(), -i - 1));
+                    Point pos = new Point(this.bubblesXPosRng.getNumber(0, BubbleBlaster.getInstance().getWidth(), -i - 1), this.bubblesYPosRng.getNumber(0, BubbleBlaster.getInstance().getWidth(), -i - 1));
                     environment.spawn(Entities.BUBBLE.get().create(this), pos);
                 }
 
@@ -91,7 +91,7 @@ public class ClassicType extends AbstractGameType {
             // Spawn player
             infoTransporter.log("Spawning player...");
             this.player = new PlayerEntity(environment.getGameType());
-            environment.spawn(player, new Point(game.getWidth() / 4, QBubbles.getInstance().getHeight() / 2));
+            environment.spawn(player, new Point(game.getScaledWidth() / 4, BubbleBlaster.getInstance().getHeight() / 2));
         } catch (Exception e) {
             CrashReport crashReport = new CrashReport("Could not initialize classic game type.", e);
             throw crashReport.getReportedException();
@@ -331,7 +331,7 @@ public class ClassicType extends AbstractGameType {
 
     @Override
     public Rectangle2D getGameBounds() {
-        return new Rectangle2D.Double(70d, 0d, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight() - 70d);
+        return new Rectangle2D.Double(70d, 0d, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight() - 70d);
     }
 
     @Override
@@ -378,7 +378,7 @@ public class ClassicType extends AbstractGameType {
 //        tickEventCode = QUpdateEvent.getInstance().addListener(QUpdateEvent.getInstance(), GameScene.getInstance(), this::tick, RenderEventPriority.HIGHER);
 //        renderEventCode = QRenderEvent.getInstance().addListener(QRenderEvent.getInstance(), GameScene.getInstance(), this::render, RenderEventPriority.HIGHER);
 
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
         this.eventActive = true;
     }
 
@@ -387,7 +387,7 @@ public class ClassicType extends AbstractGameType {
 //        QUpdateEvent.getInstance().removeListener(tickEventCode);
 //        QRenderEvent.getInstance().removeListener(renderEventCode);
 
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
         this.eventActive = false;
     }
 
@@ -408,7 +408,7 @@ public class ClassicType extends AbstractGameType {
         super.tick();
 
         if (environment.getEntities().stream().filter((entity) -> entity instanceof BubbleEntity).count() < GameSettings.instance().getMaxBubbles()) {
-            EntityType<? extends BubbleEntity> entityType = BubbleEntity.getRandomType(scene, this);
+            EntityType<? extends BubbleEntity> entityType = BubbleEntity.getRandomType(screen, this);
             BubbleEntity bubbleEntity = entityType.create(this);
             if (bubbleEntity.getBubbleType().canSpawn(this)) {
                 environment.spawn(entityType);

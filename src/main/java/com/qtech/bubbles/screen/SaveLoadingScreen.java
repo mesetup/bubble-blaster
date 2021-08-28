@@ -1,11 +1,10 @@
 package com.qtech.bubbles.screen;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
 import com.qtech.bubbles.common.InfoTransporter;
 import com.qtech.bubbles.common.crash.CrashReport;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
-import com.qtech.bubbles.common.screen.Screen;
 import com.qtech.bubbles.core.common.SavedGame;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
 import com.qtech.bubbles.environment.Environment;
@@ -91,25 +90,25 @@ public class SaveLoadingScreen extends Screen {
             throw crashReport.getReportedException();
         }
 
-        this.game.displayScene(null);
+        this.game.showScreen(null);
     }
 
     @Override
-    public void render(QBubbles game, Graphics2D gg) {
+    public void render(BubbleBlaster game, Graphics2D gg) {
         gg.setColor(new Color(64, 64, 64));
-        gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
+        gg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
         if (GameSettings.instance().isTextAntialiasEnabled())
             gg.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         gg.setColor(new Color(127, 127, 127));
-        GraphicsUtils.drawCenteredString(gg, this.description, new Rectangle2D.Double(0, ((double) QBubbles.getInstance().getHeight() / 2) + 40, QBubbles.getInstance().getWidth(), 50d), new Font("Helvetica", Font.PLAIN, 20));
+        GraphicsUtils.drawCenteredString(gg, this.description, new Rectangle2D.Double(0, ((double) BubbleBlaster.getInstance().getHeight() / 2) + 40, BubbleBlaster.getInstance().getWidth(), 50d), new Font("Helvetica", Font.PLAIN, 20));
         if (GameSettings.instance().isTextAntialiasEnabled())
             gg.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
     }
 
     @Override
-    public void renderGUI(QBubbles game, Graphics2D gg) {
+    public void renderGUI(BubbleBlaster game, Graphics2D gg) {
 
     }
 }

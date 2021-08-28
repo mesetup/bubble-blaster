@@ -1,12 +1,13 @@
 package com.qtech.bubbles.event;
 
+import com.qtech.bubbles.event._common.ICancellable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 
 @SuppressWarnings("ClassCanBeRecord")
-public class LanguageChangeEvent {
+public class LanguageChangeEvent extends Event implements ICancellable {
     private final Locale from;
     private final Locale to;
 

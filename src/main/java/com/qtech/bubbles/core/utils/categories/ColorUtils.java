@@ -1,6 +1,6 @@
 package com.qtech.bubbles.core.utils.categories;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.utilities.python.builtins.ValueError;
 
 import java.awt.*;
@@ -15,7 +15,7 @@ public class ColorUtils {
      * @see Color
      */
     public static Color hex2Rgb(String colorStr) {
-        QBubbles.getLogger().debug("" + colorStr.length());
+        BubbleBlaster.getLogger().debug("" + colorStr.length());
 
         if (colorStr.length() > 9) throw new ValueError("Too large color hex code, must be a length of 7 or 9, got: " + colorStr.length());
         if (colorStr.length() == 9) {
@@ -59,7 +59,7 @@ public class ColorUtils {
         }
 
         Color[] colorsOut = colors.toArray(new Color[]{});
-        QBubbles.getLogger().debug(colors.toString());
+        BubbleBlaster.getLogger().debug(colors.toString());
 
         return colorsOut;
     }

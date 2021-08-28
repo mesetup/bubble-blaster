@@ -1,25 +1,25 @@
 {
    "version": {
-     "name": "1.0.124-a1",
-     "version": 1,
-     "release": 0,
-     "build": 124,
-     "stage": "a",
-     "stage_release": 1
+      "name": "1.0.170-a1",
+      "version": 1,
+      "release": 0,
+      "build": 170,
+      "stage": "a",
+      "stage_release": 1
    },
    "build_info": {
-     "date": "2021-08-27T00:09:29.848129",
-     "compile": {
-       "name": "compileJava",
-       "source_compat": "16",
-       "target_compat": "16",
-       "gradle": {
-         "version": "7.1"
-       }
-     },
-     "project": {
-       "name": "qbubbles",
-       "display_name": "root project \u0027qbubbles\u0027"
-     }
+      "date": "2021-08-28T11:24:59.122675200",
+      "compile": {
+         "name": "compileJava",
+         "source_compat": "16",
+         "target_compat": "16",
+         "gradle": {
+            "version": "7.1"
+         }
+      },
+      "project": {
+         "name": "qbubbles",
+         "display_name": "root project \u0027qbubbles\u0027"
+      }
    }
 }

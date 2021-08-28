@@ -12,12 +12,12 @@ other.random=Casuale
 other.save=Salva
 
 # Effect names
-effect.bubbleblaster.poison.name=Avvelenato
-effect.bubbleblaster.blindness.name=Blinded
-effect.bubbleblaster.multi_score.name=Punteggio Multi
-effect.bubbleblaster.speed_boost.name=Aumento di Velocità
-effect.bubbleblaster.attack_boost.name=Aumento di Attacco
-effect.bubbleblaster.defense_boost.name=Aumento di Difesa
+statusEffect.bubbleblaster.poison.name=Avvelenato
+statusEffect.bubbleblaster.blindness.name=Blinded
+statusEffect.bubbleblaster.multi_score.name=Punteggio Multi
+statusEffect.bubbleblaster.speed_boost.name=Aumento di Velocità
+statusEffect.bubbleblaster.attack_boost.name=Aumento di Attacco
+statusEffect.bubbleblaster.defense_boost.name=Aumento di Difesa
 
 # Informations
 info.bubbleblaster.score=Punto

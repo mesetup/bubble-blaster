@@ -15,7 +15,6 @@ import java.text.AttributedCharacterIterator;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("unused")
 public class GraphicsProcessor extends Graphics2D {
     private final Graphics2D gg;
     private Font fallbackFont;

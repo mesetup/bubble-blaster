@@ -1,11 +1,11 @@
 package com.qtech.bubbles.environment;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.entity.Entity;
-import com.qtech.bubbles.common.entity.EntitySpawnData;
+import com.qtech.bubbles.BubbleBlaster;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.common.gamestate.GameEvent;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
+import com.qtech.bubbles.entity.Entity;
+import com.qtech.bubbles.entity.EntitySpawnData;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.entity.types.EntityType;
 import com.qtech.bubbles.registry.Registers;
@@ -38,8 +38,8 @@ public class Environment {
      * @param entityData the data of the entity to spawn.
      */
     public final void spawnEntityFromState(BsonDocument entityData) {
-        if (!QBubbles.getInstance().isOnMainThread()) {
-            QBubbles.getInstance().runLater(() -> {
+        if (!BubbleBlaster.getInstance().isOnMainThread()) {
+            BubbleBlaster.getInstance().runLater(() -> {
                 loadAndSpawnEntity(entityData);
             });
             return;
@@ -49,7 +49,7 @@ public class Environment {
 
     private void loadAndSpawnEntity(BsonDocument entityData) {
         String type = entityData.getString("Type").getValue();
-        EntityType<?> entityType = Registers.ENTITIES.get(ResourceLocation.fromString(type));
+        EntityType<?> entityType = Registers.ENTITIES.get(ResourceEntry.fromString(type));
         Entity entity = entityType.create(gameType, entityData);
         entity.prepareSpawn(EntitySpawnData.fromLoadSpawn(entityData));
         entity.setState(entityData);
@@ -58,7 +58,7 @@ public class Environment {
     }
 
     private void gameEventHandlerThread() {
-        while (QBubbles.getInstance().environment == this) {
+        while (BubbleBlaster.getInstance().environment == this) {
             if (currentGameEvent != null) {
                 if (!currentGameEvent.isActive(DateTime.current())) {
                     currentGameEvent = null;
@@ -81,8 +81,8 @@ public class Environment {
      * @param entityType type of entity to spawn.
      */
     public final void spawn(EntityType<?> entityType) {
-        if (!QBubbles.getInstance().isOnMainThread()) {
-            QBubbles.getInstance().runLater(() -> {
+        if (!BubbleBlaster.getInstance().isOnMainThread()) {
+            BubbleBlaster.getInstance().runLater(() -> {
                 Entity entity = entityType.create(gameType);
                 Point pos = gameType.getSpawnLocation(entity);
                 spawn(entity, pos);
@@ -101,8 +101,8 @@ public class Environment {
      * @param pos    spawn location.
      */
     public final void spawn(Entity entity, Point pos) {
-        if (!QBubbles.getInstance().isOnMainThread()) {
-            QBubbles.getInstance().runLater(() -> {
+        if (!BubbleBlaster.getInstance().isOnMainThread()) {
+            BubbleBlaster.getInstance().runLater(() -> {
                 entity.prepareSpawn(EntitySpawnData.fromNaturalSpawn(pos));
                 entity.onSpawn(pos, this);
                 this.entities.add(entity);
@@ -146,8 +146,8 @@ public class Environment {
      */
     @Deprecated
     public void removeEntity(Entity entity) {
-        if (!QBubbles.getInstance().isOnMainThread()) {
-            QBubbles.getInstance().runLater(entity::delete);
+        if (!BubbleBlaster.getInstance().isOnMainThread()) {
+            BubbleBlaster.getInstance().runLater(entity::delete);
         }
         entity.delete();
     }

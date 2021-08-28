@@ -1,14 +1,14 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.api.event.keyboard.KeyboardModifiers;
 import com.qtech.bubbles.common.interfaces.Listener;
 import com.qtech.bubbles.core.controllers.MouseController;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
-import com.qtech.bubbles.event.KeyboardEvent;
-import com.qtech.bubbles.event.MouseEvent;
-import com.qtech.bubbles.event.RenderEventPriority;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.RenderEventPriority;
+import com.qtech.bubbles.event._common.SubscribeEvent;
+import com.qtech.bubbles.event.input.KeyboardEvent;
+import com.qtech.bubbles.event.input.MouseEvent;
 import com.qtech.bubbles.event.type.KeyEventType;
 import com.qtech.bubbles.util.Util;
 import com.qtech.bubbles.util.helpers.MathHelper;
@@ -169,13 +169,13 @@ public class OptionsTextEntry extends Widget implements com.qtech.bubbles.api.ev
     @Override
     public void bindEvents() {
         eventsActive = true;
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
     }
 
     @Override
     public void unbindEvents() {
         eventsActive = false;
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
     }
 
     @Override
@@ -194,11 +194,11 @@ public class OptionsTextEntry extends Widget implements com.qtech.bubbles.api.ev
         Point mousePos = MouseController.instance().getCurrentPoint();
         if (mousePos != null) {
             if (bounds.contains(mousePos)) {
-                Util.setCursor(QBubbles.getInstance().getTextCursor());
+                Util.setCursor(BubbleBlaster.getInstance().getTextCursor());
                 hovered = true;
             } else {
                 if (hovered) {
-                    Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+                    Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
                     hovered = false;
                 }
             }

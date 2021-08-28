@@ -1,8 +1,8 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.core.common.SavedGame;
-import com.qtech.bubbles.graphics.Border;
+import com.qtech.bubbles.gui.border.Border;
 import org.bson.BsonDocument;
 
 import javax.swing.*;
@@ -83,10 +83,10 @@ public class SaveItem extends JPanel {
 
         gg.setColor(new Color(192, 192, 192));
 
-        gg.setFont(new Font(QBubbles.getInstance().getSansFontName(), Font.BOLD, 36));
+        gg.setFont(new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 36));
         gg.drawString(name, 20, 20 + gg.getFontMetrics().getHeight() / 2);
 
-        gg.setFont(new Font(QBubbles.getInstance().getSansFontName(), Font.BOLD, 16));
+        gg.setFont(new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 16));
         ZonedDateTime date = LocalDateTime.ofEpochSecond(saveTime / 1000, (int) ((saveTime % 1000) * 1000000), ZoneOffset.UTC).atZone(ZoneId.of("UTC"));
         @SuppressWarnings("SpellCheckingInspection")
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM uuuu, HH:mm:ss (z)");

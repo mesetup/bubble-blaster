@@ -2,7 +2,7 @@ package com.qtech.bubbles.addon.loader;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.preloader.PreClassLoader;
 
 import java.io.File;
@@ -57,7 +57,7 @@ public class AddonClassLoader extends URLClassLoader {
             }
             return files.toArray(new File[]{});
         } catch (URISyntaxException e) {
-            QBubbles.getLogger().error("Unable to process our input to locate the qbubbles code", e);
+            BubbleBlaster.getLogger().error("Unable to process our input to locate the qbubbles code", e);
             throw new LoaderException(e);
         }
     }

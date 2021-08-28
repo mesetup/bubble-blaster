@@ -1,7 +1,7 @@
 package com.qtech.bubbles.event;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.BubbleBlaster;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.event.bus.EventBus;
 
 import java.awt.*;
@@ -23,19 +23,19 @@ public class CollisionEvent extends Event {
         return eventBus;
     }
 
-    private final QBubbles main;
+    private final BubbleBlaster main;
     private final double deltaTime;
     private final Entity source;
     private final Entity target;
 
-    public CollisionEvent(QBubbles main, double deltaTime, Entity source, Entity target) {
+    public CollisionEvent(BubbleBlaster main, double deltaTime, Entity source, Entity target) {
         this.deltaTime = deltaTime;
         this.source = source;
         this.target = target;
         this.main = main;
     }
 
-    public QBubbles getMain() {
+    public BubbleBlaster getMain() {
         return main;
     }
 

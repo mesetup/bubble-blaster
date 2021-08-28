@@ -1,9 +1,9 @@
 package com.qtech.bubbles.bubble;
 
-import com.qtech.bubbles.common.ResourceLocation;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.core.utils.categories.ColorUtils;
 import com.qtech.bubbles.entity.BubbleEntity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
@@ -11,7 +11,7 @@ import org.apache.commons.lang.math.IntRange;
 public class AccelerateBubble extends AbstractBubble {
     public AccelerateBubble() {
         colors = ColorUtils.parseColorString("#00003f,#00007f,#0000af,#0000ff");
-        setRegistryName(ResourceLocation.fromString("qbubbles:accelerate_bubble"));
+        setRegistryName(ResourceEntry.fromString("qbubbles:accelerate_bubble"));
 
 //        BubbleInit.BUBBLES.add(this);
 

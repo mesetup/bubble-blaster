@@ -1,8 +1,8 @@
 package com.qtech.bubbles.entity.types;
 
-import com.qtech.bubbles.common.RegistryEntry;
-import com.qtech.bubbles.common.entity.Entity;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
+import com.qtech.bubbles.entity.Entity;
+import com.qtech.bubbles.registry.RegistryEntry;
 import org.bson.BsonDocument;
 
 import java.util.Objects;

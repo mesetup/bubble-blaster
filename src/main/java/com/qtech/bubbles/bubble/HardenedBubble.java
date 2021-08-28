@@ -1,6 +1,6 @@
 package com.qtech.bubbles.bubble;
 
-import com.qtech.bubbles.common.ResourceLocation;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.common.gametype.AbstractGameType;
 import com.qtech.bubbles.common.random.Rng;
 import com.qtech.bubbles.core.utils.categories.ColorUtils;
@@ -10,7 +10,7 @@ import org.apache.commons.lang.math.IntRange;
 public class HardenedBubble extends AbstractBubble {
     public HardenedBubble() {
         colors = ColorUtils.parseColorString("#000000,#4f4f4f,#ff7f00,#ffff00");
-        setRegistryName(ResourceLocation.fromString("qbubbles:hardened_bubble"));
+        setRegistryName(ResourceEntry.fromString("qbubbles:hardened_bubble"));
 
         setPriority(387_500L);
         setRadius(new IntRange(21, 60));

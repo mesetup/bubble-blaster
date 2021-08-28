@@ -1,8 +1,8 @@
 package com.qtech.bubbles.addon.loader;
 
 import com.google.gson.JsonObject;
-import com.qtech.bubbles.common.addon.AddonObject;
-import com.qtech.bubbles.common.addon.QBubblesAddon;
+import com.qtech.bubbles.common.mod.ModInstance;
+import com.qtech.bubbles.common.mod.ModObject;
 
 import java.io.File;
 import java.util.jar.JarFile;
@@ -44,7 +44,7 @@ public interface AddonContainer {
 
     Class<?> getAddonClass();
 
-    AddonObject<? extends QBubblesAddon> getAddonObject();
+    ModObject<? extends ModInstance> getAddonObject();
 
-    QBubblesAddon getJavaAddon();
+    ModInstance getJavaAddon();
 }

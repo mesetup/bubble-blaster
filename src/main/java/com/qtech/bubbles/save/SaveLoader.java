@@ -1,6 +1,6 @@
 package com.qtech.bubbles.save;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.References;
 import com.qtech.bubbles.core.common.SavedGame;
 
@@ -24,7 +24,7 @@ public class SaveLoader {
     // Non-static.
     private final File saveDir;
     private final HashMap<String, Supplier<SavedGame>> saves = new HashMap<>();
-    private final QBubbles qbubbles = QBubbles.getInstance();
+    private final BubbleBlaster qbubbles = BubbleBlaster.getInstance();
 
     /**
      * Get the {@link SaveLoader save laoder} instance.

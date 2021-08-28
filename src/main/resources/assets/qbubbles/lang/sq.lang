@@ -12,12 +12,12 @@ other.random=Të rastit
 other.save=Ruaj
 
 # Effects
-effect.qbubbles.poison.name=Helmuar
-effect.qbubbles.blindness.name=Të verbër
-effect.qbubbles.multi_score.name=Vlerësimi i Shumëfishtë
-effect.qbubbles.speed_boost.name=Rritja e shpejtësisë
-effect.qbubbles.attack_boost.name=Rritja e sulmit
-effect.qbubbles.defense_boost.name=Rritja e mbrojtjes
+statusEffect.qbubbles.poison.name=Helmuar
+statusEffect.qbubbles.blindness.name=Të verbër
+statusEffect.qbubbles.multi_score.name=Vlerësimi i Shumëfishtë
+statusEffect.qbubbles.speed_boost.name=Rritja e shpejtësisë
+statusEffect.qbubbles.attack_boost.name=Rritja e sulmit
+statusEffect.qbubbles.defense_boost.name=Rritja e mbrojtjes
 
 # Informations
 info.qbubbles.score=Vota

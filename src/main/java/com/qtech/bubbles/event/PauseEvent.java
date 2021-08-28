@@ -1,22 +1,28 @@
 package com.qtech.bubbles.event;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
+import com.qtech.bubbles.event.screen.OpenScreenEvent;
+import com.qtech.bubbles.screen.PauseScreen;
 
+/**
+ * @author Quinten J.
+ * @deprecated replaced by {@linkplain OpenScreenEvent} with as screen the {@linkplain PauseScreen}.
+ */
 @Deprecated
 public class PauseEvent extends Event {
     @Deprecated
-    private final QBubbles main;
+    private final BubbleBlaster main;
     @Deprecated
     private final boolean setToPaused;
 
     @Deprecated
-    public PauseEvent(QBubbles main, boolean setToPaused) {
+    public PauseEvent(BubbleBlaster main, boolean setToPaused) {
         this.main = main;
         this.setToPaused = setToPaused;
     }
 
     @Deprecated
-    public QBubbles getMain() {
+    public BubbleBlaster getMain() {
         return main;
     }
 

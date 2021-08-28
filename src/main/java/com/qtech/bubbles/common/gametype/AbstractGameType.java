@@ -1,30 +1,38 @@
 package com.qtech.bubbles.common.gametype;
 
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.LoadedGame;
-import com.qtech.bubbles.QBubbles;
 import com.qtech.bubbles.annotation.MethodsReturnNonnullByDefault;
 import com.qtech.bubbles.bubble.AbstractBubble;
-import com.qtech.bubbles.common.bubble.BubbleSystem;
-import com.qtech.bubbles.common.entity.AbstractBubbleEntity;
-import com.qtech.bubbles.common.entity.DamageSource;
-import com.qtech.bubbles.common.entity.DamageableEntity;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.Difficulty;
+import com.qtech.bubbles.common.InfoTransporter;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.common.gamestate.GameEvent;
 import com.qtech.bubbles.common.interfaces.DefaultStateHolder;
 import com.qtech.bubbles.common.interfaces.Listener;
 import com.qtech.bubbles.common.interfaces.StateHolder;
-import com.qtech.bubbles.common.scene.Scene;
+import com.qtech.bubbles.common.random.BubbleRandomizer;
+import com.qtech.bubbles.common.random.PseudoRandom;
+import com.qtech.bubbles.common.random.QBRandom;
+import com.qtech.bubbles.common.random.Rng;
 import com.qtech.bubbles.core.common.SavedGame;
+import com.qtech.bubbles.entity.AbstractBubbleEntity;
 import com.qtech.bubbles.entity.BubbleEntity;
+import com.qtech.bubbles.entity.DamageableEntity;
+import com.qtech.bubbles.entity.Entity;
+import com.qtech.bubbles.entity.bubble.BubbleSystem;
+import com.qtech.bubbles.entity.damage.DamageSource;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.environment.Environment;
 import com.qtech.bubbles.event.RenderEvent;
 import com.qtech.bubbles.gametype.ClassicType;
-import com.qtech.bubbles.graphics.Animation;
+import com.qtech.bubbles.graphics.ValueAnimator;
 import com.qtech.bubbles.init.Bubbles;
 import com.qtech.bubbles.init.GameEvents;
 import com.qtech.bubbles.registry.Registers;
 import com.qtech.bubbles.registry.Registry;
+import com.qtech.bubbles.registry.RegistryEntry;
+import com.qtech.bubbles.screen.Screen;
 import com.qtech.bubbles.util.CollectionsUtils;
 import org.bson.*;
 import org.bson.codecs.BsonDocumentCodec;
@@ -40,6 +48,7 @@ import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * <h1>GameType baseclass</h1>
@@ -58,7 +67,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     protected final List<BubbleEntity> bubbles = new ArrayList<>();
 
     // Types.
-    protected final QBubbles game = QBubbles.getInstance();
+    protected final BubbleBlaster game = BubbleBlaster.getInstance();
 
     // Flags.
     protected boolean gameOver = false;
@@ -72,14 +81,14 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
 
     // State difficulties.
     @SuppressWarnings("FieldCanBeLocal")
-    private final Map<GameEvent, Float> stateDifficultyModifiers = Collections.synchronizedMap(new HashMap<>());
+    private final Map<GameEvent, Float> stateDifficultyModifiers = new ConcurrentHashMap<>();
 
     // Scene
-    protected Scene scene;
+    protected Screen screen;
 
     // Animations:
-    private Animation bloodMoonAnimation = null;
-    private Animation bloodMoonAnimation1;
+    private ValueAnimator bloodMoonValueAnimator = null;
+    private ValueAnimator bloodMoonValueAnimator1;
 
     // Modifiers
     private double globalBubbleSpeedModifier = 1;
@@ -121,7 +130,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     protected Rng bubblesAttackRng;
     protected Rng bubblesScoreRng;
     protected BubbleRandomizer bubbleRandomizer = new BubbleRandomizer(this);
-    protected final HashMap<ResourceLocation, Rng> rngTypes = new HashMap<>();
+    protected final HashMap<ResourceEntry, Rng> rngTypes = new HashMap<>();
 
     // Initial entities:
     protected PlayerEntity player;
@@ -161,7 +170,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
      */
     protected Rng addRNG(String key, int index, int subIndex) {
         Rng rand = new Rng(rng, index, subIndex);
-        rngTypes.put(ResourceLocation.fromString(key), rand);
+        rngTypes.put(ResourceEntry.fromString(key), rand);
         return rand;
     }
 
@@ -227,7 +236,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
      * @see SavedGame
      */
     public void dumpDefaultState(SavedGame savedGame, InfoTransporter infoTransporter) {
-        if (!QBubbles.getInstance().isGameLoaded()) {
+        if (!BubbleBlaster.getInstance().isGameLoaded()) {
             return;
         }
 
@@ -247,7 +256,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
      */
     public void dumpState(OutputStream output) throws IOException {
         BsonDocument document = getState();
-        SavedGame currentSave = QBubbles.getInstance().getCurrentSave();
+        SavedGame currentSave = BubbleBlaster.getInstance().getCurrentSave();
 
         assert currentSave != null;
         output.write(new RawBsonDocument(document, new BsonDocumentCodec()).getByteBuffer().array());
@@ -264,7 +273,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     public static AbstractGameType loadState(SavedGame save, InfoTransporter infoTransporter) throws IOException {
         BsonDocument document = save.loadData("Game");
         String name = document.getString("Name").getValue();
-        ResourceLocation resource = ResourceLocation.fromString(name);
+        ResourceEntry resource = ResourceEntry.fromString(name);
 
         AbstractGameType gameType = Registers.GAME_TYPES.get(resource);
         gameType.setState(document);
@@ -302,15 +311,15 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
      * @return a hashmap container as key the registry, and as value an list of missing resource locations of the registry.
      * @throws IOException when an I/O error occurred.
      */
-    public HashMap<Registry<?>, List<ResourceLocation>> checkRegistry(SavedGame savedGame) throws IOException {
-        HashMap<Registry<?>, List<ResourceLocation>> missing = new HashMap<>();
+    public HashMap<Registry<?>, List<ResourceEntry>> checkRegistry(SavedGame savedGame) throws IOException {
+        HashMap<Registry<?>, List<ResourceEntry>> missing = new HashMap<>();
         BsonDocument bsonDocument = savedGame.loadData("registry");
 
         // Bubble registry.
         BsonArray bubbles = bsonDocument.getArray("Bubbles");
         for (BsonValue value : bubbles) {
             if (value.isString()) {
-                ResourceLocation type = ResourceLocation.fromString(value.asString().getValue());
+                ResourceEntry type = ResourceEntry.fromString(value.asString().getValue());
                 if (!Registers.BUBBLES.contains(type)) {
                     missing.get(Registers.BUBBLES).add(type);
                 }
@@ -321,7 +330,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         BsonArray ammoTypes = bsonDocument.getArray("AmmoTypes");
         for (BsonValue value : ammoTypes) {
             if (value.isString()) {
-                ResourceLocation type = ResourceLocation.fromString(value.asString().getValue());
+                ResourceEntry type = ResourceEntry.fromString(value.asString().getValue());
                 if (!Registers.AMMO_TYPES.contains(type)) {
                     missing.get(Registers.AMMO_TYPES).add(type);
                 }
@@ -332,7 +341,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         BsonArray effects = bsonDocument.getArray("Effects");
         for (BsonValue value : effects) {
             if (value.isString()) {
-                ResourceLocation type = ResourceLocation.fromString(value.asString().getValue());
+                ResourceEntry type = ResourceEntry.fromString(value.asString().getValue());
                 if (!Registers.EFFECTS.contains(type)) {
                     missing.get(Registers.EFFECTS).add(type);
                 }
@@ -343,7 +352,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         BsonArray entities = bsonDocument.getArray("Entities");
         for (BsonValue value : entities) {
             if (value.isString()) {
-                ResourceLocation type = ResourceLocation.fromString(value.asString().getValue());
+                ResourceEntry type = ResourceEntry.fromString(value.asString().getValue());
                 if (!Registers.ENTITIES.contains(type)) {
                     missing.get(Registers.ENTITIES).add(type);
                 }
@@ -354,7 +363,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         BsonArray gameStates = bsonDocument.getArray("GameStates");
         for (BsonValue value : gameStates) {
             if (value.isString()) {
-                ResourceLocation type = ResourceLocation.fromString(value.asString().getValue());
+                ResourceEntry type = ResourceEntry.fromString(value.asString().getValue());
                 if (!Registers.GAME_EVENTS.contains(type)) {
                     missing.get(Registers.GAME_EVENTS).add(type);
                 }
@@ -365,7 +374,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         BsonArray abilities = bsonDocument.getArray("Abilities");
         for (BsonValue value : abilities) {
             if (value.isString()) {
-                ResourceLocation type = ResourceLocation.fromString(value.asString().getValue());
+                ResourceEntry type = ResourceEntry.fromString(value.asString().getValue());
                 if (!Registers.ABILITIES.contains(type)) {
                     missing.get(Registers.ABILITIES).add(type);
                 }
@@ -376,7 +385,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         BsonArray cursors = bsonDocument.getArray("Cursors");
         for (BsonValue value : cursors) {
             if (value.isString()) {
-                ResourceLocation type = ResourceLocation.fromString(value.asString().getValue());
+                ResourceEntry type = ResourceEntry.fromString(value.asString().getValue());
                 if (!Registers.CURSORS.contains(type)) {
                     missing.get(Registers.CURSORS).add(type);
                 }
@@ -407,11 +416,9 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     @SuppressWarnings("ConstantConditions")
     @Deprecated
     public void attack(Entity entity, double value) {
-        if (entity instanceof DamageableEntity) {
-            DamageableEntity e = (DamageableEntity) entity;
+        if (entity instanceof DamageableEntity e) {
             e.damage(value);
-        } else if (entity instanceof AbstractBubbleEntity) {
-            AbstractBubbleEntity e = (AbstractBubbleEntity) entity;
+        } else if (entity instanceof AbstractBubbleEntity e) {
             e.damage(value);
         }
     }
@@ -503,7 +510,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     @Nullable
     public static AbstractGameType getGameTypeFromState(BsonDocument nbt) {
         try {
-            return Registry.getRegistry(AbstractGameType.class).get(ResourceLocation.fromString(nbt.getString("Name").getValue()));
+            return Registry.getRegistry(AbstractGameType.class).get(ResourceEntry.fromString(nbt.getString("Name").getValue()));
         } catch (IllegalArgumentException e) {
             return null;
         }
@@ -534,11 +541,9 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
 
     @SuppressWarnings("ConstantConditions")
     public void attack(Entity target, double damage, DamageSource damageSource) {
-        if (target instanceof DamageableEntity) {
-            DamageableEntity e = (DamageableEntity) target;
+        if (target instanceof DamageableEntity e) {
             e.damage(damage, damageSource);
-        } else if (target instanceof AbstractBubbleEntity) {
-            AbstractBubbleEntity e = (AbstractBubbleEntity) target;
+        } else if (target instanceof AbstractBubbleEntity e) {
             e.damage(damage, damageSource);
         }
     }
@@ -550,23 +555,23 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         stateDifficultyModifier = CollectionsUtils.max(new ArrayList<>(stateDifficultyModifiers.values()), 1f);
 
         Difficulty difficulty = getDifficulty();
-        if (getPlayer() == null) return difficulty.getDefaultLocal() * stateDifficultyModifier;
+        if (getPlayer() == null) return difficulty.getPlainModifier() * stateDifficultyModifier;
 
-        return ((getPlayer().getLevel() - 1) * 5 + 1) * difficulty.getDefaultLocal() * stateDifficultyModifier;
+        return ((getPlayer().getLevel() - 1) * 5 + 1) * difficulty.getPlainModifier() * stateDifficultyModifier;
     }
 
     public Difficulty getDifficulty() {
         return difficulty;
     }
 
-    public synchronized final void setStateDifficultyModifier(GameEvent gameEvent, float modifier) {
+    public final void setStateDifficultyModifier(GameEvent gameEvent, float modifier) {
 //        System.out.println("SET_DIFF_MOD_001: " + gameState);
 //        System.out.println("SET_DIFF_MOD_002: " + modifier);
         stateDifficultyModifiers.put(gameEvent, modifier);
 //        System.out.println("SET_DIFF_MOD_003: " + stateDifficultyModifiers);
     }
 
-    public synchronized final void removeStateDifficultyModifier(GameEvent gameEvent) {
+    public final void removeStateDifficultyModifier(GameEvent gameEvent) {
 //        System.out.println("REMOVE_DIFF_MOD_001: " + gameState);
         stateDifficultyModifiers.remove(gameEvent);
 //        System.out.println("REMOVE_DIFF_MOD_002: " + stateDifficultyModifiers);
@@ -576,8 +581,8 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         return stateDifficultyModifiers.get(gameEvent);
     }
 
-    public Scene getScene() {
-        return scene;
+    public Screen getScreen() {
+        return screen;
     }
 
     public void quit() {
@@ -654,7 +659,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     public void bloodMoonUpdate() {
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
         if (loadedGame == null) {
             return;
         }
@@ -673,23 +678,24 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
                 }
             }
         } else {
-            if (bloodMoonAnimation != null) {
-                setGlobalBubbleSpeedModifier(bloodMoonAnimation.animate());
-                if (bloodMoonAnimation.isEnded()) {
+            if (bloodMoonValueAnimator != null) {
+                setGlobalBubbleSpeedModifier(bloodMoonValueAnimator.animate());
+                if (bloodMoonValueAnimator.isEnded()) {
                     GameEvents.BLOOD_MOON_EVENT.get().activate();
                     this.environment.setCurrentGameEvent(GameEvents.BLOOD_MOON_EVENT.get());
                     bloodMoonActive = true;
 
+                    //noinspection ConstantConditions
                     if (loadedGame != null && loadedGame.getAmbientAudio() != null) {
                         loadedGame.getAmbientAudio().stop();
                     }
-                    bloodMoonAnimation = null;
-                    bloodMoonAnimation1 = new Animation(8d, 1d, 1000d);
+                    bloodMoonValueAnimator = null;
+                    bloodMoonValueAnimator1 = new ValueAnimator(8d, 1d, 1000d);
                 }
-            } else if (bloodMoonAnimation1 != null) {
-                setGlobalBubbleSpeedModifier(bloodMoonAnimation1.animate());
-                if (bloodMoonAnimation1.isEnded()) {
-                    bloodMoonAnimation1 = null;
+            } else if (bloodMoonValueAnimator1 != null) {
+                setGlobalBubbleSpeedModifier(bloodMoonValueAnimator1.animate());
+                if (bloodMoonValueAnimator1.isEnded()) {
+                    bloodMoonValueAnimator1 = null;
                 }
             } else {
                 setGlobalBubbleSpeedModifier(1);
@@ -702,16 +708,16 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
         if (!bloodMoonTriggered) {
             System.out.println("Triggered blood moon.");
             bloodMoonTriggered = true;
-            bloodMoonAnimation = new Animation(1d, 8d, 10000d);
+            bloodMoonValueAnimator = new ValueAnimator(1d, 8d, 10000d);
         } else {
             System.out.println("Blood moon already triggered!");
         }
 
-        QBubbles.getInstance().getGraphicsEngine().disableAntialiasing();
+        BubbleBlaster.getInstance().getRenderSettings().disableAntialiasing();
     }
 
     public void stopBloodMoon() {
-        LoadedGame loadedGame = QBubbles.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
         if (loadedGame == null) {
             return;
         }
@@ -723,7 +729,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
             loadedGame.getAmbientAudio().stop();
         }
 
-        QBubbles.getInstance().getGraphicsEngine().resetAntialiasing();
+        BubbleBlaster.getInstance().getRenderSettings().resetAntialiasing();
     }
 
     public long getResultScore() {

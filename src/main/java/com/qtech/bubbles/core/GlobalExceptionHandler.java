@@ -1,6 +1,6 @@
 package com.qtech.bubbles.core;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import org.apache.logging.log4j.Logger;
 
 import java.io.PrintStream;
@@ -9,7 +9,7 @@ import java.util.IdentityHashMap;
 import java.util.Set;
 
 public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
-    private static Logger logger = QBubbles.getLogger();
+    private static Logger logger = BubbleBlaster.getLogger();
 
     private static boolean hooked = false;
 

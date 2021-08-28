@@ -1,9 +1,9 @@
 package com.qtech.bubbles.common;
 
 public interface IRegistryEntry {
-    ResourceLocation getRegistryName();
+    ResourceEntry getRegistryName();
 
-    void setRegistryName(ResourceLocation rl);
+    void setRegistryName(ResourceEntry rl);
 
     void updateRegistryName(String namespace);
 

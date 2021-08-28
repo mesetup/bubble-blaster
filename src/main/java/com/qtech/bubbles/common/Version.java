@@ -1,25 +1,10 @@
 package com.qtech.bubbles.common;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Version implements Serializable {
-    private final int major;
-    private final int minor;
-    private final int build;
-    private final VersionType type;
-    private final int release;
-
-    public Version(int major, int minor, int build, @NotNull VersionType type, int release) {
-        this.major = major;
-        this.minor = minor;
-        this.build = build;
-        this.type = type;
-        this.release = release;
-    }
-
+public record Version(int major, int minor, int build, VersionType type,
+                      int release) implements Serializable {
     @Override
     public String toString() {
         return major + "." + minor + "." + build + "-" + type.getName() + release;
@@ -41,23 +26,23 @@ public class Version implements Serializable {
         return Objects.hash(major, minor, type, release);
     }
 
-    public int getMajor() {
+    public int major() {
         return major;
     }
 
-    public int getMinor() {
+    public int minor() {
         return minor;
     }
 
-    public int getBuild() {
+    public int build() {
         return build;
     }
 
-    public VersionType getType() {
+    public VersionType type() {
         return type;
     }
 
-    public int getRelease() {
+    public int release() {
         return release;
     }
 }

@@ -1,7 +1,7 @@
 package com.qtech.bubbles.core.controllers;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.event.MouseMotionEvent;
+import com.qtech.bubbles.BubbleBlaster;
+import com.qtech.bubbles.event.input.MouseMotionEvent;
 import com.qtech.bubbles.event.type.MouseEventType;
 
 import java.awt.*;
@@ -32,7 +32,7 @@ public class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        QBubbles.getEventBus().post(new com.qtech.bubbles.event.MouseEvent(QBubbles.getInstance(), this, e, MouseEventType.CLICK));
+        BubbleBlaster.getEventBus().post(new com.qtech.bubbles.event.input.MouseEvent(BubbleBlaster.getInstance(), this, e, MouseEventType.CLICK));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        QBubbles.getEventBus().post(new com.qtech.bubbles.event.MouseEvent(QBubbles.getInstance(), this, e, MouseEventType.PRESS));
+        BubbleBlaster.getEventBus().post(new com.qtech.bubbles.event.input.MouseEvent(BubbleBlaster.getInstance(), this, e, MouseEventType.PRESS));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        QBubbles.getEventBus().post(new com.qtech.bubbles.event.MouseEvent(QBubbles.getInstance(), this, e, MouseEventType.RELEASE));
+        BubbleBlaster.getEventBus().post(new com.qtech.bubbles.event.input.MouseEvent(BubbleBlaster.getInstance(), this, e, MouseEventType.RELEASE));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        QBubbles.getEventBus().post(new MouseMotionEvent(QBubbles.getInstance(), this, e, MouseEventType.ENTER));
+        BubbleBlaster.getEventBus().post(new MouseMotionEvent(BubbleBlaster.getInstance(), this, e, MouseEventType.ENTER));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        QBubbles.getEventBus().post(new MouseMotionEvent(QBubbles.getInstance(), this, e, MouseEventType.LEAVE));
+        BubbleBlaster.getEventBus().post(new MouseMotionEvent(BubbleBlaster.getInstance(), this, e, MouseEventType.LEAVE));
     }
 
     @Override
@@ -72,7 +72,7 @@ public class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        QBubbles.getEventBus().post(new MouseMotionEvent(QBubbles.getInstance(), this, e, MouseEventType.DRAG));
+        BubbleBlaster.getEventBus().post(new MouseMotionEvent(BubbleBlaster.getInstance(), this, e, MouseEventType.DRAG));
     }
 
     @Override
@@ -80,14 +80,14 @@ public class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        QBubbles.getEventBus().post(new MouseMotionEvent(QBubbles.getInstance(), this, e, MouseEventType.MOTION));
+        BubbleBlaster.getEventBus().post(new MouseMotionEvent(BubbleBlaster.getInstance(), this, e, MouseEventType.MOTION));
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
-        QBubbles.getEventBus().post(new com.qtech.bubbles.event.MouseWheelEvent(QBubbles.getInstance(), this, e, MouseEventType.MOTION));
+        BubbleBlaster.getEventBus().post(new com.qtech.bubbles.event.input.MouseWheelEvent(BubbleBlaster.getInstance(), this, e, MouseEventType.MOTION));
 
     }
 

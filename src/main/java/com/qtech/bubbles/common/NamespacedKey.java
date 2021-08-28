@@ -10,8 +10,10 @@ import java.util.Objects;
  * The {@link NamespacedKey} is used instead of IDs, for customizing purposes
  *
  * @author Quinten Jungblut
+ * @since 1.0.0
+ * @deprecated replaced by {@link ResourceEntry}.
  */
-@Deprecated
+@Deprecated(since = "1.0.0")
 public record NamespacedKey(String namespace, String key) implements Serializable {
     /**
      * The {@link NamespacedKey} is used instead of IDs, for customizing purposes

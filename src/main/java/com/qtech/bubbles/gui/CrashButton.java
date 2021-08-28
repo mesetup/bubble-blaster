@@ -1,14 +1,14 @@
 package com.qtech.bubbles.gui;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.interfaces.Listener;
 import com.qtech.bubbles.core.controllers.MouseController;
-import com.qtech.bubbles.event.MouseEvent;
-import com.qtech.bubbles.event.RenderEventPriority;
-import com.qtech.bubbles.event.SubscribeEvent;
+import com.qtech.bubbles.event._common.RenderEventPriority;
+import com.qtech.bubbles.event._common.SubscribeEvent;
+import com.qtech.bubbles.event.input.MouseEvent;
 import com.qtech.bubbles.event.type.MouseEventType;
-import com.qtech.bubbles.graphics.Border;
-import com.qtech.bubbles.graphics.OuterBorder;
+import com.qtech.bubbles.gui.border.Border;
+import com.qtech.bubbles.gui.border.OuterBorder;
 import com.qtech.bubbles.util.Util;
 
 import java.awt.*;
@@ -135,11 +135,11 @@ public class CrashButton extends Widget implements Listener {
         boolean hoveredNew = mousePos != null && bounds.contains(mousePos);
         if (mousePos != null) {
             if (bounds.contains(mousePos)) {
-                Util.setCursor(QBubbles.getInstance().getPointerCursor());
+                Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
                 hovered = true;
             } else {
                 if (hovered) {
-                    Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+                    Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
                     hovered = false;
                 }
             }
@@ -166,7 +166,7 @@ public class CrashButton extends Widget implements Listener {
             gg.setPaint(p);
             Border border = new OuterBorder(2, 2, 2, 2);
             border.setPaint(p);
-            border.paintBorder(QBubbles.getInstance(), gg, bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);
+            border.paintBorder(BubbleBlaster.getInstance(), gg, bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);
 //            gg.draw(new Rectangle(bounds.x - 2, bounds.y - 2, bounds.width + 4, bounds.height + 4));
 
             gg.setPaint(old);
@@ -178,7 +178,7 @@ public class CrashButton extends Widget implements Listener {
             gg.setColor(new Color(255, 255, 255));
             Border border = new Border(1, 1, 1, 1);
             border.setPaint(new Color(255, 255, 255));
-            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
+            border.paintBorder(BubbleBlaster.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
 //            gg.draw(new Rectangle(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2));
 
             textColor = new Color(255, 255, 255);
@@ -199,24 +199,24 @@ public class CrashButton extends Widget implements Listener {
 
     @Override
     public void bindEvents() {
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
         eventsActive = true;
 
         Point mousePos = MouseController.instance().getCurrentPoint();
         boolean hoveredNew = mousePos != null && bounds.contains(mousePos);
         if (mousePos != null && bounds.contains(mousePos)) {
-            Util.setCursor(QBubbles.getInstance().getPointerCursor());
+            Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
             hovered = true;
         }
     }
 
     @Override
     public void unbindEvents() {
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
         eventsActive = false;
 
         if (hovered) {
-            Util.setCursor(QBubbles.getInstance().getDefaultCursor());
+            Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
             hovered = false;
         }
     }

@@ -1,16 +1,15 @@
 package com.qtech.bubbles.bubble;
 
 import com.jhlabs.image.HSBAdjustFilter;
-import com.qtech.bubbles.common.effect.EffectInstance;
-import com.qtech.bubbles.common.entity.Entity;
+import com.qtech.bubbles.common.effect.StatusEffectInstance;
 import com.qtech.bubbles.core.utils.categories.ColorUtils;
 import com.qtech.bubbles.entity.BubbleEntity;
+import com.qtech.bubbles.entity.Entity;
 import com.qtech.bubbles.entity.player.PlayerEntity;
 import com.qtech.bubbles.init.Effects;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class UltraBubble extends AbstractBubble {
@@ -42,11 +41,11 @@ public class UltraBubble extends AbstractBubble {
         super.onCollision(source, target);
         if (target instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) target;
-            player.addEffect(new EffectInstance(Effects.ATTACK_BOOST.get(), 10, 2));
-            player.addEffect(new EffectInstance(Effects.DEFENSE_BOOST.get(), 10, 2));
-            player.addEffect(new EffectInstance(Effects.MULTI_SCORE.get(), 12, 2));
-            player.addEffect(new EffectInstance(Effects.BUBBLE_FREEZE.get(), 8, 1));
-            player.addEffect(new EffectInstance(Effects.LUCK.get(), 8, 1));
+            player.addEffect(new StatusEffectInstance(Effects.ATTACK_BOOST.get(), 10, 2));
+            player.addEffect(new StatusEffectInstance(Effects.DEFENSE_BOOST.get(), 10, 2));
+            player.addEffect(new StatusEffectInstance(Effects.MULTI_SCORE.get(), 12, 2));
+            player.addEffect(new StatusEffectInstance(Effects.BUBBLE_FREEZE.get(), 8, 1));
+            player.addEffect(new StatusEffectInstance(Effects.LUCK.get(), 8, 1));
         }
     }
 }

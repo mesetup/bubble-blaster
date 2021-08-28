@@ -1,10 +1,9 @@
 package com.qtech.bubbles.screen;
 
-import com.qtech.bubbles.QBubbles;
-import com.qtech.bubbles.common.screen.Screen;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.common.text.translation.I18n;
-import com.qtech.bubbles.event.SubscribeEvent;
 import com.qtech.bubbles.event.TickEvent;
+import com.qtech.bubbles.event._common.SubscribeEvent;
 import com.qtech.bubbles.event.bus.EventBus;
 import com.qtech.bubbles.gui.OptionsButton;
 import com.qtech.bubbles.gui.OptionsNumberInput;
@@ -59,7 +58,7 @@ public class OptionsScreen extends Screen {
 
     @Override
     public void init() {
-        QBubbles.getEventBus().register(this);
+        BubbleBlaster.getEventBus().register(this);
 
         maxBubblesOption.bindEvents();
         languageButton.bindEvents();
@@ -69,7 +68,7 @@ public class OptionsScreen extends Screen {
 
     @Override
     public boolean onClose(Screen to) {
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
 
         maxBubblesOption.unbindEvents();
         languageButton.unbindEvents();
@@ -83,28 +82,28 @@ public class OptionsScreen extends Screen {
     }
 
     @Override
-    public void render(QBubbles game, Graphics2D gg) {
-        maxBubblesOption.setX((int) QBubbles.getMiddleX() - 322);
-        maxBubblesOption.setY((int) QBubbles.getMiddleY() + 101);
+    public void render(BubbleBlaster game, Graphics2D gg) {
+        maxBubblesOption.setX((int) BubbleBlaster.getMiddleX() - 322);
+        maxBubblesOption.setY((int) BubbleBlaster.getMiddleY() + 101);
         maxBubblesOption.setWidth(321);
 
-        languageButton.setX((int) QBubbles.getMiddleX() + 1);
-        languageButton.setY((int) QBubbles.getMiddleY() + 101);
+        languageButton.setX((int) BubbleBlaster.getMiddleX() + 1);
+        languageButton.setY((int) BubbleBlaster.getMiddleY() + 101);
         languageButton.setWidth(321);
 
-        cancelButton.setX((int) QBubbles.getMiddleX() - 322);
-        cancelButton.setY((int) QBubbles.getMiddleY() + 151);
+        cancelButton.setX((int) BubbleBlaster.getMiddleX() - 322);
+        cancelButton.setY((int) BubbleBlaster.getMiddleY() + 151);
         cancelButton.setWidth(321);
 
-        saveButton.setX((int) QBubbles.getMiddleX() + 1);
-        saveButton.setY((int) QBubbles.getMiddleY() + 151);
+        saveButton.setX((int) BubbleBlaster.getMiddleX() + 1);
+        saveButton.setY((int) BubbleBlaster.getMiddleY() + 151);
         saveButton.setWidth(321);
 
         renderBackground(game, gg);
     }
 
     @Override
-    public void renderGUI(QBubbles game, Graphics2D gg) {
+    public void renderGUI(BubbleBlaster game, Graphics2D gg) {
         cancelButton.setText(I18n.translateToLocal("other.cancel"));
         cancelButton.paint(gg);
 
@@ -117,9 +116,9 @@ public class OptionsScreen extends Screen {
         saveButton.setText(I18n.translateToLocal("other.save"));
     }
 
-    public synchronized void renderBackground(QBubbles game, Graphics2D gg) {
+    public void renderBackground(BubbleBlaster game, Graphics2D gg) {
         gg.setColor(new Color(96, 96, 96));
-        gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
+        gg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
     }
 
     @SuppressWarnings("EmptyMethod")

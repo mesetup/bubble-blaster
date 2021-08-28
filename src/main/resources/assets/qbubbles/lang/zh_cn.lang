@@ -12,12 +12,12 @@ other.random=随机
 other.save=保存
 
 # Effects.
-effect.qbubbles.poison.name=中毒
-effect.qbubbles.blindness.name=瞎了
-effect.qbubbles.multi_score.name=多得分
-effect.qbubbles.speed_boost.name=提速
-effect.qbubbles.attack_boost.name=攻击助推
-effect.qbubbles.defense_boost.name=防御助推
+statusEffect.qbubbles.poison.name=中毒
+statusEffect.qbubbles.blindness.name=瞎了
+statusEffect.qbubbles.multi_score.name=多得分
+statusEffect.qbubbles.speed_boost.name=提速
+statusEffect.qbubbles.attack_boost.name=攻击助推
+statusEffect.qbubbles.defense_boost.name=防御助推
 
 # Informations
 info.qbubbles.score=得分

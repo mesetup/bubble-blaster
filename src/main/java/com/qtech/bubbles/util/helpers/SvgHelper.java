@@ -1,6 +1,6 @@
 package com.qtech.bubbles.util.helpers;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.settings.GameSettings;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.bridge.BridgeContext;
@@ -141,7 +141,7 @@ public final class SvgHelper {
 
         // For a smooth graphic with no jagged edges or rasterized look.
 
-        if (QBubbles.getInstance().getGraphicsEngine().isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
+        if (BubbleBlaster.getInstance().getRenderSettings().isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING, RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
@@ -206,7 +206,7 @@ public final class SvgHelper {
         Graphics2D g2d = (Graphics2D) bufferedImage.getGraphics();
 
         // For a smooth graphic with no jagged edges or rasterized look.
-        if (QBubbles.getInstance().getGraphicsEngine().isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
+        if (BubbleBlaster.getInstance().getRenderSettings().isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING, RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);

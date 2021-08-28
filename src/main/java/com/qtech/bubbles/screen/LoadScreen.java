@@ -1,28 +1,30 @@
 package com.qtech.bubbles.screen;
 
-import com.qtech.bubbles.QBubbles;
+import com.qtech.bubbles.BubbleBlaster;
 import com.qtech.bubbles.addon.Scanner;
 import com.qtech.bubbles.addon.loader.AddonContainer;
 import com.qtech.bubbles.addon.loader.AddonLoader;
 import com.qtech.bubbles.command.*;
-import com.qtech.bubbles.common.*;
-import com.qtech.bubbles.common.bubble.BubbleSystem;
-import com.qtech.bubbles.common.command.CommandConstructor;
-import com.qtech.bubbles.common.screen.Screen;
+import com.qtech.bubbles.common.InfoTransporter;
+import com.qtech.bubbles.common.LoggableProgress;
+import com.qtech.bubbles.common.Pair;
+import com.qtech.bubbles.common.ResourceEntry;
 import com.qtech.bubbles.core.controllers.KeyboardController;
 import com.qtech.bubbles.core.controllers.MouseController;
 import com.qtech.bubbles.core.utils.categories.GraphicsUtils;
 import com.qtech.bubbles.data.GlobalSaveData;
-import com.qtech.bubbles.event.Bus;
-import com.qtech.bubbles.event.LoaderLoadCompleteEvent;
-import com.qtech.bubbles.event.TextureRenderEvent;
-import com.qtech.bubbles.event.XInputEventThread;
+import com.qtech.bubbles.entity.bubble.BubbleSystem;
+import com.qtech.bubbles.event.CollectTexturesEvent;
+import com.qtech.bubbles.event.bus.Bus;
 import com.qtech.bubbles.event.bus.EventBus;
+import com.qtech.bubbles.event.input.XInputEventThread;
+import com.qtech.bubbles.event.load.LoadCompleteEvent;
 import com.qtech.bubbles.event.registry.RegistryEvent;
 import com.qtech.bubbles.graphics.TextureCollection;
 import com.qtech.bubbles.registry.AddonManager;
 import com.qtech.bubbles.registry.Registers;
 import com.qtech.bubbles.registry.Registry;
+import com.qtech.bubbles.registry.RegistryEntry;
 import com.qtech.bubbles.registry.object.ObjectHolder;
 import com.qtech.bubbles.util.Util;
 import org.apache.commons.lang3.ObjectUtils;
@@ -73,15 +75,15 @@ public final class LoadScreen extends Screen implements Runnable {
 
     @Override
     public Cursor getDefaultCursor() {
-        return QBubbles.getInstance().getBlankCursor();
+        return BubbleBlaster.getInstance().getBlankCursor();
     }
 
     @Override
     public void init() {
         LOGGER.info("Showing LoadScene");
 
-        QBubbles.getEventBus().register(this);
-        QBubbles.getInstance().getWindow().setVisible(true);
+        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getInstance().getWindow().setVisible(true);
         run();
     }
 
@@ -95,13 +97,13 @@ public final class LoadScreen extends Screen implements Runnable {
         if (!isDone()) {
             return false;
         }
-        QBubbles.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unregister(this);
         return true;
     }
 
-    public void render(QBubbles game, Graphics2D gg) {
+    public void render(BubbleBlaster game, Graphics2D gg) {
         gg.setColor(new Color(72, 72, 72));
-        gg.fillRect(0, 0, QBubbles.getInstance().getWidth(), QBubbles.getInstance().getHeight());
+        gg.fillRect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
 //        if (GameSettings.instance().isTextAntialiasEnabled())
 //            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
@@ -121,7 +123,7 @@ public final class LoadScreen extends Screen implements Runnable {
 //            }
 //
 //            gg.setColor(new Color(1f, 1f, 1f, alpha));
-//            GraphicsUtils.drawLeftAnchoredString(gg, message, new Point2D.Float(10, game.getHeight() - 35f - (25f * i)), 25, new Font(game.getSansFontName(), Font.PLAIN, 20));
+//            GraphicsUtils.drawLeftAnchoredString(gg, message, new Point2D.Float(10, game.getScaledHeight() - 35f - (25f * i)), 25, new Font(game.getSansFontName(), Font.PLAIN, 20));
 //            i++;
 //
 //        }
@@ -133,16 +135,16 @@ public final class LoadScreen extends Screen implements Runnable {
 
                 if (mainMessage != null) {
                     gg.setColor(new Color(128, 128, 128));
-                    GraphicsUtils.drawCenteredString(gg, mainMessage, new Rectangle2D.Double(0, (double)QBubbles.getInstance().getHeight() / 2 - 15, QBubbles.getInstance().getWidth(), 30), new Font(game.getSansFontName(), Font.PLAIN, 20));
+                    GraphicsUtils.drawCenteredString(gg, mainMessage, new Rectangle2D.Double(0, (double) BubbleBlaster.getInstance().getHeight() / 2 - 15, BubbleBlaster.getInstance().getWidth(), 30), new Font(game.getSansFontName(), Font.PLAIN, 20));
                 }
 
                 gg.setColor(new Color(128, 128, 128));
-                gg.fillRect(QBubbles.getInstance().getWidth() / 2 - 150, QBubbles.getInstance().getHeight() / 2 + 15, 300, 3);
+                gg.fillRect(BubbleBlaster.getInstance().getWidth() / 2 - 150, BubbleBlaster.getInstance().getHeight() / 2 + 15, 300, 3);
 
                 gg.setColor(new Color(0, 192, 255));
-                GradientPaint p = new GradientPaint(0, (float)QBubbles.getInstance().getWidth() / 2 - 150, new Color(0, 192, 255), (float)QBubbles.getInstance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
+                GradientPaint p = new GradientPaint(0, (float) BubbleBlaster.getInstance().getWidth() / 2 - 150, new Color(0, 192, 255), (float) BubbleBlaster.getInstance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
                 gg.setPaint(p);
-                gg.fillRect(QBubbles.getInstance().getWidth() / 2 - 150, QBubbles.getInstance().getHeight() / 2 + 15, (int)(300d * (double)progress / (double) max), 3);
+                gg.fillRect(BubbleBlaster.getInstance().getWidth() / 2 - 150, BubbleBlaster.getInstance().getHeight() / 2 + 15, (int) (300d * (double) progress / (double) max), 3);
             }
 
             if (subProgress1 != null) {
@@ -151,28 +153,28 @@ public final class LoadScreen extends Screen implements Runnable {
 
                 if (subMessage1 != null) {
                     gg.setColor(new Color(128, 128, 128));
-                    GraphicsUtils.drawCenteredString(gg, subMessage1, new Rectangle2D.Double(0, (double)QBubbles.getInstance().getHeight() / 2 + 60, QBubbles.getInstance().getWidth(), 30), new Font(game.getSansFontName(), Font.PLAIN, 20));
+                    GraphicsUtils.drawCenteredString(gg, subMessage1, new Rectangle2D.Double(0, (double) BubbleBlaster.getInstance().getHeight() / 2 + 60, BubbleBlaster.getInstance().getWidth(), 30), new Font(game.getSansFontName(), Font.PLAIN, 20));
                 }
 
                 gg.setColor(new Color(128, 128, 128));
-                gg.fillRect(QBubbles.getInstance().getWidth() / 2 - 150, QBubbles.getInstance().getHeight() / 2 + 90, 300, 3);
+                gg.fillRect(BubbleBlaster.getInstance().getWidth() / 2 - 150, BubbleBlaster.getInstance().getHeight() / 2 + 90, 300, 3);
 
                 gg.setColor(new Color(0, 192, 255));
-                GradientPaint p = new GradientPaint(0, (float)QBubbles.getInstance().getWidth() / 2 - 150, new Color(0, 192, 255), (float)QBubbles.getInstance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
+                GradientPaint p = new GradientPaint(0, (float) BubbleBlaster.getInstance().getWidth() / 2 - 150, new Color(0, 192, 255), (float) BubbleBlaster.getInstance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
                 gg.setPaint(p);
-                gg.fillRect(QBubbles.getInstance().getWidth() / 2 - 150, QBubbles.getInstance().getHeight() / 2 + 90, (int)(300d * (double)progress / (double) max), 3);
+                gg.fillRect(BubbleBlaster.getInstance().getWidth() / 2 - 150, BubbleBlaster.getInstance().getHeight() / 2 + 90, (int) (300d * (double) progress / (double) max), 3);
             }
         }
 
         gg.setColor(new Color(127, 127, 127));
-//        GraphicsUtils.drawCenteredString(gg, this.title, new Rectangle2D.Double(0, (double) QBubbles.getInstance().getHeight() / 2, QBubbles.getInstance().getWidth(), 50d), new Font("Helvetica", Font.BOLD, 50));
-//        GraphicsUtils.drawCenteredString(gg, this.description, new Rectangle2D.Double(0, ((double) QBubbles.getInstance().getHeight() / 2) + 40, QBubbles.getInstance().getWidth(), 50d), new Font("Helvetica", Font.PLAIN, 20));
+//        GraphicsUtils.drawCenteredString(gg, this.title, new Rectangle2D.Double(0, (double) QBubbles.getInstance().getScaledHeight() / 2, QBubbles.getInstance().getScaledWidth(), 50d), new Font("Helvetica", Font.BOLD, 50));
+//        GraphicsUtils.drawCenteredString(gg, this.description, new Rectangle2D.Double(0, ((double) QBubbles.getInstance().getScaledHeight() / 2) + 40, QBubbles.getInstance().getScaledWidth(), 50d), new Font("Helvetica", Font.PLAIN, 20));
 //        if (GameSettings.instance().isTextAntialiasEnabled())
 //            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     }
 
     @Override
-    public void renderGUI(QBubbles game, Graphics2D gg) {
+    public void renderGUI(BubbleBlaster game, Graphics2D gg) {
 
     }
 
@@ -181,7 +183,7 @@ public final class LoadScreen extends Screen implements Runnable {
         this.mainProgress = new LoggableProgress(mainLogger, 10);
 
         // Get game directory in Java's File format.
-        File gameDir = QBubbles.getGameDir();
+        File gameDir = BubbleBlaster.getGameDir();
 
         // Check game directory exists, if not, create it!
         if (!gameDir.exists()) {
@@ -261,7 +263,7 @@ public final class LoadScreen extends Screen implements Runnable {
         Collection<TextureCollection> values = Registers.TEXTURE_COLLECTIONS.values();
         subProgress1 = new LoggableProgress(subLogger1, values.size());
         for (TextureCollection collection : values) {
-            Bus.getQBubblesEventBus().post(new TextureRenderEvent(collection));
+            Bus.getQBubblesEventBus().post(new CollectTexturesEvent(collection));
             subProgress1.increment();
         }
 
@@ -273,12 +275,12 @@ public final class LoadScreen extends Screen implements Runnable {
         // Load complete.
         mainProgress.log("Load Complete!");
         mainProgress.increment();
-        QBubbles.getEventBus().post(new LoaderLoadCompleteEvent(addonLoader));
+        BubbleBlaster.getEventBus().post(new LoadCompleteEvent(addonLoader));
 
         // Registry dump.
         mainProgress.log("Registry Dump.");
         mainProgress.increment();
-        QBubbles.getEventBus().post(new RegistryEvent.Dump());
+        BubbleBlaster.getEventBus().post(new RegistryEvent.Dump());
 
         done = true;
 
@@ -336,7 +338,7 @@ public final class LoadScreen extends Screen implements Runnable {
                                 RegistryEntry object = (RegistryEntry) field.get(null);
 
                                 // Set key.
-                                object.setRegistryName(new ResourceLocation(addonId, field.getName().toLowerCase()));
+                                object.setRegistryName(new ResourceEntry(addonId, field.getName().toLowerCase()));
 
                                 // Register.
                                 Registry.getRegistry(objType).registrable(object.getRegistryName(), object);
@@ -361,7 +363,7 @@ public final class LoadScreen extends Screen implements Runnable {
                             RegistryEntry object = (RegistryEntry) field.get(null);
 
                             // Set key.
-                            object.setRegistryName(new ResourceLocation(addonId, field.getName().toLowerCase()));
+                            object.setRegistryName(new ResourceEntry(addonId, field.getName().toLowerCase()));
 
                             // Register.
                             Registry.getRegistry(objType).registrable(object.getRegistryName(), object);
@@ -375,8 +377,8 @@ public final class LoadScreen extends Screen implements Runnable {
         }
     }
 
-    public synchronized void initialize() {
-        QBubbles main = Util.getGame();
+    public void initialize() {
+        BubbleBlaster main = Util.getGame();
 
         // Log
         this.logInfo("Initializing QBubbles...");

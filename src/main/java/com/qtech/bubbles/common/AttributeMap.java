@@ -1,9 +1,9 @@
 package com.qtech.bubbles.common;
 
-import com.qtech.bubbles.common.entity.Attribute;
 import com.qtech.bubbles.common.function.BiFloat2FloatFunction;
 import com.qtech.bubbles.common.function.Float2FloatFunction;
 import com.qtech.bubbles.common.holders.IArrayDataHolder;
+import com.qtech.bubbles.entity.attribute.Attribute;
 import org.bson.*;
 
 import javax.annotation.Nullable;
@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+@SuppressWarnings("DuplicatedCode")
 public class AttributeMap implements IArrayDataHolder<AttributeMap> {
     private final HashMap<Attribute, Float> map = new HashMap<>();
 

@@ -1,5 +1,9 @@
 package com.qtech.bubbles.common;
 
+/**
+ * @author Quinten
+ * @since 1.0.0
+ */
 public class LoggableProgress extends Progress {
     private final InfoTransporter infoTransporter;
 

@@ -2,6 +2,14 @@ package com.qtech.bubbles.common;
 
 import java.util.Objects;
 
+/**
+ * This is an object for having 2 values / objects inside one object, or in other words having a pair of objects.
+ *
+ * @param <F> first object,
+ * @param <S> second object.
+ * @author Quinten
+ * @since 1.0.0
+ */
 public class Pair<F, S> {
     private F first;
     private S second;
