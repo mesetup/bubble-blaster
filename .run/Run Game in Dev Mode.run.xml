@@ -1,16 +1,23 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Game in Dev + Debug Mode" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.qtech.dev.GameDevMain" />
-    <module name="qbubbles.main" />
+    <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+    <log_file alias="Debug" path="$PROJECT_DIR$/run/logs/debug.log" />
+    <log_file alias="Normal" path="$PROJECT_DIR$/run/logs/latest.log" />
+    <option name="MAIN_CLASS_NAME" value="com.ultreon.dev.GameDevMain" />
+    <module name="bubble-blaster.main" />
     <option name="PROGRAM_PARAMETERS" value="gameDir=&quot;$ProjectFileDir$/run/&quot; --dev --debug" />
+    <shortenClasspath name="NONE" />
+    <option name="VM_PARAMETERS" value="-Dlog4j.level=DEBUG --add-modules unnamed" />
     <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/run" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
   </configuration>
   <configuration default="false" name="Run Game in Dev Mode" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.qtech.dev.GameDevMain" />
-    <module name="qbubbles.main" />
+    <log_file alias="Debug" path="$PROJECT_DIR$/run/logs/debug.log" />
+    <log_file alias="Normal" path="$PROJECT_DIR$/run/logs/latest.log" />
+    <option name="MAIN_CLASS_NAME" value="com.ultreon.dev.GameDevMain" />
+    <module name="bubble-blaster.main" />
     <option name="PROGRAM_PARAMETERS" value="gameDir=&quot;$ProjectFileDir$/run/&quot; --dev" />
     <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/run" />
     <method v="2">

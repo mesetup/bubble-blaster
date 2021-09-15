@@ -50,10 +50,12 @@ String stage = project.property("versionStage").toString()
 int stageRelease = Integer.parseInt(project.property("versionStageRelease").toString())
 
 Integer buildNumber
+//noinspection GroovyUnusedCatchParameter
 try {
     FileInputStream fileInputStream = new FileInputStream("buildnumber.txt")
     String buildNrString = new String(IOUtils.toByteArray(fileInputStream))
     fileInputStream.close()
+    //noinspection GroovyUnusedCatchParameter
     try {
         buildNumber = Integer.valueOf(buildNrString)
     } catch (NumberFormatException e) {
@@ -79,10 +81,8 @@ output.flush()
 output.close()
 
 version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
-group = 'com.qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'com.utreon.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bubbles-preloader'
-jar.version = version
-jar.archiveVersion.set(version)
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '16' // Need this here so eclipse task generates correctly.
 
@@ -103,24 +103,28 @@ configurations {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation project(":commons")
+    implementation project(":javax-annotations")
+
+    implementation 'it.unimi.dsi:fastutil-core:8.5.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 
 
-    extraLibs group: 'org.ow2.asm', name: 'asm', version: '+'
-    extraLibs group: 'org.ow2.asm', name: 'asm-tree', version: '+'
+    extraLibs group: 'org.ow2.asm', name: 'asm', version: '9.2'
+    extraLibs group: 'org.ow2.asm', name: 'asm-tree', version: '9.2'
     extraLibs group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.3.2.1'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
-    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
-    extraLibs group: 'it.unimi.dsi', name: 'fastutil', version: '7.0.12'
-    implementation group: 'org.ow2.asm', name: 'asm', version: '+'
-    implementation group: 'org.ow2.asm', name: 'asm-tree', version: '+'
-    implementation group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.+'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.0'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
-    implementation group: 'it.unimi.dsi', name: 'fastutil', version: '7.0.12'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.1'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+//    extraLibs group: 'it.unimi.dsi', name: 'fastutil', version: '8.5.4'
+    implementation group: 'org.ow2.asm', name: 'asm', version: '9.2'
+    implementation group: 'org.ow2.asm', name: 'asm-tree', version: '9.2'
+    implementation group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.3.2.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+//    implementation group: 'it.unimi.dsi', name: 'fastutil', version: '8.5.4'
 }
 
 jar {
@@ -128,7 +132,8 @@ jar {
         attributes 'Implementation-Title': 'QBubbles',
                 'Implementation-Vendor': 'QTech Community',
                 'Implementation-Version': "1.0-indev1",
-                'Main-Class': 'com.qtech.preloadr.PreLoader'
+                'Main-Class': 'com.utreon.preloadr.PreLoader',
+                'Multi-Release': 'true'
     }
     from {
         configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }

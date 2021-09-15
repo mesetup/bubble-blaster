@@ -1,0 +1,29 @@
+module com.ultreon.commons {
+    exports com.ultreon.commons.annotation;
+    exports com.ultreon.commons.crash;
+    exports com.ultreon.commons.exceptions;
+    exports com.ultreon.commons.function;
+    exports com.ultreon.commons.function.primitive;
+    exports com.ultreon.commons.io.filefilters;
+    exports com.ultreon.commons.lang;
+    exports com.ultreon.commons.map;
+    exports com.ultreon.commons.time;
+    exports com.ultreon.commons.util;
+    exports com.ultreon.commons.utilities;
+    exports com.ultreon.commons.utilities.datetime;
+
+    // Java internal
+    requires java.base;
+    requires java.desktop;
+
+    // Java external
+    requires javax.annotation;
+
+    // Jetbrains
+    requires org.jetbrains.annotations;
+
+    // OSHi
+    requires com.github.oshi;
+    requires org.apache.commons.lang;
+    requires com.google.gson;
+}

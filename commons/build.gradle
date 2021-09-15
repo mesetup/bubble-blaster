@@ -1,0 +1,265 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyUnusedCatchParameter
+import org.apache.commons.io.IOUtils
+
+import java.util.stream.Collectors
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url = "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            name = "sonatype"
+        }
+        maven {
+            url = "https://maven.atlassian.com/3rdparty/"
+        }
+        google()
+    }
+    dependencies {
+        classpath group: 'commons-io', name: 'commons-io', version: '2.8.0'
+        classpath "com.google.code.gson:gson:2.8.+"
+//        classpath "io.freefair.gradle:lombok-plugin:6.1.0-m3"
+    }
+}
+
+plugins {
+    id 'extra-java-module-info'
+    id "groovy"
+    id 'java'
+    id 'java-library'
+    id "idea"
+    id "io.freefair.lombok"
+}
+
+//apply plugin: "io.freefair.lombok"
+
+//apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+// Read build number file.
+int buildVersion = Integer.parseInt("${version1}")
+int release = Integer.parseInt(project.property("versionRelease").toString())
+String stage = project.property("versionStage").toString()
+int stageRelease = Integer.parseInt(project.property("versionStageRelease").toString())
+
+Integer buildNumber
+try {
+    FileInputStream fileInputStream = new FileInputStream("${projectDir}/buildnumber.txt")
+    String buildNrString = new String(IOUtils.toByteArray(fileInputStream))
+    fileInputStream.close()
+    try {
+        buildNumber = Integer.valueOf(buildNrString)
+    } catch (NumberFormatException e) {
+        buildNumber = -1
+    }
+} catch (IOException e) {
+    buildNumber = -1
+}
+
+
+// Advance build number.
+buildNumber++
+println("Executing build " + buildNumber)
+String newBuild = buildNumber.toString()
+
+// Write new build number.
+if (!new File("buildnumber.txt").exists()) {
+    new File("buildnumber.txt").createNewFile()
+}
+FileOutputStream output = new FileOutputStream("${projectDir}/buildnumber.txt")
+output.write(newBuild.getBytes())
+output.flush()
+output.close()
+
+version = buildVersion + "." + release + '.' + buildNumber + "-" + stage + stageRelease
+group = 'com.ultreon' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'commons'
+//jar.version = version
+jar.archiveVersion.set(version)
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '16' // Need this here so eclipse task generates correctly.
+
+//GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), this.binding);
+//shell.run(file, arguments);
+
+println("Current version: " + version)
+println("Project: " + group + ":" + archivesBaseName)
+println("Bulding a Java " + compileJava.targetCompatibility + " project...")
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    google()
+    maven { url "https://maven.atlassian.com/3rdparty/" }
+//    maven { url "https://repo.spring.io/libs-milestone/" }
+    maven { url "https://maven.imagej.net/content/repositories/public/" }
+    fileTree "${rootProject.projectDir}/lib/"
+}
+
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+dependencies {
+    implementation project(":javax-annotations")
+    extraLibs project(":javax-annotations")
+
+    // Fast Util
+//    implementation 'fastutil:fastutil:5.0.9'
+//    extraLibs 'fastutil:fastutil:5.0.9'
+
+    // Jetbrains Annotations
+    implementation 'org.jetbrains:annotations:22.0.0'
+    extraLibs 'org.jetbrains:annotations:22.0.0'
+
+    // SwingX
+    implementation 'org.swinglabs.swingx:swingx-common:1.6.5-1'
+    implementation 'org.swinglabs.swingx:swingx-graphics:1.6.5-1'
+    implementation 'org.swinglabs.swingx:swingx-core:1.6.5-1'
+    implementation 'org.swinglabs.swingx:swingx-project:1.6.5-1'
+    extraLibs 'org.swinglabs.swingx:swingx-common:1.6.5-1'
+    extraLibs 'org.swinglabs.swingx:swingx-graphics:1.6.5-1'
+    extraLibs 'org.swinglabs.swingx:swingx-core:1.6.5-1'
+    extraLibs 'org.swinglabs.swingx:swingx-project:1.6.5-1'
+
+    // JUnit Jupiter
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+
+    implementation 'com.google.code.gson:gson:2.8.8'
+    extraLibs 'com.google.code.gson:gson:2.8.8'
+
+    // Apache commons
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    implementation group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    implementation group: 'commons-configuration', name: 'commons-configuration', version: '1.10'
+    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.21'
+    extraLibs group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    extraLibs group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    extraLibs group: 'commons-configuration', name: 'commons-configuration', version: '1.10'
+    extraLibs group: 'org.apache.commons', name: 'commons-compress', version: '1.21'
+
+    // Apache Logging
+    implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.1'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+
+    // ObjectWeb 2 ASM
+    implementation group: 'org.ow2.asm', name: 'asm', version: '9.2'
+    implementation group: 'org.ow2.asm', name: 'asm-tree', version: '9.2'
+    extraLibs group: 'org.ow2.asm', name: 'asm', version: '9.2'
+    extraLibs group: 'org.ow2.asm', name: 'asm-tree', version: '9.2'
+
+    // Unimi DSi
+//    implementation group: 'it.unimi.dsi', name: 'fastutil-core', version: '8.5.4'
+    implementation group: 'it.unimi.dsi', name: 'lama4j', version: '1.1.1'
+//    extraLibs group: 'it.unimi.dsi', name: 'fastutil-core', version: '8.5.4'
+    extraLibs group: 'it.unimi.dsi', name: 'lama4j', version: '1.1.1'
+
+    // XBiB: Joptsimple
+    implementation group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.3.2.1'
+    extraLibs group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.3.2.1'
+
+    // OSHi (For system info in crash reports)
+    extraLibs 'com.github.oshi:oshi-core:5.8.1'
+    implementation 'com.github.oshi:oshi-core:5.8.1'
+}
+
+extraJavaModuleInfo {
+    // This does not have to be a complete description (e.g. here 'org.apache.commons.collections' does not export anything here).
+    // It only needs to be good enough to work in the context of this application we are building.
+    module('commons-lang-2.6.jar', 'org.apache.commons.lang', '2.6') {
+        requires('java.sql')
+
+        exports('org.apache.commons.lang')
+        exports('org.apache.commons.lang.builder')
+        exports('org.apache.commons.lang.enums')
+        exports('org.apache.commons.lang.exception')
+        exports('org.apache.commons.lang.math')
+        exports('org.apache.commons.lang.mutable')
+        exports('org.apache.commons.lang.reflect')
+        exports('org.apache.commons.lang.text')
+        exports('org.apache.commons.lang.time')
+    }
+    module('fastutil-5.0.9.jar', 'fastutil', '5.0.9')
+    module('swingx-core-1.6.5-1.jar', 'org.swinglabs.swingx.core', '1.6.5-1')
+    module('swingx-graphics-1.6.5-1.jar', 'org.swinglabs.swingx.graphics', '1.6.5-1')
+    module('swingx-autocomplete-1.6.5-1.jar', 'org.swinglabs.swingx.autocomplete', '1.6.5-1')
+    module('swingx-plaf-1.6.5-1.jar', 'org.swinglabs.swingx.plaf', '1.6.5-1')
+    module('swingx-painters-1.6.5-1.jar', 'org.swinglabs.swingx.painters', '1.6.5-1')
+    module('swingx-common-1.6.5-1.jar', 'org.swinglabs.swingx.common', '1.6.5-1')
+    module('swingx-action-1.6.5-1.jar', 'org.swinglabs.swingx.action', '1.6.5-1')
+    module('lama4j-1.1.1.jar', 'it.unimi.dsi.lama4j', '1.1.1')
+    module('dsiutils-2.3.3.jar', 'it.unimi.dsi.dsiutils', '2.3.3')
+    module('commons-configuration-1.10.jar', 'org.apache.commons.configuration', '2.3.3')
+    module('commons-logging-1.1.1.jar', 'org.apache.commons.logging', '1.1.1')
+    module('commons-cli-1.4.jar', 'org.apache.commons.cli', '3.2.2')/* {
+        exports('org.apache.commons.cli')
+    }*/
+    module('commons-collections-3.2.2.jar', 'org.apache.commons.collections', '3.2.2')
+    module('commons-collections-20040616.jar', 'org.apache.commons.collections', '20040616')
+    module('commons-math3-3.6.1.jar', 'org.apache.commons.math3', '3.6.1')
+    module('fastutil-7.0.12.jar', 'it.unimi.dsi.fastutil', '7.0.12')
+    module('jsap-2.1.jar', 'com.martiansoftware.jsap', '2.1')
+    module('logback-core-1.1.7.jar', 'ch.qos.logback.core', '1.1.7')
+    module('logback-classic-1.1.7.jar', 'ch.qos.logback.classic', '1.1.7')
+    module('guava-19.0.jar', 'com.google.guava', '19.0')
+    automaticModule('commons-logging-1.2.jar', 'org.apache.commons.logging')
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'QBubbles',
+                'Implementation-Vendor': 'QTech Community',
+                'Implementation-Version': "1.0-indev1",
+                'Main-Class': 'com.qtech.preloadr.PreLoader'
+    }
+    from {
+        configurations.named("extraLibs").get().getAllArtifacts().stream().map({ it.file }).collect(Collectors.toList())
+//        configurations.extraLibs.collect {
+//            it = it as Configuration
+//            return it.getAllArtifacts().stream().map({ it.file }).collect(Collectors.toList())
+////            it.isDirectory() ? it : zipTree(it)
+//        }
+    }
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
+}
+test {
+    useJUnitPlatform()
+}
+
+task("uploadJars", dependsOn: "build") {
+
+    description = "uploads JARs"
+
+    if (project.hasProperty("local_maven") || project.hasProperty("sftp_maven")) {
+//        apply plugin: 'maven'
+//        uploadArchives {
+//            repositories {
+//                if (project.hasProperty("local_maven")) {
+//                    mavenDeployer {
+//                        repository(url: "file://${local_maven}")
+//                    }
+//                }
+//                if (project.hasProperty("sftp_maven")) {
+//                    repositories.mavenDeployer {
+//                        configuration = configurations.deployerJars
+//                        repository(url: "sftp://${sftp_maven}") {
+//                            authentication(userName: "${sftp_username}", privateKey: "${sftp_key}")
+//                        }
+//                    }
+//                }
+//            }
+//        }
+    }
+}

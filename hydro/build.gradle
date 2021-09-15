@@ -1,0 +1,352 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyUnusedCatchParameter
+import org.apache.commons.io.IOUtils
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url = "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            name = "sonatype"
+        }
+        maven {
+            url = "https://maven.atlassian.com/3rdparty/"
+        }
+        google()
+    }
+    dependencies {
+        classpath group: 'commons-io', name: 'commons-io', version: '2.8.0'
+        classpath "com.google.code.gson:gson:2.8.+"
+//        classpath "io.freefair.gradle:lombok-plugin:6.1.0-m3"
+    }
+}
+
+plugins {
+//    id 'extra-java-module-info'
+    id "groovy"
+    id 'java'
+    id 'java-library'
+    id "idea"
+    id "io.freefair.lombok"
+    id 'maven-publish'
+}
+
+//apply plugin: "io.freefair.lombok"
+
+//apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+
+// Read build number file.
+int buildVersion = Integer.parseInt("${version1}")
+int release = Integer.parseInt(project.property("versionRelease").toString())
+String stage = project.property("versionStage").toString()
+int stageRelease = Integer.parseInt(project.property("versionStageRelease").toString())
+
+Integer buildNumber
+try {
+    FileInputStream fileInputStream = new FileInputStream("${projectDir}/buildnumber.txt")
+    String buildNrString = new String(IOUtils.toByteArray(fileInputStream))
+    fileInputStream.close()
+    try {
+        buildNumber = Integer.valueOf(buildNrString)
+    } catch (NumberFormatException e) {
+        buildNumber = -1
+    }
+} catch (IOException e) {
+    buildNumber = -1
+}
+
+
+// Advance build number.
+buildNumber++
+println("Executing build " + buildNumber)
+String newBuild = buildNumber.toString()
+
+// Write new build number.
+if (!new File("buildnumber.txt").exists()) {
+    new File("buildnumber.txt").createNewFile()
+}
+FileOutputStream output = new FileOutputStream("${projectDir}/buildnumber.txt")
+output.write(newBuild.getBytes())
+output.flush()
+output.close()
+
+version = buildVersion + "." + release + '.' + buildNumber + "-" + stage + stageRelease
+group = 'com.ultreon' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'hydro'
+//jar.version = version
+jar.archiveVersion.set(version)
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '16' // Need this here so eclipse task generates correctly.
+
+//GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), this.binding);
+//shell.run(file, arguments);
+
+println("Current version: " + version)
+println("Project: " + group + ":" + archivesBaseName)
+println("Bulding a Java " + compileJava.targetCompatibility + " project...")
+
+repositories {
+    mavenCentral()
+    google()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/"; name "Sonatype" }
+    maven { url "https://maven.atlassian.com/3rdparty/" }
+    maven { url "https://repo.spring.io/libs-milestone/" }
+    maven { url "https://maven.imagej.net/content/repositories/public/" }
+}
+
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+dependencies {
+    // Projects.
+    implementation project(":commons")
+
+    implementation 'com.github.oshi:oshi-core:5.8.1'
+    implementation 'com.github.oshi:oshi-json:3.13.6'
+    implementation 'fastutil:fastutil:5.0.9'
+
+    // Annotations.
+    extraLibs 'org.jetbrains:annotations:22.0.0'
+//    extraLibs 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation 'org.jetbrains:annotations:22.0.0'
+//    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+    // SwingLabs swingX
+    extraLibs 'org.swinglabs.swingx:swingx-common:1.6.5-1'
+    extraLibs 'org.swinglabs.swingx:swingx-graphics:1.6.5-1'
+    extraLibs 'org.swinglabs.swingx:swingx-core:1.6.5-1'
+    extraLibs 'org.swinglabs.swingx:swingx-project:1.6.5-1'
+    implementation 'org.swinglabs.swingx:swingx-common:1.6.5-1'
+    implementation 'org.swinglabs.swingx:swingx-graphics:1.6.5-1'
+    implementation 'org.swinglabs.swingx:swingx-core:1.6.5-1'
+    implementation 'org.swinglabs.swingx:swingx-project:1.6.5-1'
+
+    // Google Find Bugs - JSR305
+    extraLibs 'com.google.guava:guava:30.1.1-jre'
+    implementation 'com.google.guava:guava:30.1.1-jre'
+
+    // JHLabs
+    extraLibs group: 'com.jhlabs', name: 'filters', version: '2.0.235-1'
+    implementation group: 'com.jhlabs', name: 'filters', version: '2.0.235-1'
+
+    // Jopt Simple
+    extraLibs group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.3.2.1'
+    implementation group: 'org.xbib.elasticsearch', name: 'joptsimple', version: '6.3.2.1'
+
+    // Logger
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.1'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+
+    // Apache commons
+    extraLibs group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    extraLibs group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    extraLibs group: 'org.apache.commons', name: 'commons-compress', version: '1.21'
+    extraLibs group: 'org.apache.commons', name: 'commons-configuration2', version: '2.7'
+    extraLibs group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+    extraLibs group: 'org.apache.commons', name: 'commons-text', version: '1.9'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.21'
+    implementation group: 'org.apache.commons', name: 'commons-configuration2', version: '2.7'
+    implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.9'
+
+    // Studios Hartman
+    extraLibs group: 'com.github.WilliamAHartman', name: 'Jamepad', version: '1.3.2'
+    implementation group: 'com.github.WilliamAHartman', name: 'Jamepad', version: '1.3.2'
+
+    // Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+}
+
+//extraJavaModuleInfo {
+//    // This does not have to be a complete description (e.g. here 'org.apache.commons.collections' does not export anything here).
+//    // It only needs to be good enough to work in the context of this application we are building.
+//    module('commons-lang-2.6.jar', 'org.apache.commons.lang', '2.6') {
+//        requires('java.sql')
+//
+//        exports('org.apache.commons.lang')
+//        exports('org.apache.commons.lang.builder')
+//        exports('org.apache.commons.lang.enums')
+//        exports('org.apache.commons.lang.exception')
+//        exports('org.apache.commons.lang.math')
+//        exports('org.apache.commons.lang.mutable')
+//        exports('org.apache.commons.lang.reflect')
+//        exports('org.apache.commons.lang.text')
+//        exports('org.apache.commons.lang.time')
+//    }
+//    module('fastutil-5.0.9.jar', 'fastutil', '5.0.9')
+//    module('swingx-core-1.6.5-1.jar', 'org.swinglabs.swingx.core', '1.6.5-1') {
+//        requires("java.base")
+//        requires("java.desktop")
+//        exports("org.jdesktop.swingx")
+//        exports("org.jdesktop.swingx.auth")
+//        exports("org.jdesktop.swingx.border")
+//        exports("org.jdesktop.swingx.calendar")
+//        exports("org.jdesktop.swingx.color")
+//        exports("org.jdesktop.swingx.combobox")
+//        exports("org.jdesktop.swingx.error")
+//        exports("org.jdesktop.swingx.event")
+//        exports("org.jdesktop.swingx.hyperlink")
+//        exports("org.jdesktop.swingx.icon")
+//        exports("org.jdesktop.swingx.multislider")
+//        exports("org.jdesktop.swingx.multisplitpane")
+//        exports("org.jdesktop.swingx.plaf")
+//        exports("org.jdesktop.swingx.plaf.basic")
+//        exports("org.jdesktop.swingx.plaf.macosx")
+//        exports("org.jdesktop.swingx.plaf.metal")
+//        exports("org.jdesktop.swingx.plaf.numbus")
+//        exports("org.jdesktop.swingx.plaf.synth")
+//        exports("org.jdesktop.swingx.plaf.windows")
+//        exports("org.jdesktop.swingx.prompt")
+//        exports("org.jdesktop.swingx.renderer")
+//        exports("org.jdesktop.swingx.rollover")
+//        exports("org.jdesktop.swingx.search")
+//        exports("org.jdesktop.swingx.sort")
+//        exports("org.jdesktop.swingx.table")
+//        exports("org.jdesktop.swingx.text")
+//        exports("org.jdesktop.swingx.tips")
+//        exports("org.jdesktop.swingx.tree")
+//        exports("org.jdesktop.swingx.treetable")
+//    }
+//    module('swingx-graphics-1.6.5-1.jar', 'org.swinglabs.swingx.graphics', '1.6.5-1') {
+//        requires("org.swinglabs.swingx.core")
+//        requires("org.swinglabs.swingx.common")
+//        requires("java.desktop")
+//        exports("org.jdesktop.swingx.geom")
+//        exports("org.jdesktop.swingx.graphics")
+//        exports("org.jdesktop.swingx.image")
+//    }
+//    module('swingx-autocomplete-1.6.5-1.jar', 'org.swinglabs.swingx.autocomplete', '1.6.5-1') {
+//        requires("org.swinglabs.swingx.core")
+//        exports("org.jdesktop.swingx.autocomplete")
+//        exports("org.jdesktop.swingx.autocomplete.workarounds")
+//    }
+//    module('swingx-plaf-1.6.5-1.jar', 'org.swinglabs.swingx.plaf', '1.6.5-1')
+//    module('swingx-painters-1.6.5-1.jar', 'org.swinglabs.swingx.painters', '1.6.5-1')
+//    module('swingx-common-1.6.5-1.jar', 'org.swinglabs.swingx.common', '1.6.5-1') {
+//        exports("org.jdesktop.beans")
+//    }
+//    module('swingx-action-1.6.5-1.jar', 'org.swinglabs.swingx.action', '1.6.5-1')
+//    module('lama4j-1.1.1.jar', 'it.unimi.dsi.lama4j', '1.1.1')
+//    module('dsiutils-2.3.3.jar', 'it.unimi.dsi.dsiutils', '2.3.3')
+//    module('commons-configuration-1.10.jar', 'org.apache.commons.configuration', '2.3.3')
+//    module('commons-logging-1.1.1.jar', 'org.apache.commons.logging', '1.1.1')
+//    module('commons-cli-1.4.jar', 'org.apache.commons.cli', '3.2.2')/* {
+//        exports('org.apache.commons.cli')
+//    }*/
+//    module('commons-collections-3.2.2.jar', 'org.apache.commons.collections', '3.2.2')
+//    module('commons-collections-20040616.jar', 'org.apache.commons.collections', '20040616')
+//    module('commons-math3-3.6.1.jar', 'org.apache.commons.math3', '3.6.1')
+//    module('fastutil-7.0.12.jar', 'it.unimi.dsi.fastutil', '7.0.12')
+//    module('jsap-2.1.jar', 'com.martiansoftware.jsap', '2.1')
+//    module('logback-core-1.1.7.jar', 'ch.qos.logback.core', '1.1.7')
+//    module('logback-classic-1.1.7.jar', 'ch.qos.logback.classic', '1.1.7')
+//    module('guava-19.0.jar', 'com.google.guava', '19.0')
+//    module('oshi-json-3.13.6.jar', 'com.github.oshi.json', '3.13.6') {
+////        exports("oshi.data.windows")
+////        exports("oshi.hardware")
+////        exports("oshi.hardware.common")
+////        exports("oshi.hardware.platform.linux")
+////        exports("oshi.hardware.platform.mac")
+////        exports("oshi.hardware.platform.unix.freebsd")
+////        exports("oshi.hardware.platform.unix.solaris")
+////        exports("oshi.hardware.platform.windows")
+////        exports("oshi.jna.platform.linux")
+////        exports("oshi.jna.platform.mac")
+////        exports("oshi.jna.platform.unix.freebsd")
+////        exports("oshi.jna.platform.windows")
+////        exports("oshi.json")
+////        exports("oshi.json.hardware")
+////        exports("oshi.json.hardware.impl")
+////        exports("oshi.json.json")
+////        exports("oshi.json.software.os")
+////        exports("oshi.json.software.os.impl")
+////        exports("oshi.json.util")
+////        exports("oshi.software.common")
+////        exports("oshi.software.os")
+////        exports("oshi.software.os.linux")
+////        exports("oshi.software.os.mac")
+////        exports("oshi.software.os.unix.freebsd")
+////        exports("oshi.software.os.unix.solaris")
+////        exports("oshi.software.os.windows")
+////        exports("oshi.util")
+////        exports("oshi.util.platform.linux")
+////        exports("oshi.util.platform.mac")
+////        exports("oshi.util.platform.unix.freebsd")
+////        exports("oshi.util.platform.unix.solaris")
+//        exports("oshi.util.platform.windows")
+//    }
+//    module('filters-2.0.235-1.jar', 'com.jhlabs.filters', '2.0.235-1') {
+//        exports("com.jhlabs.composite")
+//        exports("com.jhlabs.image")
+//        requires("java.desktop")
+//    }
+//    module('javax.json-1.0.4.jar', 'org.glassfish.javax.json', '1.0.4')
+//    module('failureaccess-1.0.1.jar', 'com.google.guava.failureaccess', '1.0.1')
+//    module('jsr305-3.0.2.jar', 'com.google.code.findbugs.jsr305', '3.0.2') {
+//        exports("javax.annotation")
+//        exports("javax.annotation.concurrent")
+//        exports("javax.annotation.meta")
+//    }
+//    module('j2objc-annotations-1.3.jar', 'com.google.j2objc.annotations', '1.3')
+//    module('listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar', 'com.google.guava.listenablefuture.empty', '9999.0')
+//    module('Jamepad-1.3.2.jar', 'com.github.WilliamAHartman.Jamepad', '1.3.2') {
+//        requires("com.badlogicgames.gdx.jnigen")
+//        requires("com.github.javaparser.core")
+//        exports("com.studiohartman.jamepad")
+//    }
+//    module('gdx-jnigen-1.9.9.jar', 'com.badlogicgames.gdx.jnigen', '1.9.9')
+//    module('javaparser-core-2.3.0.jar', 'com.github.javaparser.core', '2.3.0')
+//    automaticModule('commons-logging-1.2.jar', 'org.apache.commons.logging')
+//}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'QBubbles',
+                'Implementation-Vendor': 'QTech Community',
+                'Implementation-Version': "1.0-indev1",
+                'Main-Class': 'com.qtech.preloadr.PreLoader'
+    }
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            artifact jar, sourcesJar
+//        }
+//    }
+//    repositories {
+//        maven {
+//            url System.getenv("MAVEN_REPO")
+//        }
+//    }
+//}

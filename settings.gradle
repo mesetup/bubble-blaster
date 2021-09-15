@@ -1,3 +1,9 @@
-rootProject.name = "qbubbles"
+rootProject.name = "bubble-blaster"
 
 include 'preloader'
+include 'hydro'
+include 'commons'
+include 'javax-annotations'
+include 'apache-commons'
+include 'apache-commons:commons-io'
+include 'apache-commons:commons-lang'

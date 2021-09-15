@@ -1,8 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Game in Debug Mode" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.qtech.dev.GameDevMain" />
-    <module name="qbubbles.main" />
+    <log_file alias="Normal" path="$PROJECT_DIR$/run/logs/latest.log" />
+    <log_file alias="Debug" path="$PROJECT_DIR$/run/logs/debug.log" />
+    <option name="MAIN_CLASS_NAME" value="com.ultreon.dev.GameDevMain" />
+    <module name="bubble-blaster.main" />
     <option name="PROGRAM_PARAMETERS" value="gameDir=&quot;$ProjectFileDir$/run/&quot; --debug" />
+    <option name="VM_PARAMETERS" value="-Dlog4j.level=DEBUG" />
     <option name="WORKING_DIRECTORY" value="$ProjectFileDir$/run" />
     <method v="2">
       <option name="Make" enabled="true" />

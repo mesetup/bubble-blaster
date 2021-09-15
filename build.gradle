@@ -3,6 +3,9 @@ import com.google.gson.streams.*
 import com.google.gson.stream.JsonWriter
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
+
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.time.LocalDateTime
 import java.time.ZoneId
 
@@ -32,28 +35,29 @@ buildscript {
     }
 }
 
-
 /**********
  * Plugins
  */
 plugins {
+//    id 'extra-java-module-info'
+    id "groovy"
+    id 'java'
+    id 'java-library'
+    id "idea"
+//    id "io.freefair.lombok"
+    id 'maven-publish'
     id "net.octyl.elivi" version "0.1.3"
 }
 
-apply plugin: "io.freefair.lombok"
+//apply plugin: "io.freefair.lombok"
 
-// Languages.
-apply plugin: 'groovy'
+//apply plugin: 'maven'
+apply plugin: 'eclipse'
 apply plugin: 'java'
-
-// Api
+apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
-// IDE's
-apply plugin: 'idea'
-apply plugin: 'eclipse'
-
-// Util
+apply plugin: "io.freefair.lombok"
 apply plugin: 'application'
 
 group 'com.qtech'
@@ -102,7 +106,7 @@ version = vers + "." + release + '.' + buildNumber + "-" + stage + stageRelease
 group = 'com.qtech.bubbles' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bubbles'
 jar.version = version
-jar.archiveVersion.set(version)
+jar.archiveVersion.set(version as String)
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '16' // Need this here so eclipse task generates correctly.
 
@@ -135,7 +139,7 @@ sourceSets {
  */
 application {
     //noinspection GroovyAccessibility,  GroovyAssignabilityCheck
-    mainClass = 'com.qtech.preloader.PreLoader'
+    mainClass = 'com.ultreon.preloader.PreLoader'
 }
 
 /***************
@@ -149,7 +153,7 @@ repositories {
 //    maven { url "https://repo.spring.io/libs-milestone/" }
     maven { url "https://maven.imagej.net/content/repositories/public/" }
     maven {
-        url = "file://${local_maven}"
+        url "file://${local_maven}"
     }
     flatDir {
         dirs './libs'
@@ -168,8 +172,24 @@ configurations {
  * Dependencies
  */
 dependencies {
+    implementation project(":preloader")
+    implementation project(":hydro")
+    implementation project(":commons")
+
+    extraLibs project(":preloader")
+    extraLibs project(":hydro")
+    extraLibs project(":commons")
+
     // Misc
-    implementation 'org.jetbrains:annotations:21.0.1'
+    implementation 'org.jetbrains:annotations:22.0.0'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'org.apache.commons:commons-text:1.9'
+
+    implementation 'commons-lang:commons-lang:2.6'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 
@@ -181,26 +201,17 @@ dependencies {
 //    extraLibs group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
 //    implementation group: 'com.qtech.bubbles', name: 'bubbles-preloader', version: '1.+'
 
-    implementation project(":preloader")
-
     // Objectweb
     extraLibs group: 'org.ow2.asm', name: 'asm-all', version: '5.2'
     implementation group: 'org.ow2.asm', name: 'asm-all', version: '5.2'
 
     // Google
     extraLibs group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
-    extraLibs group: 'com.google.code.gson', name: 'gson', version: '2.8.7'
-
+    extraLibs group: 'com.google.code.gson', name: 'gson', version: '2.8.8'
     implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
-    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.7'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.8'
 
     // Apache
-    extraLibs group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
-    extraLibs group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
-    extraLibs group: 'org.apache.commons', name: 'commons-compress', version: '1.21'
-    extraLibs group: 'org.apache.commons', name: 'commons-configuration2', version: '2.7'
-    extraLibs group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
-    extraLibs group: 'org.apache.commons', name: 'commons-text', version: '1.9'
     extraLibs group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.1'
     extraLibs group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
     extraLibs group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
@@ -216,12 +227,6 @@ dependencies {
     extraLibs group: 'org.apache.xmlgraphics', name: 'batik-awt-util', version: '1.14'
     extraLibs group: 'org.apache.ant', name: 'ant', version: '1.10.11'
 
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
-    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
-    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.21'
-    implementation group: 'org.apache.commons', name: 'commons-configuration2', version: '2.7'
-    implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
-    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.9'
     implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.14.1'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
@@ -241,8 +246,8 @@ dependencies {
     implementation group: 'org.swinglabs.swingx', name: 'swingx-all', version: '1.6.5-1'
 
     // FuseSource
-    extraLibs group: 'org.fusesource.jansi', name: 'jansi', version: '2.3.3'
-    implementation group: 'org.fusesource.jansi', name: 'jansi', version: '2.3.3'
+    extraLibs group: 'org.fusesource.jansi', name: 'jansi', version: '2.3.4'
+    implementation group: 'org.fusesource.jansi', name: 'jansi', version: '2.3.4'
 
     // OpenJFX
     extraLibs 'org.openjfx:javafx-swing:16'
@@ -293,19 +298,203 @@ dependencies {
     // Studios Hartman
     extraLibs group: 'com.github.WilliamAHartman', name: 'Jamepad', version: '1.3.2'
     implementation group: 'com.github.WilliamAHartman', name: 'Jamepad', version: '1.3.2'
-
-    // Fast Util
-    extraLibs group: 'it.unimi.dsi', name: 'fastutil', version: '8.5.4'
-    implementation group: 'it.unimi.dsi', name: 'lama4j', version: '1.1.1'
+//
+//    // Fast Util
+//    extraLibs group: 'it.unimi.dsi', name: 'fastutil', version: '8.5.4'
+//    implementation group: 'it.unimi.dsi', name: 'lama4j', version: '1.1.1'
 
     // MongoDB
     extraLibs group: 'org.mongodb', name: 'bson', version: '4.3.0'
     implementation group: 'org.mongodb', name: 'bson', version: '4.3.0'
 
     // OSHi (For system info in crash reports)
-    extraLibs 'com.github.oshi:oshi-core:5.8.0'
-    implementation 'com.github.oshi:oshi-core:5.8.0'
+    extraLibs 'com.github.oshi:oshi-core:5.8.2'
+    implementation 'com.github.oshi:oshi-core:5.8.2'
 }
+
+//extraJavaModuleInfo {
+//    // This does not have to be a complete description (e.g. here 'org.apache.commons.collections' does not export anything here).
+//    // It only needs to be good enough to work in the context of this application we are building.
+//    module('commons-lang-2.6.jar', 'org.apache.commons.lang', '2.6') {
+//        requires('java.sql')
+//
+//        exports('org.apache.commons.lang')
+//        exports('org.apache.commons.lang.builder')
+//        exports('org.apache.commons.lang.enums')
+//        exports('org.apache.commons.lang.exception')
+//        exports('org.apache.commons.lang.math')
+//        exports('org.apache.commons.lang.mutable')
+//        exports('org.apache.commons.lang.reflect')
+//        exports('org.apache.commons.lang.text')
+//        exports('org.apache.commons.lang.time')
+//    }
+//    module('fastutil-5.0.9.jar', 'fastutil', '5.0.9')
+//    module('swingx-core-1.6.5-1.jar', 'org.swinglabs.swingx.core', '1.6.5-1') {
+//        requires("java.base")
+//        requires("java.desktop")
+//        exports("org.jdesktop.swingx")
+//        exports("org.jdesktop.swingx.auth")
+//        exports("org.jdesktop.swingx.border")
+//        exports("org.jdesktop.swingx.calendar")
+//        exports("org.jdesktop.swingx.color")
+//        exports("org.jdesktop.swingx.combobox")
+//        exports("org.jdesktop.swingx.error")
+//        exports("org.jdesktop.swingx.event")
+//        exports("org.jdesktop.swingx.hyperlink")
+//        exports("org.jdesktop.swingx.icon")
+//        exports("org.jdesktop.swingx.multislider")
+//        exports("org.jdesktop.swingx.multisplitpane")
+//        exports("org.jdesktop.swingx.plaf")
+//        exports("org.jdesktop.swingx.plaf.basic")
+//        exports("org.jdesktop.swingx.plaf.macosx")
+//        exports("org.jdesktop.swingx.plaf.metal")
+//        exports("org.jdesktop.swingx.plaf.numbus")
+//        exports("org.jdesktop.swingx.plaf.synth")
+//        exports("org.jdesktop.swingx.plaf.windows")
+//        exports("org.jdesktop.swingx.prompt")
+//        exports("org.jdesktop.swingx.renderer")
+//        exports("org.jdesktop.swingx.rollover")
+//        exports("org.jdesktop.swingx.search")
+//        exports("org.jdesktop.swingx.sort")
+//        exports("org.jdesktop.swingx.table")
+//        exports("org.jdesktop.swingx.text")
+//        exports("org.jdesktop.swingx.tips")
+//        exports("org.jdesktop.swingx.tree")
+//        exports("org.jdesktop.swingx.treetable")
+//    }
+//    module('swingx-graphics-1.6.5-1.jar', 'org.swinglabs.swingx.graphics', '1.6.5-1') {
+//        requires("org.swinglabs.swingx.core")
+//        requires("org.swinglabs.swingx.common")
+//        requires("java.desktop")
+//        exports("org.jdesktop.swingx.geom")
+//        exports("org.jdesktop.swingx.graphics")
+//        exports("org.jdesktop.swingx.image")
+//    }
+//    module('swingx-autocomplete-1.6.5-1.jar', 'org.swinglabs.swingx.autocomplete', '1.6.5-1') {
+//        requires("org.swinglabs.swingx.core")
+//        exports("org.jdesktop.swingx.autocomplete")
+//        exports("org.jdesktop.swingx.autocomplete.workarounds")
+//    }
+//    module('swingx-plaf-1.6.5-1.jar', 'org.swinglabs.swingx.plaf', '1.6.5-1')
+//    module('swingx-painters-1.6.5-1.jar', 'org.swinglabs.swingx.painters', '1.6.5-1')
+//    module('swingx-common-1.6.5-1.jar', 'org.swinglabs.swingx.common', '1.6.5-1') {
+//        exports("org.jdesktop.beans")
+//    }
+//    module('swingx-action-1.6.5-1.jar', 'org.swinglabs.swingx.action', '1.6.5-1')
+//    module('lama4j-1.1.1.jar', 'it.unimi.dsi.lama4j', '1.1.1')
+//    module('dsiutils-2.3.3.jar', 'it.unimi.dsi.dsiutils', '2.3.3')
+//    module('commons-configuration-1.10.jar', 'org.apache.commons.configuration', '2.3.3')
+//    module('commons-logging-1.1.1.jar', 'org.apache.commons.logging', '1.1.1')
+//    module('commons-cli-1.4.jar', 'org.apache.commons.cli', '3.2.2')/* {
+//        exports('org.apache.commons.cli')
+//    }*/
+//    module('commons-collections-3.2.2.jar', 'org.apache.commons.collections', '3.2.2')
+//    module('commons-collections-20040616.jar', 'org.apache.commons.collections', '20040616')
+//    module('commons-math3-3.6.1.jar', 'org.apache.commons.math3', '3.6.1')
+//    module('fastutil-7.0.12.jar', 'it.unimi.dsi.fastutil', '7.0.12')
+//    module('jsap-2.1.jar', 'com.martiansoftware.jsap', '2.1')
+//    module('logback-core-1.1.7.jar', 'ch.qos.logback.core', '1.1.7')
+//    module('logback-classic-1.1.7.jar', 'ch.qos.logback.classic', '1.1.7')
+//    module('guava-19.0.jar', 'com.google.guava', '19.0')
+//    module('oshi-json-3.13.6.jar', 'com.github.oshi.json', '3.13.6') {
+////        exports("oshi.data.windows")
+////        exports("oshi.hardware")
+////        exports("oshi.hardware.common")
+////        exports("oshi.hardware.platform.linux")
+////        exports("oshi.hardware.platform.mac")
+////        exports("oshi.hardware.platform.unix.freebsd")
+////        exports("oshi.hardware.platform.unix.solaris")
+////        exports("oshi.hardware.platform.windows")
+////        exports("oshi.jna.platform.linux")
+////        exports("oshi.jna.platform.mac")
+////        exports("oshi.jna.platform.unix.freebsd")
+////        exports("oshi.jna.platform.windows")
+////        exports("oshi.json")
+////        exports("oshi.json.hardware")
+////        exports("oshi.json.hardware.impl")
+////        exports("oshi.json.json")
+////        exports("oshi.json.software.os")
+////        exports("oshi.json.software.os.impl")
+////        exports("oshi.json.util")
+////        exports("oshi.software.common")
+////        exports("oshi.software.os")
+////        exports("oshi.software.os.linux")
+////        exports("oshi.software.os.mac")
+////        exports("oshi.software.os.unix.freebsd")
+////        exports("oshi.software.os.unix.solaris")
+////        exports("oshi.software.os.windows")
+////        exports("oshi.util")
+////        exports("oshi.util.platform.linux")
+////        exports("oshi.util.platform.mac")
+////        exports("oshi.util.platform.unix.freebsd")
+////        exports("oshi.util.platform.unix.solaris")
+////        exports("oshi.util.platform.windows")
+//    }
+//    module('filters-2.0.235-1.jar', 'com.jhlabs.filters', '2.0.235-1') {
+//        exports("com.jhlabs.composite")
+//        exports("com.jhlabs.image")
+//        requires("java.desktop")
+//    }
+//    module('javax.json-1.0.4.jar', 'org.glassfish.javax.json', '1.0.4')
+//    module('failureaccess-1.0.1.jar', 'com.google.guava.failureaccess', '1.0.1')
+//    module('jsr305-3.0.2.jar', 'com.google.code.findbugs.jsr305', '3.0.2') {
+//        exports("javax.annotation")
+//        exports("javax.annotation.concurrent")
+//        exports("javax.annotation.meta")
+//    }
+//    module('j2objc-annotations-1.3.jar', 'com.google.j2objc.annotations', '1.3')
+//    module('listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar', 'com.google.guava.listenablefuture.empty', '9999.0')
+//    module('Jamepad-1.3.2.jar', 'com.github.WilliamAHartman.Jamepad', '1.3.2') {
+//        requires("com.badlogicgames.gdx.jnigen")
+//        requires("com.github.javaparser.core")
+//        exports("com.studiohartman.jamepad")
+//    }
+//    module('gdx-jnigen-1.9.9.jar', 'com.badlogicgames.gdx.jnigen', '1.9.9')
+//    module('javaparser-core-2.3.0.jar', 'com.github.javaparser.core', '2.3.0')
+//    module('batik-all-1.14.jar', 'com.apache.xmlgraphics.batik.all', '1.14')
+//    module('batik-squiggle-ext-1.14.jar', 'com.apache.xmlgraphics.squiggle.batik.ext', '1.14')
+//    module('batik-squiggle-1.14.jar', 'com.apache.xmlgraphics.batik.squiggle', '1.14')
+//    module('batik-svgbrowser-1.14.jar', 'com.apache.xmlgraphics.batik.svgbrowser', '1.14')
+//    module('batik-swing-1.14.jar', 'com.apache.xmlgraphics.batik.swing', '1.14')
+//    module('batik-rasterizer-ext-1.14.jar', 'com.apache.xmlgraphics.rasterizer.batik.ext', '1.14')
+//    module('batik-rasterizer-1.14.jar', 'com.apache.xmlgraphics.batik.rasterizer', '1.14')
+//    module('batik-svgrasterizer-1.14.jar', 'com.apache.xmlgraphics.batik.svgrasterizer', '1.14')
+//    module('batik-codec-1.14.jar', 'com.apache.xmlgraphics.batik.codec', '1.14')
+//    module('batik-extension-1.14.jar', 'com.apache.xmlgraphics.batik.extension', '1.14')
+//    module('batik-slideshow-1.14.jar', 'com.apache.xmlgraphics.batik.slideshow', '1.14')
+//    module('batik-svgpp-1.14.jar', 'com.apache.xmlgraphics.batik.svgpp', '1.14')
+//    module('batik-transcoder-1.14.jar', 'com.apache.xmlgraphics.batik.transcoder', '1.14')
+//    module('batik-bridge-1.14.jar', 'com.apache.xmlgraphics.batik.bridge', '1.14')
+//    module('batik-script-1.14.jar', 'com.apache.xmlgraphics.batik.script', '1.14')
+//    module('batik-anim-1.14.jar', 'com.apache.xmlgraphics.batik.anim', '1.14')
+//    module('batik-svg-dom-1.14.jar', 'com.apache.xmlgraphics.batik.svgdom', '1.14')
+//    module('batik-parser-1.14.jar', 'com.apache.xmlgraphics.batik.parser', '1.14')
+//    module('batik-gvt-1.14.jar', 'com.apache.xmlgraphics.batik.gvt', '1.14')
+//    module('batik-ttf2svg-1.14.jar', 'com.apache.xmlgraphics.batik.ttf2svg', '1.14')
+//    module('batik-svggen-1.14.jar', 'com.apache.xmlgraphics.batik.svggen', '1.14')
+//    module('batik-awt-util-1.14.jar', 'com.apache.xmlgraphics.batik.awtutil', '1.14')
+//    module('batik-dom-1.14.jar', 'com.apache.xmlgraphics.batik.dom', '1.14')
+//    module('batik-css-1.14.jar', 'com.apache.xmlgraphics.batik.css', '1.14')
+//    module('batik-shared-resources-1.14.jar', 'com.apache.xmlgraphics.batik.shared_resources', '1.14')
+//    module('xmlgraphics-commons-2.6.jar', 'com.apache.xmlgraphics.commons', '2.6')
+//    module('commons-io-20030203.000550.jar', 'org.apache.commons.io', '20030203.000550')
+//    module('asm-all-5.2.jar', 'org.ow2.asm.all', '5.2')
+//    module('ant-1.10.11.jar', 'org.apache.ant', '1.10.11')
+//    module('swingx-all-1.6.5-1.jar', 'org.swinglabs.swingx.all', '1.6.5-1')
+//    module('batik-ext-1.14.jar', 'org.apache.xmlgraphics.batik.ext', '1.14')
+//    module('batik-gui-util-1.14.jar', 'org.apache.xmlgraphics.batik.guiutil', '1.14')
+//    module('batik-xml-1.14.jar', 'org.apache.xmlgraphics.batik.xml', '1.14')
+//    module('batik-util-1.14.jar', 'org.apache.xmlgraphics.batik.util', '1.14')
+//    module('batik-i18n-1.14.jar', 'org.apache.xmlgraphics.batik.i18n', '1.14')
+//    module('batik-constants-1.14.jar', 'org.apache.xmlgraphics.batik.constants', '1.14')
+//    module('xml-apis-ext-1.3.04.jar', 'xmlapis.apis.ext', '1.3.04')
+//    module('xalan-2.7.2.jar', 'xalan', '2.7.2')
+//    module('serializer-2.7.2.jar', 'xalan.serializer', '2.7.2')
+//    module('xml-apis-1.4.01.jar', 'xmlapis', '1.4.01')
+//    module('ant-launcher-1.10.11.jar', 'org.apache.ant.launcher', '1.10.11')
+//    module('commons-logging-1.0.4.jar', 'org.apache.commons.logging', '1.0.4')
+//    automaticModule('commons-logging-1.2.jar', 'org.apache.commons.logging')
+//}
 
 // task to add addons.json to all relevant folders
 task replaceResources(type: Copy) {
@@ -371,11 +560,14 @@ artifacts {
 }
 
 jar {
+    //noinspection GroovyAssignabilityCheck
     manifest {
+        //noinspection GroovyAssignabilityCheck
         attributes 'Implementation-Title': 'QBubbles',
                 'Implementation-Vendor': 'QTech Community',
                 'Implementation-Version': "1.0-indev1",
-                'Main-Class': 'com.qtech.preloader.PreLoader'
+                'Main-Class': 'com.qtech.preloader.PreLoader',
+                'Multi-Release': 'true'
     }
 //    from {
 //        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
@@ -389,15 +581,20 @@ processResources {
 }
 
 task runQBubbles(type: JavaExec) {
-    description = "Run QBubbles"
-    main = 'com.qtech.preloader.PreLoader'
-    classpath = sourceSets.main.compileClasspath
+    description "Run QBubbles"
+    main 'com.qtech.preloader.PreLoader'
+    classpath sourceSets.main.compileClasspath
     args('gameDir="./run"')
 }
 
 test {
     useJUnitPlatform()
 }
+
+
+def prepareRun = tasks.create('prepareRun', {
+    Files.createDirectories(Paths.get(projectDir.getAbsolutePath(), "run"))
+});
 
 task uploadJars(dependsOn: "build") {
 
@@ -446,6 +643,8 @@ tasks.withType(Jar).configureEach {
 
 // Upload jars to local of sftp maven.
 //jar.finalizedBy(uploadJars)
+
+// Todo: remove build information writing into jar file.
 
 Gson gson = new Gson()
 JsonObject json = new JsonObject()

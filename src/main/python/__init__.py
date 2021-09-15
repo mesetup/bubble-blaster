@@ -6,13 +6,13 @@ print(os.getpid())
 
 # os.kill(os.getpid(), 0xcfffffff)
 
-from com.qtech.bubbles.entity.core import Entity
+from com.ultreon.bubbles.entity.core import Entity
 from java.util.function import Consumer
 from java.lang import String
 from java.lang import Object
 from java.util import Objects
 
-from com.qtech.bubbles.util import Fluid
+from com.ultreon.bubbles.util import Fluid
 
 entityConsumer: Consumer(Entity) = lambda entity: print(entity)
 # noinspection PyTypeChecker

@@ -146,7 +146,8 @@ Thumbs.db
 
 # Lombok config
 /preLoader/lombok.config
-/lombok.config
+lombok.config
 
 /core/lombok.config
 /desktop/lombok.config
+/local/
