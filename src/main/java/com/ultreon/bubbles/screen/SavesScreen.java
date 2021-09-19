@@ -6,7 +6,7 @@ import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.hydro.Game;
 import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.bubbles.save.SaveLoader;
 import com.ultreon.bubbles.util.Util;
 

@@ -4,7 +4,7 @@ import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.text.translation.I18n;
 import com.ultreon.hydro.Game;
 import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.bus.EventBus;
 import com.ultreon.bubbles.render.gui.OptionsButton;
 import com.ultreon.bubbles.render.gui.OptionsNumberInput;
@@ -64,20 +64,20 @@ public class OptionsScreen extends Screen {
     public void init() {
         BubbleBlaster.getEventBus().register(this);
 
-        maxBubblesOption.bindEvents();
-        languageButton.bindEvents();
-        cancelButton.bindEvents();
-        saveButton.bindEvents();
+        maxBubblesOption.make();
+        languageButton.make();
+        cancelButton.make();
+        saveButton.make();
     }
 
     @Override
     public boolean onClose(Screen to) {
         BubbleBlaster.getEventBus().unregister(this);
 
-        maxBubblesOption.unbindEvents();
-        languageButton.unbindEvents();
-        cancelButton.unbindEvents();
-        saveButton.unbindEvents();
+        maxBubblesOption.destroy();
+        languageButton.destroy();
+        cancelButton.destroy();
+        saveButton.destroy();
 
         if (to == backScene) {
             backScene = null;
@@ -117,14 +117,14 @@ public class OptionsScreen extends Screen {
 
     public void renderGUI(BubbleBlaster game, Renderer gg) {
         cancelButton.setText(I18n.translateToLocal("other.cancel"));
-        cancelButton.paint(gg);
+        cancelButton.render(gg);
 
         languageButton.setText(I18n.translateToLocal("scene.qbubbles.options.language"));
-        languageButton.paint(gg);
+        languageButton.render(gg);
 
-        maxBubblesOption.paint(gg);
+        maxBubblesOption.render(gg);
 
-        saveButton.paint(gg);
+        saveButton.render(gg);
         saveButton.setText(I18n.translateToLocal("other.save"));
     }
 

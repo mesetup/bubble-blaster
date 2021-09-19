@@ -2,29 +2,24 @@ package com.ultreon.bubbles.render.gui;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.api.event.keyboard.KeyboardModifiers;
-import com.ultreon.bubbles.common.interfaces.Listener;
-import com.ultreon.hydro.gui.Widget;
-import com.ultreon.hydro.input.MouseController;
-import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.hydro.event._common.RenderEventPriority;
-import com.ultreon.hydro.event._common.SubscribeEvent;
-import com.ultreon.hydro.event.input.KeyboardEvent;
-import com.ultreon.hydro.event.input.MouseEvent;
-import com.ultreon.hydro.event.type.KeyEventType;
+import com.ultreon.hydro.screen.gui.IGuiListener;
 import com.ultreon.bubbles.util.Util;
 import com.ultreon.bubbles.util.helpers.MathHelper;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.input.KeyboardEvent;
+import com.ultreon.hydro.event.type.KeyEventType;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.gui.Rectangle;
+import com.ultreon.hydro.screen.gui.Widget;
+import com.ultreon.hydro.util.GraphicsUtils;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 
-public class OptionsTextEntry extends Widget implements com.ultreon.bubbles.api.event.KeyboardEvent.KeyboardEventListener, Listener {
+public class OptionsTextEntry extends Widget implements com.ultreon.bubbles.api.event.KeyboardEvent.KeyboardEventListener, IGuiListener {
     // Fonts.
     protected final Font defaultFont = new Font(Util.getGame().getSansFontName(), Font.PLAIN, 24);
-
-    // Bounds.
-    private Rectangle bounds;
 
     // Cursor Index/
     protected int cursorIndex;
@@ -35,37 +30,22 @@ public class OptionsTextEntry extends Widget implements com.ultreon.bubbles.api.
     // Values.
     protected String text;
 
-    // Render priority/
-    private RenderEventPriority renderEventPriority;
-
     // State
     protected boolean activated;
-    protected Integer visualX;
-    protected Integer visualY;
-    protected boolean hovered;
 
-    // Constructor.
     public OptionsTextEntry(Rectangle bounds) {
-        this(bounds.x, bounds.y, bounds.width, bounds.height, RenderEventPriority.AFTER_FILTER);
-    }
-
-    public OptionsTextEntry(Rectangle bounds, RenderEventPriority renderEventPriority) {
-        this.bounds = bounds;
-        this.renderEventPriority = renderEventPriority;
+        super(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
     public OptionsTextEntry(int x, int y, int width, int height) {
         this(new Rectangle(x, y, width, height));
     }
 
-    public OptionsTextEntry(int x, int y, int width, int height, RenderEventPriority renderEventPriority) {
-        this(new Rectangle(x, y, width, height), renderEventPriority);
-    }
-
     @SubscribeEvent
-    public void onMouse(MouseEvent evt) {
-        if (evt.getButton() == 1) {
-            activated = getBounds().contains(evt.getPoint());
+    @Override
+    public void onMouseRelease(int x, int y, int button) {
+        if (button == 1) {
+            activated = getBounds().contains(x, y);
         }
     }
 
@@ -169,64 +149,45 @@ public class OptionsTextEntry extends Widget implements com.ultreon.bubbles.api.
     }
 
     @Override
-    public void bindEvents() {
+    public void make() {
         eventsActive = true;
         BubbleBlaster.getEventBus().register(this);
     }
 
     @Override
-    public void unbindEvents() {
+    public void destroy() {
         eventsActive = false;
         BubbleBlaster.getEventBus().unregister(this);
     }
 
     @Override
-    public boolean eventsAreActive() {
+    public boolean isValid() {
         return eventsActive;
     }
 
     @Override
-    public void paint(Renderer gg) {
-        Integer vx = visualX;
-        if (visualX == null) vx = getX();
-        Integer vy = visualY;
-        if (visualY == null) vy = getY();
-        Rectangle bounds = new Rectangle(vx, vy, getBounds().width, getBounds().height);
-
-        Point mousePos = MouseController.instance().getCurrentPoint();
-        if (mousePos != null) {
-            if (bounds.contains(mousePos)) {
-                Util.setCursor(BubbleBlaster.getInstance().getTextCursor());
-                hovered = true;
-            } else {
-                if (hovered) {
-                    Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
-                    hovered = false;
-                }
-            }
-        }
-
+    public void render(Renderer renderer) {
         if (activated) {
-            gg.color(new Color(128, 128, 128));
-            gg.fill(bounds);
+            renderer.color(new Color(128, 128, 128));
+            renderer.fill(getBounds());
 
-            Paint old = gg.getPaint();
-            GradientPaint p = new GradientPaint(0, vy, new Color(0, 192, 255), 0f, vy + getHeight(), new Color(0, 255, 192));
-            gg.paint(p);
-            gg.fill(new Rectangle(bounds.x, bounds.y + bounds.height, bounds.width, 4));
-            gg.paint(old);
+            Paint old = renderer.getPaint();
+            GradientPaint p = new GradientPaint(0, this.y, new Color(0, 192, 255), 0f, this.y + getHeight(), new Color(0, 255, 192));
+            renderer.paint(p);
+            renderer.fill(new Rectangle(x, y + height, width, 4));
+            renderer.paint(old);
         } else {
-            gg.color(new Color(64, 64, 64));
-            gg.fill(bounds);
+            renderer.color(new Color(64, 64, 64));
+            renderer.fill(getBounds());
         }
 
-        gg.color(new Color(255, 255, 255, 255));
-        GraphicsUtils.drawLeftAnchoredString(gg, text, new Point2D.Double(2, getY() + getHeight() - (getHeight() - 4)), getHeight() - 4, defaultFont);
+        renderer.color(new Color(255, 255, 255, 255));
+        GraphicsUtils.drawLeftAnchoredString(renderer, text, new Point2D.Double(2, getY() + getHeight() - (getHeight() - 4)), getHeight() - 4, defaultFont);
 
-        FontMetrics fontMetrics = gg.getFontMetrics(defaultFont);
+        FontMetrics fontMetrics = renderer.getFontMetrics(defaultFont);
 
         int cursorX;
-        gg.color(new Color(0, 192, 192, 255));
+        renderer.color(new Color(0, 192, 192, 255));
         if (cursorIndex >= text.length()) {
             if (text.length() != 0) {
                 cursorX = fontMetrics.stringWidth(text.substring(0, cursorIndex)) + 2 + getX();
@@ -236,8 +197,8 @@ public class OptionsTextEntry extends Widget implements com.ultreon.bubbles.api.
 
             cursorX += getX();
 
-            gg.line(cursorX, getY() + 2, cursorX, getY() + getHeight() - 2);
-            gg.line(cursorX + 1, getY() + 2, cursorX + 1, getY() + getHeight() - 2);
+            renderer.line(cursorX, getY() + 2, cursorX, getY() + getHeight() - 2);
+            renderer.line(cursorX + 1, getY() + 2, cursorX + 1, getY() + getHeight() - 2);
         } else {
             if (text.length() != 0) {
                 cursorX = fontMetrics.stringWidth(text.substring(0, cursorIndex)) + getX();
@@ -247,14 +208,9 @@ public class OptionsTextEntry extends Widget implements com.ultreon.bubbles.api.
 
             int width = fontMetrics.charWidth(text.charAt(cursorIndex));
 
-            gg.line(cursorX, getY() + getHeight() - 2, cursorX + width, getY() + getHeight() - 2);
-            gg.line(cursorX, getY() + getHeight() - 1, cursorX + width, getY() + getHeight() - 1);
+            renderer.line(cursorX, getY() + getHeight() - 2, cursorX + width, getY() + getHeight() - 2);
+            renderer.line(cursorX, getY() + getHeight() - 1, cursorX + width, getY() + getHeight() - 1);
         }
-    }
-
-    @Override
-    public void destroy() {
-
     }
 
     @SuppressWarnings("EmptyMethod")
@@ -270,106 +226,50 @@ public class OptionsTextEntry extends Widget implements com.ultreon.bubbles.api.
         return text;
     }
 
-    public Rectangle getBounds() {
-        return bounds;
-    }
-
-    public void setBounds(Rectangle bounds) {
-        this.bounds = bounds;
-    }
-
-    public int getX() {
-        return bounds.x;
-    }
-
-    public void setX(int x) {
-        bounds.x = x;
-    }
-
-    public int getY() {
-        return bounds.y;
-    }
-
-    public void setY(int y) {
-        bounds.y = y;
-    }
-
-    public int getWidth() {
-        return bounds.width;
-    }
-
-    public void setWidth(int width) {
-        bounds.width = width;
-    }
-
-    public int getHeight() {
-        return bounds.height;
-    }
-
-    public void setHeight(int height) {
-        bounds.height = height;
-    }
-
-    public RenderEventPriority getRenderEventPriority() {
-        return renderEventPriority;
-    }
-
-    public void setRenderEventPriority(RenderEventPriority renderEventPriority) {
-        this.renderEventPriority = renderEventPriority;
-    }
-
+    @Deprecated
     public Integer getVisualX() {
-        return visualX;
+        return this.x;
     }
 
+    @Deprecated
     public void setVisualX(Integer visualX) {
-        this.visualX = visualX;
+
     }
 
+    @Deprecated
     public Integer getVisualY() {
-        return visualY;
+        return this.y;
     }
 
+    @Deprecated
     public void setVisualY(Integer visualY) {
-        this.visualY = visualY;
+
     }
 
     public static class Builder {
-        public Rectangle _bounds = null;
+        public Rectangle bounds = null;
         private String _text = "";
-        private RenderEventPriority _renderPriority = null;
 
         public Builder() {
 
         }
 
         public OptionsTextEntry build() {
-            if (_bounds == null) {
-                throw new IllegalArgumentException("Missing bounds for creating OptionsTextEntry.");
-            }
+            if (bounds == null) throw new IllegalArgumentException("Missing bounds for creating OptionsTextEntry.");
 
-            OptionsTextEntry obj;
-            if (_renderPriority == null)
-                obj = new OptionsTextEntry(_bounds.x, _bounds.y, _bounds.width, _bounds.height);
-            else
-                obj = new OptionsTextEntry(_bounds.x, _bounds.y, _bounds.width, _bounds.height, _renderPriority);
+            OptionsTextEntry obj = new OptionsTextEntry(bounds.x, bounds.y, bounds.width, bounds.height);
             obj.setText(_text);
 
             return obj;
         }
 
         public Builder bounds(Rectangle _bounds) {
-            this._bounds = _bounds;
+            this.bounds = _bounds;
             return this;
         }
 
         public Builder text(String _text) {
             this._text = _text;
-            return this;
-        }
-
-        public Builder renderPriority(RenderEventPriority _renderPriority) {
-            this._renderPriority = _renderPriority;
             return this;
         }
     }

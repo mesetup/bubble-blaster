@@ -6,7 +6,7 @@ import com.ultreon.bubbles.command.CommandConstructor;
 import com.ultreon.hydro.Game;
 import com.ultreon.hydro.screen.Screen;
 import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.input.KeyboardEvent;
 import com.ultreon.hydro.event.type.KeyEventType;
 import com.ultreon.bubbles.util.Util;

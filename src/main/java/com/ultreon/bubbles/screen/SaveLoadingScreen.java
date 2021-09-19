@@ -3,7 +3,7 @@ package com.ultreon.bubbles.screen;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 import com.ultreon.commons.lang.InfoTransporter;
-import com.ultreon.commons.crash.CrashReport;
+import com.ultreon.commons.crash.CrashLog;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.hydro.Game;
@@ -90,9 +90,9 @@ public class SaveLoadingScreen extends Screen {
                 gameType.load(environment, this.infoTransporter);
             }
         } catch (Throwable t) {
-            CrashReport crashReport = new CrashReport("Save being loaded", t);
-            crashReport.add("Save Directory", this.savedGame.getDirectory());
-            throw crashReport.getReportedException();
+            CrashLog crashLog = new CrashLog("Save being loaded", t);
+            crashLog.add("Save Directory", this.savedGame.getDirectory());
+            throw crashLog.createCrash();
         }
 
         BubbleBlaster.getInstance().showScreen(null);

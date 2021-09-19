@@ -1,9 +1,11 @@
 package com.ultreon.commons.utilities.python;
 
 import com.ultreon.commons.utilities.system.User;
+import lombok.experimental.UtilityClass;
 
 import java.io.IOException;
 
+@UtilityClass
 @SuppressWarnings("UnusedReturnValue")
 public final class OS {
     public static String getSep() {
@@ -16,9 +18,6 @@ public final class OS {
 
     public static User getUser() {
         return new User();
-    }
-
-    private OS() {
     }
 
     public static boolean kill(long pid) {

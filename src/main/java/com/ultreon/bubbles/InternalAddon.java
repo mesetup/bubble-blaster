@@ -7,7 +7,7 @@ import com.ultreon.bubbles.common.mod.ModInstance;
 import com.ultreon.bubbles.common.mod.ModObject;
 import com.ultreon.bubbles.environment.EnvironmentRenderer;
 import com.ultreon.hydro.event.CollectTexturesEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.bubbles.event.bus.Bus;
 import com.ultreon.bubbles.event.bus.LocalAddonEventBus;
 import com.ultreon.hydro.graphics.ITexture;

@@ -47,7 +47,7 @@ public class AmmoEntity extends Entity {
     }
 
     @Override
-    public void renderEntity(Renderer gg) {
+    public void render(Renderer gg) {
         if (this.ammoType != null) {
             this.ammoType.render(gg, this);
         }

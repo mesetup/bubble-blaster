@@ -10,7 +10,7 @@ import com.ultreon.hydro.util.GraphicsUtils;
 import com.ultreon.commons.util.TimeUtils;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.bubbles.gametype.ClassicType;
 import com.ultreon.bubbles.util.helpers.MathHelper;
 
@@ -154,7 +154,7 @@ public class ClassicHUD extends HUD {
 
         // Render FPS text.
         renderer.color(new Color(0, 165, 220, 127));
-        GraphicsUtils.drawRightAnchoredString(renderer, ((Integer) BubbleBlaster.getFps()).toString(), new Point2D.Double(game.getWidth() - 10, 10), 20, infoTitleFont);
+        GraphicsUtils.drawRightAnchoredString(renderer, ((Integer) game.getFps()).toString(), new Point2D.Double(game.getWidth() - 10, 10), 20, infoTitleFont);
 
         renderer.color(Color.white);
 

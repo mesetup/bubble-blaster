@@ -1,8 +1,8 @@
 package com.ultreon.hydro.event.input;
 
 import com.ultreon.hydro.Game;
-import com.ultreon.hydro.input.KeyboardController;
-import com.ultreon.hydro.input.MouseController;
+import com.ultreon.hydro.core.input.KeyboardController;
+import com.ultreon.hydro.core.input.MouseController;
 import com.ultreon.hydro.event.Event;
 import com.ultreon.hydro.event.type.KeyEventType;
 import com.ultreon.hydro.event.type.MouseEventType;

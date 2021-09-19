@@ -4,7 +4,7 @@ import com.ultreon.commons.lang.Pair;
 import com.ultreon.bubbles.common.mod.ModInstance;
 import com.ultreon.bubbles.common.mod.ModObject;
 import com.ultreon.hydro.event.Event;
-import com.ultreon.hydro.event._common.ICancellable;
+import com.ultreon.commons.lang.ICancellable;
 import com.ultreon.hydro.event.bus.EventBus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

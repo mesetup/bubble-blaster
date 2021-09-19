@@ -12,7 +12,7 @@ import com.ultreon.bubbles.entity.player.ability.AbilityType;
 import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.event.EntityCollisionEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.bubbles.registry.Registers;
 import org.bson.BsonDocument;
 import org.bson.BsonString;
@@ -175,8 +175,6 @@ public abstract class Entity extends GameObject implements StateHolder {
         this.x += this.motionEnabled ? this.velX / BubbleBlaster.TPS : 0;
         this.y += this.motionEnabled ? this.velY / BubbleBlaster.TPS : 0;
     }
-
-    public abstract void renderEntity(Renderer gg);
 
     public void delete() {
         if (areEventsBound()) {

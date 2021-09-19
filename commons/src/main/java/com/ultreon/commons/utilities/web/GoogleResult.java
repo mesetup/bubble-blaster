@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+@SuppressWarnings("ClassCanBeRecord")
 public class GoogleResult implements Serializable {
     private final JsonObject object;
 

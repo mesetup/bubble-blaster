@@ -1,7 +1,7 @@
 package com.ultreon.bubbles.state;
 
 import com.ultreon.bubbles.common.gamestate.GameEvent;
-import com.ultreon.commons.utilities.datetime.DateTime;
+import com.ultreon.commons.time.DateTime;
 
 @Deprecated
 public class PauseState extends GameEvent {

@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
-import com.ultreon.commons.utilities.core.exceptions.IllegalJsonElementInArray;
-import com.ultreon.commons.utilities.core.exceptions.UnsafeOperationException;
+import com.ultreon.commons.exceptions.IllegalJsonElementInArray;
+import com.ultreon.commons.exceptions.UnsafeOperationException;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;

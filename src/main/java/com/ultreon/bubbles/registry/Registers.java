@@ -12,7 +12,7 @@ import com.ultreon.bubbles.entity.player.ability.AbilityType;
 import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.hydro.registry.Registry;
 import com.ultreon.hydro.render.TextureCollection;
-import com.ultreon.hydro.gui.cursor.RegistrableCursor;
+import com.ultreon.hydro.screen.gui.cursor.RegistrableCursor;
 import com.ultreon.bubbles.init.*;
 import com.ultreon.bubbles.item.ItemType;
 

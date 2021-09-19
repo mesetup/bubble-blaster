@@ -5,7 +5,7 @@ import com.ultreon.hydro.Game;
 import com.ultreon.hydro.common.IRegistryEntry;
 import com.ultreon.hydro.common.RegistryEntry;
 import com.ultreon.hydro.common.ResourceEntry;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.bus.EventBus;
 import com.ultreon.hydro.event.bus.GameEventBus;
 import org.apache.logging.log4j.LogManager;

@@ -3,10 +3,6 @@ package com.ultreon.bubbles;
 import com.ultreon.bubbles.common.gamestate.GameEvent;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.common.random.PseudoRandom;
-import com.ultreon.bubbles.save.SavedGame;
-import com.ultreon.hydro.input.KeyboardController;
-import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.commons.util.ShapeUtils;
 import com.ultreon.bubbles.entity.DamageableEntity;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.entity.attribute.Attribute;
@@ -14,20 +10,24 @@ import com.ultreon.bubbles.entity.damage.DamageSource;
 import com.ultreon.bubbles.entity.damage.DamageSourceType;
 import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.event.EntityCollisionEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
-import com.ultreon.hydro.event.input.KeyboardEvent;
-import com.ultreon.hydro.event.input.MouseEvent;
-import com.ultreon.hydro.event.type.KeyEventType;
-import com.ultreon.hydro.event.type.MouseEventType;
 import com.ultreon.bubbles.media.AudioSlot;
+import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.bubbles.screen.CommandScreen;
 import com.ultreon.bubbles.screen.GameOverScreen;
 import com.ultreon.bubbles.screen.PauseScreen;
 import com.ultreon.bubbles.util.Util;
+import com.ultreon.commons.util.ShapeUtils;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.input.KeyboardEvent;
+import com.ultreon.hydro.event.input.MouseEvent;
+import com.ultreon.hydro.event.type.KeyEventType;
+import com.ultreon.hydro.event.type.MouseEventType;
+import com.ultreon.hydro.input.KeyInput;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.util.GraphicsUtils;
 import lombok.Getter;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.io.File;
@@ -106,7 +106,7 @@ public class LoadedGame implements Runnable {
 
         try {
             // Unbind events.
-            gameType.unbindEvents();
+            gameType.destroy();
             unbindEvents();
 
             if (autoSaveThread != null) autoSaveThread.interrupt();
@@ -350,7 +350,7 @@ public class LoadedGame implements Runnable {
     public void renderHUD(@SuppressWarnings({"unused", "RedundantSuppression"}) BubbleBlaster game, Renderer gfx) {
         int i = 0;
         for (String s : activeMessages) {
-            Renderer gg2 = (Renderer) gfx.create(0, 71 + (32 * i), 1000, 32);
+            Renderer gg2 = gfx.create(0, 71 + (32 * i), 1000, 32);
 
             gg2.color(new Color(0, 0, 0, 128));
             gg2.rect(0, 0, 1000, 32);
@@ -416,7 +416,7 @@ public class LoadedGame implements Runnable {
     public void onMouse(MouseEvent evt) {
         if (evt.getType() == MouseEventType.CLICK) {
             if (evt.getParentEvent().getButton() == 1) {
-                if (KeyboardController.instance().isPressed(KeyEvent.VK_F1)) {
+                if (KeyInput.isDown(KeyEvent.VK_F1)) {
                     Objects.requireNonNull(this.gameType.getPlayer()).teleport(evt.getParentEvent().getPoint());
                 }
             }

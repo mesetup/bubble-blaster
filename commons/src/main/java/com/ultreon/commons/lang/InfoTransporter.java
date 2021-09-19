@@ -6,7 +6,7 @@ import java.util.function.Consumer;
  * @author Qboi
  * @since 1.0.0
  */
-public class InfoTransporter {
+public class InfoTransporter implements ILogger {
     private final Consumer<String> onLog;
 
     public InfoTransporter(Consumer<String> consumer) {

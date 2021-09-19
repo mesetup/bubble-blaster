@@ -1,5 +1,9 @@
 package com.ultreon.commons.lang;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Objects;
 
 /**
@@ -10,7 +14,7 @@ import java.util.Objects;
  * @author Qboi
  * @since 1.0.0
  */
-public class Pair<F, S> {
+public class Pair<F, S> implements Cloneable {
     private F first;
     private S second;
 
@@ -51,5 +55,11 @@ public class Pair<F, S> {
     @Override
     public String toString() {
         return "(" + first + ", " + second + ')';
+    }
+
+    @Override
+    protected Pair<F, S> clone() throws CloneNotSupportedException {
+        super.clone();
+        return new Pair<F, S>(getFirst(), getSecond());
     }
 }

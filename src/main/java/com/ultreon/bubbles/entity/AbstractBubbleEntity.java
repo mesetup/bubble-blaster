@@ -5,7 +5,7 @@ import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.event.EntityCollisionEvent;
 import com.ultreon.hydro.common.ResourceEntry;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.registry.Registry;
 import org.bson.BsonDocument;
 import org.jetbrains.annotations.NotNull;

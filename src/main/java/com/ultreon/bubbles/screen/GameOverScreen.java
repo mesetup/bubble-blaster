@@ -41,12 +41,12 @@ public class GameOverScreen extends Screen {
 
     @Override
     public void init() {
-        bindEvents();
+        make();
     }
 
     @Override
     public boolean onClose(Screen to) {
-        unbindEvents();
+        destroy();
 
         return super.onClose(to);
     }

@@ -2,7 +2,7 @@ package com.ultreon.hydro.event.bus;
 
 import com.ultreon.commons.lang.Pair;
 import com.ultreon.hydro.event.Event;
-import com.ultreon.hydro.event._common.ICancellable;
+import com.ultreon.commons.lang.ICancellable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;

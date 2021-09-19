@@ -2,7 +2,7 @@ package com.ultreon.hydro.event;
 
 import com.ultreon.hydro.annotation.Cancelable;
 
-public class Event {
+public abstract class Event {
     private boolean cancelled;
 
     public final void cancel() {

@@ -9,7 +9,7 @@ import com.ultreon.bubbles.entity.EntitySpawnData;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.bubbles.registry.Registers;
-import com.ultreon.commons.utilities.datetime.DateTime;
+import com.ultreon.commons.time.DateTime;
 import org.bson.BsonDocument;
 
 import java.awt.*;
@@ -39,9 +39,7 @@ public class Environment {
      */
     public final void spawnEntityFromState(BsonDocument entityData) {
         if (!BubbleBlaster.getInstance().isOnMainThread()) {
-            BubbleBlaster.getInstance().runLater(() -> {
-                loadAndSpawnEntity(entityData);
-            });
+            BubbleBlaster.getInstance().runLater(() -> loadAndSpawnEntity(entityData));
             return;
         }
         loadAndSpawnEntity(entityData);

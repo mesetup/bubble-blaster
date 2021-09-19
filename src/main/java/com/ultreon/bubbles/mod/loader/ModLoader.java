@@ -19,7 +19,7 @@ import com.ultreon.bubbles.registry.LocaleManager;
 import com.ultreon.bubbles.screen.LoadScreen;
 import com.ultreon.bubbles.settings.GameSettings;
 import com.ultreon.commons.crash.CrashCategory;
-import com.ultreon.commons.crash.CrashReport;
+import com.ultreon.commons.crash.CrashLog;
 import com.ultreon.hydro.common.ResourceEntry;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -134,11 +134,11 @@ public class ModLoader {
 
                 addons.add(addon);
             } catch (Throwable t) {
-                CrashReport crashReport = new CrashReport("Constructing addon", t);
+                CrashLog crashLog = new CrashLog("Constructing addon", t);
                 CrashCategory addonCategory = new CrashCategory("Addon was constructing");
                 addonCategory.add("Addon ID", object);
                 addonCategory.add("File", object.getContainer().getSource().getPath());
-                throw crashReport.getReportedException();
+                throw crashLog.createCrash();
             }
         }
     }
@@ -361,11 +361,11 @@ public class ModLoader {
 
             return internalAddons != 0;
         } catch (Throwable t) {
-            CrashReport crashReport = new CrashReport("Loading addons", t);
+            CrashLog crashLog = new CrashLog("Loading addons", t);
             CrashCategory addonCategory = new CrashCategory("Addon Loading");
             addonCategory.add("File", pathToJar);
-            crashReport.addCategory(addonCategory);
-            throw crashReport.getReportedException();
+            crashLog.addCategory(addonCategory);
+            throw crashLog.createCrash();
         }
     }
 

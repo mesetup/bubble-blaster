@@ -3,33 +3,33 @@ package com.ultreon.bubbles.entity;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.bubble.AbstractBubble;
 import com.ultreon.bubbles.bubble.BubbleProperties;
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.common.random.BubbleRandomizer;
-import com.ultreon.hydro.input.KeyboardController;
 import com.ultreon.bubbles.entity.attribute.Attribute;
 import com.ultreon.bubbles.entity.damage.DamageSource;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.event.EntityCollisionEvent;
-import com.ultreon.hydro.event.RenderEvent;
-import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
-import com.ultreon.hydro.event.bus.EventBus;
-import com.ultreon.hydro.event.input.MouseMotionEvent;
 import com.ultreon.bubbles.init.Bubbles;
 import com.ultreon.bubbles.init.Entities;
 import com.ultreon.bubbles.init.TextureCollections;
-import com.ultreon.hydro.registry.Registry;
-import com.ultreon.hydro.screen.Screen;
 import com.ultreon.bubbles.util.Util;
+import com.ultreon.hydro.common.ResourceEntry;
+import com.ultreon.hydro.event.RenderEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.TickEvent;
+import com.ultreon.hydro.event.bus.EventBus;
+import com.ultreon.hydro.event.input.MouseMotionEvent;
+import com.ultreon.hydro.input.KeyInput;
+import com.ultreon.hydro.registry.Registry;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.Screen;
 import org.bson.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -42,7 +42,7 @@ import java.util.Random;
  *
  * @see AbstractBubbleEntity
  */
-@SuppressWarnings({"SameParameterValue", "unused", "deprecation"})
+@SuppressWarnings({"SameParameterValue", "unused"})
 public class BubbleEntity extends AbstractBubbleEntity {
     // Attributes
     protected int radius;
@@ -149,7 +149,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
 //            }
 //        }
 
-        if (KeyboardController.instance().isPressed(KeyEvent.VK_F2)) {
+        if (KeyInput.isDown(KeyEvent.VK_F2)) {
             if (getShape().contains(evt.getParentEvent().getPoint())) {
                 destroy();
             }
@@ -276,7 +276,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
     }
 
     @Override
-    public void renderEntity(Renderer gg) {
+    public void render(Renderer gg) {
         if (!areEventsBinded) return;
         gg.image(TextureCollections.BUBBLE_TEXTURES.get().get(new ResourceEntry(getBubbleType().getRegistryName().namespace(), getBubbleType().getRegistryName().path() + "/" + radius)), (int) x - radius / 2, (int) y - radius / 2);
     }

@@ -11,7 +11,7 @@ import com.ultreon.hydro.util.GraphicsUtils;
 import com.ultreon.bubbles.entity.bubble.BubbleSystem;
 import com.ultreon.bubbles.environment.EnvironmentRenderer;
 import com.ultreon.bubbles.event.LanguageChangeEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.bus.EventBus;
 import com.ultreon.hydro.event.input.KeyboardEvent;
 import com.ultreon.hydro.event.type.KeyEventType;
@@ -108,16 +108,16 @@ public class PauseScreen extends Screen {
     private void tickPage() {
         bubble = new ArrayList<>(Registry.getRegistry(AbstractBubble.class).values()).get(helpIndex);
 
-        if (helpIndex >= differentBubbles - 1 && nextButton.eventsAreActive()) {
-            nextButton.unbindEvents();
-        } else if (!nextButton.eventsAreActive()) {
-            nextButton.bindEvents();
+        if (helpIndex >= differentBubbles - 1 && nextButton.isValid()) {
+            nextButton.destroy();
+        } else if (!nextButton.isValid()) {
+            nextButton.make();
         }
 
-        if (helpIndex <= 0 && prevButton.eventsAreActive()) {
-            prevButton.unbindEvents();
-        } else if (!prevButton.eventsAreActive()) {
-            prevButton.bindEvents();
+        if (helpIndex <= 0 && prevButton.isValid()) {
+            prevButton.destroy();
+        } else if (!prevButton.isValid()) {
+            prevButton.make();
         }
     }
 
@@ -143,9 +143,9 @@ public class PauseScreen extends Screen {
 
     @Override
     public void init() {
-        exitButton.bindEvents();
-        prevButton.bindEvents();
-        nextButton.bindEvents();
+        exitButton.make();
+        prevButton.make();
+        nextButton.make();
         BubbleBlaster.getEventBus().register(this);
 
         if (!BubbleBlaster.getInstance().isGameLoaded()) {
@@ -157,9 +157,9 @@ public class PauseScreen extends Screen {
 
     @Override
     public boolean onClose(Screen to) {
-        exitButton.unbindEvents();
-        prevButton.unbindEvents();
-        nextButton.unbindEvents();
+        exitButton.destroy();
+        prevButton.destroy();
+        nextButton.destroy();
         BubbleBlaster.getEventBus().unregister(this);
 
         Util.setCursor(BubbleBlaster.getInstance().getBlankCursor());
@@ -208,7 +208,7 @@ public class PauseScreen extends Screen {
         //     Exit button     //
         /////////////////////////
         exitButton.setText(I18n.translateToLocal("screen.qbubbles.pause.exit"));
-        exitButton.paint(ngg);
+        exitButton.render(ngg);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //     Navigation Buttons & border     //
@@ -218,8 +218,8 @@ public class PauseScreen extends Screen {
         nextButton.setText(I18n.translateToLocal("other.next"));
         prevButton.setText(I18n.translateToLocal("other.prev"));
 
-        if (helpIndex > 0) prevButton.paint(ngg);
-        if (helpIndex < differentBubbles - 1) nextButton.paint(ngg);
+        if (helpIndex > 0) prevButton.render(ngg);
+        if (helpIndex < differentBubbles - 1) nextButton.render(ngg);
 
         // Border
         ngg.color(new Color(255, 255, 255, 128));

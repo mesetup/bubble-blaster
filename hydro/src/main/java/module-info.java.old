@@ -16,8 +16,8 @@ module com.ultreon.hydro {
     exports com.ultreon.hydro.event.type;
     exports com.ultreon.hydro.graphics;
     exports com.ultreon.hydro.graphics.shapes;
-    exports com.ultreon.hydro.gui;
-    exports com.ultreon.hydro.input;
+    exports com.ultreon.hydro.screen.gui;
+    exports com.ultreon.hydro.core.input;
     exports com.ultreon.hydro.registry;
     exports com.ultreon.hydro.registry.object;
     exports com.ultreon.hydro.render;
@@ -25,7 +25,7 @@ module com.ultreon.hydro {
     exports com.ultreon.hydro.screen;
     exports com.ultreon.hydro.vector;
     exports com.ultreon.hydro.util;
-    exports com.ultreon.hydro.gui.border;
+    exports com.ultreon.hydro.screen.gui.border;
 
     // Requirements
     requires com.ultreon.commons;

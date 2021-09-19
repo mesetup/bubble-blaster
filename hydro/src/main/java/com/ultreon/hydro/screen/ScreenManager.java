@@ -18,9 +18,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-@FieldsAreNonnullByDefault
 public class ScreenManager {
-    private static ScreenManager instance;
+    private static ScreenManager instance = null;
     private static final Logger LOGGER = LogManager.getLogger("Screen-Manager");
     private final Screen startScreen;
     private final Game game;
@@ -29,6 +28,7 @@ public class ScreenManager {
     private Screen currentScreen;
     private boolean initialized = false;
 
+    @Deprecated
     public static ScreenManager getInstance() {
         return instance;
     }

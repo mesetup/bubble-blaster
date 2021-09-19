@@ -1,6 +1,6 @@
 package com.ultreon.bubbles.common.interfaces;
 
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 
 @FunctionalInterface
 public interface EventConsumer<T> {

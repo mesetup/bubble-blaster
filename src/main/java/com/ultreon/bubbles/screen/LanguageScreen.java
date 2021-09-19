@@ -3,8 +3,7 @@ package com.ultreon.bubbles.screen;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.text.translation.I18n;
 import com.ultreon.hydro.Game;
-import com.ultreon.hydro.event._common.RenderEventPriority;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.render.ValueAnimator;
 import com.ultreon.bubbles.render.gui.OptionsButton;
 import com.ultreon.bubbles.registry.LocaleManager;
@@ -25,16 +24,16 @@ public final class LanguageScreen extends Screen {
     private static LanguageScreen INSTANCE;
     private final LanguageLoader loader;
     private int languageIndex = 1;
-    private final OptionsButton button1 = new OptionsButton.Builder().bounds(0, 0, 512, 48).renderPriority(RenderEventPriority.GUI_SCREEN).build();
-    private final OptionsButton button2 = new OptionsButton.Builder().bounds(0, 0, 512, 48).renderPriority(RenderEventPriority.GUI_SCREEN).build();
-    private final OptionsButton button3 = new OptionsButton.Builder().bounds(0, 0, 512, 48).renderPriority(RenderEventPriority.GUI_SCREEN).build();
-    private final OptionsButton button4 = new OptionsButton.Builder().bounds(0, 0, 512, 48).renderPriority(RenderEventPriority.GUI_SCREEN).build();
-    private final OptionsButton button5 = new OptionsButton.Builder().bounds(0, 0, 512, 48).renderPriority(RenderEventPriority.GUI_SCREEN).build();
-    private final OptionsButton button6 = new OptionsButton.Builder().bounds(0, 0, 512, 48).renderPriority(RenderEventPriority.GUI_SCREEN).build();
-    private final OptionsButton prev = new OptionsButton.Builder().bounds(0, 0, 64, 298).renderPriority(RenderEventPriority.GUI_SCREEN).text("Prev").build();
-    private final OptionsButton next = new OptionsButton.Builder().bounds(0, 0, 64, 298).renderPriority(RenderEventPriority.GUI_SCREEN).text("Next").build();
+    private final OptionsButton button1 = new OptionsButton.Builder().bounds(0, 0, 512, 48).build();
+    private final OptionsButton button2 = new OptionsButton.Builder().bounds(0, 0, 512, 48).build();
+    private final OptionsButton button3 = new OptionsButton.Builder().bounds(0, 0, 512, 48).build();
+    private final OptionsButton button4 = new OptionsButton.Builder().bounds(0, 0, 512, 48).build();
+    private final OptionsButton button5 = new OptionsButton.Builder().bounds(0, 0, 512, 48).build();
+    private final OptionsButton button6 = new OptionsButton.Builder().bounds(0, 0, 512, 48).build();
+    private final OptionsButton prev = new OptionsButton.Builder().bounds(0, 0, 64, 298).text("Prev").build();
+    private final OptionsButton next = new OptionsButton.Builder().bounds(0, 0, 64, 298).text("Next").build();
 
-    private final OptionsButton cancelButton = new OptionsButton.Builder().bounds(0, 0, 644, 48).renderPriority(RenderEventPriority.GUI_SCREEN).text("Cancel").build();
+    private final OptionsButton cancelButton = new OptionsButton.Builder().bounds(0, 0, 644, 48).text("Cancel").build();
     private final TreeMap<String, Locale> nameLocaleMap = new TreeMap<>();
     private Screen backScene;
     private int deltaIndex;
@@ -158,32 +157,32 @@ public final class LanguageScreen extends Screen {
     public void init() {
         BubbleBlaster.getEventBus().register(this);
 
-        button1.bindEvents();
-        button2.bindEvents();
-        button3.bindEvents();
-        button4.bindEvents();
-        button5.bindEvents();
-        button6.bindEvents();
-        next.bindEvents();
-        prev.bindEvents();
+        button1.make();
+        button2.make();
+        button3.make();
+        button4.make();
+        button5.make();
+        button6.make();
+        next.make();
+        prev.make();
 
-        cancelButton.bindEvents();
+        cancelButton.make();
     }
 
     @Override
     public boolean onClose(Screen to) {
         BubbleBlaster.getEventBus().unregister(this);
 
-        button1.unbindEvents();
-        button2.unbindEvents();
-        button3.unbindEvents();
-        button4.unbindEvents();
-        button5.unbindEvents();
-        button6.unbindEvents();
-        next.unbindEvents();
-        prev.unbindEvents();
+        button1.destroy();
+        button2.destroy();
+        button3.destroy();
+        button4.destroy();
+        button5.destroy();
+        button6.destroy();
+        next.destroy();
+        prev.destroy();
 
-        cancelButton.unbindEvents();
+        cancelButton.destroy();
 
         if (to == backScene) {
             backScene = null;
@@ -324,20 +323,20 @@ public final class LanguageScreen extends Screen {
         }
 
 
-        if (loc1 != null) button1.paint(gg2);
-        if (loc2 != null) button2.paint(gg2);
-        if (loc3 != null) button3.paint(gg2);
-        if (loc4 != null) button4.paint(gg2);
-        if (loc5 != null) button5.paint(gg2);
-        if (loc6 != null) button6.paint(gg2);
+        if (loc1 != null) button1.render(gg2);
+        if (loc2 != null) button2.render(gg2);
+        if (loc3 != null) button3.render(gg2);
+        if (loc4 != null) button4.render(gg2);
+        if (loc5 != null) button5.render(gg2);
+        if (loc6 != null) button6.render(gg2);
 
         gg2.dispose();
         gg1.dispose();
 
-        next.paint(gg);
-        prev.paint(gg);
+        next.render(gg);
+        prev.render(gg);
 
-        cancelButton.paint(gg);
+        cancelButton.render(gg);
     }
 
     public void renderBackground(Renderer gg) {

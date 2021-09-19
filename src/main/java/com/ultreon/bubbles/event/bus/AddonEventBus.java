@@ -4,7 +4,7 @@ import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.mod.ModContainer;
 import com.ultreon.bubbles.mod.ModList;
 import com.ultreon.hydro.event.Event;
-import com.ultreon.hydro.event._common.ICancellable;
+import com.ultreon.commons.lang.ICancellable;
 import com.ultreon.hydro.event.bus.EventBus;
 
 public class AddonEventBus extends EventBus {

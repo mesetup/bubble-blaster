@@ -92,7 +92,7 @@ nb-configuration.xml
 
 ## Gradle
 
-/local.properties
+/local.bootOptions
 .gradle/
 gradle-app.setting
 /build/

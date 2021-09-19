@@ -1,21 +1,39 @@
 package com.ultreon.hydro.screen;
 
 import com.ultreon.hydro.Game;
-import com.ultreon.hydro.gui.Widget;
+import com.ultreon.hydro.input.KeyInput;
 import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.gui.Container;
+import com.ultreon.hydro.screen.gui.Widget;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class Screen {
+@SuppressWarnings("unused")
+public abstract class Screen extends Container {
+    private Widget focusedWidget;
+    private int focusIndex = 0;
+
     public Screen() {
-
+        super(0, 0, Game.getInstance().getWidth(), Game.getInstance().getHeight());
     }
 
     private boolean eventsActive;
-    private final List<Widget> children = new ArrayList<>();
     protected final Game game = Game.getInstance();
+
+    public final void resize(int width, int height) {
+        this.onResize(width, height);
+        this.width = width;
+        this.height = height;
+    }
+
+    protected void onResize(int width, int height) {
+
+    }
+
+    public void init(int width, int height) {
+        this.init();
+    }
 
     /**
      * <h1>Show Scene</h1>
@@ -36,16 +54,64 @@ public abstract class Screen {
         return true;
     }
 
-    public void bindEvents() {
+    @Override
+    public void make() {
         eventsActive = true;
     }
 
-    public void unbindEvents() {
+    @Override
+    public void destroy() {
         eventsActive = false;
     }
 
-    public boolean eventsAreActive() {
+    @Override
+    public boolean isValid() {
         return eventsActive;
+    }
+
+    public void onMouseExit() {
+        if (this.hoveredWidget != null) {
+            this.hoveredWidget.onMouseLeave();
+            this.hoveredWidget = null;
+        }
+    }
+
+    @Override
+    public void onKeyPress(int keyCode, char character) {
+        if (keyCode == KeyInput.Map.KEY_TAB) {
+            this.focusIndex++;
+            onChildFocusChanged();
+            return;
+        }
+
+        if (this.focusedWidget != null) this.focusedWidget.onKeyPress(keyCode, character);
+    }
+
+    @Override
+    public void onKeyRelease(int keyCode, char character) {
+        if (keyCode == KeyInput.Map.KEY_TAB) return;
+
+        if (this.focusedWidget != null) this.focusedWidget.onKeyRelease(keyCode, character);
+    }
+
+    @Override
+    public void onKeyType(int keyCode, char character) {
+        if (keyCode == KeyInput.Map.KEY_TAB) return;
+
+        if (this.focusedWidget != null) this.focusedWidget.onKeyType(keyCode, character);
+    }
+
+    public void onChildFocusChanged() {
+        CopyOnWriteArrayList<Widget> clone = new CopyOnWriteArrayList<>(children);
+        if (this.focusIndex >= clone.size()) {
+            this.focusIndex = 0;
+        }
+
+        this.focusedWidget = clone.get(this.focusIndex);
+    }
+
+    public Widget getFocusedWidget() {
+        return focusedWidget;
     }
 
     @Deprecated
@@ -55,14 +121,15 @@ public abstract class Screen {
 
     public abstract void render(Game game, Renderer gg);
 
-    public final <T extends Widget> T addWidget(T widget) {
+    @Override
+    public final <T extends Widget> T add(T widget) {
         this.children.add(widget);
         return widget;
     }
 
     public void renderGUI(Game game, Renderer gg) {
         for (Widget widget : this.children) {
-            widget.paint(gg);
+            widget.render(gg);
         }
     }
 

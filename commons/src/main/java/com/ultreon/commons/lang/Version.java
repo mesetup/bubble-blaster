@@ -25,24 +25,4 @@ public record Version(int major, int minor, int build, VersionType type,
     public int hashCode() {
         return Objects.hash(major, minor, type, release);
     }
-
-    public int major() {
-        return major;
-    }
-
-    public int minor() {
-        return minor;
-    }
-
-    public int build() {
-        return build;
-    }
-
-    public VersionType type() {
-        return type;
-    }
-
-    public int release() {
-        return release;
-    }
 }

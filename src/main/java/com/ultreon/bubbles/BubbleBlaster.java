@@ -1,12 +1,13 @@
 package com.ultreon.bubbles;
 
 import com.google.common.annotations.Beta;
+import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.mod.ModList;
 import com.ultreon.bubbles.mod.loader.ModManager;
 import com.ultreon.bubbles.common.References;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.screen.LoadScreen;
-import com.ultreon.commons.crash.CrashReport;
+import com.ultreon.commons.crash.CrashLog;
 import com.ultreon.bubbles.common.streams.CustomOutputStream;
 import com.ultreon.bubbles.core.InstrumentHook;
 import com.ultreon.bubbles.save.SavedGame;
@@ -14,19 +15,19 @@ import com.ultreon.commons.util.FileUtils;
 import com.ultreon.commons.lang.LoggableProgress;
 import com.ultreon.hydro.Game;
 import com.ultreon.hydro.GameWindow;
-import com.ultreon.hydro.entity.player.IPlayer;
-import com.ultreon.hydro.entity.player.PlayerController;
+import com.ultreon.hydro.player.IPlayer;
+import com.ultreon.hydro.player.PlayerController;
 import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.environment.EnvironmentRenderer;
 import com.ultreon.hydro.event.ExitEvent;
 import com.ultreon.hydro.event.bus.GameEventBus;
-import com.ultreon.hydro.gui.Window;
+import com.ultreon.hydro.screen.gui.Window;
 import com.ultreon.bubbles.init.GameTypes;
 import com.ultreon.bubbles.media.AudioPlayer;
 import com.ultreon.hydro.render.RenderSettings;
 import com.ultreon.hydro.render.TextureManager;
 import com.ultreon.hydro.resources.ResourceManager;
-import com.ultreon.bubbles.screen.EnvLoadScreen;
+import com.ultreon.bubbles.screen.MessageScreen;
 import com.ultreon.hydro.screen.Screen;
 import com.ultreon.hydro.screen.ScreenManager;
 import com.ultreon.preloader.PreClassLoader;
@@ -50,7 +51,6 @@ import java.io.PrintStream;
 import java.lang.instrument.Instrumentation;
 import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * The QBubbles game main class.
@@ -76,7 +76,7 @@ public final class BubbleBlaster extends Game {
     @Nullable public Environment environment;
 
     // Player
-    private final PlayerController playerController = new PlayerController();
+    private final PlayerController playerController = new PlayerController(playerInterface);
 
     // Fonts.
     private Font sansFont;
@@ -98,7 +98,6 @@ public final class BubbleBlaster extends Game {
 
     // Managers.
     private final ModManager modManager = ModManager.getInstance();
-    private ScreenManager screenManager;
     private final TextureManager textureManager = TextureManager.getInstance();
     private final ResourceManager resourceManager = new ResourceManager();
 
@@ -151,7 +150,6 @@ public final class BubbleBlaster extends Game {
     // Threads
 
     private Thread renderThread;
-    private Thread mainThread;
     private Thread gcThread;
 
     // Player entity
@@ -176,7 +174,7 @@ public final class BubbleBlaster extends Game {
     // Constructor.
 
     public BubbleBlaster() throws IOException {
-        super(new GameWindow.Properties("Bubble Blaster", 1280, 720));
+        super(new GameWindow.Properties("Bubble Blaster", 1280, 720), new BootOptions().tps(20));
 
         // Assign instance.
         BubbleBlaster.instance = this;
@@ -257,8 +255,6 @@ public final class BubbleBlaster extends Game {
         textCursor = Toolkit.getDefaultToolkit().createCustomCursor(
                 cursorImg3, new Point(1, 12), "text cursor");
 
-        Thread.setDefaultUncaughtExceptionHandler(new GameExceptionHandler());
-
         // Hook output for logger.
         System.setErr(new PrintStream(new CustomOutputStream("STDERR", Level.ERROR)));
         System.setOut(new PrintStream(new CustomOutputStream("STDOUT", Level.INFO)));
@@ -307,8 +303,8 @@ public final class BubbleBlaster extends Game {
         try {
             Objects.requireNonNull(this.getScreenManager()).start();
         } catch (Throwable t) {
-            CrashReport crashReport = new CrashReport("Oops, game crashed!", t);
-            throw crashReport.getReportedException();
+            CrashLog crashLog = new CrashLog("Oops, game crashed!", t);
+            throw crashLog.createCrash();
         }
     }
 
@@ -321,22 +317,7 @@ public final class BubbleBlaster extends Game {
      */
     @Deprecated
     public void start(Window window) {
-//        running = true;
-//
-////        logger.debug(this.isVisible());
-//
-////        //noinspection Convert2Lambda,Anonymous2MethodRef,Anonymous2MethodRef
-////        renderThread = new Thread(new Runnable() {public void run() {
-////            QBubbles.this.renderThread();}}, "RenderThread");
-////        getRenderThread().start();
-//
-//        //noinspection Convert2Lambda,Anonymous2MethodRef,Anonymous2MethodRef
-//        mainThread = new Thread(new Runnable() {
-//            public void run() {
-//                BubbleBlaster.this.mainThread();
-//            }
-//        }, "TickThread");
-//        getMainThread().start();
+
     }
 
     /**
@@ -357,7 +338,8 @@ public final class BubbleBlaster extends Game {
         running = false;
     }
 
-    public void close() {
+    @Override
+    public void onClose() {
         // Shut-down game.
         getLogger().warn("QBubbles is now shutting down...");
 
@@ -374,8 +356,6 @@ public final class BubbleBlaster extends Game {
         } catch (SecurityException ignore) {
             getLogger().error("Cannot stop and interrupt game-thread because of security exceptions.");
         }
-
-        System.exit(0);
     }
 
     public int getScaledWidth() {
@@ -389,145 +369,6 @@ public final class BubbleBlaster extends Game {
     private void checkForExitEvents() {
         getEventBus().post(new ExitEvent());
     }
-
-//    private void mainThread() {
-//        double tickCap = 1d / (double) TPS;
-//        double frameTime = 0d;
-//        double frames = 0;
-//
-//        double time = TimeProcessor.getTime();
-//        double unprocessed = 0;
-//
-//        try {
-//            while (running) {
-//                boolean canTick = false;
-//
-//                double time2 = TimeProcessor.getTime();
-//                double passed = time2 - time;
-//                unprocessed += passed;
-//                frameTime += passed;
-//
-//                time = time2;
-//
-//                while (unprocessed >= tickCap) {
-//                    unprocessed -= tickCap;
-//
-//                    canTick = true;
-//                }
-//
-//                if (canTick) {
-//                    try {
-//                        tick();
-//                    } catch (Throwable t) {
-//                        CrashReport crashReport = new CrashReport("Game being ticked.", t);
-//                        throw crashReport.getReportedException();
-//                    }
-//                }
-//
-//                if (frameTime >= 1.0d) {
-//                    frameTime = 0;
-//                    fps = (int) Math.round(frames);
-//                    frames = 0;
-//                }
-//
-//                frames++;
-//
-//                try {
-//                    render();
-//                } catch (Throwable t) {
-//                    CrashReport crashReport = new CrashReport("Game being rendered.", t);
-//                    throw crashReport.getReportedException();
-//                }
-//
-//                for (Runnable task : tasks) {
-//                    task.run();
-//                }
-//
-//                tasks.clear();
-//            }
-//        } catch (GameCrash e) {
-//            e.printStackTrace();
-//            showScreen(new CrashScreen(e.getCrashReport()), true);
-//            //noinspection StatementWithEmptyBody
-//            while (running) Thread.onSpinWait();
-//        }
-//
-//        close();
-//    }
-//
-//    /**
-//     * Update method, for updating values and doing things.
-//     *
-//     */
-//    @SuppressWarnings("SameParameterValue")
-//    private void tick() {
-//        ticks++;
-//
-//        @Nullable Screen currentScreen = Util.getSceneManager().getCurrentScreen();
-//        if (currentScreen != null) {
-//            currentScreen.tick();
-//        }
-//        if (environment != null) {
-//            environment.tick();
-//        }
-//
-//        playerController.tick();
-//
-//        // Call tick event.
-//        if (isGameLoaded() && (currentScreen == null || !currentScreen.doesPauseGame())) {
-//            eventBus.post(new TickEvent(this));
-//        }
-//    }
-//
-//    /**
-//     * Render method, for rendering window.
-//     */
-//    @SuppressWarnings("ConstantConditions")
-//    private void render() {
-//        // Buffer strategy (triple buffering).
-//        BufferStrategy bs = this.getBufferStrategy();
-//
-//        // Create buffers if not created yet.
-//        if (bs == null) {
-//            this.createBufferStrategy(2);
-//            bs = this.getBufferStrategy();
-////            return;
-//        }
-//
-//        // Get GraphicsProcessor and GraphicsProcessor objects.
-//        Renderer renderer = new Renderer(bs.getDrawGraphics());
-//
-////        renderer.scale(renderSettings.getScale(), renderSettings.getScale());
-//
-//        FilterApplier filterApplier = new FilterApplier(getBounds().getSize(), this);
-//        Renderer filterRenderer = filterApplier.getRenderer();
-//
-//        if (renderSettings.isAntialiasingEnabled() && GameSettings.instance().isTextAntialiasEnabled())
-//            filterRenderer.hint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-//        if (renderSettings.isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
-//            filterRenderer.hint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//
-//        FilterEvent filterEvent = new FilterEvent();
-//        eventBus.post(filterEvent);
-//
-//        renderScreenEnv(filterRenderer);
-//
-//        // Set filter gotten from filter event-handlers.
-//        filterApplier.setFilters(filterEvent.getFilters());
-//
-//        // Draw filtered image.
-//        renderer.image(filterApplier.done(), 0, 0);
-//
-//        // Disable Antialias
-////        if (renderSettings.isAntialiasingEnabled() && GameSettings.instance().isTextAntialiasEnabled())
-////            renderer.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
-////        if (renderSettings.isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
-////            renderer.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
-//
-//        // Dispose and show.
-//        renderer.dispose();
-//        bs.show();
-//    }
 
     private void renderScreenEnv(Renderer renderer) {
         // Get field and set local variable. For multithreaded null-safety.
@@ -637,13 +478,66 @@ public final class BubbleBlaster extends Game {
     }
 
     public void runLater(Runnable runnable) {
-        this.getGameWindow().scheduleTask(runnable);
+        this.scheduleTask(runnable);
     }
 
+    @SuppressWarnings({"ConstantConditions", "PointlessBooleanExpression"})
     public void loadGame() {
-        AtomicReference<LoadedGame> loadedGameReference = new AtomicReference<>(loadedGame);
-        showScreen(new EnvLoadScreen(SavedGame.fromFile(new File(References.SAVES_DIR, "save")), GameTypes.CLASSIC_TYPE::get, loadedGameReference));
-        loadedGame = loadedGameReference.get();
+        final boolean create = true;
+        AbstractGameType gameType = GameTypes.CLASSIC_TYPE.get();
+
+        // Start loading.
+        SavedGame save = SavedGame.fromFile(new File(References.SAVES_DIR, "save"));
+        MessageScreen envLoader = new MessageScreen();
+
+        // Show environment loader screen.
+        showScreen(envLoader);
+        try {
+            File directory = save.getDirectory();
+            if (create && directory.exists()) {
+                org.apache.commons.io.FileUtils.deleteDirectory(directory);
+            }
+
+            if (!directory.exists()) {
+                if (!directory.mkdirs()) {
+                    throw new IOException("Creating save folder failed.");
+                }
+            }
+
+            if (create) {
+                envLoader.setDescription("Creating save data...");
+                gameType.dumpDefaultState(save, envLoader.getInfoTransporter());
+                gameType.createSaveData(save, envLoader.getInfoTransporter());
+
+                envLoader.setDescription("Loading data...");
+            } else {
+                envLoader.setDescription("Loading data...");
+                gameType = AbstractGameType.loadState(save, envLoader.getInfoTransporter());
+            }
+
+            Environment environment = this.environment = new Environment(gameType);
+
+            if (create) {
+                gameType.init(environment, envLoader.getInfoTransporter());
+                gameType.dumpSaveData(save);
+            } else {
+                gameType.load(environment, envLoader.getInfoTransporter());
+            }
+
+            LoadedGame loadedGame = new LoadedGame(save, this.environment);
+            loadedGame.run();
+
+            loadPlayEnvironment();
+
+            this.loadedGame = loadedGame;
+        } catch (Throwable t) {
+            t.printStackTrace();
+            CrashLog crashLog = new CrashLog("Save being loaded", t);
+            crashLog.add("Save Directory", save.getDirectory());
+            throw crashLog.createCrash();
+        }
+
+        BubbleBlaster.getInstance().showScreen(null);
     }
 
     public void quitLoadedGame() {
@@ -878,29 +772,36 @@ public final class BubbleBlaster extends Game {
         if (environment != null) {
             return new PlayerEntity(environment.getGameType());
         } else {
-            return null;
+            throw new IllegalStateException("Creating a player while environment is not loaded.");
         }
     }
 
     @Override
     public ScreenManager createScreenManager() {
-        return screenManager = ScreenManager.create(new LoadScreen());
+        return ScreenManager.create(new LoadScreen());
     }
 
     @Override
-    protected void renderGameEnv(Renderer renderer) {
+    protected int getMainLoadingSteps() {
+        return 0;
+    }
+
+    @Override
+    protected void render(Renderer renderer) {
 //        environmentRenderer.render(renderer);
         renderScreenEnv(renderer);
     }
 
     @Override
     protected void tick() {
+        if (this.environment != null) this.environment.tick();
+
         BubbleBlaster.ticks++;
     }
 
     @Override
     protected void loadEnvironment() {
-
+        preparePlayer();
     }
 
     public void startLoading() {

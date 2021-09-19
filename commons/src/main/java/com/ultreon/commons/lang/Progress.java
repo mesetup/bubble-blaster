@@ -1,12 +1,15 @@
 package com.ultreon.commons.lang;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Qboi
  * @since 1.0.0
  */
-public class Progress {
+public class Progress implements Cloneable, Comparable<Progress>, Serializable {
     private int progress;
     private final int max;
 
@@ -35,6 +38,18 @@ public class Progress {
         return max;
     }
 
+    public float getPercentage() {
+        return 100f * progress / max;
+    }
+
+    public float getRelativeProgress() {
+        return (float)progress / (float)max;
+    }
+
+    private int getTodo() {
+        return Math.max(max - progress, 0);
+    }
+
     @Override
     public String toString() {
         return "Progress{" +
@@ -54,5 +69,15 @@ public class Progress {
     @Override
     public int hashCode() {
         return Objects.hash(getProgress(), getMax());
+    }
+
+    @Override
+    public int compareTo(@NotNull Progress o) {
+        return 0;
+    }
+
+    @Override
+    protected Progress clone() throws CloneNotSupportedException {
+        return (Progress) super.clone();
     }
 }

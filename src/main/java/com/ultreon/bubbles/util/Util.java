@@ -5,7 +5,7 @@ import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
 import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 import com.ultreon.bubbles.save.SavedGame;
-import com.ultreon.hydro.gui.Window;
+import com.ultreon.hydro.screen.gui.Window;
 import com.ultreon.hydro.screen.ScreenManager;
 import org.jetbrains.annotations.Nullable;
 

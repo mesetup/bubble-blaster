@@ -8,6 +8,7 @@ package com.ultreon.hydro.render;
 /////////////////////
 import com.ultreon.commons.util.StringUtils;
 import com.ultreon.hydro.Game;
+import com.ultreon.hydro.vector.Vector4i;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -122,6 +123,14 @@ public class Renderer {
 
     public void fill(Shape s) {
         gg.fill(s);
+    }
+
+    public void fill(com.ultreon.hydro.screen.gui.Rectangle r) {
+        gg.fillRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+    }
+
+    public void fill(Vector4i r) {
+        gg.fillRect(r.x, r.y, r.z, r.w);
     }
 
     public void line(int x1, int y1, int x2, int y2) {

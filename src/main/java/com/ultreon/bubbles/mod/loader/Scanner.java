@@ -2,7 +2,7 @@ package com.ultreon.bubbles.mod.loader;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.commons.crash.CrashCategory;
-import com.ultreon.commons.crash.CrashReport;
+import com.ultreon.commons.crash.CrashLog;
 import com.ultreon.bubbles.screen.LoadScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -265,13 +265,13 @@ public final class Scanner {
                 exception.printStackTrace();
             }
         } catch (Throwable t) {
-            CrashReport crashReport = new CrashReport("Jar File being scanned", t);
+            CrashLog crashLog = new CrashLog("Jar File being scanned", t);
             CrashCategory addonCategory = new CrashCategory("Jar Entry being scanned");
             addonCategory.add("Class Name", className);
             addonCategory.add("Entry", jarEntry != null ? jarEntry.getName() : null);
             addonCategory.add("Annotation Scan", annotationScan);
-            crashReport.addCategory(addonCategory);
-            throw crashReport.getReportedException();
+            crashLog.addCategory(addonCategory);
+            throw crashLog.createCrash();
         }
         return new ScanResult(this, classes);
     }

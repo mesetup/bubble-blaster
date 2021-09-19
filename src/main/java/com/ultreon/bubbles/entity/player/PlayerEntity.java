@@ -5,6 +5,7 @@ import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.LoadedGame;
 import com.ultreon.bubbles.common.AttributeMap;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
+import com.ultreon.bubbles.common.logging.GameLogger;
 import com.ultreon.bubbles.entity.*;
 import com.ultreon.bubbles.entity.ammo.AmmoType;
 import com.ultreon.bubbles.environment.Environment;
@@ -13,20 +14,21 @@ import com.ultreon.bubbles.init.Entities;
 import com.ultreon.bubbles.item.inventory.PlayerInventory;
 import com.ultreon.bubbles.entity.attribute.Attribute;
 import com.ultreon.bubbles.entity.damage.DamageSource;
-import com.ultreon.bubbles.screen.EnvLoadScreen;
-import com.ultreon.bubbles.screen.SaveLoadingScreen;
+import com.ultreon.bubbles.screen.MessageScreen;
 import com.ultreon.bubbles.util.Util;
 import com.ultreon.bubbles.util.helpers.MathHelper;
-import com.ultreon.hydro.entity.player.IPlayer;
+import com.ultreon.hydro.player.IPlayer;
 import com.ultreon.bubbles.entity.player.ability.AbilityContainer;
 import com.ultreon.bubbles.event.EntityCollisionEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.input.KeyboardEvent;
 import com.ultreon.hydro.event.input.XInputEvent;
 import com.ultreon.hydro.event.type.KeyEventType;
 import com.ultreon.hydro.render.Renderer;
 import com.ultreon.hydro.screen.Screen;
 import org.apache.commons.lang3.SystemUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bson.BsonDocument;
 import org.bson.BsonDouble;
 import org.jetbrains.annotations.NotNull;
@@ -35,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.geom.*;
+import java.util.Locale;
 import java.util.Objects;
 
 import static com.ultreon.bubbles.BubbleBlaster.TPS;
@@ -98,6 +101,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     private double accelerateX = 0.0d;
     private double accelerateY = 0.0d;
     private final PlayerInventory inventory = new PlayerInventory(this);
+    private final Logger logger = LogManager.getLogger("Player");
 
     /**
      * <h1>Player entity.</h1>
@@ -156,7 +160,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
         super.prepareSpawn(spawnData);
         @Nullable Screen currentScene = Objects.requireNonNull(Util.getSceneManager()).getCurrentScreen();
         if ((currentScene == null && BubbleBlaster.getInstance().isGameLoaded()) ||
-                currentScene instanceof EnvLoadScreen) {
+                currentScene instanceof MessageScreen) {
             Rectangle2D gameBounds = gameType.getGameBounds();
             this.x = (float) MathHelper.clamp(x, gameBounds.getMinX(), gameBounds.getMaxX());
             this.y = (float) MathHelper.clamp(y, gameBounds.getMinY(), gameBounds.getMaxY());
@@ -271,15 +275,23 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     public void tick(Environment environment) {
         super.tick(environment);
 
+        logger.info("Player[df5d82fb] ON(TICK) ENTITY_ID={}", this.entityId);
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Spawn and load checks //
         ///////////////////////////
 
         LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
 
+        logger.info("Player[ce153094] ON(TICK) LOADED_GAME={}", loadedGame);
+
         if (loadedGame == null) {
             return;
         }
+
+        logger.info("Player[9489d774] ON(TICK) IS_SPAWNED={}", isSpawned() ? 1 : 0);
+
+        logger.info("Player[9fe76104] FORWARD={} BACKWARD={} LEFT={} RIGHT={}", forward ? 1 : 0, backward ? 1 : 0, left ? 1 : 0, right ? 1 : 0);
 
         if (!isSpawned()) return;
 
@@ -490,7 +502,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     }
 
     @Override
-    public void renderEntity(Renderer gg) {
+    public void render(Renderer gg) {
         if (!isSpawned()) return;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -673,18 +685,22 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     }
 
     public void forward(boolean bool) {
+        logger.info("Player[8f1a1408]: FORWARD " + ("" + bool).toUpperCase(Locale.ROOT));
         this.forward = bool;
     }
 
     public void backward(boolean bool) {
+        logger.info("Player[daa76af4]: BACKWARD " + ("" + bool).toUpperCase(Locale.ROOT));
         this.backward = bool;
     }
 
     public void left(boolean bool) {
+        logger.info("Player[a954e7a7]: LEFT " + ("" + bool).toUpperCase(Locale.ROOT));
         this.left = bool;
     }
 
     public void right(boolean bool) {
+        logger.info("Player[9902835f]: RIGHT " + ("" + bool).toUpperCase(Locale.ROOT));
         this.right = bool;
     }
 }

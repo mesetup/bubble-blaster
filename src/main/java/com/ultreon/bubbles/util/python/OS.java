@@ -51,4 +51,10 @@ public interface OS {
         thread.interrupt();
         return thread.isInterrupted();
     }
+
+    class Path {
+        public static char getSeperator() {
+            return System.getProperty("path.separator").charAt(0);
+        }
+    }
 }

@@ -2,22 +2,20 @@ package com.ultreon.bubbles.render.gui;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
-import com.ultreon.hydro.input.MouseController;
-import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.hydro.event._common.RenderEventPriority;
-import com.ultreon.hydro.event._common.SubscribeEvent;
-import com.ultreon.hydro.event.input.KeyboardEvent;
-import com.ultreon.hydro.event.input.MouseEvent;
-import com.ultreon.hydro.event.type.KeyEventType;
-import com.ultreon.hydro.gui.border.Border;
-import com.ultreon.bubbles.util.Util;
 import com.ultreon.bubbles.util.helpers.MathHelper;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.input.KeyboardEvent;
+import com.ultreon.hydro.event.type.KeyEventType;
+import com.ultreon.hydro.input.MouseInput;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.gui.border.Border;
+import com.ultreon.hydro.util.GraphicsUtils;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 
+@SuppressWarnings("unused")
 public class OptionsNumberInput extends OptionsTextEntry {
     private final NumberInputButton upButton;
     private final NumberInputButton downButton;
@@ -29,55 +27,11 @@ public class OptionsNumberInput extends OptionsTextEntry {
     private int max;
 
     public OptionsNumberInput(Rectangle bounds, int value, int min, int max) {
-        super(bounds);
-        this.value = value;
-        this.min = min;
-        this.max = max;
-        this.upButton = new NumberInputButton(0, 0, 0, 0);
-        this.downButton = new NumberInputButton(0, 0, 0, 0);
-
-        upButton.setCommand(this::add);
-        downButton.setCommand(this::subtract);
-
-        text = Integer.toString(value);
-
-        cursorIndex = Integer.toString(value).length();
-    }
-
-    public OptionsNumberInput(Rectangle bounds, RenderEventPriority renderEventPriority, int value, int min, int max) {
-        super(bounds, renderEventPriority);
-        this.value = value;
-        this.min = min;
-        this.max = max;
-        this.upButton = new NumberInputButton(0, 0, 0, 0);
-        this.downButton = new NumberInputButton(0, 0, 0, 0);
-
-        upButton.setCommand(this::add);
-        downButton.setCommand(this::subtract);
-
-        text = Integer.toString(value);
-
-        cursorIndex = Integer.toString(value).length();
+        this(bounds.x, bounds.y, bounds.width, bounds.height, value, min, max);
     }
 
     public OptionsNumberInput(int x, int y, int width, int height, int value, int min, int max) {
         super(x, y, width, height);
-        this.value = value;
-        this.min = min;
-        this.max = max;
-        this.upButton = new NumberInputButton(0, 0, 0, 0);
-        this.downButton = new NumberInputButton(0, 0, 0, 0);
-
-        upButton.setCommand(this::add);
-        downButton.setCommand(this::subtract);
-
-        text = Integer.toString(value);
-
-        cursorIndex = Integer.toString(value).length();
-    }
-
-    public OptionsNumberInput(int x, int y, int width, int height, RenderEventPriority renderEventPriority, int value, int min, int max) {
-        super(x, y, width, height, renderEventPriority);
         this.value = value;
         this.min = min;
         this.max = max;
@@ -104,8 +58,8 @@ public class OptionsNumberInput extends OptionsTextEntry {
 
     @SubscribeEvent
     @Override
-    public void onMouse(MouseEvent evt) {
-        super.onMouse(evt);
+    public void onMousePress(int x, int y, int button) {
+        super.onMousePress(x, y, button);
         if (!activated) {
             try {
                 value = MathHelper.clamp(Integer.parseInt(text), min, max);
@@ -177,93 +131,64 @@ public class OptionsNumberInput extends OptionsTextEntry {
     }
 
     @Override
-    public void bindEvents() {
+    public void make() {
         eventsActive = true;
-        upButton.bindEvents();
-        downButton.bindEvents();
+        upButton.make();
+        downButton.make();
         BubbleBlaster.getEventBus().register(this);
     }
 
     @Override
-    public void unbindEvents() {
+    public void destroy() {
         eventsActive = false;
-        upButton.unbindEvents();
-        downButton.unbindEvents();
+        upButton.destroy();
+        downButton.destroy();
         BubbleBlaster.getEventBus().unregister(this);
     }
 
     @Override
-    public boolean eventsAreActive() {
+    public boolean isValid() {
         return eventsActive;
     }
 
-    public void paint(Renderer gg) {
-        Integer vx = visualX;
-        if (visualX == null) vx = getX();
-        Integer vy = visualY;
-        if (visualY == null) vy = getY();
-        Rectangle bounds = new Rectangle(vx, vy, getBounds().width - 24, getBounds().height);
-
-        Point mousePos = MouseController.instance().getCurrentPoint();
-        if (mousePos != null) {
-            if (bounds.contains(mousePos)) {
-                Util.setCursor(BubbleBlaster.getInstance().getTextCursor());
-                hovered = true;
-            } else {
-                Integer vx1 = visualX;
-                if (visualX == null) vx1 = getX();
-                Integer vy1 = visualY;
-                if (visualY == null) vy1 = getY();
-                Rectangle bounds1 = new Rectangle(vx1, vy1, getBounds().width, getBounds().height);
-
-                if (bounds1.contains(mousePos)) {
-                    Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
-                    hovered = true;
-                } else {
-                    if (hovered) {
-                        Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
-                        hovered = false;
-                    }
-                }
-            }
-        }
-
-        upButton.setY(vy);
-        upButton.setX(vx + getBounds().width - 24);
+    @Override
+    public void render(Renderer renderer) {
+        upButton.setY(this.y);
+        upButton.setX(this.x + getBounds().width - 24);
         upButton.setHeight(getBounds().height / 2);
         upButton.setWidth(24);
         upButton.setText("+");
 
-        downButton.setY(vy + getBounds().height / 2);
-        downButton.setX(vx + getBounds().width - 24);
+        downButton.setY(this.y + getBounds().height / 2);
+        downButton.setX(this.x + getBounds().width - 24);
         downButton.setHeight(getBounds().height / 2);
         downButton.setWidth(24);
         downButton.setText("-");
 
         if (activated) {
-            gg.color(new Color(128, 128, 128));
-            gg.fill(bounds);
+            renderer.color(new Color(128, 128, 128));
+            renderer.fill(getBounds());
 
-            Paint old = gg.getPaint();
-            GradientPaint p = new GradientPaint(vx, 0, new Color(0, 192, 255), vx + getWidth(), 0, new Color(0, 255, 192));
-            gg.paint(p);
-            gg.fill(new Rectangle(bounds.x, bounds.y + bounds.height - 2, bounds.width, 2));
-            gg.paint(old);
+            Paint old = renderer.getPaint();
+            GradientPaint p = new GradientPaint(this.x, 0, new Color(0, 192, 255), this.x + getWidth(), 0, new Color(0, 255, 192));
+            renderer.paint(p);
+            renderer.fill(new Rectangle(x, y + height - 2, width, 2));
+            renderer.paint(old);
         } else {
-            gg.color(new Color(79, 79, 79));
-            gg.fill(bounds);
+            renderer.color(new Color(79, 79, 79));
+            renderer.fill(getBounds());
         }
 
-        Renderer gg1 = (Renderer) gg.create(bounds.x, bounds.y, bounds.width, bounds.height);
+        Renderer gg1 = renderer.create(x, y, width, height);
         gg1.color(new Color(255, 255, 255, 255));
 
         cursorIndex = MathHelper.clamp(cursorIndex, 0, text.length());
-        GraphicsUtils.drawLeftAnchoredString(gg1, text, new Point2D.Double(8, bounds.height - (bounds.height - 5)), bounds.height - 5, defaultFont);
+        GraphicsUtils.drawLeftAnchoredString(gg1, text, new Point2D.Double(8, height - (height - 5)), height - 5, defaultFont);
 
-        FontMetrics fontMetrics = gg.getFontMetrics(defaultFont);
+        FontMetrics fontMetrics = renderer.getFontMetrics(defaultFont);
 
-        upButton.paint(gg);
-        downButton.paint(gg);
+        upButton.render(renderer);
+        downButton.render(renderer);
 
         int cursorX;
         gg1.color(new Color(0, 192, 192, 255));
@@ -274,8 +199,8 @@ public class OptionsNumberInput extends OptionsTextEntry {
                 cursorX = 10;
             }
 
-            gg1.line(cursorX, 2, cursorX, bounds.height - 5);
-            gg1.line(cursorX + 1, 2, cursorX + 1, bounds.height - 5);
+            gg1.line(cursorX, 2, cursorX, height - 5);
+            gg1.line(cursorX + 1, 2, cursorX + 1, height - 5);
         } else {
             if (text.length() != 0) {
                 cursorX = fontMetrics.stringWidth(text.substring(0, cursorIndex)) + 8;
@@ -285,8 +210,8 @@ public class OptionsNumberInput extends OptionsTextEntry {
 
             int width = fontMetrics.charWidth(text.charAt(cursorIndex));
 
-            gg1.line(cursorX, bounds.height - 5, cursorX + width, bounds.height - 5);
-            gg1.line(cursorX, bounds.height - 4, cursorX + width, bounds.height - 4);
+            gg1.line(cursorX, height - 5, cursorX + width, height - 5);
+            gg1.line(cursorX, height - 4, cursorX + width, height - 4);
         }
 
         gg1.dispose();
@@ -332,17 +257,14 @@ public class OptionsNumberInput extends OptionsTextEntry {
             super(x, y, width, height);
         }
 
-        protected NumberInputButton(int x, int y, int width, int height, RenderEventPriority renderEventPriority) {
-            super(x, y, width, height, renderEventPriority);
-        }
-
         @Override
-        public void paint(Renderer gg) {
-            hovered = MouseController.instance().getCurrentPoint() != null && bounds.contains(MouseController.instance().getCurrentPoint());
+        public void render(Renderer renderer) {
+            MouseInput.getPos();
+            hovered = isWithinBounds(MouseInput.getPos());
 
             Color textColor;
 
-            Stroke oldStroke = gg.getStroke();
+            Stroke oldStroke = renderer.getStroke();
 
             Integer vx = visualX;
             if (visualX == null) vx = getX();
@@ -350,21 +272,21 @@ public class OptionsNumberInput extends OptionsTextEntry {
             if (visualY == null) vy = getY();
             Rectangle bounds = new Rectangle(vx, vy, getBounds().width, getBounds().height);
 
-            if (pressed && MouseController.instance().getCurrentPoint() != null && getBounds().contains(MouseController.instance().getCurrentPoint())) {
+            if (pressed && getBounds().contains(MouseInput.getPos())) {
 
                 // Shadow
-                Paint old = gg.getPaint();
+                Paint old = renderer.getPaint();
                 GradientPaint p = new GradientPaint(0, vy, new Color(0, 192, 255), 0f, vy + getHeight(), new Color(0, 255, 192));
-                gg.paint(p);
-                gg.fill(bounds);
-                gg.paint(old);
+                renderer.paint(p);
+                renderer.fill(bounds);
+                renderer.paint(old);
 
                 textColor = Color.white;
             } else if (hovered) {
-                gg.stroke(new BasicStroke(1.0f));
+                renderer.stroke(new BasicStroke(1.0f));
 
-                gg.color(new Color(128, 128, 128));
-                gg.fill(bounds);
+                renderer.color(new Color(128, 128, 128));
+                renderer.fill(bounds);
 
                 // Shadow
 //                Paint old = gg.getPaint();
@@ -373,23 +295,23 @@ public class OptionsNumberInput extends OptionsTextEntry {
 //                gg.draw(new Rectangle(bounds.x, bounds.y, bounds.width - 1, bounds.height - 1));
                 Border border = new Border(2, 2, 2, 2);
                 border.setPaint(p);
-                border.paintBorder(gg, bounds.x, bounds.y, bounds.width, bounds.height);
+                border.paintBorder(renderer, bounds.x, bounds.y, bounds.width, bounds.height);
 //                gg.setPaint(old);
 
                 textColor = new Color(255, 255, 255);
             } else {
 
-                gg.stroke(new BasicStroke(1.0f));
+                renderer.stroke(new BasicStroke(1.0f));
 
-                gg.color(new Color(128, 128, 128));
-                gg.fill(bounds);
+                renderer.color(new Color(128, 128, 128));
+                renderer.fill(bounds);
 
 //            gg.setColor(new Color(128, 128, 128));
 //            gg.draw(bounds);
                 textColor = new Color(192, 192, 192);
             }
 
-            paint0a(gg, textColor, oldStroke, bounds, text);
+            paint0a(renderer, textColor, oldStroke, getBounds(), text);
         }
 
         @Override

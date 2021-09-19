@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.References;
+import com.ultreon.hydro.input.KeyInput;
+import com.ultreon.hydro.input.Keybind;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +22,11 @@ public class GameSettings {
 
     protected final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private JsonObject parsed;
+
+    public static Keybind keybindForward = new Keybind(KeyInput.Map.KEY_UP);
+    public static Keybind keybindBackward = new Keybind(KeyInput.Map.KEY_DOWN);
+    public static Keybind keybindRotateLeft = new Keybind(KeyInput.Map.KEY_LEFT);
+    public static Keybind keybindRotateRight = new Keybind(KeyInput.Map.KEY_RIGHT);
 
     public GameSettings() {
         reload();

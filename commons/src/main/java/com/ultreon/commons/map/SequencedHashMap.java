@@ -61,14 +61,12 @@ package com.ultreon.commons.map;
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
+ * This was edited by Qboi123
  */
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -100,6 +98,7 @@ public class SequencedHashMap<K, V> implements Map<K, V>, Cloneable, Externaliza
 
     // add a serial version uid, so that if we change things in the future
     // without changing the format, we can still deserialize properly.
+    @Serial
     private static final long serialVersionUID = 3380552487888102930L;
 
     /**
@@ -220,10 +219,10 @@ public class SequencedHashMap<K, V> implements Map<K, V>, Cloneable, Externaliza
      */
     public boolean containsValue(Object value) {
         // unfortunately, we cannot just pass this call to the underlying map
-        // because we are mapping keys to entries, not keys to values. The
+        // because we are mapping keys into entries, not keys into values. The
         // underlying map doesn't have an efficient implementation anyway, so this
         // isn't a big deal.
-        // do null comparison outside loop so we only need to do it once. This
+        // do null comparison outside loop, so we only need to do it once. This
         // provides a tighter, more efficient loop at the expense of slight
         // code duplication.
         if (value == null) {
@@ -380,7 +379,7 @@ public class SequencedHashMap<K, V> implements Map<K, V>, Cloneable, Externaliza
             // tick value in map
             oldValue = e.setValue(value);
 
-            // Note: We do not tick the key here because its unnecessary. We only
+            // Note: We do not tick the key here because it's unnecessary. We only
             // do comparisons using equals(Object) and we know the specified key and
             // that in the map are equal in that sense. This may cause a problem if
             // someone does not implement their hashCode() and/or equals(Object)
@@ -542,7 +541,7 @@ public class SequencedHashMap<K, V> implements Map<K, V>, Cloneable, Externaliza
             }
 
             public boolean remove(Object value) {
-                // do null comparison outside loop so we only need to do it once. This
+                // do null comparison outside loop, so we only need to do it once. This
                 // provides a tighter, more efficient loop at the expense of slight
                 // code duplication.
                 if (value == null) {
@@ -967,16 +966,12 @@ public class SequencedHashMap<K, V> implements Map<K, V>, Cloneable, Externaliza
             returnType = returnType & ~REMOVED_MASK;
             pos = pos.next;
             // should never happen
-            switch (returnType) {
-                case KEY:
-                    return (T) pos.getKey();
-                case VALUE:
-                    return (T) pos.getValue();
-                case ENTRY:
-                    return (T) pos;
-                default:
-                    throw new Error("bad iterator type: " + returnType);
-            }
+            return switch (returnType) {
+                case KEY -> (T) pos.getKey();
+                case VALUE -> (T) pos.getValue();
+                case ENTRY -> (T) pos;
+                default -> throw new Error("bad iterator type: " + returnType);
+            };
         }
 
         /**

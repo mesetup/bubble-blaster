@@ -2,6 +2,7 @@ package com.ultreon.commons.exceptions;
 
 public class SyntaxError extends Error {
     public SyntaxError() {
+        super();
     }
 
     public SyntaxError(String message) {

@@ -15,11 +15,7 @@ public record Percentage(double percentage) implements Serializable, Comparable<
         return new Percentage(value * 100);
     }
 
-    public double percentage() {
-        return percentage;
-    }
-
-    public double calue() {
+    public double value() {
         return percentage / 100;
     }
 

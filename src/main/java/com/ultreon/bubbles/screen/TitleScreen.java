@@ -7,7 +7,6 @@ import com.ultreon.hydro.Game;
 import com.ultreon.hydro.screen.Screen;
 import com.ultreon.hydro.screen.ScreenManager;
 import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.hydro.event._common.RenderEventPriority;
 import com.ultreon.hydro.event.bus.EventBus;
 import com.ultreon.bubbles.gametype.ClassicType;
 import com.ultreon.bubbles.render.gui.TitleButton;
@@ -39,10 +38,10 @@ public class TitleScreen extends Screen {
     public TitleScreen() {
         INSTANCE = this;
 
-        startButton = new TitleButton.Builder().bounds(0, 220, 225, 48).renderPriority(RenderEventPriority.AFTER_FILTER).text("Start Game").command(this::startGame).build();
-        optionsButton = new TitleButton.Builder().bounds(BubbleBlaster.getInstance().getWidth() - 225, 220, 225, 48).renderPriority(RenderEventPriority.AFTER_FILTER).text("Options").command(this::openOptions).build();
-        savesButton = new TitleButton.Builder().bounds(0, 280, 200, 48).renderPriority(RenderEventPriority.AFTER_FILTER).text("Select Save (WIP)").command(this::openSavesSelection).build();
-        languageButton = new TitleButton.Builder().bounds(BubbleBlaster.getInstance().getWidth() - 200, 280, 200, 48).renderPriority(RenderEventPriority.AFTER_FILTER).text("Language").command(this::openLanguageSettings).build();
+        startButton = add(new TitleButton.Builder().bounds(0, 220, 225, 48).text("Start Game").command(this::startGame).build());
+        optionsButton = add(new TitleButton.Builder().bounds(BubbleBlaster.getInstance().getWidth() - 225, 220, 225, 48).text("Options").command(this::openOptions).build());
+        savesButton = add(new TitleButton.Builder().bounds(0, 280, 200, 48).text("Select Save (WIP)").command(this::openSavesSelection).build());
+        languageButton = add(new TitleButton.Builder().bounds(BubbleBlaster.getInstance().getWidth() - 200, 280, 200, 48).text("Language").command(this::openLanguageSettings).build());
     }
 
     private void openSavesSelection() {
@@ -75,26 +74,26 @@ public class TitleScreen extends Screen {
         message = "";
 
         BubbleBlaster.getEventBus().register(this);
-        startButton.bindEvents();
-        savesButton.bindEvents();
-        optionsButton.bindEvents();
-        languageButton.bindEvents();
+        startButton.make();
+        savesButton.make();
+        optionsButton.make();
+        languageButton.make();
     }
 
     @Override
     public boolean onClose(Screen to) {
         BubbleBlaster.getEventBus().unregister(this);
-        startButton.unbindEvents();
-        savesButton.unbindEvents();
-        optionsButton.unbindEvents();
-        languageButton.unbindEvents();
+        startButton.destroy();
+        savesButton.destroy();
+        optionsButton.destroy();
+        languageButton.destroy();
         return super.onClose(to);
     }
 
     @SuppressWarnings("EmptyMethod")
     @Override
-    public boolean eventsAreActive() {
-        return super.eventsAreActive();
+    public boolean isValid() {
+        return super.isValid();
     }
 
     @Override
@@ -129,10 +128,10 @@ public class TitleScreen extends Screen {
         gg.color(new Color(255, 255, 255));
         GraphicsUtils.drawCenteredString(gg, message, new Rectangle2D.Double(0, 145, BubbleBlaster.getInstance().getWidth(), 30), new Font(BubbleBlaster.getInstance().getSansFontName(), Font.PLAIN, 24));
 
-        this.startButton.paint(gg);
-        this.languageButton.paint(gg);
-        this.savesButton.paint(gg);
-        this.optionsButton.paint(gg);
+        this.startButton.render(gg);
+        this.languageButton.render(gg);
+        this.savesButton.render(gg);
+        this.optionsButton.render(gg);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.ultreon.commons.annotation;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNullableByDefault;
 import javax.annotation.meta.TypeQualifierDefault;
@@ -24,7 +22,7 @@ import java.lang.annotation.RetentionPolicy;
  * @see Nonnull
  */
 @Documented
-@NotNull
+@Nonnull
 @TypeQualifierDefault(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FieldsAreNonnullByDefault {

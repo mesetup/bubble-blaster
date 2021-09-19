@@ -1,28 +1,29 @@
 package com.ultreon.bubbles.gametype;
 
 import com.ultreon.bubbles.BubbleBlaster;
-import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 import com.ultreon.bubbles.bubble.AbstractBubble;
 import com.ultreon.bubbles.common.Difficulty;
-import com.ultreon.hydro.common.IRegistryEntry;
-import com.ultreon.commons.lang.InfoTransporter;
-import com.ultreon.commons.crash.CrashReport;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
-import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.bubbles.entity.BubbleEntity;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.bubbles.environment.Environment;
-import com.ultreon.hydro.event.FilterEvent;
-import com.ultreon.hydro.event._common.SubscribeEvent;
-import com.ultreon.hydro.event.bus.EventBus;
 import com.ultreon.bubbles.gametype.hud.ClassicHUD;
 import com.ultreon.bubbles.init.Bubbles;
 import com.ultreon.bubbles.init.Entities;
 import com.ultreon.bubbles.registry.Registers;
-import com.ultreon.hydro.registry.Registry;
+import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.bubbles.settings.GameSettings;
+import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
+import com.ultreon.commons.crash.CrashLog;
+import com.ultreon.commons.lang.InfoTransporter;
+import com.ultreon.hydro.common.IRegistryEntry;
+import com.ultreon.hydro.event.FilterEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.bus.EventBus;
+import com.ultreon.hydro.registry.Registry;
+import com.ultreon.hydro.render.Renderer;
 import org.bson.BsonArray;
 import org.bson.BsonDocument;
 import org.bson.BsonInvalidOperationException;
@@ -31,7 +32,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
@@ -91,15 +91,15 @@ public class ClassicType extends AbstractGameType {
 
             // Spawn player
             infoTransporter.log("Spawning player...");
-            this.player = new PlayerEntity(environment.getGameType());
-            environment.spawn(player, new Point(game.getScaledWidth() / 4, BubbleBlaster.getInstance().getHeight() / 2));
+            game.playerInterface = game.player = new PlayerEntity(environment.getGameType());
+            environment.spawn(game.player, new Point(game.getScaledWidth() / 4, BubbleBlaster.getInstance().getHeight() / 2));
         } catch (Exception e) {
-            CrashReport crashReport = new CrashReport("Could not initialize classic game type.", e);
-            throw crashReport.getReportedException();
+            CrashLog crashLog = new CrashLog("Could not initialize classic game type.", e);
+            throw crashLog.createCrash();
         }
 
         // Bind events.
-        this.bindEvents();
+        this.make();
 
         ClassicType.maxBubbles = GameSettings.instance().getMaxBubbles();
         this.spawner = new Thread(this::spawnerThread, "SpawnerThread");
@@ -156,15 +156,6 @@ public class ClassicType extends AbstractGameType {
     @SuppressWarnings("unused")
     public boolean isEventActive() {
         return eventActive;
-    }
-
-    @Override
-    protected void initDefaults() {
-        super.initDefaults();
-//        addRandom("qbubbles:bubbles_x");
-//        addRandom("qbubbles:bubbles_y");
-//        addRandom("qbubbles:bubbles_radius");
-//        addRandom("qbubbles:bubbles_speed");
     }
 
     /**
@@ -337,7 +328,7 @@ public class ClassicType extends AbstractGameType {
 
     @Override
     public PlayerEntity getPlayer() {
-        return this.player;
+        return this.game.player;
     }
 
     /**
@@ -352,8 +343,8 @@ public class ClassicType extends AbstractGameType {
             setResultScore(Math.round(Objects.requireNonNull(getPlayer()).getScore()));
         }
 
-        environment.gameOver(player);
-        player.delete();
+        environment.gameOver(game.player);
+        game.player.delete();
         hud.setGameOver();
         gameOver = true;
     }
@@ -375,19 +366,13 @@ public class ClassicType extends AbstractGameType {
     }
 
     @Override
-    public void bindEvents() {
-//        tickEventCode = QUpdateEvent.getInstance().addListener(QUpdateEvent.getInstance(), GameScene.getInstance(), this::tick, RenderEventPriority.HIGHER);
-//        renderEventCode = QRenderEvent.getInstance().addListener(QRenderEvent.getInstance(), GameScene.getInstance(), this::render, RenderEventPriority.HIGHER);
-
+    public void make() {
         BubbleBlaster.getEventBus().register(this);
         this.eventActive = true;
     }
 
     @Override
-    public void unbindEvents() throws NoSuchElementException {
-//        QUpdateEvent.getInstance().removeListener(tickEventCode);
-//        QRenderEvent.getInstance().removeListener(renderEventCode);
-
+    public void destroy() throws NoSuchElementException {
         BubbleBlaster.getEventBus().unregister(this);
         this.eventActive = false;
     }
@@ -396,7 +381,7 @@ public class ClassicType extends AbstractGameType {
      * @return True if the events are active, false otherwise.
      */
     @Override
-    public boolean eventsAreActive() {
+    public boolean isValid() {
         return eventActive;
     }
 
@@ -417,7 +402,7 @@ public class ClassicType extends AbstractGameType {
         }
 
         if (initialized) {
-            if (player == null) {
+            if (game.player == null) {
                 throw new IllegalStateException("Player is null while initialized.");
             }
         }

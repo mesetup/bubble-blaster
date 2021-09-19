@@ -99,7 +99,7 @@ public class EnvironmentRenderer implements IRenderer {
         environment.getGameType().render(gg);
 
         for (Entity entity : environment.getEntities()) {
-            entity.renderEntity(gg);
+            entity.render(gg);
         }
 
         environment.getGameType().renderGUI(gg);

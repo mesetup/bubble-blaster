@@ -11,7 +11,7 @@ import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.bubbles.event.EntityCollisionEvent;
 import com.ultreon.bubbles.util.helpers.MathHelper;
 import com.ultreon.hydro.common.ResourceEntry;
-import com.ultreon.hydro.event._common.SubscribeEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.registry.Registry;
 import org.bson.*;
 import org.jetbrains.annotations.NotNull;

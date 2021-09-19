@@ -19,7 +19,8 @@ public enum SystemEnum {
     MPE_IX("MPE/iX"),
     NETWARE("Netware"),
     HP_UX("HP UX");
-    protected final String name;
+
+    private final String name;
 
     SystemEnum(String name) {
         this.name = name;

@@ -5,7 +5,7 @@ import com.ultreon.bubbles.LoadedGame;
 import com.ultreon.hydro.common.RegistryEntry;
 import com.ultreon.hydro.screen.Screen;
 import com.ultreon.bubbles.util.Util;
-import com.ultreon.commons.utilities.datetime.DateTime;
+import com.ultreon.commons.time.DateTime;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;

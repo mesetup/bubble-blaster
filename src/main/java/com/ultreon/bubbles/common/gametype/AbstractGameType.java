@@ -9,7 +9,7 @@ import com.ultreon.commons.lang.InfoTransporter;
 import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.gamestate.GameEvent;
 import com.ultreon.bubbles.common.interfaces.DefaultStateHolder;
-import com.ultreon.bubbles.common.interfaces.Listener;
+import com.ultreon.hydro.screen.gui.IGuiListener;
 import com.ultreon.bubbles.common.interfaces.StateHolder;
 import com.ultreon.bubbles.common.random.BubbleRandomizer;
 import com.ultreon.bubbles.common.random.PseudoRandom;
@@ -60,7 +60,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 @SuppressWarnings({"deprecation", "unused", "FieldCanBeLocal", "UnusedReturnValue"})
-public abstract class AbstractGameType extends RegistryEntry implements StateHolder, DefaultStateHolder, Listener {
+public abstract class AbstractGameType extends RegistryEntry implements StateHolder, DefaultStateHolder, IGuiListener {
     protected Environment environment;
     protected BigInteger seed = BigInteger.valueOf(512);
     //    protected final List<Entity> entities = new CopyOnWriteArrayList<>();
@@ -105,6 +105,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     private long resultScore;
     protected long ticks;
     protected boolean initialized = false;
+    private final Difficulty.ModifierMap modifierMap = new Difficulty.ModifierMap();
 
     // Random & seeding.
     public PseudoRandom getRNG() {
@@ -134,6 +135,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     protected final HashMap<ResourceEntry, Rng> rngTypes = new HashMap<>();
 
     // Initial entities:
+    @Deprecated
     protected PlayerEntity player;
 
     /**
@@ -446,8 +448,10 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
 //            if (canSpawn) break;
 //        }
 
+        int retries = 5;
         while (bubbleType == null) {
             bubbleType = BubbleSystem.random(bubbleRandomizer.getTypeRng(), this);
+            if (retries-- == 0) break;
         }
 
         boolean canSpawn = bubbleType.canSpawn(this);
@@ -523,21 +527,10 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
 
     public abstract Point getSpawnLocation(Entity entity);
 
-//    public abstract void spawnEntity(Entity entity, Point pos, @Nullable EntityRandomizer randomizer) throws InvalidObjectException;
-//
-//    public void spawnBubble(BubbleEntity bubble, Point pos) throws InvalidObjectException {
-//        spawnBubble(bubble, pos, null);
-//    }
-//
-//    public abstract void spawnBubble(BubbleEntity bubble, Point pos, @Nullable BubbleRandomizer randomizer) throws InvalidObjectException;
-//
-//    public abstract Point2D getNewBubbleLocation(int radius, Rng randX, Rng randY);
-
+    @Deprecated
     @SuppressWarnings("EmptyMethod")
     public void registerSpawnedEntity(Entity entity) {
-//        this.entities.add(entity);
-//        Main.getLogger().info("" + this.entities.add(entity));
-//        Main.getLogger().info("Added Entity");
+
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -550,9 +543,6 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     public final float getLocalDifficulty() {
-//        System.out.println("001_A: " + stateDifficultyModifiers);
-//        System.out.println("001_B: " + stateDifficultyModifiers.values());
-//        System.out.println("001_C: " + new ArrayList<>(stateDifficultyModifiers.values()));
         stateDifficultyModifier = CollectionsUtils.max(new ArrayList<>(stateDifficultyModifiers.values()), 1f);
 
         Difficulty difficulty = getDifficulty();
@@ -566,17 +556,16 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     public final void setStateDifficultyModifier(GameEvent gameEvent, float modifier) {
-//        System.out.println("SET_DIFF_MOD_001: " + gameState);
-//        System.out.println("SET_DIFF_MOD_002: " + modifier);
         stateDifficultyModifiers.put(gameEvent, modifier);
-//        System.out.println("SET_DIFF_MOD_003: " + stateDifficultyModifiers);
     }
 
     public final void removeStateDifficultyModifier(GameEvent gameEvent) {
-//        System.out.println("REMOVE_DIFF_MOD_001: " + gameState);
         stateDifficultyModifiers.remove(gameEvent);
-//        System.out.println("REMOVE_DIFF_MOD_002: " + stateDifficultyModifiers);
     }
+
+//    public final <T> void getDifficultyModifier(Difficulty.Modifier.Type<T> type, T key) {
+//        this.modifierMap
+//    }
 
     public final Object getStateDifficultyModifier(GameEvent gameEvent) {
         return stateDifficultyModifiers.get(gameEvent);
