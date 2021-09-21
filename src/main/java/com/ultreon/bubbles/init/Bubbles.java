@@ -1,12 +1,12 @@
 package com.ultreon.bubbles.init;
 
-import com.ultreon.bubbles.InternalAddon;
+import com.ultreon.bubbles.InternalMod;
 import com.ultreon.bubbles.bubble.*;
 import com.ultreon.bubbles.effect.StatusEffectInstance;
-import com.ultreon.hydro.registry.ObjectInit;
+import com.ultreon.bubbles.registry.Registers;
 import com.ultreon.commons.util.ColorUtils;
 import com.ultreon.hydro.registry.DeferredRegister;
-import com.ultreon.bubbles.registry.Registers;
+import com.ultreon.hydro.registry.ObjectInit;
 import com.ultreon.hydro.registry.object.RegistryObject;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
@@ -22,9 +22,9 @@ import java.util.function.Supplier;
  * @see AbstractBubble
  */
 @SuppressWarnings("unused")
-//@ObjectHolder(addonId = "qbubbles")
+//@ObjectHolder(modId = "bubbleblaster")
 public class Bubbles implements ObjectInit<AbstractBubble> {
-    public static final DeferredRegister<AbstractBubble> BUBBLES = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.BUBBLES);
+    public static final DeferredRegister<AbstractBubble> BUBBLES = DeferredRegister.create(InternalMod.MOD_ID, Registers.BUBBLES);
 
     // Bubbles
     public static final RegistryObject<AbstractBubble> NORMAL_BUBBLE = register("normal", () -> AbstractBubble.builder()

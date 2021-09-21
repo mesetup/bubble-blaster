@@ -76,7 +76,7 @@ public class LanguageMap {
         return inputstream;
     }
 
-    static LanguageMap getInstance() {
+    static LanguageMap instance() {
         return instance;
     }
 

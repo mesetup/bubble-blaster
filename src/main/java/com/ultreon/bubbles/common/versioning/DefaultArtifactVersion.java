@@ -10,7 +10,7 @@ public class DefaultArtifactVersion implements ArtifactVersion {
     private ComparableVersion comparableVersion;
     private String label;
     private boolean unbounded;
-    private VersionRange range;
+    private final VersionRange range;
 
     public DefaultArtifactVersion(String versionNumber) {
         comparableVersion = new ComparableVersion(versionNumber);

@@ -1,18 +1,18 @@
 package com.ultreon.bubbles.entity;
 
-import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
-import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.entity.ammo.AmmoType;
 import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.event.EntityCollisionEvent;
 import com.ultreon.bubbles.init.Entities;
+import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
+import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
+import com.ultreon.hydro.render.Renderer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault

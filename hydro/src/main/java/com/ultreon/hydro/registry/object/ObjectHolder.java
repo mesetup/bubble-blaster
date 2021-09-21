@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 //@IndexAnnotated(storeJavadoc = true)
 public @interface ObjectHolder {
-    String addonId();
+    String modId();
 
     Class<?> type() default ObjectUtils.Null.class;
 }

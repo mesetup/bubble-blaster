@@ -3,23 +3,23 @@ package com.ultreon.bubbles.screen;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.LoadedGame;
 import com.ultreon.bubbles.bubble.AbstractBubble;
-import com.ultreon.hydro.Game;
-import com.ultreon.hydro.render.Renderer;
 import com.ultreon.bubbles.common.text.translation.I18n;
-import com.ultreon.hydro.screen.Screen;
-import com.ultreon.hydro.util.GraphicsUtils;
 import com.ultreon.bubbles.entity.bubble.BubbleSystem;
 import com.ultreon.bubbles.environment.EnvironmentRenderer;
 import com.ultreon.bubbles.event.LanguageChangeEvent;
-import com.ultreon.hydro.event.SubscribeEvent;
-import com.ultreon.hydro.event.bus.EventBus;
-import com.ultreon.hydro.event.input.KeyboardEvent;
-import com.ultreon.hydro.event.type.KeyEventType;
-import com.ultreon.bubbles.render.gui.PauseButton;
 import com.ultreon.bubbles.media.AudioSlot;
-import com.ultreon.hydro.registry.Registry;
+import com.ultreon.bubbles.render.gui.PauseButton;
 import com.ultreon.bubbles.util.Util;
 import com.ultreon.bubbles.util.helpers.MathHelper;
+import com.ultreon.hydro.Game;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.bus.AbstractEvents;
+import com.ultreon.hydro.event.input.KeyboardEvent;
+import com.ultreon.hydro.event.type.KeyEventType;
+import com.ultreon.hydro.registry.Registry;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.Screen;
+import com.ultreon.hydro.util.GraphicsUtils;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -35,39 +35,39 @@ public class PauseScreen extends Screen {
     private final PauseButton prevButton;
     private final PauseButton nextButton;
 
-    private String minRadius = I18n.translateToLocal("screen.qbubbles.pause.min_radius");
-    private String maxRadius = I18n.translateToLocal("screen.qbubbles.pause.max_radius");
-    private String minSpeed = I18n.translateToLocal("screen.qbubbles.pause.min_speed");
-    private String maxSpeed = I18n.translateToLocal("screen.qbubbles.pause.max_speed");
-    private String defChance = I18n.translateToLocal("screen.qbubbles.pause.default_chance");
-    private String curChance = I18n.translateToLocal("screen.qbubbles.pause.current_chance");
-    private String defPriority = I18n.translateToLocal("screen.qbubbles.pause.default_priority");
-    private String curPriority = I18n.translateToLocal("screen.qbubbles.pause.current_priority");
-    private String defTotPriority = I18n.translateToLocal("screen.qbubbles.pause.default_total_priority");
-    private String curTotPriority = I18n.translateToLocal("screen.qbubbles.pause.current_total_priority");
-    private String scoreMod = I18n.translateToLocal("screen.qbubbles.pause.score_modifier");
-    private String attackMod = I18n.translateToLocal("screen.qbubbles.pause.attack_modifier");
-    private String defenseMod = I18n.translateToLocal("screen.qbubbles.pause.defense_modifier");
-    private String canSpawn = I18n.translateToLocal("screen.qbubbles.pause.can_spawn");
-    private String description = I18n.translateToLocal("screen.qbubbles.pause.description");
+    private String minRadius = I18n.translateToLocal("screen.bubbleblaster.pause.min_radius");
+    private String maxRadius = I18n.translateToLocal("screen.bubbleblaster.pause.max_radius");
+    private String minSpeed = I18n.translateToLocal("screen.bubbleblaster.pause.min_speed");
+    private String maxSpeed = I18n.translateToLocal("screen.bubbleblaster.pause.max_speed");
+    private String defChance = I18n.translateToLocal("screen.bubbleblaster.pause.default_chance");
+    private String curChance = I18n.translateToLocal("screen.bubbleblaster.pause.current_chance");
+    private String defPriority = I18n.translateToLocal("screen.bubbleblaster.pause.default_priority");
+    private String curPriority = I18n.translateToLocal("screen.bubbleblaster.pause.current_priority");
+    private String defTotPriority = I18n.translateToLocal("screen.bubbleblaster.pause.default_total_priority");
+    private String curTotPriority = I18n.translateToLocal("screen.bubbleblaster.pause.current_total_priority");
+    private String scoreMod = I18n.translateToLocal("screen.bubbleblaster.pause.score_modifier");
+    private String attackMod = I18n.translateToLocal("screen.bubbleblaster.pause.attack_modifier");
+    private String defenseMod = I18n.translateToLocal("screen.bubbleblaster.pause.defense_modifier");
+    private String canSpawn = I18n.translateToLocal("screen.bubbleblaster.pause.can_spawn");
+    private String description = I18n.translateToLocal("screen.bubbleblaster.pause.description");
     private String random = I18n.translateToLocal("other.random");
 
-    private final Font bubbleTitleFont = new Font(BubbleBlaster.getInstance().getMonospaceFontName(), Font.BOLD, 32);
-    private final Font bubbleValueFont = new Font(BubbleBlaster.getInstance().getMonospaceFontName(), Font.BOLD + Font.ITALIC, 16);
-    private final Font bubbleInfoFont = new Font(BubbleBlaster.getInstance().getMonospaceFontName(), Font.BOLD, 16);
-    private final Font fallbackTitleFont = new Font(BubbleBlaster.getInstance().getFont().getFontName(), Font.BOLD, 32);
-    private final Font fallbackValueFont = new Font(BubbleBlaster.getInstance().getFont().getFontName(), Font.BOLD + Font.ITALIC, 16);
-    private final Font fallbackInfoFont = new Font(BubbleBlaster.getInstance().getFont().getFontName(), Font.BOLD, 16);
+    private final Font bubbleTitleFont = new Font(BubbleBlaster.instance().getMonospaceFontName(), Font.BOLD, 32);
+    private final Font bubbleValueFont = new Font(BubbleBlaster.instance().getMonospaceFontName(), Font.BOLD + Font.ITALIC, 16);
+    private final Font bubbleInfoFont = new Font(BubbleBlaster.instance().getMonospaceFontName(), Font.BOLD, 16);
+    private final Font fallbackTitleFont = new Font(BubbleBlaster.instance().getFont().getFontName(), Font.BOLD, 32);
+    private final Font fallbackValueFont = new Font(BubbleBlaster.instance().getFont().getFontName(), Font.BOLD + Font.ITALIC, 16);
+    private final Font fallbackInfoFont = new Font(BubbleBlaster.instance().getFont().getFontName(), Font.BOLD, 16);
 
-    private final Font pauseFont = new Font(BubbleBlaster.getInstance().getGameFontName(), Font.PLAIN, 75);
+    private final Font pauseFont = new Font(BubbleBlaster.instance().getGameFontName(), Font.PLAIN, 75);
     private final int differentBubbles;
     private static int helpIndex = 0;
     private AbstractBubble bubble;
-    private EventBus.Handler binding;
+    private AbstractEvents.AbstractSubscription binding;
 
     public PauseScreen() {
         super();
-        exitButton = new PauseButton.Builder().bounds((int) (BubbleBlaster.getMiddleX() - 128), 200, 256, 48).text("Exit and Quit Game").command(BubbleBlaster.getInstance()::shutdown).build();
+        exitButton = new PauseButton.Builder().bounds((int) (BubbleBlaster.getMiddleX() - 128), 200, 256, 48).text("Exit and Quit Game").command(BubbleBlaster.instance()::shutdown).build();
         prevButton = new PauseButton.Builder().bounds((int) (BubbleBlaster.getMiddleX() - 480), 250, 96, 48).text("Prev").command(this::previousPage).build();
         nextButton = new PauseButton.Builder().bounds((int) (BubbleBlaster.getMiddleX() + 480 - 95), 250, 96, 48).text("Next").command(this::nextPage).build();
 
@@ -78,7 +78,7 @@ public class PauseScreen extends Screen {
     private void previousPage() {
         if (helpIndex > 0) {
             try {
-                AudioSlot focusChangeSFX = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/qbubbles/audio/sfx/ui/button/focus_change.wav")), "focusChange");
+                AudioSlot focusChangeSFX = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/bubbleblaster/audio/sfx/ui/button/focus_change.wav")), "focusChange");
                 focusChangeSFX.setVolume(0.1d);
                 focusChangeSFX.play();
             } catch (URISyntaxException e) {
@@ -93,7 +93,7 @@ public class PauseScreen extends Screen {
     private void nextPage() {
         if (helpIndex < differentBubbles - 1) {
             try {
-                AudioSlot focusChangeSFX = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/qbubbles/audio/sfx/ui/button/focus_change.wav")), "focusChange");
+                AudioSlot focusChangeSFX = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/bubbleblaster/audio/sfx/ui/button/focus_change.wav")), "focusChange");
                 focusChangeSFX.setVolume(0.1d);
                 focusChangeSFX.play();
             } catch (URISyntaxException e) {
@@ -123,21 +123,21 @@ public class PauseScreen extends Screen {
 
     @SubscribeEvent
     private void onLanguageChange(LanguageChangeEvent evt) {
-        minRadius = I18n.translateToLocal("screen.qbubbles.pause.min_radius");
-        maxRadius = I18n.translateToLocal("screen.qbubbles.pause.max_radius");
-        minSpeed = I18n.translateToLocal("screen.qbubbles.pause.min_speed");
-        maxSpeed = I18n.translateToLocal("screen.qbubbles.pause.max_speed");
-        defChance = I18n.translateToLocal("screen.qbubbles.pause.default_chance");
-        curChance = I18n.translateToLocal("screen.qbubbles.pause.current_chance");
-        defPriority = I18n.translateToLocal("screen.qbubbles.pause.default_priority");
-        curPriority = I18n.translateToLocal("screen.qbubbles.pause.current_priority");
-        defTotPriority = I18n.translateToLocal("screen.qbubbles.pause.default_total_priority");
-        curTotPriority = I18n.translateToLocal("screen.qbubbles.pause.current_total_priority");
-        scoreMod = I18n.translateToLocal("screen.qbubbles.pause.score_modifier");
-        attackMod = I18n.translateToLocal("screen.qbubbles.pause.attack_modifier");
-        defenseMod = I18n.translateToLocal("screen.qbubbles.pause.defense_modifier");
-        canSpawn = I18n.translateToLocal("screen.qbubbles.pause.can_spawn");
-        description = I18n.translateToLocal("screen.qbubbles.pause.description");
+        minRadius = I18n.translateToLocal("screen.bubbleblaster.pause.min_radius");
+        maxRadius = I18n.translateToLocal("screen.bubbleblaster.pause.max_radius");
+        minSpeed = I18n.translateToLocal("screen.bubbleblaster.pause.min_speed");
+        maxSpeed = I18n.translateToLocal("screen.bubbleblaster.pause.max_speed");
+        defChance = I18n.translateToLocal("screen.bubbleblaster.pause.default_chance");
+        curChance = I18n.translateToLocal("screen.bubbleblaster.pause.current_chance");
+        defPriority = I18n.translateToLocal("screen.bubbleblaster.pause.default_priority");
+        curPriority = I18n.translateToLocal("screen.bubbleblaster.pause.current_priority");
+        defTotPriority = I18n.translateToLocal("screen.bubbleblaster.pause.default_total_priority");
+        curTotPriority = I18n.translateToLocal("screen.bubbleblaster.pause.current_total_priority");
+        scoreMod = I18n.translateToLocal("screen.bubbleblaster.pause.score_modifier");
+        attackMod = I18n.translateToLocal("screen.bubbleblaster.pause.attack_modifier");
+        defenseMod = I18n.translateToLocal("screen.bubbleblaster.pause.defense_modifier");
+        canSpawn = I18n.translateToLocal("screen.bubbleblaster.pause.can_spawn");
+        description = I18n.translateToLocal("screen.bubbleblaster.pause.description");
         random = I18n.translateToLocal("other.random");
     }
 
@@ -146,13 +146,13 @@ public class PauseScreen extends Screen {
         exitButton.make();
         prevButton.make();
         nextButton.make();
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
 
-        if (!BubbleBlaster.getInstance().isGameLoaded()) {
+        if (!BubbleBlaster.instance().isGameLoaded()) {
             return;
         }
 
-        Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
+        Util.setCursor(BubbleBlaster.instance().getDefaultCursor());
     }
 
     @Override
@@ -160,9 +160,9 @@ public class PauseScreen extends Screen {
         exitButton.destroy();
         prevButton.destroy();
         nextButton.destroy();
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
 
-        Util.setCursor(BubbleBlaster.getInstance().getBlankCursor());
+        Util.setCursor(BubbleBlaster.instance().getBlankCursor());
         return super.onClose(to);
     }
 
@@ -170,18 +170,18 @@ public class PauseScreen extends Screen {
     public void onKeyboard(KeyboardEvent evt) {
         if (evt.getType() == KeyEventType.PRESS) {
             if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_ESCAPE) {
-                if (!BubbleBlaster.getInstance().isGameLoaded()) {
+                if (!BubbleBlaster.instance().isGameLoaded()) {
                     return;
                 }
 
-                BubbleBlaster.getInstance().showScreen(null);
+                BubbleBlaster.instance().showScreen(null);
             }
         }
     }
 
     @Override
     public void render(Game game, Renderer gg) {
-        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.instance().getLoadedGame();
         if (loadedGame == null) {
             return;
         }
@@ -192,7 +192,7 @@ public class PauseScreen extends Screen {
         //     Darkened background     //
         /////////////////////////////////
         ngg.color(new Color(0, 0, 0, 192));
-        ngg.rect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
+        ngg.rect(0, 0, BubbleBlaster.instance().getWidth(), BubbleBlaster.instance().getHeight());
         Font oldFont = ngg.getFont();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -200,14 +200,14 @@ public class PauseScreen extends Screen {
         ////////////////////////
         ngg.color(new Color(255, 255, 255, 128));
         ngg.font(pauseFont);
-        GraphicsUtils.drawCenteredString(ngg, I18n.translateToLocal("screen.qbubbles.pause.text"), new Rectangle2D.Double(0, 90, BubbleBlaster.getInstance().getWidth(), ngg.getFontMetrics(pauseFont).getHeight()), pauseFont);
+        GraphicsUtils.drawCenteredString(ngg, I18n.translateToLocal("screen.bubbleblaster.pause.text"), new Rectangle2D.Double(0, 90, BubbleBlaster.instance().getWidth(), ngg.getFontMetrics(pauseFont).getHeight()), pauseFont);
 
         ngg.font(oldFont);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //     Exit button     //
         /////////////////////////
-        exitButton.setText(I18n.translateToLocal("screen.qbubbles.pause.exit"));
+        exitButton.setText(I18n.translateToLocal("screen.bubbleblaster.pause.exit"));
         exitButton.render(ngg);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

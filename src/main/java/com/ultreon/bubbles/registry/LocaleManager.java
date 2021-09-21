@@ -1,7 +1,7 @@
 package com.ultreon.bubbles.registry;
 
-import com.ultreon.commons.map.SequencedHashMap;
 import com.ultreon.bubbles.common.text.translation.LanguageMap;
+import com.ultreon.commons.map.SequencedHashMap;
 import com.ultreon.hydro.registry.AbstractRegistry;
 
 import java.util.*;

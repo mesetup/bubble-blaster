@@ -3,10 +3,8 @@ package com.ultreon.hydro;
 import com.ultreon.commons.exceptions.OneTimeUseException;
 import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.hydro.core.CursorManager;
-import com.ultreon.hydro.event.bus.GameEventBus;
+import com.ultreon.hydro.event.bus.GameEvents;
 import com.ultreon.hydro.event.window.WindowClosingEvent;
-import com.ultreon.hydro.core.input.KeyboardController;
-import com.ultreon.hydro.core.input.MouseController;
 import com.ultreon.hydro.input.KeyInput;
 import com.ultreon.hydro.input.MouseInput;
 import org.jdesktop.swingx.JXFrame;
@@ -76,7 +74,7 @@ public class GameWindow {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                boolean cancelClose = GameEventBus.get().post(new WindowClosingEvent(GameWindow.this));
+                boolean cancelClose = GameEvents.get().publish(new WindowClosingEvent(GameWindow.this));
                 if (!cancelClose) {
                     game().close();
                 }
@@ -108,29 +106,29 @@ public class GameWindow {
             }
         });
 
-//        this.wrap.addFocusListener(new FocusListener() {
-//            @Override
-//            public void focusGained(FocusEvent e) {
-//                GameWindow.this.canvas.requestFocus();
-//            }
-//
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//
-//            }
-//        });
-//
-//        this.canvas.addFocusListener(new FocusListener() {
-//            @Override
-//            public void focusGained(FocusEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//                GameWindow.this.canvas.requestFocus();
-//            }
-//        });
+        this.wrap.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                GameWindow.this.canvas.requestFocus();
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+
+            }
+        });
+
+        this.canvas.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                GameWindow.this.canvas.requestFocus();
+            }
+        });
 
         canvas.requestFocus();
     }

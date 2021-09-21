@@ -4,14 +4,14 @@ import com.jhlabs.image.NoiseFilter;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.LoadedGame;
 import com.ultreon.bubbles.common.gamestate.GameEvent;
-import com.ultreon.commons.util.ColorUtils;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
-import com.ultreon.hydro.event.FilterEvent;
-import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.commons.time.Date;
 import com.ultreon.commons.time.DateTime;
 import com.ultreon.commons.time.Time;
+import com.ultreon.commons.util.ColorUtils;
+import com.ultreon.hydro.event.FilterEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.TickEvent;
 
 import java.time.DayOfWeek;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class BloodMoonEvent extends GameEvent {
 
     @SubscribeEvent
     public void onUpdate(TickEvent evt) {
-        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.instance().getLoadedGame();
 
         if (loadedGame == null) {
             return;
@@ -98,7 +98,7 @@ public class BloodMoonEvent extends GameEvent {
     public final boolean isActive(DateTime dateTime) {
         super.isActive(dateTime);
 
-        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.instance().getLoadedGame();
         if (loadedGame == null) {
             return false;
         }

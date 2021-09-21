@@ -93,12 +93,12 @@ public final class CrashLog extends CrashCategory {
         category.add("Memory", runtime.totalMemory() - runtime.freeMemory() + "/" + runtime.totalMemory());
 
 //        // Todo: implement.
-//        category.add("Loaded Addons", AddonManager.getInstance().getContainers().stream()
-//                .map(AddonContainer::getAddonId)
+//        category.add("Loaded Mod", ModManager.getInstance().getContainers().stream()
+//                .map(ModContainer::getModId)
 //                .collect(Collectors.joining(", ")));
-//        category.add("Constructed Addons", AddonManager.getInstance().getContainers().stream()
-//                .filter((container) -> container.getJavaAddon() != null)
-//                .map(AddonContainer::getAddonId)
+//        category.add("Constructed Mods", ModManager.getInstance().getContainers().stream()
+//                .filter((container) -> container.getJavaMod() != null)
+//                .map(ModContainer::getModId)
 //                .collect(Collectors.joining(", ")));
 
         crashLog.addCategory(category);
@@ -124,12 +124,12 @@ public final class CrashLog extends CrashCategory {
 //        entries.add(new AbstractMap.SimpleEntry<>("Processor", hardwareAbstractionLayer.getProcessor().getProcessorIdentifier().getName()));
 //        entries.add(new AbstractMap.SimpleEntry<>("GPU", hardwareAbstractionLayer.getGraphicsCards().get(0).getName()));
 //        entries.add(new AbstractMap.SimpleEntry<>("Memory", runtime.totalMemory() - runtime.freeMemory() + "/" + runtime.totalMemory()));
-//        entries.add(new AbstractMap.SimpleEntry<>("Loaded Addons", AddonManager.getInstance().getContainers().stream()
-//                .map(AddonContainer::getAddonId)
+//        entries.add(new AbstractMap.SimpleEntry<>("Loaded Mods", ModManager.getInstance().getContainers().stream()
+//                .map(ModContainer::getModId)
 //                .collect(Collectors.joining(", "))));
-//        entries.add(new AbstractMap.SimpleEntry<>("Constructed Addons", AddonManager.getInstance().getContainers().stream()
-//                .filter((container) -> container.getJavaAddon() != null)
-//                .map(AddonContainer::getAddonId)
+//        entries.add(new AbstractMap.SimpleEntry<>("Constructed Mods", ModManager.getInstance().getContainers().stream()
+//                .filter((container) -> container.getJavaMod() != null)
+//                .map(ModContainer::getModId)
 //                .collect(Collectors.joining(", "))));
 
         if (entries.size() > 0) {

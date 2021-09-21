@@ -1,10 +1,9 @@
 package com.ultreon.bubbles.render.gui;
 
-import com.ultreon.hydro.screen.gui.IGuiListener;
-import com.ultreon.hydro.event.RenderEventPriority;
 import com.ultreon.hydro.input.MouseInput;
 import com.ultreon.hydro.render.Renderer;
 import com.ultreon.hydro.screen.gui.AbstractButton;
+import com.ultreon.hydro.screen.gui.IGuiListener;
 import com.ultreon.hydro.screen.gui.border.Border;
 import com.ultreon.hydro.screen.gui.border.OuterBorder;
 
@@ -25,7 +24,6 @@ public class CrashButton extends AbstractButton implements IGuiListener {
     public static class Builder {
         private Rectangle _bounds = new Rectangle(10, 10, 96, 48);
         private String _text = "";
-        private RenderEventPriority _renderPriority = RenderEventPriority.AFTER_FILTER;
         private Runnable _command = () -> {
         };
 
@@ -55,11 +53,6 @@ public class CrashButton extends AbstractButton implements IGuiListener {
             return this;
         }
 
-        public Builder renderPriority(RenderEventPriority renderPriority) {
-            this._renderPriority = renderPriority;
-            return this;
-        }
-
         public Builder command(Runnable command) {
             this._command = command;
             return this;
@@ -69,19 +62,6 @@ public class CrashButton extends AbstractButton implements IGuiListener {
     public CrashButton(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
-
-//    @SubscribeEvent
-//    public void onMouseMotion(MouseMotionEvent evt) {
-//        if (bounds.contains(evt.getParentEvent().getPoint())) {
-//            QBubbles.setCursor(Game.instance().getPointerCursor());
-//            hovered = true;
-//        } else {
-//            if (hovered) {
-//                QBubbles.setCursor(Game.instance().getDefaultCursor());
-//                hovered = false;
-//            }
-//        }
-//    }
 
     @Override
     public void render(Renderer renderer) {

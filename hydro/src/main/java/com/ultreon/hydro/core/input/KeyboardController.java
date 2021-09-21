@@ -1,7 +1,7 @@
 package com.ultreon.hydro.core.input;
 
 import com.ultreon.hydro.Game;
-import com.ultreon.hydro.event.bus.GameEventBus;
+import com.ultreon.hydro.event.bus.GameEvents;
 import com.ultreon.hydro.event.input.KeyboardEvent;
 import com.ultreon.hydro.event.type.KeyEventType;
 import com.ultreon.hydro.screen.Screen;
@@ -37,11 +37,11 @@ public abstract class KeyboardController extends KeyAdapter {
     @Override
     public final void keyPressed(KeyEvent e) {
         this.keysDown.add(e.getKeyCode());
-        if (GameEventBus.get() != null) {
+        if (GameEvents.get() != null) {
             if (isKeyDown(e.getKeyCode())) {
-                GameEventBus.get().post(new KeyboardEvent(Game.getInstance(), this, e, KeyEventType.HOLD));
+                GameEvents.get().publish(new KeyboardEvent(Game.getInstance(), this, e, KeyEventType.HOLD));
             } else {
-                GameEventBus.get().post(new KeyboardEvent(Game.getInstance(), this, e, KeyEventType.PRESS));
+                GameEvents.get().publish(new KeyboardEvent(Game.getInstance(), this, e, KeyEventType.PRESS));
             }
         }
 
@@ -59,8 +59,8 @@ public abstract class KeyboardController extends KeyAdapter {
     @Override
     public final void keyReleased(KeyEvent e) {
         this.keysDown.remove(e.getKeyCode());
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new KeyboardEvent(Game.getInstance(), this, e, KeyEventType.RELEASE));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new KeyboardEvent(Game.getInstance(), this, e, KeyEventType.RELEASE));
         }
 
         logger.info("KeyInput: RELEASE (" + e.getKeyCode() + ", " + e.getKeyChar() + ")");
@@ -76,8 +76,8 @@ public abstract class KeyboardController extends KeyAdapter {
 
     @Override
     public final void keyTyped(KeyEvent e) {
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new KeyboardEvent(Game.getInstance(), this, e, KeyEventType.TYPE));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new KeyboardEvent(Game.getInstance(), this, e, KeyEventType.TYPE));
         }
 
         logger.info("KeyInput: TYPE (" + e.getKeyCode() + ", " + e.getKeyChar() + ")");

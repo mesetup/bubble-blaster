@@ -64,7 +64,7 @@ public class GameSettings {
         } catch (Exception e) {
             BubbleBlaster.getLogger().fatal("Cannot read Game-settings file. Traceback follows:");
             e.printStackTrace();
-            BubbleBlaster.getInstance().shutdown();
+            BubbleBlaster.instance().shutdown();
             return;
         }
         if (!parsed.has("lang")) {

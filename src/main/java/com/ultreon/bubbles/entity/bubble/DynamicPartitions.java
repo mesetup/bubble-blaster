@@ -1,7 +1,7 @@
 package com.ultreon.bubbles.entity.bubble;
 
-import com.ultreon.commons.function.Applier;
 import com.ultreon.bubbles.common.exceptions.ValueExists;
+import com.ultreon.commons.function.Applier;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.exception.OutOfRangeException;
 

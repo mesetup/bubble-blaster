@@ -1,12 +1,12 @@
 package com.ultreon.bubbles.init;
 
-import com.ultreon.bubbles.InternalAddon;
+import com.ultreon.bubbles.InternalMod;
 import com.ultreon.bubbles.common.mod.ModInstance;
-import com.ultreon.bubbles.event.bus.LocalAddonEventBus;
-import com.ultreon.hydro.render.TextureCollection;
-import com.ultreon.hydro.registry.DeferredRegister;
+import com.ultreon.bubbles.event.bus.ModEvents;
 import com.ultreon.bubbles.registry.Registers;
+import com.ultreon.hydro.registry.DeferredRegister;
 import com.ultreon.hydro.registry.object.RegistryObject;
+import com.ultreon.hydro.render.TextureCollection;
 
 import java.util.function.Supplier;
 
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
  * @since 1.0.924-a1
  */
 public class TextureCollections {
-    private static final DeferredRegister<TextureCollection> TEXTURE_COLLECTIONS = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.TEXTURE_COLLECTIONS);
+    private static final DeferredRegister<TextureCollection> TEXTURE_COLLECTIONS = DeferredRegister.create(InternalMod.MOD_ID, Registers.TEXTURE_COLLECTIONS);
 
     public static final RegistryObject<TextureCollection> BUBBLE_TEXTURES = register("bubble", TextureCollection::new);
 
@@ -26,7 +26,7 @@ public class TextureCollections {
         return TEXTURE_COLLECTIONS.register(name, supplier);
     }
 
-    public static void register(LocalAddonEventBus<? extends ModInstance> eventBus) {
+    public static void register(ModEvents<? extends ModInstance> eventBus) {
         TEXTURE_COLLECTIONS.register(eventBus);
     }
 }

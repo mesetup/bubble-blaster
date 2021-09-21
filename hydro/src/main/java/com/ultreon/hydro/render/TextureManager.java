@@ -11,7 +11,7 @@ public final class TextureManager {
     private static final TextureManager instance = new TextureManager();
     private final Map<ResourceEntry, Texture> textureMap = new ConcurrentHashMap<>();
 
-    public static TextureManager getInstance() {
+    public static TextureManager instance() {
         return instance;
     }
 

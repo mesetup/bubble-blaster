@@ -1,16 +1,14 @@
 package com.ultreon.bubbles.screen;
 
 import com.ultreon.bubbles.BubbleBlaster;
-import com.ultreon.bubbles.mod.ModContainer;
-import com.ultreon.bubbles.mod.loader.ModLoader;
-import com.ultreon.bubbles.mod.loader.ModManager;
-import com.ultreon.bubbles.mod.loader.Scanner;
 import com.ultreon.bubbles.command.*;
 import com.ultreon.bubbles.data.GlobalSaveData;
 import com.ultreon.bubbles.entity.bubble.BubbleSystem;
-import com.ultreon.bubbles.event.bus.Bus;
 import com.ultreon.bubbles.event.load.LoadCompleteEvent;
-import com.ultreon.bubbles.registry.AddonManager;
+import com.ultreon.bubbles.mod.ModContainer;
+import com.ultreon.bubbles.mod.loader.ModLoader;
+import com.ultreon.bubbles.mod.loader.Scanner;
+import com.ultreon.bubbles.registry.ModManager;
 import com.ultreon.bubbles.registry.Registers;
 import com.ultreon.bubbles.util.Util;
 import com.ultreon.commons.lang.InfoTransporter;
@@ -20,7 +18,8 @@ import com.ultreon.hydro.Game;
 import com.ultreon.hydro.common.RegistryEntry;
 import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.hydro.event.CollectTexturesEvent;
-import com.ultreon.hydro.event.bus.EventBus;
+import com.ultreon.hydro.event.bus.AbstractEvents;
+import com.ultreon.hydro.event.bus.GameEvents;
 import com.ultreon.hydro.event.input.XInputEventThread;
 import com.ultreon.hydro.event.registry.RegistryEvent;
 import com.ultreon.hydro.registry.Registry;
@@ -50,12 +49,12 @@ public final class LoadScreen extends Screen implements Runnable {
     private final String title = "";
     private final String description = "";
     private ModLoader modLoader = null;
-    private EventBus.Handler binding;
+    private AbstractEvents.AbstractSubscription binding;
     private static boolean done;
     private LoggableProgress mainProgress = null;
-    private LoggableProgress subProgress1 = null;
+    private LoggableProgress subProgress = null;
     private final InfoTransporter mainLogger = new InfoTransporter(this::logMain);
-    private final InfoTransporter subLogger1 = new InfoTransporter(this::logSub1);
+    private final InfoTransporter subLogger = new InfoTransporter(this::logSub1);
     private String mainMessage = "";
     private String subMessage1 = "";
 
@@ -63,7 +62,7 @@ public final class LoadScreen extends Screen implements Runnable {
         instance = this;
     }
 
-    private static ModLoader getAddonLoader() {
+    private static ModLoader getModLoader() {
         if (instance == null) {
             return null;
         }
@@ -77,22 +76,24 @@ public final class LoadScreen extends Screen implements Runnable {
 
     @Override
     public Cursor getDefaultCursor() {
-        return BubbleBlaster.getInstance().getBlankCursor();
+        return BubbleBlaster.instance().getBlankCursor();
     }
 
     @Override
     public void init() {
         LOGGER.info("Showing LoadScene");
 
-        BubbleBlaster.getEventBus().register(this);
-        BubbleBlaster.getInstance().startLoading();
+        BubbleBlaster.getEventBus().subscribe(this);
+        BubbleBlaster.instance().startLoading();
 
-        BubbleBlaster.getInstance().getGameWindow().setCursor(BubbleBlaster.getInstance().getDefaultCursor());
+        BubbleBlaster.instance().getGameWindow().setCursor(BubbleBlaster.instance().getDefaultCursor());
 
         run();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
+    @Deprecated
     public void tick() {
         messages.removeIf((pair) -> pair.getSecond() + 2000 < System.currentTimeMillis());
     }
@@ -102,7 +103,7 @@ public final class LoadScreen extends Screen implements Runnable {
         if (!isDone()) {
             return false;
         }
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
         return true;
     }
 
@@ -111,30 +112,9 @@ public final class LoadScreen extends Screen implements Runnable {
         BubbleBlaster game1 = (BubbleBlaster) game;
 
         gg.color(new Color(72, 72, 72));
-        gg.rect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
-//        if (GameSettings.instance().isTextAntialiasEnabled())
-//            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        gg.rect(0, 0, BubbleBlaster.instance().getWidth(), BubbleBlaster.instance().getHeight());
 
         int i = 0;
-//        for (int j = Math.min(messages.size() - 1, 7); j > -1; j--) {
-//            Pair<String, Long> pair = messages.get(j);
-//            String message = pair.getFirst();
-//            long startTime = pair.getSecond();
-//            long secondsToLive = startTime - System.currentTimeMillis() + 2000;
-//            float alpha;
-//            if (secondsToLive <= 0) {
-//                alpha = 0f;
-//            } else if (secondsToLive >= 2000) {
-//                alpha = 1f;
-//            } else {
-//                alpha = secondsToLive / 2000f;
-//            }
-//
-//            gg.setColor(new Color(1f, 1f, 1f, alpha));
-//            GraphicsUtils.drawLeftAnchoredString(gg, message, new Point2D.Float(10, game.getScaledHeight() - 35f - (25f * i)), 25, new Font(game.getSansFontName(), Font.PLAIN, 20));
-//            i++;
-//
-//        }
 
         if (mainProgress != null) {
             {
@@ -143,42 +123,40 @@ public final class LoadScreen extends Screen implements Runnable {
 
                 if (mainMessage != null) {
                     gg.color(new Color(128, 128, 128));
-                    GraphicsUtils.drawCenteredString(gg, mainMessage, new Rectangle2D.Double(0, (double) BubbleBlaster.getInstance().getHeight() / 2 - 15, BubbleBlaster.getInstance().getWidth(), 30), new Font(game1.getSansFontName(), Font.PLAIN, 20));
+                    GraphicsUtils.drawCenteredString(gg, mainMessage, new Rectangle2D.Double(0, (double) BubbleBlaster.instance().getHeight() / 2 - 15, BubbleBlaster.instance().getWidth(), 30), new Font(game1.getSansFontName(), Font.PLAIN, 20));
                 }
 
                 gg.color(new Color(128, 128, 128));
-                gg.rect(BubbleBlaster.getInstance().getWidth() / 2 - 150, BubbleBlaster.getInstance().getHeight() / 2 + 15, 300, 3);
+                gg.rect(BubbleBlaster.instance().getWidth() / 2 - 150, BubbleBlaster.instance().getHeight() / 2 + 15, 300, 3);
 
-                gg.color(new Color(0, 192, 255));
-                GradientPaint p = new GradientPaint(0, (float) BubbleBlaster.getInstance().getWidth() / 2 - 150, new Color(0, 192, 255), (float) BubbleBlaster.getInstance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
-                gg.paint(p);
-                gg.rect(BubbleBlaster.getInstance().getWidth() / 2 - 150, BubbleBlaster.getInstance().getHeight() / 2 + 15, (int) (300d * (double) progress / (double) max), 3);
+                func_i1(gg);
+                gg.rect(BubbleBlaster.instance().getWidth() / 2 - 150, BubbleBlaster.instance().getHeight() / 2 + 15, (int) (300d * (double) progress / (double) max), 3);
             }
 
-            if (subProgress1 != null) {
-                int progress = subProgress1.getProgress();
-                int max = subProgress1.getMax();
+            if (subProgress != null) {
+                int progress = subProgress.getProgress();
+                int max = subProgress.getMax();
 
                 if (subMessage1 != null) {
                     gg.color(new Color(128, 128, 128));
-                    GraphicsUtils.drawCenteredString(gg, subMessage1, new Rectangle2D.Double(0, (double) BubbleBlaster.getInstance().getHeight() / 2 + 60, BubbleBlaster.getInstance().getWidth(), 30), new Font(game1.getSansFontName(), Font.PLAIN, 20));
+                    GraphicsUtils.drawCenteredString(gg, subMessage1, new Rectangle2D.Double(0, (double) BubbleBlaster.instance().getHeight() / 2 + 60, BubbleBlaster.instance().getWidth(), 30), new Font(game1.getSansFontName(), Font.PLAIN, 20));
                 }
 
                 gg.color(new Color(128, 128, 128));
-                gg.rect(BubbleBlaster.getInstance().getWidth() / 2 - 150, BubbleBlaster.getInstance().getHeight() / 2 + 90, 300, 3);
+                gg.rect(BubbleBlaster.instance().getWidth() / 2 - 150, BubbleBlaster.instance().getHeight() / 2 + 90, 300, 3);
 
-                gg.color(new Color(0, 192, 255));
-                GradientPaint p = new GradientPaint(0, (float) BubbleBlaster.getInstance().getWidth() / 2 - 150, new Color(0, 192, 255), (float) BubbleBlaster.getInstance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
-                gg.paint(p);
-                gg.rect(BubbleBlaster.getInstance().getWidth() / 2 - 150, BubbleBlaster.getInstance().getHeight() / 2 + 90, (int) (300d * (double) progress / (double) max), 3);
+                func_i1(gg);
+                gg.rect(BubbleBlaster.instance().getWidth() / 2 - 150, BubbleBlaster.instance().getHeight() / 2 + 90, (int) (300d * (double) progress / (double) max), 3);
             }
         }
 
         gg.color(new Color(127, 127, 127));
-//        GraphicsUtils.drawCenteredString(gg, this.title, new Rectangle2D.Double(0, (double) QBubbles.getInstance().getScaledHeight() / 2, QBubbles.getInstance().getScaledWidth(), 50d), new Font("Helvetica", Font.BOLD, 50));
-//        GraphicsUtils.drawCenteredString(gg, this.description, new Rectangle2D.Double(0, ((double) QBubbles.getInstance().getScaledHeight() / 2) + 40, QBubbles.getInstance().getScaledWidth(), 50d), new Font("Helvetica", Font.PLAIN, 20));
-//        if (GameSettings.instance().isTextAntialiasEnabled())
-//            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+    }
+
+    private void func_i1(Renderer gg) {
+        gg.color(new Color(0, 192, 255));
+        GradientPaint p = new GradientPaint(0, (float) BubbleBlaster.instance().getWidth() / 2 - 150, new Color(0, 192, 255), (float) BubbleBlaster.instance().getWidth() / 2 + 150, 0f, new Color(0, 255, 192));
+        gg.paint(p);
     }
 
     @Override
@@ -201,114 +179,114 @@ public final class LoadScreen extends Screen implements Runnable {
         }
 
         // Initialize registries.
-        new AddonManager();
+        new ModManager();
 
-        LOGGER.info("Loading addons...");
-        mainProgress.log("Loading addons...");
-        mainProgress.increment();
+        LOGGER.info("Loading mods...");
+        this.mainProgress.log("Loading mods...");
+        this.mainProgress.increment();
         this.modLoader = new ModLoader(this);
-        this.subProgress1 = null;
+        this.subProgress = null;
 
-        LOGGER.info("Constructing addons...");
-        mainProgress.log("Constructing addons...");
-        mainProgress.increment();
-        this.modLoader.constructAddons();
-        this.subProgress1 = null;
+        LOGGER.info("Constructing mods...");
+        this.mainProgress.log("Constructing mods...");
+        this.mainProgress.increment();
+        this.modLoader.constructMods();
+        this.subProgress = null;
 
         // Loading object holders
-        mainProgress.log("Loading object-holders...");
-        mainProgress.increment();
+        this.mainProgress.log("Loading object-holders...");
+        this.mainProgress.increment();
         loadObjectHolders();
-        this.subProgress1 = null;
+        this.subProgress = null;
 
-        mainProgress.log("Initializing Bubble Blaster");
-        mainProgress.increment();
+        this.mainProgress.log("Initializing Bubble Blaster");
+        this.mainProgress.increment();
         initialize();
-        this.subProgress1 = null;
+        this.subProgress = null;
 
-        LOGGER.info("Setup addons...");
-        mainProgress.log("Setup Addons");
-        mainProgress.increment();
-        this.modLoader.addonSetup();
-        this.subProgress1 = null;
+        LOGGER.info("Setup mods...");
+        this.mainProgress.log("Setup Mods");
+        this.mainProgress.increment();
+        this.modLoader.modSetup();
+        this.subProgress = null;
 
         // GameScene and ClassicType initialization.
-        mainProgress.log("Registering...");
-        mainProgress.increment();
+        this.mainProgress.log("Registering...");
+        this.mainProgress.increment();
 
-        subProgress1 = new LoggableProgress(subLogger1, 9);
-        subProgress1.log("Effects");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.EFFECTS));
-        subProgress1.log("Abilities");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.ABILITIES));
-        subProgress1.log("Ammo Types");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.AMMO_TYPES));
-        subProgress1.log("Entities");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.ENTITIES));
-        subProgress1.log("Bubbles");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.BUBBLES));
-        subProgress1.log("Game States");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.GAME_EVENTS));
-        subProgress1.log("Game Types");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.GAME_TYPES));
-        subProgress1.log("Cursors");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.CURSORS));
-        subProgress1.log("Texture Collections");
-        subProgress1.increment();
-        Bus.getAddonEventBus().post(new RegistryEvent.Register<>(Registers.TEXTURE_COLLECTIONS));
-        this.subProgress1 = null;
+        this.subProgress = new LoggableProgress(subLogger, 9);
+        this.subProgress.log("Effects");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.EFFECTS));
+        this.subProgress.log("Abilities");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.ABILITIES));
+        this.subProgress.log("Ammo Types");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.AMMO_TYPES));
+        this.subProgress.log("Entities");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.ENTITIES));
+        this.subProgress.log("Bubbles");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.BUBBLES));
+        this.subProgress.log("Game States");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.GAME_EVENTS));
+        this.subProgress.log("Game Types");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.GAME_TYPES));
+        this.subProgress.log("Cursors");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.CURSORS));
+        this.subProgress.log("Texture Collections");
+        this.subProgress.increment();
+        GameEvents.get().publish(new RegistryEvent.Register<>(Registers.TEXTURE_COLLECTIONS));
+        this.subProgress = null;
 
-        mainProgress.log("");
-        mainProgress.increment();
+        this.mainProgress.log("");
+        this.mainProgress.increment();
         Collection<TextureCollection> values = Registers.TEXTURE_COLLECTIONS.values();
-        subProgress1 = new LoggableProgress(subLogger1, values.size());
+        this.subProgress = new LoggableProgress(this.subLogger, values.size());
         for (TextureCollection collection : values) {
-            Bus.getQBubblesEventBus().post(new CollectTexturesEvent(collection));
-            subProgress1.increment();
+            GameEvents.get().publish(new CollectTexturesEvent(collection));
+            this.subProgress.increment();
         }
 
         // BubbleSystem
-        mainProgress.log("Initialize bubble system...");
-        mainProgress.increment();
+        this.mainProgress.log("Initialize bubble system...");
+        this.mainProgress.increment();
         BubbleSystem.init();
 
         // Load complete.
-        mainProgress.log("Load Complete!");
-        mainProgress.increment();
-        BubbleBlaster.getEventBus().post(new LoadCompleteEvent(modLoader));
+        this.mainProgress.log("Load Complete!");
+        this.mainProgress.increment();
+        BubbleBlaster.getEventBus().publish(new LoadCompleteEvent(this.modLoader));
 
         // Registry dump.
-        mainProgress.log("Registry Dump.");
-        mainProgress.increment();
+        this.mainProgress.log("Registry Dump.");
+        this.mainProgress.increment();
         Registry.dump();
-        BubbleBlaster.getEventBus().post(new RegistryEvent.Dump());
+        BubbleBlaster.getEventBus().publish(new RegistryEvent.Dump());
 
-        done = true;
+        LoadScreen.done = true;
 
         Util.getGame().getScreenManager().displayScreen(new TitleScreen());
     }
 
     public static boolean isDone() {
-        return done;
+        return LoadScreen.done;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "DuplicatedCode"})
     private void loadObjectHolders() {
-        List<ModContainer> containers = ModManager.getInstance().getContainers();
+        List<ModContainer> containers = com.ultreon.bubbles.mod.loader.ModManager.instance().getContainers();
 
-        // Loop addons.
+        // Loop mods.
         for (ModContainer container : containers) {
             // Get scan result.
-            Scanner.ScanResult scanResult = modLoader.getScanResult(container.getSource());
-            List<Class<?>> classes = scanResult.getClasses(ObjectHolder.class);
+            Scanner.Result result = modLoader.getScanResult(container.getSource());
+            List<Class<?>> classes = result.getClasses(ObjectHolder.class);
 
             // Loop classes to register constants in object-holder annotated classes.
             for (Class<?> clazz : classes) {
@@ -316,14 +294,14 @@ public final class LoadScreen extends Screen implements Runnable {
                 // Check if class have object-holder annotation.
                 if (!clazz.isAnnotationPresent(ObjectHolder.class)) continue;
 
-                // Get annotation, to get the addonId from it.
+                // Get annotation, to get the mod id from it.
                 ObjectHolder holder = clazz.getDeclaredAnnotation(ObjectHolder.class);
-                String addonId;
+                String modId;
                 Class<?> type;
 
-                // Check if addonId is present, if true, the addonId variable will be assigned.
+                // Check if modId is present, if true, the mod id variable will be assigned.
                 if (holder != null) {
-                    addonId = holder.addonId();
+                    modId = holder.modId();
                     type = holder.type();
 
                     if (type == ObjectUtils.Null.class) type = null;
@@ -347,7 +325,7 @@ public final class LoadScreen extends Screen implements Runnable {
                                 RegistryEntry object = (RegistryEntry) field.get(null);
 
                                 // Set key.
-                                object.setRegistryName(new ResourceEntry(addonId, field.getName().toLowerCase()));
+                                object.setRegistryName(new ResourceEntry(modId, field.getName().toLowerCase()));
 
                                 // Register.
                                 Registry.getRegistry(objType).registrable(object.getRegistryName(), object);
@@ -372,7 +350,7 @@ public final class LoadScreen extends Screen implements Runnable {
                             RegistryEntry object = (RegistryEntry) field.get(null);
 
                             // Set key.
-                            object.setRegistryName(new ResourceEntry(addonId, field.getName().toLowerCase()));
+                            object.setRegistryName(new ResourceEntry(modId, field.getName().toLowerCase()));
 
                             // Register.
                             Registry.getRegistry(objType).registrable(object.getRegistryName(), object);
@@ -390,7 +368,7 @@ public final class LoadScreen extends Screen implements Runnable {
         BubbleBlaster main = Util.getGame();
 
         // Log
-        this.logInfo("Initializing QBubbles...");
+        this.logInfo("Initializing Bubble Blaster...");
 
         // Add key listener.
         this.logInfo("Loading input event listeners / threads...");
@@ -399,7 +377,7 @@ public final class LoadScreen extends Screen implements Runnable {
         game.getGameWindow().requestFocus();
 
         // XInput event listener thread.
-        XInputEventThread.start();
+        XInputEventThread.instance().start();
 
         // Commands
         this.logInfo("Initializing Commands...");

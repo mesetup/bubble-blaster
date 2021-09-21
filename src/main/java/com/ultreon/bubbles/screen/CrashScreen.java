@@ -1,12 +1,11 @@
 package com.ultreon.bubbles.screen;
 
 import com.ultreon.bubbles.BubbleBlaster;
+import com.ultreon.bubbles.render.gui.CrashButton;
 import com.ultreon.commons.crash.CrashLog;
 import com.ultreon.hydro.Game;
-import com.ultreon.hydro.screen.Screen;
-import com.ultreon.bubbles.render.gui.CrashButton;
-
 import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.Screen;
 import com.ultreon.hydro.util.GraphicsUtils;
 
 import java.awt.*;
@@ -22,7 +21,7 @@ public class CrashScreen extends Screen {
         this.report = crashLog;
         this.reportName = crashLog.getDefaultFileName();
 
-        BubbleBlaster bb = BubbleBlaster.getInstance();
+        BubbleBlaster bb = BubbleBlaster.instance();
         this.crashButton = this.add(new CrashButton(bb.getScaledWidth() / 2 - 64, 60, 128, 24));
         this.crashButton.setText("Open crash report \uD83D\uDCCE");
     }

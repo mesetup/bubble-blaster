@@ -2,19 +2,18 @@ package com.ultreon.bubbles.screen;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.text.translation.I18n;
-import com.ultreon.hydro.Game;
-import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event.SubscribeEvent;
-import com.ultreon.hydro.event.bus.EventBus;
 import com.ultreon.bubbles.render.gui.OptionsButton;
 import com.ultreon.bubbles.render.gui.OptionsNumberInput;
 import com.ultreon.bubbles.settings.GameSettings;
 import com.ultreon.bubbles.util.Util;
-
-import java.awt.*;
+import com.ultreon.hydro.Game;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.TickEvent;
+import com.ultreon.hydro.event.bus.AbstractEvents;
 import com.ultreon.hydro.render.Renderer;
 import com.ultreon.hydro.screen.Screen;
 
+import java.awt.*;
 import java.util.Objects;
 
 @SuppressWarnings("unused")
@@ -25,7 +24,7 @@ public class OptionsScreen extends Screen {
     private final OptionsButton cancelButton;
     private final OptionsButton saveButton;
     private Screen backScene;
-    private EventBus.Handler binding;
+    private AbstractEvents.AbstractSubscription binding;
 
     public OptionsScreen(Screen backScene) {
         super();
@@ -62,7 +61,7 @@ public class OptionsScreen extends Screen {
 
     @Override
     public void init() {
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
 
         maxBubblesOption.make();
         languageButton.make();
@@ -72,7 +71,7 @@ public class OptionsScreen extends Screen {
 
     @Override
     public boolean onClose(Screen to) {
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
 
         maxBubblesOption.destroy();
         languageButton.destroy();
@@ -119,7 +118,7 @@ public class OptionsScreen extends Screen {
         cancelButton.setText(I18n.translateToLocal("other.cancel"));
         cancelButton.render(gg);
 
-        languageButton.setText(I18n.translateToLocal("scene.qbubbles.options.language"));
+        languageButton.setText(I18n.translateToLocal("scene.bubbleblaster.options.language"));
         languageButton.render(gg);
 
         maxBubblesOption.render(gg);
@@ -130,7 +129,7 @@ public class OptionsScreen extends Screen {
 
     public void renderBackground(BubbleBlaster game, Renderer gg) {
         gg.color(new Color(96, 96, 96));
-        gg.rect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
+        gg.rect(0, 0, BubbleBlaster.instance().getWidth(), BubbleBlaster.instance().getHeight());
     }
 
     @SuppressWarnings("EmptyMethod")

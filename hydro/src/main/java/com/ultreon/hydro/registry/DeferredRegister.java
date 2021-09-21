@@ -4,7 +4,8 @@ import com.ultreon.hydro.common.IRegistryEntry;
 import com.ultreon.hydro.common.RegistryEntry;
 import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.hydro.event.SubscribeEvent;
-import com.ultreon.hydro.event.bus.EventBus;
+import com.ultreon.hydro.event.bus.AbstractEvents;
+import com.ultreon.hydro.event.bus.GameEvents;
 import com.ultreon.hydro.event.registry.RegistryEvent;
 import com.ultreon.hydro.registry.object.RegistryObject;
 
@@ -13,21 +14,21 @@ import java.util.HashMap;
 import java.util.function.Supplier;
 
 public class DeferredRegister<T extends IRegistryEntry> {
-    private final String addonId;
+    private final String modId;
     private final Registry<T> registry;
     private final ArrayList<HashMap.Entry<ResourceEntry, Supplier<T>>> objects = new ArrayList<>();
 
-    protected DeferredRegister(String addonId, Registry<T> registry) {
-        this.addonId = addonId;
+    protected DeferredRegister(String modId, Registry<T> registry) {
+        this.modId = modId;
         this.registry = registry;
     }
 
-    public static <T extends RegistryEntry> DeferredRegister<T> create(String addonId, Registry<T> registry) {
-        return new DeferredRegister<>(addonId, registry);
+    public static <T extends RegistryEntry> DeferredRegister<T> create(String modId, Registry<T> registry) {
+        return new DeferredRegister<>(modId, registry);
     }
 
     public <C extends T> RegistryObject<C> register(String key, Supplier<C> supplier) {
-        ResourceEntry rl = new ResourceEntry(addonId, key);
+        ResourceEntry rl = new ResourceEntry(modId, key);
 
 //        if (!registry.getType().isAssignableFrom(supplier.get().getClass())) {
 //            throw new IllegalArgumentException("Tried to register illegal type: " + supplier.get().getClass() + " expected assignable to " + registry.getType());
@@ -38,8 +39,8 @@ public class DeferredRegister<T extends IRegistryEntry> {
         return new RegistryObject<C>(registry, supplier, rl);
     }
 
-    public void register(EventBus eventBus) {
-        eventBus.register(this);
+    public void register(GameEvents events) {
+        events.subscribe(this);
     }
 
     @SubscribeEvent

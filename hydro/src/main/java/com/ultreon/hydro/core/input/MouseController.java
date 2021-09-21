@@ -1,7 +1,7 @@
 package com.ultreon.hydro.core.input;
 
 import com.ultreon.hydro.Game;
-import com.ultreon.hydro.event.bus.GameEventBus;
+import com.ultreon.hydro.event.bus.GameEvents;
 import com.ultreon.hydro.event.input.MouseMotionEvent;
 import com.ultreon.hydro.event.type.MouseEventType;
 import com.ultreon.hydro.screen.Screen;
@@ -56,8 +56,8 @@ public abstract class MouseController extends MouseAdapter {
 
         logger.info("MouseInput[8078f1f3]: CLICK (" + e.getX() + ", " + e.getY() + ") (" + e.getClickCount() + ")");
 
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new com.ultreon.hydro.event.input.MouseEvent(Game.getInstance(), this, e, MouseEventType.CLICK));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new com.ultreon.hydro.event.input.MouseEvent(Game.getInstance(), this, e, MouseEventType.CLICK));
         }
 
         ScreenManager screenManager = game.getScreenManager();
@@ -79,8 +79,8 @@ public abstract class MouseController extends MouseAdapter {
 
         buttonMap.put(e.getButton(), true);
 
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new com.ultreon.hydro.event.input.MouseEvent(Game.getInstance(), this, e, MouseEventType.PRESS));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new com.ultreon.hydro.event.input.MouseEvent(Game.getInstance(), this, e, MouseEventType.PRESS));
         }
 
         ScreenManager screenManager = game.getScreenManager();
@@ -102,8 +102,8 @@ public abstract class MouseController extends MouseAdapter {
         logger.info("MouseInput[d22a46e6]: " + e.getPoint());
         logger.info("MouseInput[ac481ce9]: " + currentPoint);
 
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new com.ultreon.hydro.event.input.MouseEvent(Game.getInstance(), this, e, MouseEventType.RELEASE));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new com.ultreon.hydro.event.input.MouseEvent(Game.getInstance(), this, e, MouseEventType.RELEASE));
         }
 
         ScreenManager screenManager = game.getScreenManager();
@@ -120,8 +120,8 @@ public abstract class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new MouseMotionEvent(Game.getInstance(), this, e, MouseEventType.ENTER));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new MouseMotionEvent(Game.getInstance(), this, e, MouseEventType.ENTER));
         }
     }
 
@@ -130,8 +130,8 @@ public abstract class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new MouseMotionEvent(Game.getInstance(), this, e, MouseEventType.LEAVE));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new MouseMotionEvent(Game.getInstance(), this, e, MouseEventType.LEAVE));
         }
 
         ScreenManager screenManager = game.getScreenManager();
@@ -148,8 +148,8 @@ public abstract class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new MouseMotionEvent(Game.getInstance(), this, e, MouseEventType.DRAG));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new MouseMotionEvent(Game.getInstance(), this, e, MouseEventType.DRAG));
         }
 
         ScreenManager screenManager = game.getScreenManager();
@@ -168,8 +168,8 @@ public abstract class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new MouseMotionEvent(Game.getInstance(), this, e, MouseEventType.MOTION));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new MouseMotionEvent(Game.getInstance(), this, e, MouseEventType.MOTION));
         }
 
         ScreenManager screenManager = game.getScreenManager();
@@ -186,8 +186,8 @@ public abstract class MouseController extends MouseAdapter {
         currentLocationOnScreen = e.getLocationOnScreen() != null ? e.getLocationOnScreen() : currentLocationOnScreen;
         currentPoint = e.getPoint() != null ? e.getPoint() : currentPoint;
 
-        if (GameEventBus.get() != null) {
-            GameEventBus.get().post(new com.ultreon.hydro.event.input.MouseWheelEvent(Game.getInstance(), this, e, MouseEventType.MOTION));
+        if (GameEvents.get() != null) {
+            GameEvents.get().publish(new com.ultreon.hydro.event.input.MouseWheelEvent(Game.getInstance(), this, e, MouseEventType.MOTION));
         }
 
         ScreenManager screenManager = game.getScreenManager();

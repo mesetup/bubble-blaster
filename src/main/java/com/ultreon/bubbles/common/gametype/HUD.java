@@ -1,7 +1,6 @@
 package com.ultreon.bubbles.common.gametype;
 
 import com.ultreon.bubbles.gametype.hud.ClassicHUD;
-
 import com.ultreon.hydro.render.Renderer;
 
 /**

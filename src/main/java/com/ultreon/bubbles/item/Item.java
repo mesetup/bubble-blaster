@@ -1,10 +1,10 @@
 package com.ultreon.bubbles.item;
 
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.TagHolder;
 import com.ultreon.bubbles.common.interfaces.StateHolder;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.registry.Registers;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.bson.BsonDocument;
 import org.bson.BsonString;
 import org.jetbrains.annotations.NotNull;

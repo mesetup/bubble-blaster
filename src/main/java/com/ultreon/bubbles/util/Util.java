@@ -2,11 +2,11 @@ package com.ultreon.bubbles.util;
 
 import com.google.common.annotations.Beta;
 import com.ultreon.bubbles.BubbleBlaster;
+import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
 import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
-import com.ultreon.bubbles.save.SavedGame;
-import com.ultreon.hydro.screen.gui.Window;
 import com.ultreon.hydro.screen.ScreenManager;
+import com.ultreon.hydro.screen.gui.Window;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -18,21 +18,21 @@ import java.util.ArrayList;
 @FieldsAreNonnullByDefault
 public class Util {
     public static ScreenManager getSceneManager() {
-        return BubbleBlaster.getInstance().getScreenManager();
+        return BubbleBlaster.instance().getScreenManager();
     }
 
     public static BubbleBlaster getGame() {
-        return BubbleBlaster.getInstance();
+        return BubbleBlaster.instance();
     }
 
     public static Font getGameFont() {
-        return BubbleBlaster.getInstance().getGameFont();
+        return BubbleBlaster.instance().getGameFont();
     }
 
     @Deprecated
     @Nullable
     public static java.awt.Window getWindow() {
-        return BubbleBlaster.getInstance().getFrame();
+        return BubbleBlaster.instance().getFrame();
     }
 
     @Deprecated
@@ -43,7 +43,7 @@ public class Util {
 
     public static void setCursor(Cursor cursor) {
         // Set the cursor to the Game Window.
-        BubbleBlaster.getInstance().getGameWindow().setCursor(cursor);
+        BubbleBlaster.instance().getGameWindow().setCursor(cursor);
     }
 
     @Beta

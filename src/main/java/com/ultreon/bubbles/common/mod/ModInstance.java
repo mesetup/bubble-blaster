@@ -1,21 +1,21 @@
 package com.ultreon.bubbles.common.mod;
 
-import com.ultreon.bubbles.event.bus.LocalAddonEventBus;
+import com.ultreon.bubbles.event.bus.ModEvents;
 import org.apache.logging.log4j.Logger;
 
 public abstract class ModInstance {
     public final Logger logger;
-    private final String addonId;
+    private final String modId;
     private final ModObject<? extends ModInstance> modObject;
 
-    public ModInstance(Logger logger, String addonId, ModObject<? extends ModInstance> modObject) {
+    public ModInstance(Logger logger, String modId, ModObject<? extends ModInstance> modObject) {
         this.logger = logger;
-        this.addonId = addonId;
+        this.modId = modId;
         this.modObject = modObject;
     }
 
     // * See comment on cast
-    public LocalAddonEventBus<? extends ModInstance> getEventBus() {
+    public ModEvents<? extends ModInstance> getEventBus() {
         return modObject.getEventBus();
     }
 
@@ -23,11 +23,11 @@ public abstract class ModInstance {
         return logger;
     }
 
-    public String getAddonId() {
-        return addonId;
+    public String getModId() {
+        return modId;
     }
 
-    public ModObject<? extends ModInstance> getAddonObject() {
+    public ModObject<? extends ModInstance> getModObject() {
         return modObject;
     }
 }

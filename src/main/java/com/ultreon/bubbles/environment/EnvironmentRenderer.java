@@ -4,10 +4,10 @@ import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.gamestate.GameEvent;
 import com.ultreon.bubbles.common.renderer.IRenderer;
 import com.ultreon.bubbles.entity.Entity;
+import com.ultreon.hydro.render.Renderer;
 
 import javax.annotation.Nullable;
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.geom.Ellipse2D;
 
 public class EnvironmentRenderer implements IRenderer {
@@ -73,11 +73,11 @@ public class EnvironmentRenderer implements IRenderer {
 
     @Nullable
     public Environment getEnvironment() {
-        if (BubbleBlaster.getInstance() == null) {
+        if (BubbleBlaster.instance() == null) {
             return null;
         }
 
-        return BubbleBlaster.getInstance().environment;
+        return BubbleBlaster.instance().environment;
     }
 
     @Override
@@ -92,9 +92,9 @@ public class EnvironmentRenderer implements IRenderer {
             gg.color(currentGameEvent.getBackgroundColor());
         } else {
             gg.color(new Color(0, 96, 128));
-            gg.paint(new GradientPaint(0f, 0f, new Color(0x008EDA), 0f, BubbleBlaster.getInstance().getHeight(), new Color(0x004BA1)));
+            gg.paint(new GradientPaint(0f, 0f, new Color(0x008EDA), 0f, BubbleBlaster.instance().getHeight(), new Color(0x004BA1)));
         }
-        gg.rect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
+        gg.rect(0, 0, BubbleBlaster.instance().getWidth(), BubbleBlaster.instance().getHeight());
 
         environment.getGameType().render(gg);
 

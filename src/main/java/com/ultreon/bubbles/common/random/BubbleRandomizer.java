@@ -1,11 +1,11 @@
 package com.ultreon.bubbles.common.random;
 
-import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
-import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 import com.ultreon.bubbles.bubble.AbstractBubble;
 import com.ultreon.bubbles.bubble.BubbleProperties;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.entity.bubble.BubbleSystem;
+import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
+import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.geom.Rectangle2D;

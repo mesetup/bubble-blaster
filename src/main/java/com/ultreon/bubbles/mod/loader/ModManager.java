@@ -1,36 +1,39 @@
 package com.ultreon.bubbles.mod.loader;
 
-import com.ultreon.bubbles.mod.ModContainer;
-import com.ultreon.commons.map.SequencedHashMap;
 import com.ultreon.bubbles.common.mod.ModInstance;
 import com.ultreon.bubbles.common.mod.ModObject;
+import com.ultreon.bubbles.mod.ModContainer;
+import com.ultreon.commons.map.SequencedHashMap;
+import com.ultreon.hydro.core.AntiMod;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@SuppressWarnings("unused")
+@AntiMod
 public class ModManager {
-    private static final ModManager INSTANCE = new ModManager();
-    private static final List<ModContainer> CONTAINERS = new ArrayList<>();
-    private static final List<String> ADDON_IDS = new ArrayList<>();
+    private static final ModManager instance = new ModManager();
 
-    private final SequencedHashMap<String, ModObject<? extends ModInstance>> addonObjects;
-    private final SequencedHashMap<String, ModInstance> addons;
+    private static final List<ModContainer> containers = new ArrayList<>();
+    private static final List<String> modIds = new ArrayList<>();
+
+    private static final SequencedHashMap<String, ModObject<? extends ModInstance>> modObjects = new SequencedHashMap<>();
+    private static final SequencedHashMap<String, ModInstance> mods = new SequencedHashMap<>();
 
     private ModManager() {
-        this.addonObjects = new SequencedHashMap<>();
-        this.addons = new SequencedHashMap<>();
+
     }
 
-    public static ModManager getInstance() {
-        return INSTANCE;
+    public static ModManager instance() {
+        return instance;
     }
 
     @Nullable
-    public ModContainer getContainerFromId(String addonId) {
-        for (ModContainer container : CONTAINERS) {
-            if (container.getModId().equals(addonId)) {
+    public ModContainer getContainerFromId(String modId) {
+        for (ModContainer container : containers) {
+            if (container.getModId().equals(modId)) {
                 return container;
             }
         }
@@ -38,47 +41,51 @@ public class ModManager {
     }
 
     static void registerContainer(ModContainer container) {
-        if (ADDON_IDS.contains(container.getModId())) {
-            throw new IllegalArgumentException("Addon id already used in other addon.");
+        if (modIds.contains(container.getModId())) {
+            throw new IllegalArgumentException("Mod id already used in other mod.");
         }
-        ADDON_IDS.add(container.getModId());
-        CONTAINERS.add(container);
+        modIds.add(container.getModId());
+        containers.add(container);
     }
 
     public List<ModContainer> getContainers() {
-        return CONTAINERS;
+        return containers;
     }
 
-    public ModObject<? extends ModInstance> getAddonObject(String id) {
-        if (!addonObjects.containsKey(id)) {
+    public ModObject<? extends ModInstance> getModObject(String id) {
+        if (!modObjects.containsKey(id)) {
             return null;
         }
 
-        return addonObjects.get(id);
+        return modObjects.get(id);
     }
 
     @Nullable
-    public ModInstance getAddon(String id) {
-        if (!addons.containsKey(id)) {
+    public ModInstance getMod(String id) {
+        if (!mods.containsKey(id)) {
             return null;
         }
 
-        return addons.get(id);
+        return mods.get(id);
     }
 
-    public void registerAddonObject(ModObject<? extends ModInstance> modObject) {
-        this.addonObjects.put(modObject.getNamespace(), modObject);
+    public void registerModObject(ModObject<? extends ModInstance> modObject) {
+        modObjects.put(modObject.getNamespace(), modObject);
     }
 
-    public void registerAddon(ModInstance addon) {
-        this.addons.put(addon.getAddonId(), addon);
+    public void registerMod(ModInstance mod) {
+        mods.put(mod.getModId(), mod);
     }
 
-    public Collection<ModObject<? extends ModInstance>> getAddonObjects() {
-        return addonObjects.values();
+    public Collection<ModObject<? extends ModInstance>> getModObjects() {
+        return modObjects.values();
     }
 
-    public Collection<ModInstance> getAddons() {
-        return addons.values();
+    public Collection<ModInstance> getMods() {
+        return mods.values();
+    }
+
+    public List<String> getModIds() {
+        return modIds;
     }
 }

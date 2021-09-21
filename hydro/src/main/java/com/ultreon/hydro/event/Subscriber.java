@@ -1,6 +1,6 @@
 package com.ultreon.hydro.event;
 
-public abstract class EventHandler<T extends Event> {
+public abstract class Subscriber<T extends AbstractEvent> {
     public abstract void handle(T e);
 
     public abstract EventPriority getPriority();

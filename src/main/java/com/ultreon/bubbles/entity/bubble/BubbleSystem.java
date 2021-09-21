@@ -1,9 +1,9 @@
 package com.ultreon.bubbles.entity.bubble;
 
 import com.ultreon.bubbles.bubble.AbstractBubble;
+import com.ultreon.bubbles.common.exceptions.ValueExists;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.common.random.Rng;
-import com.ultreon.bubbles.common.exceptions.ValueExists;
 import com.ultreon.bubbles.registry.Registers;
 import com.ultreon.hydro.registry.Registry;
 
@@ -89,7 +89,7 @@ public class BubbleSystem {
     /**
      * Returns a random bubble from the bubbles initialized in {@link #init()}.
      *
-     * @param rand The random instance used for the bubble system e.g. {@code qbubbles:bubble_system} from the initDefaults in {@link AbstractGameType}.
+     * @param rand The random instance used for the bubble system e.g. {@code bubbleblaster:bubble_system} from the initDefaults in {@link AbstractGameType}.
      * @return A random bubble.
      */
     public static AbstractBubble random(Rng rand, AbstractGameType gameType) {

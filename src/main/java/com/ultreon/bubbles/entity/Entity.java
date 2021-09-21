@@ -2,24 +2,23 @@ package com.ultreon.bubbles.entity;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.AttributeMap;
-import com.ultreon.hydro.GameObject;
-import com.ultreon.hydro.common.ResourceEntry;
-import com.ultreon.bubbles.effect.StatusEffectInstance;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.common.interfaces.StateHolder;
+import com.ultreon.bubbles.effect.StatusEffectInstance;
 import com.ultreon.bubbles.entity.meta.MetaData;
 import com.ultreon.bubbles.entity.player.ability.AbilityType;
 import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.event.EntityCollisionEvent;
-import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.bubbles.registry.Registers;
+import com.ultreon.hydro.GameObject;
+import com.ultreon.hydro.common.ResourceEntry;
+import com.ultreon.hydro.event.SubscribeEvent;
 import org.bson.BsonDocument;
 import org.bson.BsonString;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.HashSet;

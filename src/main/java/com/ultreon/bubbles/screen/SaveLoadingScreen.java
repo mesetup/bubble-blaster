@@ -1,23 +1,23 @@
 package com.ultreon.bubbles.screen;
 
 import com.ultreon.bubbles.BubbleBlaster;
-import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
-import com.ultreon.commons.lang.InfoTransporter;
-import com.ultreon.commons.crash.CrashLog;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
+import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.save.SavedGame;
+import com.ultreon.bubbles.settings.GameSettings;
+import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
+import com.ultreon.commons.crash.CrashLog;
+import com.ultreon.commons.lang.InfoTransporter;
 import com.ultreon.hydro.Game;
+import com.ultreon.hydro.render.Renderer;
 import com.ultreon.hydro.screen.Screen;
 import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.bubbles.environment.Environment;
-import com.ultreon.bubbles.settings.GameSettings;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class SaveLoadingScreen extends Screen {
     private final SavedGame savedGame;
     private final boolean create;
     private String description = "";
-    protected BubbleBlaster game = BubbleBlaster.getInstance();
+    protected BubbleBlaster game = BubbleBlaster.instance();
 
     private void setDescription(String s) {
         this.description = s;
@@ -95,18 +95,18 @@ public class SaveLoadingScreen extends Screen {
             throw crashLog.createCrash();
         }
 
-        BubbleBlaster.getInstance().showScreen(null);
+        BubbleBlaster.instance().showScreen(null);
     }
 
     @Override
     public void render(Game game, Renderer gg) {
         gg.color(new Color(64, 64, 64));
-        gg.rect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
+        gg.rect(0, 0, BubbleBlaster.instance().getWidth(), BubbleBlaster.instance().getHeight());
         if (GameSettings.instance().isTextAntialiasEnabled())
             gg.hint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         gg.color(new Color(127, 127, 127));
-        GraphicsUtils.drawCenteredString(gg, this.description, new Rectangle2D.Double(0, ((double) BubbleBlaster.getInstance().getHeight() / 2) + 40, BubbleBlaster.getInstance().getWidth(), 50d), new Font("Helvetica", Font.PLAIN, 20));
+        GraphicsUtils.drawCenteredString(gg, this.description, new Rectangle2D.Double(0, ((double) BubbleBlaster.instance().getHeight() / 2) + 40, BubbleBlaster.instance().getWidth(), 50d), new Font("Helvetica", Font.PLAIN, 20));
         if (GameSettings.instance().isTextAntialiasEnabled())
             gg.hint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 

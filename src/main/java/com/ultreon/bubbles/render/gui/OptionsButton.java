@@ -2,31 +2,28 @@ package com.ultreon.bubbles.render.gui;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
-import com.ultreon.hydro.screen.gui.IGuiListener;
-import com.ultreon.hydro.input.MouseInput;
-import com.ultreon.hydro.screen.gui.AbstractButton;
-import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.hydro.event.RenderEventPriority;
-import com.ultreon.hydro.event.bus.EventBus;
-import com.ultreon.hydro.screen.gui.border.Border;
 import com.ultreon.bubbles.media.AudioSlot;
 import com.ultreon.bubbles.util.Util;
+import com.ultreon.hydro.event.bus.AbstractEvents;
+import com.ultreon.hydro.input.MouseInput;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.gui.AbstractButton;
+import com.ultreon.hydro.screen.gui.IGuiListener;
+import com.ultreon.hydro.screen.gui.Rectangle;
+import com.ultreon.hydro.screen.gui.border.Border;
+import com.ultreon.hydro.util.GraphicsUtils;
 import com.ultreon.hydro.vector.Vector2i;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.geom.Rectangle2D;
 import java.net.URISyntaxException;
 import java.util.Objects;
-import com.ultreon.hydro.screen.gui.Rectangle;
 
 @SuppressWarnings("unused")
 public class OptionsButton extends AbstractButton implements IGuiListener {
     protected long pressedTime;
     protected final long hash;
-    @Deprecated
-    protected RenderEventPriority renderEventPriority;
     protected boolean hovered;
     protected boolean pressed;
     protected boolean eventsActive = false;
@@ -38,7 +35,7 @@ public class OptionsButton extends AbstractButton implements IGuiListener {
     protected Integer visualX;
     @Nullable
     protected Integer visualY;
-    private EventBus.Handler binding;
+    private AbstractEvents.AbstractSubscription binding;
 
     public void setText(String text) {
         this.text = text;
@@ -151,11 +148,11 @@ public class OptionsButton extends AbstractButton implements IGuiListener {
 
         Vector2i mousePos = MouseInput.getPos();
         if (isWithinBounds(mousePos)) {
-            Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
+            Util.setCursor(BubbleBlaster.instance().getPointerCursor());
 
             if (!hovered) {
                 try {
-                    AudioSlot focusChangeSFX = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/qbubbles/audio/sfx/ui/button/focus_change.wav")), "focusChange");
+                    AudioSlot focusChangeSFX = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/bubbleblaster/audio/sfx/ui/button/focus_change.wav")), "focusChange");
                     focusChangeSFX.setVolume(0.2d);
                     focusChangeSFX.play();
                 } catch (URISyntaxException e) {
@@ -166,7 +163,7 @@ public class OptionsButton extends AbstractButton implements IGuiListener {
             hovered = true;
         } else {
             if (hovered) {
-                Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
+                Util.setCursor(BubbleBlaster.instance().getDefaultCursor());
                 hovered = false;
             }
         }
@@ -231,7 +228,7 @@ public class OptionsButton extends AbstractButton implements IGuiListener {
 
         Renderer gg1 = gg.create(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2);
         gg1.color(textColor);
-        GraphicsUtils.drawCenteredString(gg1, text, new Rectangle2D.Double(0, 0, bounds.width - 2, bounds.height - 2), new Font(BubbleBlaster.getInstance().getFont().getName(), Font.BOLD, 16));
+        GraphicsUtils.drawCenteredString(gg1, text, new Rectangle2D.Double(0, 0, bounds.width - 2, bounds.height - 2), new Font(BubbleBlaster.instance().getFont().getName(), Font.BOLD, 16));
         gg1.dispose();
     }
 
@@ -241,24 +238,24 @@ public class OptionsButton extends AbstractButton implements IGuiListener {
 
     @Override
     public void make() {
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
         eventsActive = true;
 
         Vector2i mousePos = MouseInput.getPos();
         boolean hoveredNew = isWithinBounds(mousePos);
         if (isWithinBounds(mousePos)) {
-            Util.setCursor(BubbleBlaster.getInstance().getPointerCursor());
+            Util.setCursor(BubbleBlaster.instance().getPointerCursor());
             hovered = true;
         }
     }
 
     @Override
     public void destroy() {
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
         eventsActive = false;
 
         if (hovered) {
-            Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
+            Util.setCursor(BubbleBlaster.instance().getDefaultCursor());
             hovered = false;
         }
     }
@@ -274,16 +271,6 @@ public class OptionsButton extends AbstractButton implements IGuiListener {
 
     public boolean isPressed() {
         return pressed;
-    }
-
-    @Deprecated
-    public RenderEventPriority getRenderEventPriority() {
-        return renderEventPriority;
-    }
-
-    @Deprecated
-    public void setRenderEventPriority(RenderEventPriority renderEventPriority) {
-        this.renderEventPriority = renderEventPriority;
     }
 
     public Runnable getCommand() {

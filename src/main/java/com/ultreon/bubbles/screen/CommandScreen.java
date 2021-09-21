@@ -3,18 +3,18 @@ package com.ultreon.bubbles.screen;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.LoadedGame;
 import com.ultreon.bubbles.command.CommandConstructor;
+import com.ultreon.bubbles.util.Util;
+import com.ultreon.bubbles.util.helpers.MathHelper;
 import com.ultreon.hydro.Game;
-import com.ultreon.hydro.screen.Screen;
-import com.ultreon.hydro.util.GraphicsUtils;
 import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.input.KeyboardEvent;
 import com.ultreon.hydro.event.type.KeyEventType;
-import com.ultreon.bubbles.util.Util;
-import com.ultreon.bubbles.util.helpers.MathHelper;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.Screen;
+import com.ultreon.hydro.util.GraphicsUtils;
 import org.apache.tools.ant.types.Commandline;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.util.Arrays;
@@ -32,12 +32,12 @@ public class CommandScreen extends Screen {
 
     @Override
     public void init() {
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
     }
 
     @Override
     public boolean onClose(Screen to) {
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
 
         currentText = "/";
         cursorIndex = 1;
@@ -52,7 +52,7 @@ public class CommandScreen extends Screen {
 
     @SubscribeEvent
     public void onKeyboard(KeyboardEvent evt) {
-        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.instance().getLoadedGame();
 
         if (loadedGame == null) {
             return;
@@ -84,7 +84,7 @@ public class CommandScreen extends Screen {
             if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_ENTER) {
                 if (currentText.charAt(0) != '/') {
                     Objects.requireNonNull(loadedGame.getGameType().getPlayer()).sendMessage("Not a command, start with a ‘/’ for a command.");
-                    BubbleBlaster.getInstance().showScreen(null);
+                    BubbleBlaster.instance().showScreen(null);
                     return;
                 }
 
@@ -93,16 +93,16 @@ public class CommandScreen extends Screen {
 
                 if (!CommandConstructor.execute(parsed.get(0), loadedGame.getGameType().getPlayer(), args)) {
                     Objects.requireNonNull(loadedGame.getGameType().getPlayer()).sendMessage("Command ‘" + parsed.get(0) + "’ is non-existent.");
-                    BubbleBlaster.getInstance().showScreen(null);
+                    BubbleBlaster.instance().showScreen(null);
                     return;
                 }
 
-                BubbleBlaster.getInstance().showScreen(null);
+                BubbleBlaster.instance().showScreen(null);
                 return;
             }
 
             if (evt.getType() == KeyEventType.PRESS && evt.getParentEvent().getKeyCode() == KeyEvent.VK_ESCAPE) {
-                BubbleBlaster.getInstance().showScreen(null);
+                BubbleBlaster.instance().showScreen(null);
                 return;
             }
 
@@ -136,18 +136,18 @@ public class CommandScreen extends Screen {
     }
 
     public void render(BubbleBlaster game, Renderer gg) {
-        if (!BubbleBlaster.getInstance().isGameLoaded()) {
+        if (!BubbleBlaster.instance().isGameLoaded()) {
             return;
         }
 
         gg.color(new Color(0, 0, 0, 64));
-        gg.rect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
+        gg.rect(0, 0, BubbleBlaster.instance().getWidth(), BubbleBlaster.instance().getHeight());
 
         gg.color(new Color(0, 0, 0, 128));
-        gg.rect(0, BubbleBlaster.getInstance().getHeight() - 32, BubbleBlaster.getInstance().getWidth(), 32);
+        gg.rect(0, BubbleBlaster.instance().getHeight() - 32, BubbleBlaster.instance().getWidth(), 32);
 
         gg.color(new Color(255, 255, 255, 255));
-        GraphicsUtils.drawLeftAnchoredString(gg, currentText, new Point2D.Double(2, BubbleBlaster.getInstance().getHeight() - 28), 28, defaultFont);
+        GraphicsUtils.drawLeftAnchoredString(gg, currentText, new Point2D.Double(2, BubbleBlaster.instance().getHeight() - 28), 28, defaultFont);
 
         FontMetrics fontMetrics = gg.getFontMetrics(defaultFont);
 
@@ -161,8 +161,8 @@ public class CommandScreen extends Screen {
                 cursorX = 0;
             }
 
-            gg.line(cursorX, BubbleBlaster.getInstance().getHeight() - 30, cursorX, BubbleBlaster.getInstance().getHeight() - 2);
-            gg.line(cursorX + 1, BubbleBlaster.getInstance().getHeight() - 30, cursorX + 1, BubbleBlaster.getInstance().getHeight() - 2);
+            gg.line(cursorX, BubbleBlaster.instance().getHeight() - 30, cursorX, BubbleBlaster.instance().getHeight() - 2);
+            gg.line(cursorX + 1, BubbleBlaster.instance().getHeight() - 30, cursorX + 1, BubbleBlaster.instance().getHeight() - 2);
         } else {
             if (currentText.length() != 0) {
                 cursorX = fontMetrics.stringWidth(currentText.substring(0, cursorIndex));
@@ -171,8 +171,8 @@ public class CommandScreen extends Screen {
             }
 
             int width = fontMetrics.charWidth(currentText.charAt(cursorIndex));
-            gg.line(cursorX, BubbleBlaster.getInstance().getHeight() - 2, cursorX + width, BubbleBlaster.getInstance().getHeight() - 2);
-            gg.line(cursorX, BubbleBlaster.getInstance().getHeight() - 1, cursorX + width, BubbleBlaster.getInstance().getHeight() - 1);
+            gg.line(cursorX, BubbleBlaster.instance().getHeight() - 2, cursorX + width, BubbleBlaster.instance().getHeight() - 2);
+            gg.line(cursorX, BubbleBlaster.instance().getHeight() - 1, cursorX + width, BubbleBlaster.instance().getHeight() - 1);
         }
     }
 }

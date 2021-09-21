@@ -6,6 +6,7 @@ import com.studiohartman.jamepad.ControllerState;
 
 @SuppressWarnings("unused")
 public class XInputEvent extends Event {
+    // Buttons
     private boolean buttonA;
     private boolean buttonB;
     private boolean buttonX;
@@ -16,41 +17,47 @@ public class XInputEvent extends Event {
     private boolean xJustPressed;
     private boolean yJustPressed;
 
+    // Back buttons.
     private boolean leftButton;
     private boolean rightButton;
     private boolean leftBtnJustPressed;
     private boolean rightBtnJustPressed;
 
+    // Triggers
     private float leftTrigger;
     private float rightTrigger;
 
+    // Left stick
     private float leftStickX;
     private float leftStickY;
     private float leftStickAngle;
-    private boolean leftStickClick;
     private float leftStickMagnitude;
+    private boolean leftStickClick;
     private boolean leftStickJustClicked;
 
+    // Right stick
     private float rightStickX;
     private float rightStickY;
     private float rightStickAngle;
-    private boolean rightStickClick;
     private float rightStickMagnitude;
+    private boolean rightStickClick;
     private boolean rightStickJustClicked;
 
+    // D-Pad
     private boolean dpadUp;
     private boolean dpadDown;
     private boolean dpadLeft;
     private boolean dpadRight;
-
     private boolean dpadUpJustPressed;
     private boolean dpadDownJustPressed;
     private boolean dpadLeftJustPressed;
     private boolean dpadRightJustPressed;
 
+    // Miscellaneous buttons.
     private boolean back;
     private boolean guide;
     private boolean start;
+
     private ControllerManager manager;
 
     public XInputEvent(ControllerState state, ControllerManager manager) {

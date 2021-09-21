@@ -2,21 +2,21 @@ package com.ultreon.bubbles.gametype.hud;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.LoadedGame;
-import com.ultreon.bubbles.effect.StatusEffectInstance;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.common.gametype.HUD;
 import com.ultreon.bubbles.common.text.translation.I18n;
-import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.commons.util.TimeUtils;
+import com.ultreon.bubbles.effect.StatusEffectInstance;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
-import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.bubbles.gametype.ClassicType;
 import com.ultreon.bubbles.util.helpers.MathHelper;
+import com.ultreon.commons.util.TimeUtils;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.TickEvent;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.util.GraphicsUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
@@ -31,9 +31,9 @@ import java.util.Objects;
 public class ClassicHUD extends HUD {
     private boolean gameOver;
     private long gameOverTime;
-    private final Font gameOverFont = new Font(BubbleBlaster.getInstance().getGameFontName(), Font.BOLD, 50);
-    private final Font infoTitleFont = new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 18);
-    private final Font infoValueFont = new Font(BubbleBlaster.getInstance().getSansFontName(), Font.PLAIN, 14);
+    private final Font gameOverFont = new Font(BubbleBlaster.instance().getGameFontName(), Font.BOLD, 50);
+    private final Font infoTitleFont = new Font(BubbleBlaster.instance().getSansFontName(), Font.BOLD, 18);
+    private final Font infoValueFont = new Font(BubbleBlaster.instance().getSansFontName(), Font.PLAIN, 14);
     private final Stroke healthLine = new BasicStroke(1);
 
     public ClassicHUD(AbstractGameType gameType) {
@@ -41,7 +41,7 @@ public class ClassicHUD extends HUD {
     }
 
     public void renderHUD(Renderer renderer) {
-        BubbleBlaster game = BubbleBlaster.getInstance();
+        BubbleBlaster game = BubbleBlaster.instance();
         LoadedGame loadedGame = game.getLoadedGame();
         if (loadedGame == null) return;
 
@@ -117,13 +117,13 @@ public class ClassicHUD extends HUD {
             if (player != null) {
                 // Score
                 renderer.color(titleColor);
-                GraphicsUtils.drawCenteredString(renderer, I18n.translateToLocal("info.qbubbles.score"), new Rectangle(10, 10, 80, 20), infoTitleFont);
+                GraphicsUtils.drawCenteredString(renderer, I18n.translateToLocal("info.bubbleblaster.score"), new Rectangle(10, 10, 80, 20), infoTitleFont);
                 renderer.color(descriptionColor);
                 GraphicsUtils.drawCenteredString(renderer, String.valueOf((int) player.getScore()), new Rectangle(10, 40, 80, 20), infoValueFont);
 
                 // Level
                 renderer.color(titleColor);
-                GraphicsUtils.drawCenteredString(renderer, I18n.translateToLocal("info.qbubbles.level"), new Rectangle(100, 10, 80, 20), infoTitleFont);
+                GraphicsUtils.drawCenteredString(renderer, I18n.translateToLocal("info.bubbleblaster.level"), new Rectangle(100, 10, 80, 20), infoTitleFont);
                 renderer.color(descriptionColor);
                 GraphicsUtils.drawCenteredString(renderer, String.valueOf(player.getLevel()), new Rectangle(100, 40, 80, 20), infoValueFont);
 

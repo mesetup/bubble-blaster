@@ -1,9 +1,9 @@
 package com.ultreon.bubbles.common;
 
-import com.ultreon.commons.function.primitive.BiFloat2FloatFunction;
-import com.ultreon.commons.function.primitive.Float2FloatFunction;
 import com.ultreon.bubbles.common.holders.IArrayDataHolder;
 import com.ultreon.bubbles.entity.attribute.Attribute;
+import com.ultreon.commons.function.primitive.BiFloat2FloatFunction;
+import com.ultreon.commons.function.primitive.Float2FloatFunction;
 import org.bson.*;
 
 import javax.annotation.Nullable;

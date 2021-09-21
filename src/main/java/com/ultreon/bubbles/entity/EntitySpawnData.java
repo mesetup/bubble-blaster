@@ -32,11 +32,11 @@ public class EntitySpawnData {
     }
 
     public static EntitySpawnData fromLoadSpawn(@NonNull BsonDocument state) {
-        return new EntitySpawnData(SpawnReason.LOAD, state, null, null, BubbleBlaster.getInstance().environment);
+        return new EntitySpawnData(SpawnReason.LOAD, state, null, null, BubbleBlaster.instance().environment);
     }
 
     public static EntitySpawnData fromNaturalSpawn(Point pos) {
-        return new EntitySpawnData(SpawnReason.NATURAL, null, pos, null, BubbleBlaster.getInstance().environment);
+        return new EntitySpawnData(SpawnReason.NATURAL, null, pos, null, BubbleBlaster.instance().environment);
     }
 
     public static EntitySpawnData fromNaturalSpawn(Point pos, Environment environment) {
@@ -44,7 +44,7 @@ public class EntitySpawnData {
     }
 
     public static EntitySpawnData fromCommand(Command command) {
-        return new EntitySpawnData(SpawnReason.COMMAND, null, null, command, BubbleBlaster.getInstance().environment);
+        return new EntitySpawnData(SpawnReason.COMMAND, null, null, command, BubbleBlaster.instance().environment);
     }
 
     public static EntitySpawnData fromCommand(Command command, Environment environment) {

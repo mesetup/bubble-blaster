@@ -141,7 +141,7 @@ public final class SvgHelper {
 
         // For a smooth graphic with no jagged edges or rasterized look.
 
-        if (BubbleBlaster.getInstance().getRenderSettings().isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
+        if (BubbleBlaster.instance().getRenderSettings().isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING, RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
@@ -206,7 +206,7 @@ public final class SvgHelper {
         Graphics2D g2d = (Graphics2D) bufferedImage.getGraphics();
 
         // For a smooth graphic with no jagged edges or rasterized look.
-        if (BubbleBlaster.getInstance().getRenderSettings().isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
+        if (BubbleBlaster.instance().getRenderSettings().isAntialiasingEnabled() && GameSettings.instance().isAntialiasEnabled())
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING, RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);

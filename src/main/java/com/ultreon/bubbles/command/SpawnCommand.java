@@ -2,11 +2,11 @@ package com.ultreon.bubbles.command;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.bubble.AbstractBubble;
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.environment.Environment;
-import com.ultreon.hydro.registry.Registry;
 import com.ultreon.commons.utilities.python.builtins.ValueError;
+import com.ultreon.hydro.common.ResourceEntry;
+import com.ultreon.hydro.registry.Registry;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.bson.BsonDocument;
@@ -56,7 +56,7 @@ public class SpawnCommand implements CommandExecutor {
                 String json = StringUtils.join(jsonParts, ' ');
 
                 try {
-                    Objects.requireNonNull(BubbleBlaster.getInstance().getEnvironment()).spawnEntityFromState(BsonDocument.parse(json));
+                    Objects.requireNonNull(BubbleBlaster.instance().getEnvironment()).spawnEntityFromState(BsonDocument.parse(json));
                 } catch (Exception e) {
                     e.printStackTrace();
                     player.sendMessage("Couldn't spawn entity.");

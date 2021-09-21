@@ -1,36 +1,36 @@
 package com.ultreon.bubbles;
 
 import com.ultreon.bubbles.bubble.AbstractBubble;
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.mod.Mod;
 import com.ultreon.bubbles.common.mod.ModInstance;
 import com.ultreon.bubbles.common.mod.ModObject;
 import com.ultreon.bubbles.environment.EnvironmentRenderer;
-import com.ultreon.hydro.event.CollectTexturesEvent;
-import com.ultreon.hydro.event.SubscribeEvent;
-import com.ultreon.bubbles.event.bus.Bus;
-import com.ultreon.bubbles.event.bus.LocalAddonEventBus;
-import com.ultreon.hydro.graphics.ITexture;
-import com.ultreon.hydro.render.TextureCollection;
+import com.ultreon.bubbles.event.bus.EventManagers;
+import com.ultreon.bubbles.event.bus.ModEvents;
 import com.ultreon.bubbles.init.*;
 import com.ultreon.bubbles.registry.Registers;
 import com.ultreon.bubbles.screen.LoadScreen;
+import com.ultreon.hydro.common.ResourceEntry;
+import com.ultreon.hydro.event.CollectTexturesEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.graphics.ITexture;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.render.TextureCollection;
 import org.apache.logging.log4j.Logger;
 
-import com.ultreon.hydro.render.Renderer;
 import java.util.Collection;
 
-@Mod(addonId = "qbubbles")
-public class InternalAddon extends ModInstance {
-    public static final String ADDON_ID = "qbubbles";
+@Mod(modId = "bubbleblaster")
+public class InternalMod extends ModInstance {
+    public static final String MOD_ID = "bubbleblaster";
 
-    public final LocalAddonEventBus<? extends ModInstance> eventBus;
+    public final ModEvents<? extends ModInstance> eventBus;
 
-    public InternalAddon(Logger logger, String addonId, ModObject<InternalAddon> modObject) {
-        super(logger, addonId, modObject);
+    public InternalMod(Logger logger, String modId, ModObject<InternalMod> modObject) {
+        super(logger, modId, modObject);
 
-        eventBus = Bus.getLocalAddonEventBus(this);
-        Bus.getQBubblesEventBus().register(this);
+        eventBus = EventManagers.getModEvents(this);
+        EventManagers.getGameEvents().subscribe(this);
         Bubbles.BUBBLES.register(eventBus);
         AmmoTypes.AMMO_TYPES.register(eventBus);
         Entities.ENTITIES.register(eventBus);

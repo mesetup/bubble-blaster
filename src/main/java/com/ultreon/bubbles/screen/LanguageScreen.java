@@ -2,18 +2,17 @@ package com.ultreon.bubbles.screen;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.text.translation.I18n;
-import com.ultreon.hydro.Game;
-import com.ultreon.hydro.event.SubscribeEvent;
-import com.ultreon.hydro.render.ValueAnimator;
-import com.ultreon.bubbles.render.gui.OptionsButton;
 import com.ultreon.bubbles.registry.LocaleManager;
+import com.ultreon.bubbles.render.gui.OptionsButton;
 import com.ultreon.bubbles.settings.GameSettings;
 import com.ultreon.bubbles.util.Util;
-
-import java.awt.*;
+import com.ultreon.hydro.Game;
+import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.render.ValueAnimator;
 import com.ultreon.hydro.screen.Screen;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
@@ -64,7 +63,7 @@ public final class LanguageScreen extends Screen {
         this.cancelButton.setCommand(this::back);
 
         this.loader = new LanguageLoader();
-        BubbleBlaster.getEventBus().register(loader);
+        BubbleBlaster.getEventBus().subscribe(loader);
     }
 
     private void back() {
@@ -83,7 +82,7 @@ public final class LanguageScreen extends Screen {
             nameLocaleMap.put(name, locale);
         }
 
-        BubbleBlaster.getEventBus().unregister(loader);
+        BubbleBlaster.getEventBus().unsubscribe(loader);
     }
 
     private void cmdButton6() {
@@ -155,7 +154,7 @@ public final class LanguageScreen extends Screen {
 
     @Override
     public void init() {
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
 
         button1.make();
         button2.make();
@@ -171,7 +170,7 @@ public final class LanguageScreen extends Screen {
 
     @Override
     public boolean onClose(Screen to) {
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
 
         button1.destroy();
         button2.destroy();
@@ -292,7 +291,7 @@ public final class LanguageScreen extends Screen {
 
         cancelButton.setText(I18n.translateToLocal("other.cancel"));
 
-        Renderer gg1 = (Renderer) gg.create((int) BubbleBlaster.getMiddleX() - 256, (int) BubbleBlaster.getMiddleY() - 149, 512, 300);
+        Renderer gg1 = gg.create((int) BubbleBlaster.getMiddleX() - 256, (int) BubbleBlaster.getMiddleY() - 149, 512, 300);
         Renderer gg2;
         if (valueAnimator1 != null) {
             if (valueAnimator1.isEnded()) {
@@ -303,22 +302,22 @@ public final class LanguageScreen extends Screen {
                 valueAnimator2.start();
 
                 int x = (int) valueAnimator2.animate();
-                gg2 = (Renderer) gg1.create(x, 0, 512, 300);
+                gg2 = gg1.create(x, 0, 512, 300);
             } else {
                 int x = (int) valueAnimator1.animate();
-                gg2 = (Renderer) gg1.create(x, 0, 512, 300);
+                gg2 = gg1.create(x, 0, 512, 300);
             }
         } else {
             if (valueAnimator2 != null) {
                 if (valueAnimator2.isEnded()) {
-                    gg2 = (Renderer) gg1.create(0, 0, 512, 300);
+                    gg2 = gg1.create(0, 0, 512, 300);
                     valueAnimator2 = null;
                 } else {
                     int x = (int) valueAnimator2.animate();
-                    gg2 = (Renderer) gg1.create(x, 0, 512, 300);
+                    gg2 = gg1.create(x, 0, 512, 300);
                 }
             } else {
-                gg2 = (Renderer) gg1.create(0, 0, 512, 300);
+                gg2 = gg1.create(0, 0, 512, 300);
             }
         }
 
@@ -341,6 +340,6 @@ public final class LanguageScreen extends Screen {
 
     public void renderBackground(Renderer gg) {
         gg.color(new Color(96, 96, 96));
-        gg.rect(0, 0, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight());
+        gg.rect(0, 0, BubbleBlaster.instance().getWidth(), BubbleBlaster.instance().getHeight());
     }
 }

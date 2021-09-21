@@ -3,7 +3,7 @@ package com.ultreon.bubbles.common.text.translation;
 import java.util.Locale;
 
 public class I18n {
-    private static final LanguageMap localizedName = LanguageMap.getInstance();
+    private static final LanguageMap localizedName = LanguageMap.instance();
     private static final LanguageMap fallbackTranslator = new LanguageMap(new Locale("en", "us"));
 
     public static String translateToLocal(String key) {

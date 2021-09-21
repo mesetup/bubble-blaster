@@ -1,16 +1,16 @@
 package com.ultreon.bubbles.bubble;
 
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.common.random.Rng;
 import com.ultreon.commons.util.ColorUtils;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 
 public class HardenedBubble extends AbstractBubble {
     public HardenedBubble() {
         colors = ColorUtils.parseColorString("#000000,#4f4f4f,#ff7f00,#ffff00");
-        setRegistryName(ResourceEntry.fromString("qbubbles:hardened_bubble"));
+        setRegistryName(ResourceEntry.fromString("bubbleblaster:hardened_bubble"));
 
         setPriority(387_500L);
         setRadius(new IntRange(21, 60));

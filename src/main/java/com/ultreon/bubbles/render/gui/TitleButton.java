@@ -25,6 +25,7 @@ public class TitleButton extends AbstractButton {
         private Rectangle bounds = new Rectangle(10, 10, 96, 48);
         private String text = "";
         private Runnable command = () -> {
+
         };
 
         public Builder() {
@@ -76,6 +77,7 @@ public class TitleButton extends AbstractButton {
         if (isPressed() && isWithinBounds(MouseInput.getPos())) {
             // Shadow
             Paint old = renderer.getPaint();
+
             double shiftX = ((double) width * 2) * BubbleBlaster.getTicks() / (BubbleBlaster.TPS * 10);
             GradientPaint p = new GradientPaint(x + ((float) shiftX - width), 0, new Color(0, 192, 255), x + (float) shiftX, 0f, new Color(0, 255, 192), true);
             renderer.color(new Color(72, 72, 72));
@@ -84,40 +86,24 @@ public class TitleButton extends AbstractButton {
             Border border = new Border(0, 0, 1, 0);
             border.setPaint(p);
             border.paintBorder(renderer, x, y, width, height);
-            renderer.paint(old);
 
-//            gg.setColor(new Color(0, 96, 128));
-//            gg.fill(bounds);
-//            gg.setColor(new Color(0, 48, 64));
-//            gg.draw(bounds);
+            renderer.paint(old);
             textColor = Color.white;
         } else if (isHovered()) {
             renderer.stroke(new BasicStroke(4.0f));
 
-            // Shadow
             Paint old = renderer.getPaint();
 
             double shiftX = ((double) width * 2) * BubbleBlaster.getTicks() / (BubbleBlaster.TPS * 10);
             GradientPaint p = new GradientPaint(x + ((float) shiftX - width), 0, new Color(0, 192, 255), x + (float) shiftX, 0f, new Color(0, 255, 192), true);
-//            gg.setPaint(p);
-//            gg.draw(new Rectangle(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2));
             Border border = new Border(0, 0, 2, 0);
             border.setPaint(p);
             border.paintBorder(renderer, x, y, width, height);
+
             renderer.paint(old);
-//            gg.setColor(new Color(0, 192, 192));
-//            gg.fill(bounds);
-//            gg.setColor(new Color(0, 96, 128));
-//            gg.draw(bounds);
             textColor = new Color(255, 255, 255);
         } else {
             renderer.stroke(new BasicStroke(1.0f));
-
-//            gg.setColor(new Color(255, 255, 255, 128));
-//            gg.draw(bounds);
-//            Border border = new Border(1, 1, 1, 1);
-//            border.setPaint(new Color(255, 255, 255, 128));
-//            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
             textColor = new Color(224, 224, 224);
         }
 

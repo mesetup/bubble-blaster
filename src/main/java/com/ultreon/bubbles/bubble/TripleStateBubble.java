@@ -1,10 +1,10 @@
 package com.ultreon.bubbles.bubble;
 
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.effect.StatusEffectInstance;
 import com.ultreon.bubbles.entity.BubbleEntity;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.init.Effects;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 
@@ -16,7 +16,7 @@ public class TripleStateBubble extends AbstractBubble {
     public TripleStateBubble() {
 //        colors = ColorUtils.multiConvertHexToRgb("#ffffff");
         colors = new Color[]{new Color(0, 255, 255), new Color(0, 255, 255), new Color(0, 0, 0, 0), new Color(0, 255, 255), new Color(0, 0, 0, 0), new Color(0, 255, 255)};
-        setRegistryName(ResourceEntry.fromString("qbubbles:triple_state_bubble"));
+        setRegistryName(ResourceEntry.fromString("bubbleblaster:triple_state_bubble"));
 
         setPriority(115000L);
         setRadius(new IntRange(21, 55));

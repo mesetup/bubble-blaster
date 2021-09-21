@@ -2,11 +2,11 @@ package com.ultreon.bubbles.bubble;
 
 import com.jhlabs.image.HSBAdjustFilter;
 import com.ultreon.bubbles.effect.StatusEffectInstance;
-import com.ultreon.commons.util.ColorUtils;
 import com.ultreon.bubbles.entity.BubbleEntity;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.init.Effects;
+import com.ultreon.commons.util.ColorUtils;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 

@@ -7,16 +7,13 @@ import com.ultreon.bubbles.common.mod.ModObject;
 import java.io.File;
 import java.util.jar.JarFile;
 
-//import net.minecraftforge.fml.common.versioning.ArtifactVersion;
-//import net.minecraftforge.fml.common.versioning.VersionRange;
-
 /**
- * The container that wraps around addons in the system.
+ * The container that wraps around mods in the system.
  * <p>
- * The philosophy is that individual addon implementation technologies should not
- * impact the actual loading and management of addon code. This interface provides
- * a mechanism by which we can wrap actual addon code so that the loader and other
- * facilities can treat addons at arms length.
+ * The philosophy is that individual mod implementation technologies should not
+ * impact the actual loading and management of mod code. This interface provides
+ * a mechanism by which we can wrap actual mod code so that the loader and other
+ * facilities can treat mods at arms length.
  * </p>
  *
  * @author cpw
@@ -24,7 +21,7 @@ import java.util.jar.JarFile;
 
 public interface ModContainer {
     /**
-     * The globally unique addonid for this addon
+     * The globally unique mod id for this mod
      */
     String getModId();
 
@@ -34,13 +31,15 @@ public interface ModContainer {
 
     ModInstance getModInstance();
 
+    String getModFileId();
+
     /**
-     * Get Json addon data.
+     * Get Json mod data.
      */
     JsonObject getModProperties();
 
     /**
-     * The location on the file system which this addon came from
+     * The location on the file system which this mod came from
      */
     File getSource();
 

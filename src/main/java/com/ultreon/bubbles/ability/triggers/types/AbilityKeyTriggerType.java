@@ -1,7 +1,7 @@
 package com.ultreon.bubbles.ability.triggers.types;
 
-import com.ultreon.hydro.registry.ObjectInit;
 import com.ultreon.hydro.common.RegistryEntry;
+import com.ultreon.hydro.registry.ObjectInit;
 
 import java.util.Objects;
 

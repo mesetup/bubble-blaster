@@ -3,9 +3,9 @@ package com.ultreon.bubbles.entity.ammo;
 import com.ultreon.bubbles.common.AttributeMap;
 import com.ultreon.bubbles.entity.AmmoEntity;
 import com.ultreon.bubbles.entity.attribute.Attribute;
+import com.ultreon.hydro.render.Renderer;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Line2D;
@@ -27,7 +27,7 @@ public class BasicAmmoType extends AmmoType {
 
     @Override
     public void render(Renderer g, AmmoEntity entity) {
-        Renderer g2 = (Renderer) g;
+        Renderer g2 = g;
         g2.fill(getShape(entity));
 
     }

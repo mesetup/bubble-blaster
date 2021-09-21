@@ -4,8 +4,8 @@ import com.jhlabs.image.HSBAdjustFilter;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.entity.damage.DamageSource;
 import com.ultreon.bubbles.entity.damage.DamageSourceType;
-import com.ultreon.hydro.event.FilterEvent;
 import com.ultreon.commons.utilities.python.builtins.ValueError;
+import com.ultreon.hydro.event.FilterEvent;
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
 

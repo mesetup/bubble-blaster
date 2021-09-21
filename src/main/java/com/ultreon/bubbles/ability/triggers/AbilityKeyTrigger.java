@@ -1,9 +1,9 @@
 package com.ultreon.bubbles.ability.triggers;
 
-import com.ultreon.hydro.core.input.KeyboardController;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.entity.player.ability.AbilityTrigger;
 import com.ultreon.bubbles.entity.player.ability.AbilityTriggerType;
+import com.ultreon.hydro.core.input.KeyboardController;
 import com.ultreon.hydro.event.input.KeyboardEvent;
 import com.ultreon.hydro.event.type.KeyEventType;
 

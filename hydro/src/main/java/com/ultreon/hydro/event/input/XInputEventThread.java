@@ -1,39 +1,40 @@
 package com.ultreon.hydro.event.input;
 
-import com.ultreon.hydro.Game;
 import com.studiohartman.jamepad.ControllerManager;
 import com.studiohartman.jamepad.ControllerState;
-import com.ultreon.hydro.event.bus.GameEventBus;
+import com.ultreon.hydro.core.AntiMod;
+import com.ultreon.hydro.event.bus.GameEvents;
 
+@AntiMod
 public class XInputEventThread implements Runnable {
     private static final ControllerManager controllers = new ControllerManager();
     private static final XInputEventThread instance = new XInputEventThread();
     private static Thread thread;
 
+    private boolean stopFlag;
+
+    static {
+        controllers.initSDLGamepad();
+    }
+
     public static Thread getThread() {
         return thread;
+    }
+
+    public static XInputEventThread instance() {
+        return instance;
+    }
+
+    protected XInputEventThread() {
+        thread = new Thread(this, "XInputEventThread");
     }
 
     protected void setStopFlag(boolean stopFlag) {
         this.stopFlag = stopFlag;
     }
 
-    static {
-        controllers.initSDLGamepad();
-    }
-
-    private boolean stopFlag;
-
-    protected XInputEventThread() {
-        thread = new Thread(this, "XInputEventThread");
-    }
-
-    public static XInputEventThread getInstance() {
-        return instance;
-    }
-
-    public static void start() {
-        new XInputEventThread();
+    public void start() {
+        thread.start();
     }
 
     @Override
@@ -55,6 +56,6 @@ public class XInputEventThread implements Runnable {
             System.out.println("\"A\" on \"" + currState.controllerType + "\" is pressed");
         }
 
-        GameEventBus.get().post(new XInputEvent(currState, controllers));
+        GameEvents.get().publish(new XInputEvent(currState, controllers));
     }
 }

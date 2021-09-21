@@ -1,17 +1,17 @@
 package com.ultreon.bubbles.bubble;
 
-import com.ultreon.hydro.common.ResourceEntry;
-import com.ultreon.commons.util.ColorUtils;
 import com.ultreon.bubbles.entity.BubbleEntity;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
+import com.ultreon.commons.util.ColorUtils;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 
 public class AccelerateBubble extends AbstractBubble {
     public AccelerateBubble() {
         colors = ColorUtils.parseColorString("#00003f,#00007f,#0000af,#0000ff");
-        setRegistryName(ResourceEntry.fromString("qbubbles:accelerate_bubble"));
+        setRegistryName(ResourceEntry.fromString("bubbleblaster:accelerate_bubble"));
 
 //        BubbleInit.BUBBLES.add(this);
 

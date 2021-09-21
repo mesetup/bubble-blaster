@@ -1,15 +1,15 @@
 package com.ultreon.bubbles.effect;
 
 import com.ultreon.bubbles.BubbleBlaster;
-import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
-import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.TagHolder;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.registry.Registers;
 import com.ultreon.bubbles.util.BsonUtils;
 import com.ultreon.bubbles.util.helpers.MathHelper;
+import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
+import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 import com.ultreon.commons.utilities.python.builtins.ValueError;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.bson.BsonDocument;
 import org.bson.BsonInt32;
 import org.bson.BsonInt64;
@@ -56,7 +56,7 @@ public class StatusEffectInstance implements TagHolder {
 
     public final void start(Entity entity) {
         onStart(entity);
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
 
         active = true;
     }
@@ -64,7 +64,7 @@ public class StatusEffectInstance implements TagHolder {
     public final void stop(Entity entity) {
         onStop(entity);
         try {
-            BubbleBlaster.getEventBus().unregister(this);
+            BubbleBlaster.getEventBus().unsubscribe(this);
         } catch (IllegalArgumentException ignored) {
 
         }

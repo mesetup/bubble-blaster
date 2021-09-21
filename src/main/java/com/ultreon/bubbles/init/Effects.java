@@ -1,10 +1,9 @@
 package com.ultreon.bubbles.init;
 
-import com.ultreon.bubbles.InternalAddon;
-import com.ultreon.bubbles.effect.StatusEffect;
+import com.ultreon.bubbles.InternalMod;
 import com.ultreon.bubbles.effect.*;
-import com.ultreon.hydro.registry.DeferredRegister;
 import com.ultreon.bubbles.registry.Registers;
+import com.ultreon.hydro.registry.DeferredRegister;
 import com.ultreon.hydro.registry.object.RegistryObject;
 
 import java.util.function.Supplier;
@@ -19,7 +18,7 @@ import java.util.function.Supplier;
  */
 @SuppressWarnings("unused")
 public class Effects {
-    public static final DeferredRegister<StatusEffect> EFFECTS = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.EFFECTS);
+    public static final DeferredRegister<StatusEffect> EFFECTS = DeferredRegister.create(InternalMod.MOD_ID, Registers.EFFECTS);
 
     public static final RegistryObject<DefenseBoostEffect> DEFENSE_BOOST = register("defense", DefenseBoostEffect::new);
     public static final RegistryObject<BubbleFreezeEffect> BUBBLE_FREEZE = register("bubble_freeze", BubbleFreezeEffect::new);

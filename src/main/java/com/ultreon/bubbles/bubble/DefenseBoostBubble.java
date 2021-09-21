@@ -1,10 +1,10 @@
 package com.ultreon.bubbles.bubble;
 
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.effect.StatusEffectInstance;
 import com.ultreon.bubbles.entity.BubbleEntity;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.init.Effects;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 
@@ -16,7 +16,7 @@ public class DefenseBoostBubble extends AbstractBubble {
     public DefenseBoostBubble() {
 //        colors = ColorUtils.multiConvertHexToRgb("#ffffff");
         colors = new Color[]{new Color(0, 255, 192), new Color(64, 255, 208), new Color(128, 255, 224), new Color(192, 255, 240), new Color(255, 255, 255)};
-        setRegistryName(ResourceEntry.fromString("qbubbles:defense_bubble"));
+        setRegistryName(ResourceEntry.fromString("bubbleblaster:defense_bubble"));
 
         setPriority(131_072);
         setRadius(new IntRange(21, 70));

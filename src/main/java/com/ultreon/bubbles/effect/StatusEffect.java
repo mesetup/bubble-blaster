@@ -3,12 +3,12 @@ package com.ultreon.bubbles.effect;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.common.AttributeMap;
 import com.ultreon.bubbles.entity.Entity;
-import com.ultreon.hydro.event.FilterEvent;
-import com.ultreon.hydro.common.RegistryEntry;
 import com.ultreon.bubbles.util.helpers.SvgHelper;
+import com.ultreon.hydro.common.RegistryEntry;
+import com.ultreon.hydro.event.FilterEvent;
+import com.ultreon.hydro.render.Renderer;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;

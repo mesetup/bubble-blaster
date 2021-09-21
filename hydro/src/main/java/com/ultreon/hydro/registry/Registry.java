@@ -6,8 +6,8 @@ import com.ultreon.hydro.common.IRegistryEntry;
 import com.ultreon.hydro.common.RegistryEntry;
 import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.hydro.event.SubscribeEvent;
-import com.ultreon.hydro.event.bus.EventBus;
-import com.ultreon.hydro.event.bus.GameEventBus;
+import com.ultreon.hydro.event.bus.AbstractEvents;
+import com.ultreon.hydro.event.bus.GameEvents;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -24,21 +24,18 @@ public class Registry<T extends IRegistryEntry> {
     private final Class<T> type;
     private static final HashMap<Class<?>, Registry<?>> registries = new HashMap<>();
     private final ResourceEntry registryName;
+    private boolean frozen;
 
     protected Registry(@NotNull Class<T> clazz, ResourceEntry registryName) throws IllegalStateException {
-        if (registries.containsKey(clazz)) {
-            throw new IllegalStateException();
-        }
-
         this.registryName = registryName;
         this.type = clazz;
-        GameEventBus.get().register(this);
+        GameEvents.get().subscribe(this);
 
-        Registry.registries.put(type, this);
+//        Registry.registries.put(type, this);
     }
 
     public void freeze() {
-
+        this.frozen = true;
     }
 
     public ResourceEntry getRegistryName() {
@@ -47,7 +44,14 @@ public class Registry<T extends IRegistryEntry> {
 
     @Deprecated
     public static <T extends RegistryEntry> Registry<T> create(@NotNull Class<T> clazz, ResourceEntry registryName) {
-        return new Registry<>(clazz, registryName);
+        if (registries.containsKey(clazz)) {
+            throw new IllegalStateException();
+        }
+
+        Registry<T> registry = new Registry<>(clazz, registryName);
+        registries.put(clazz, registry);
+
+        return registry;
     }
 
     public static <T extends RegistryEntry> Registry<T> getRegistry(Class<T> objType) {
@@ -84,7 +88,7 @@ public class Registry<T extends IRegistryEntry> {
         }
     }
 
-    public void register(Class<? extends ObjectInit<T>> clazz, String addonId) {
+    public void register(Class<? extends ObjectInit<T>> clazz, String modId) {
         // Get fields.
         Field[] fields = clazz.getDeclaredFields();
 
@@ -101,9 +105,9 @@ public class Registry<T extends IRegistryEntry> {
                     // Set key.
                     if (object.getRegistryName() == null) {
                         if (object.isTempRegistryName()) {
-                            object.updateRegistryName(addonId);
+                            object.updateRegistryName(modId);
                         } else {
-                            object.setRegistryName(new ResourceEntry(addonId, field.getName().toLowerCase()));
+                            object.setRegistryName(new ResourceEntry(modId, field.getName().toLowerCase()));
                         }
                     }
 
@@ -163,7 +167,7 @@ public class Registry<T extends IRegistryEntry> {
 
     @Nullable
     @Deprecated
-    public EventBus.Handler getHandler() {
+    public AbstractEvents.AbstractSubscription getSubscription() {
         return null;
     }
 
@@ -196,5 +200,9 @@ public class Registry<T extends IRegistryEntry> {
                 dumpLogger.info("}");
             }
         }
+    }
+
+    public boolean isFrozen() {
+        return frozen;
     }
 }

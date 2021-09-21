@@ -1,7 +1,7 @@
 package com.ultreon.bubbles.event;
 
-import com.ultreon.hydro.event.Event;
 import com.ultreon.commons.lang.ICancellable;
+import com.ultreon.hydro.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

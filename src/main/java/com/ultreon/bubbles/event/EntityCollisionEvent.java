@@ -3,8 +3,7 @@ package com.ultreon.bubbles.event;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.hydro.Game;
 import com.ultreon.hydro.event.CollisionEvent;
-import com.ultreon.hydro.event.Event;
-import com.ultreon.hydro.event.bus.EventBus;
+import com.ultreon.hydro.event.bus.AbstractEvents;
 import com.ultreon.hydro.render.Renderer;
 
 /**
@@ -17,11 +16,11 @@ import com.ultreon.hydro.render.Renderer;
 public class EntityCollisionEvent extends CollisionEvent {
     @SuppressWarnings("unused")
     @Deprecated
-    private static EventBus eventBus;
+    private static AbstractEvents eventManager;
 
     @Deprecated
-    public static EventBus getEventBus() {
-        return eventBus;
+    public static AbstractEvents getEventBus() {
+        return eventManager;
     }
 
     private final Game main;

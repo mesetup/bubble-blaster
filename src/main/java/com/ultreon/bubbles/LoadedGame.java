@@ -84,7 +84,7 @@ public class LoadedGame implements Runnable {
     //     Show and Hide     //
     ///////////////////////////
     public void run() {
-        Util.setCursor(BubbleBlaster.getInstance().getBlankCursor());
+        Util.setCursor(BubbleBlaster.instance().getBlankCursor());
 
         bindEvents();
 
@@ -117,7 +117,7 @@ public class LoadedGame implements Runnable {
             environment.quit();
 
             // Hide cursor.
-            Util.setCursor(BubbleBlaster.getInstance().getDefaultCursor());
+            Util.setCursor(BubbleBlaster.instance().getDefaultCursor());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,24 +149,24 @@ public class LoadedGame implements Runnable {
                 if (!this.gameType.isBloodMoonActive() && this.nextAudio < System.currentTimeMillis()) {
                     if (new PseudoRandom(System.nanoTime()).getNumber(0, 5, -1) == 0) {
                         try {
-                            this.ambientAudio = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/qbubbles/audio/bgm/art_of_silence.mp3")), "artOfSilence");
+                            this.ambientAudio = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/bubbleblaster/audio/bgm/art_of_silence.mp3")), "artOfSilence");
                             this.ambientAudio.setVolume(0.25d);
                             this.ambientAudio.play();
                         } catch (URISyntaxException e) {
                             e.printStackTrace();
-                            BubbleBlaster.getInstance().shutdown();
+                            BubbleBlaster.instance().shutdown();
                         }
                     } else {
                         this.nextAudio = System.currentTimeMillis() + 1000;
                     }
                 } else if (this.gameType.isBloodMoonActive()) {
                     try {
-                        this.ambientAudio = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/qbubbles/audio/bgm/blood_moon_state.mp3")), "bloodMoonState");
+                        this.ambientAudio = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/bubbleblaster/audio/bgm/blood_moon_state.mp3")), "bloodMoonState");
                         this.ambientAudio.setVolume(0.25d);
                         this.ambientAudio.play();
                     } catch (URISyntaxException e) {
                         e.printStackTrace();
-                        BubbleBlaster.getInstance().shutdown();
+                        BubbleBlaster.instance().shutdown();
                     }
                 }
             } else if (this.ambientAudio.isStopped()) {
@@ -179,12 +179,12 @@ public class LoadedGame implements Runnable {
                 this.ambientAudio = null;
 
                 try {
-                    this.ambientAudio = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/qbubbles/audio/bgm/blood_moon_state.mp3")), "bloodMoonState");
+                    this.ambientAudio = new AudioSlot(Objects.requireNonNull(getClass().getResource("/assets/bubbleblaster/audio/bgm/blood_moon_state.mp3")), "bloodMoonState");
                     this.ambientAudio.setVolume(0.25d);
                     this.ambientAudio.play();
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
-                    BubbleBlaster.getInstance().shutdown();
+                    BubbleBlaster.instance().shutdown();
                 }
             }
         }
@@ -210,7 +210,7 @@ public class LoadedGame implements Runnable {
             if (entities.isEmpty()) {
                 System.out.println("ERROR");
             }
-            
+
             List<Entity> loopingEntities = new ArrayList<>(entities);
 
             if (gameType.isInitialized()) {
@@ -226,8 +226,8 @@ public class LoadedGame implements Runnable {
                                     // Check intersection.
                                     if (ShapeUtils.checkIntersection(source.getShape(), target.getShape())) {
                                         // Handling collision by posting collision event, and let the intersected entities attack each other.
-                                        BubbleBlaster.getEventBus().post(new EntityCollisionEvent(BubbleBlaster.getInstance(), delta, source, target));
-                                        BubbleBlaster.getEventBus().post(new EntityCollisionEvent(BubbleBlaster.getInstance(), delta, target, source));
+                                        BubbleBlaster.getEventBus().publish(new EntityCollisionEvent(BubbleBlaster.instance(), delta, source, target));
+                                        BubbleBlaster.getEventBus().publish(new EntityCollisionEvent(BubbleBlaster.instance(), delta, target, source));
 
                                         if (target instanceof DamageableEntity) {
                                             ((DamageableEntity) target).damage(source.getAttributeMap().getBase(Attribute.ATTACK) * delta / target.getAttributeMap().getBase(Attribute.DEFENSE), new DamageSource(source, DamageSourceType.COLLISION));
@@ -277,7 +277,7 @@ public class LoadedGame implements Runnable {
     //     Event Binding     //
     ///////////////////////////
     public void bindEvents() {
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
         this.gameActive = true;
     }
 
@@ -386,11 +386,11 @@ public class LoadedGame implements Runnable {
         if (evt.getType() == KeyEventType.PRESS) {
             if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_ESCAPE) {
                 if (!BubbleBlaster.isPaused()) {
-                    BubbleBlaster.getInstance().showScreen(new PauseScreen());
+                    BubbleBlaster.instance().showScreen(new PauseScreen());
                 }
             } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_SLASH) {
                 if (!BubbleBlaster.isPaused()) {
-                    BubbleBlaster.getInstance().showScreen(new CommandScreen());
+                    BubbleBlaster.instance().showScreen(new CommandScreen());
                 }
             } else if (evt.getParentEvent().getKeyCode() == KeyEvent.VK_F1 && BubbleBlaster.isDebugMode()) {
                 this.gameType.triggerBloodMoon();

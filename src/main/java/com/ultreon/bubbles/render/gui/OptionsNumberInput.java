@@ -135,7 +135,7 @@ public class OptionsNumberInput extends OptionsTextEntry {
         eventsActive = true;
         upButton.make();
         downButton.make();
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class OptionsNumberInput extends OptionsTextEntry {
         eventsActive = false;
         upButton.destroy();
         downButton.destroy();
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
     }
 
     @Override

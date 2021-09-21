@@ -1,11 +1,11 @@
 package com.ultreon.bubbles.bubble;
 
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
-import com.ultreon.commons.util.ColorUtils;
 import com.ultreon.bubbles.entity.BubbleEntity;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
+import com.ultreon.commons.util.ColorUtils;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 
@@ -19,7 +19,7 @@ public class LevelUpBubble extends AbstractBubble {
     public LevelUpBubble() {
         // Color & key.
         colors = ColorUtils.parseColorString("#ffff00,#ffffff,#ff9f00");
-        setRegistryName(ResourceEntry.fromString("qbubbles:level_up_bubble"));
+        setRegistryName(ResourceEntry.fromString("bubbleblaster:level_up_bubble"));
 
         // Set initial data values.
         setPriority(128000000L);

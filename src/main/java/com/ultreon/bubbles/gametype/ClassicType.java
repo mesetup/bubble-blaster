@@ -21,7 +21,7 @@ import com.ultreon.commons.lang.InfoTransporter;
 import com.ultreon.hydro.common.IRegistryEntry;
 import com.ultreon.hydro.event.FilterEvent;
 import com.ultreon.hydro.event.SubscribeEvent;
-import com.ultreon.hydro.event.bus.EventBus;
+import com.ultreon.hydro.event.bus.AbstractEvents;
 import com.ultreon.hydro.registry.Registry;
 import com.ultreon.hydro.render.Renderer;
 import org.bson.BsonArray;
@@ -50,7 +50,7 @@ public class ClassicType extends AbstractGameType {
 
     // Threads
     private Thread spawner;
-    private EventBus.Handler binding;
+    private AbstractEvents.AbstractSubscription binding;
 
     public ClassicType() {
         super();
@@ -78,7 +78,7 @@ public class ClassicType extends AbstractGameType {
                 }
 
                 if (bubble != Bubbles.LEVEL_UP_BUBBLE.get()) {
-                    Point pos = new Point(this.bubblesXPosRng.getNumber(0, BubbleBlaster.getInstance().getWidth(), -i - 1), this.bubblesYPosRng.getNumber(0, BubbleBlaster.getInstance().getWidth(), -i - 1));
+                    Point pos = new Point(this.bubblesXPosRng.getNumber(0, BubbleBlaster.instance().getWidth(), -i - 1), this.bubblesYPosRng.getNumber(0, BubbleBlaster.instance().getWidth(), -i - 1));
                     environment.spawn(Entities.BUBBLE.get().create(this), pos);
                 }
 
@@ -91,8 +91,9 @@ public class ClassicType extends AbstractGameType {
 
             // Spawn player
             infoTransporter.log("Spawning player...");
-            game.playerInterface = game.player = new PlayerEntity(environment.getGameType());
-            environment.spawn(game.player, new Point(game.getScaledWidth() / 4, BubbleBlaster.getInstance().getHeight() / 2));
+            game.loadPlayEnvironment();
+            game.player = (PlayerEntity) game.playerInterface;
+            environment.spawn(game.player, new Point(game.getScaledWidth() / 4, BubbleBlaster.instance().getHeight() / 2));
         } catch (Exception e) {
             CrashLog crashLog = new CrashLog("Could not initialize classic game type.", e);
             throw crashLog.createCrash();
@@ -323,7 +324,7 @@ public class ClassicType extends AbstractGameType {
 
     @Override
     public Rectangle2D getGameBounds() {
-        return new Rectangle2D.Double(70d, 0d, BubbleBlaster.getInstance().getWidth(), BubbleBlaster.getInstance().getHeight() - 70d);
+        return new Rectangle2D.Double(70d, 0d, BubbleBlaster.instance().getWidth(), BubbleBlaster.instance().getHeight() - 70d);
     }
 
     @Override
@@ -367,13 +368,13 @@ public class ClassicType extends AbstractGameType {
 
     @Override
     public void make() {
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
         this.eventActive = true;
     }
 
     @Override
     public void destroy() throws NoSuchElementException {
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
         this.eventActive = false;
     }
 

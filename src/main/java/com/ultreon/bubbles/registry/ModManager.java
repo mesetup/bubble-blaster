@@ -1,11 +1,11 @@
 package com.ultreon.bubbles.registry;
 
-import com.ultreon.bubbles.mod.ModContainer;
 import com.ultreon.bubbles.bubble.AbstractBubble;
-import com.ultreon.hydro.registry.AbstractRegistry;
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.mod.ModInstance;
 import com.ultreon.bubbles.common.mod.ModObject;
+import com.ultreon.bubbles.mod.ModContainer;
+import com.ultreon.hydro.common.ResourceEntry;
+import com.ultreon.hydro.registry.AbstractRegistry;
 
 import javax.management.openmbean.KeyAlreadyExistsException;
 import java.util.Collection;
@@ -20,17 +20,18 @@ import java.util.Set;
  * @see AbstractBubble
  * @see ResourceEntry
  */
-public class AddonManager extends AbstractRegistry<String, ModObject<? extends ModInstance>> {
-    protected static AddonManager INSTANCE;
+@Deprecated
+public class ModManager extends AbstractRegistry<String, ModObject<? extends ModInstance>> {
+    protected static ModManager INSTANCE;
 
-    public static AddonManager instance() {
+    public static ModManager instance() {
         return INSTANCE;
     }
 
-    public AddonManager() {
-        this.checkInstance(AddonManager.INSTANCE);
+    public ModManager() {
+        this.checkInstance(ModManager.INSTANCE);
 
-        AddonManager.INSTANCE = this;
+        ModManager.INSTANCE = this;
     }
 
     @Override
@@ -38,8 +39,8 @@ public class AddonManager extends AbstractRegistry<String, ModObject<? extends M
         return this.registry.get(id);
     }
 
-    public ModInstance getAddon(String id) {
-        return get(id).getAddon();
+    public ModInstance getMod(String id) {
+        return get(id).getMod();
     }
 
     public ModContainer getContainer(String id) {
@@ -50,8 +51,8 @@ public class AddonManager extends AbstractRegistry<String, ModObject<? extends M
         this.register(object.getNamespace(), object);
     }
 
-    public void register(ModInstance addon) {
-        this.register(addon.getAddonId(), addon.getAddonObject());
+    public void register(ModInstance mod) {
+        this.register(mod.getModId(), mod.getModObject());
     }
 
     public void register(ModContainer container) {

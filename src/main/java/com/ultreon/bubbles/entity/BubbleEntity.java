@@ -19,7 +19,7 @@ import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.hydro.event.RenderEvent;
 import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event.bus.EventBus;
+import com.ultreon.hydro.event.bus.AbstractEvents;
 import com.ultreon.hydro.event.input.MouseMotionEvent;
 import com.ultreon.hydro.input.KeyInput;
 import com.ultreon.hydro.registry.Registry;
@@ -80,7 +80,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
 
     private static final Random random = new Random(Math.round((double) (System.currentTimeMillis() / 86400000))); // Random day. 86400000 milliseconds == 1 day.
     private boolean effectApplied = false;
-    private EventBus.Handler binding;
+    private AbstractEvents.AbstractSubscription binding;
     private boolean markedForDeletion;
 
     public static EntityType<? extends BubbleEntity> getRandomType(Screen screen, AbstractGameType gameType) {
@@ -205,11 +205,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
      */
     @Override
     protected void bindEvents() {
-//        tickEventCode = QUpdateEvent.addListener(QUpdateEvent.getInstance(), GameScene.getInstance(), this::tick, RenderEventPriority.LOWER);
-//        renderEventCode = QRenderEvent.addListener(QRenderEvent.getInstance(), GameScene.getInstance(), this::render, RenderEventPriority.LOWER);
-//        collisionEventCode = QCollisionEvent.addListener(GameScene.getInstance(), this::onCollision, RenderEventPriority.NORMAL);
-
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
         areEventsBinded = true;
     }
 
@@ -230,7 +226,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
     @Override
     protected void unbindEvents() {
         try {
-            BubbleBlaster.getEventBus().unregister(this);
+            BubbleBlaster.getEventBus().unsubscribe(this);
         } catch (IllegalArgumentException ignored) {
 
         }
@@ -257,10 +253,10 @@ public class BubbleEntity extends AbstractBubbleEntity {
         // Check player and current scene.
         PlayerEntity player = this.gameType.getPlayer();
         @Nullable Screen currentScreen = Util.getSceneManager().getCurrentScreen();
-        if (player == null || !(BubbleBlaster.getInstance().isGameLoaded())) return;
+        if (player == null || !(BubbleBlaster.instance().isGameLoaded())) return;
 
         // Set velocity speed.
-        if (BubbleBlaster.getInstance().isGameLoaded()) {
+        if (BubbleBlaster.instance().isGameLoaded()) {
             velX = -speed * (this.gameType.getPlayer().getLevel() / 10d + 1);
         } else {
             velX = -speed * (5.0);

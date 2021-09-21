@@ -87,6 +87,7 @@ public class PauseButton extends AbstractButton {
             renderer.stroke(new BasicStroke(4.0f));
 
             Paint old = renderer.getPaint();
+
             double shiftX = ((double) width * 2) * BubbleBlaster.getTicks() / (BubbleBlaster.TPS * 10);
             GradientPaint p = new GradientPaint(x + ((float) shiftX - width), 0, new Color(0, 192, 255), x + (float) shiftX, 0f, new Color(0, 255, 192), true);
             renderer.paint(p);
@@ -97,8 +98,6 @@ public class PauseButton extends AbstractButton {
             Border border1 = new Border(0, 0, 2, 0);
             border1.setPaint(p);
             border1.paintBorder(renderer, x, y, width, height);
-//            gg.draw(new Rectangle(bounds.x - 2, bounds.y - 2, bounds.width + 4, bounds.height + 4));
-
             renderer.paint(old);
 
             textColor = new Color(255, 255, 255);
@@ -107,11 +106,6 @@ public class PauseButton extends AbstractButton {
 
             renderer.color(new Color(255, 255, 255, 128));
             renderer.fill(getBounds());
-//            Border border = new Border(1, 1, 1, 1);
-//            border.setPaint(new Color(255, 255, 255, 128));
-//            border.paintBorder(QBubbles.getInstance(), gg, bounds.x, bounds.y, bounds.width, bounds.height);
-//            gg.draw(new Rectangle(bounds.x + 1, bounds.y + 1, bounds.width - 2, bounds.height - 2));
-
             textColor = new Color(255, 255, 255, 128);
         }
 

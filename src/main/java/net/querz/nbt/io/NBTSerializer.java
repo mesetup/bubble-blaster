@@ -9,38 +9,38 @@ import java.util.zip.GZIPOutputStream;
 
 public class NBTSerializer implements Serializer<NamedTag> {
 
-	private final boolean compressed;
-	private boolean littleEndian;
+    private final boolean compressed;
+    private boolean littleEndian;
 
-	public NBTSerializer() {
-		this(true);
-	}
+    public NBTSerializer() {
+        this(true);
+    }
 
-	public NBTSerializer(boolean compressed) {
-		this.compressed = compressed;
-	}
+    public NBTSerializer(boolean compressed) {
+        this.compressed = compressed;
+    }
 
-	public NBTSerializer(boolean compressed, boolean littleEndian) {
-		this.compressed = compressed;
-		this.littleEndian = littleEndian;
-	}
+    public NBTSerializer(boolean compressed, boolean littleEndian) {
+        this.compressed = compressed;
+        this.littleEndian = littleEndian;
+    }
 
-	@Override
-	public void toStream(NamedTag object, OutputStream out) throws IOException {
-		NBTOutput nbtOut;
-		OutputStream output;
-		if (compressed) {
-			output = new GZIPOutputStream(out, true);
-		} else {
-			output = out;
-		}
+    @Override
+    public void toStream(NamedTag object, OutputStream out) throws IOException {
+        NBTOutput nbtOut;
+        OutputStream output;
+        if (compressed) {
+            output = new GZIPOutputStream(out, true);
+        } else {
+            output = out;
+        }
 
-		if (littleEndian) {
-			nbtOut = new LittleEndianNBTOutputStream(output);
-		} else {
-			nbtOut = new NBTOutputStream(output);
-		}
-		nbtOut.writeTag(object, Tag.DEFAULT_MAX_DEPTH);
-		nbtOut.flush();
-	}
+        if (littleEndian) {
+            nbtOut = new LittleEndianNBTOutputStream(output);
+        } else {
+            nbtOut = new NBTOutputStream(output);
+        }
+        nbtOut.writeTag(object, Tag.DEFAULT_MAX_DEPTH);
+        nbtOut.flush();
+    }
 }

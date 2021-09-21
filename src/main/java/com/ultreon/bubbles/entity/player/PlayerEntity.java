@@ -5,25 +5,24 @@ import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.LoadedGame;
 import com.ultreon.bubbles.common.AttributeMap;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
-import com.ultreon.bubbles.common.logging.GameLogger;
 import com.ultreon.bubbles.entity.*;
 import com.ultreon.bubbles.entity.ammo.AmmoType;
+import com.ultreon.bubbles.entity.attribute.Attribute;
+import com.ultreon.bubbles.entity.damage.DamageSource;
+import com.ultreon.bubbles.entity.player.ability.AbilityContainer;
 import com.ultreon.bubbles.environment.Environment;
+import com.ultreon.bubbles.event.EntityCollisionEvent;
 import com.ultreon.bubbles.init.AmmoTypes;
 import com.ultreon.bubbles.init.Entities;
 import com.ultreon.bubbles.item.inventory.PlayerInventory;
-import com.ultreon.bubbles.entity.attribute.Attribute;
-import com.ultreon.bubbles.entity.damage.DamageSource;
 import com.ultreon.bubbles.screen.MessageScreen;
 import com.ultreon.bubbles.util.Util;
 import com.ultreon.bubbles.util.helpers.MathHelper;
-import com.ultreon.hydro.player.IPlayer;
-import com.ultreon.bubbles.entity.player.ability.AbilityContainer;
-import com.ultreon.bubbles.event.EntityCollisionEvent;
 import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.input.KeyboardEvent;
 import com.ultreon.hydro.event.input.XInputEvent;
 import com.ultreon.hydro.event.type.KeyEventType;
+import com.ultreon.hydro.player.IPlayer;
 import com.ultreon.hydro.render.Renderer;
 import com.ultreon.hydro.screen.Screen;
 import org.apache.commons.lang3.SystemUtils;
@@ -143,7 +142,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
      * @param s the message.
      */
     public void sendMessage(String s) {
-        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.instance().getLoadedGame();
         if (loadedGame != null) {
             loadedGame.triggerMessage(s);
         }
@@ -159,7 +158,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     public void prepareSpawn(EntitySpawnData spawnData) {
         super.prepareSpawn(spawnData);
         @Nullable Screen currentScene = Objects.requireNonNull(Util.getSceneManager()).getCurrentScreen();
-        if ((currentScene == null && BubbleBlaster.getInstance().isGameLoaded()) ||
+        if ((currentScene == null && BubbleBlaster.instance().isGameLoaded()) ||
                 currentScene instanceof MessageScreen) {
             Rectangle2D gameBounds = gameType.getGameBounds();
             this.x = (float) MathHelper.clamp(x, gameBounds.getMinX(), gameBounds.getMaxX());
@@ -170,13 +169,13 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
 
     @Override
     protected void bindEvents() {
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
         this.areEventsBinded = true;
     }
 
     @Override
     protected void unbindEvents() {
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
         this.areEventsBinded = false;
     }
 
@@ -281,7 +280,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
         // Spawn and load checks //
         ///////////////////////////
 
-        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.instance().getLoadedGame();
 
         logger.info("Player[ce153094] ON(TICK) LOADED_GAME={}", loadedGame);
 
@@ -306,18 +305,18 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
         // Player motion. //
         ////////////////////
 
-        this.accelerateX = accelerateX / ((double)TPS / 20d) / 1.1;
-        this.accelerateY = accelerateY / ((double)TPS / 20d) / 1.1;
+        this.accelerateX = accelerateX / ((double) TPS / 20d) / 1.1;
+        this.accelerateY = accelerateY / ((double) TPS / 20d) / 1.1;
 
         double tempVelMotSpeed = 0.0f;
         double tempVelRotSpeed = 0.0f;
 
         // Check each direction, to create velocity
-        if (this.forward) tempVelMotSpeed += this.speed;
-        if (this.backward) tempVelMotSpeed -= this.speed;
+        if (this.forward) tempVelMotSpeed += this.attributes.getBase(Attribute.SPEED);
+        if (this.backward) tempVelMotSpeed -= this.attributes.getBase(Attribute.SPEED);
         if (this.left) tempVelRotSpeed -= this.rotationSpeed;
         if (this.right) tempVelRotSpeed += this.rotationSpeed;
-        if (this.xInputY != 0) tempVelMotSpeed = this.xInputY * this.speed;
+        if (this.xInputY != 0) tempVelMotSpeed = this.xInputY * this.attributes.getBase(Attribute.SPEED);
         if (this.xInputX != 0) tempVelRotSpeed = this.xInputX * this.rotationSpeed;
 
         // Update rotation
@@ -405,13 +404,12 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
         if (value > 0.0d) {
 
             // Check if window is not focused.
-            if (!BubbleBlaster.getInstance().getGameWindow().isFocused()) {
+            if (!BubbleBlaster.instance().getGameWindow().isFocused()) {
                 if (SystemUtils.IS_JAVA_9) {
                     // Let the taskbar icon flash. (Java 9+)
                     Taskbar taskbar = Taskbar.getTaskbar();
                     try {
-                        BubbleBlaster.getInstance().getGameWindow().requestUserAttention();
-//                        taskbar.requestWindowUserAttention(BubbleBlaster.getInstance().getFrame());
+                        BubbleBlaster.instance().getGameWindow().requestUserAttention();
                     } catch (UnsupportedOperationException ignored) {
 
                     }
@@ -642,6 +640,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //     Modifiers     //
     ///////////////////////
+
     /**
      * Get the ability container of the entity.
      *

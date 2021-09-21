@@ -23,14 +23,14 @@ public class SaveLoader {
     // Non-static.
     private final File saveDir;
     private final HashMap<String, Supplier<SavedGame>> saves = new HashMap<>();
-    private final BubbleBlaster qbubbles = BubbleBlaster.getInstance();
+    private final BubbleBlaster game = BubbleBlaster.instance();
 
     /**
      * Get the {@link SaveLoader save laoder} instance.
      *
      * @return the requested instance.
      */
-    public static SaveLoader getInstance() {
+    public static SaveLoader instance() {
         return instance;
     }
 

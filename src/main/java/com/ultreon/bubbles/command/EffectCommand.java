@@ -1,11 +1,11 @@
 package com.ultreon.bubbles.command;
 
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.effect.StatusEffect;
 import com.ultreon.bubbles.effect.StatusEffectInstance;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
-import com.ultreon.hydro.registry.Registry;
 import com.ultreon.commons.utilities.python.builtins.ValueError;
+import com.ultreon.hydro.common.ResourceEntry;
+import com.ultreon.hydro.registry.Registry;
 
 public class EffectCommand implements CommandExecutor {
     @Override

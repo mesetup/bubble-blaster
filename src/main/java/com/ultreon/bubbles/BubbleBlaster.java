@@ -1,37 +1,37 @@
 package com.ultreon.bubbles;
 
 import com.google.common.annotations.Beta;
-import com.ultreon.bubbles.common.gametype.AbstractGameType;
-import com.ultreon.bubbles.mod.ModList;
-import com.ultreon.bubbles.mod.loader.ModManager;
 import com.ultreon.bubbles.common.References;
-import com.ultreon.bubbles.entity.player.PlayerEntity;
-import com.ultreon.bubbles.screen.LoadScreen;
-import com.ultreon.commons.crash.CrashLog;
+import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.common.streams.CustomOutputStream;
 import com.ultreon.bubbles.core.InstrumentHook;
-import com.ultreon.bubbles.save.SavedGame;
-import com.ultreon.commons.util.FileUtils;
-import com.ultreon.commons.lang.LoggableProgress;
-import com.ultreon.hydro.Game;
-import com.ultreon.hydro.GameWindow;
-import com.ultreon.hydro.player.IPlayer;
-import com.ultreon.hydro.player.PlayerController;
+import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.environment.Environment;
 import com.ultreon.bubbles.environment.EnvironmentRenderer;
-import com.ultreon.hydro.event.ExitEvent;
-import com.ultreon.hydro.event.bus.GameEventBus;
-import com.ultreon.hydro.screen.gui.Window;
 import com.ultreon.bubbles.init.GameTypes;
 import com.ultreon.bubbles.media.AudioPlayer;
+import com.ultreon.bubbles.mod.ModList;
+import com.ultreon.bubbles.mod.loader.ModManager;
+import com.ultreon.bubbles.save.SavedGame;
+import com.ultreon.bubbles.screen.LoadScreen;
+import com.ultreon.bubbles.screen.MessageScreen;
+import com.ultreon.commons.crash.CrashLog;
+import com.ultreon.commons.lang.LoggableProgress;
+import com.ultreon.commons.util.FileUtils;
+import com.ultreon.hydro.Game;
+import com.ultreon.hydro.GameWindow;
+import com.ultreon.hydro.event.ExitEvent;
+import com.ultreon.hydro.event.bus.GameEvents;
+import com.ultreon.hydro.player.IPlayer;
+import com.ultreon.hydro.player.PlayerController;
 import com.ultreon.hydro.render.RenderSettings;
+import com.ultreon.hydro.render.Renderer;
 import com.ultreon.hydro.render.TextureManager;
 import com.ultreon.hydro.resources.ResourceManager;
-import com.ultreon.bubbles.screen.MessageScreen;
 import com.ultreon.hydro.screen.Screen;
 import com.ultreon.hydro.screen.ScreenManager;
+import com.ultreon.hydro.screen.gui.Window;
 import com.ultreon.preloader.PreClassLoader;
-import lombok.Getter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,8 +41,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
-
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -53,7 +51,7 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * The QBubbles game main class.
+ * The Bubble Blaster game main class.
  *
  * @since 0.0.1-indev1
  */
@@ -73,7 +71,8 @@ public final class BubbleBlaster extends Game {
     private static long ticks = 0L;
 
     // Environment
-    @Nullable public Environment environment;
+    @Nullable
+    public Environment environment;
 
     // Player
     private final PlayerController playerController = new PlayerController(playerInterface);
@@ -97,8 +96,8 @@ public final class BubbleBlaster extends Game {
     private final RenderSettings renderSettings;
 
     // Managers.
-    private final ModManager modManager = ModManager.getInstance();
-    private final TextureManager textureManager = TextureManager.getInstance();
+    private final ModManager modManager = ModManager.instance();
+    private final TextureManager textureManager = TextureManager.instance();
     private final ResourceManager resourceManager = new ResourceManager();
 
     // Logger.
@@ -120,27 +119,6 @@ public final class BubbleBlaster extends Game {
     private final Instrumentation instrumentation;
     private final BufferedImage background = null;
 
-    public TextureManager getTextureManager() {
-        return textureManager;
-    }
-
-    // Font-getters.
-
-    public String getGameFontName() {
-        return getGameFont().getFontName();
-    }
-    public String getPixelFontName() {
-        return getPixelFont().getFontName();
-    }
-
-    public String getMonospaceFontName() {
-        return getMonospaceFont().getFontName();
-    }
-
-    public String getSansFontName() {
-        return getSansFont().getFontName();
-    }
-
     // GUI getters.
 
     @Deprecated
@@ -156,19 +134,10 @@ public final class BubbleBlaster extends Game {
     public PlayerEntity player;
 
     // Instance
-    @Getter
     private static BubbleBlaster instance;
-    public static Instrumentation getInstrumentation() {
-        return instance.instrumentation;
-    }
 
-    /**
-     * Get event bus.
-     *
-     * @return The bubble blaster event bus.
-     */
-    public static GameEventBus getEventBus() {
-        return GameEventBus.get();
+    public static BubbleBlaster instance() {
+        return instance;
     }
 
     // Constructor.
@@ -181,16 +150,16 @@ public final class BubbleBlaster extends Game {
 
         for (Thread thread : Thread.getAllStackTraces().keySet()) {
             if (thread.getName().equals("JavaFX Application Thread")) {
-                thread.setName("QBubblesApp");
+                thread.setName("Bubble-Blaster-App");
             }
             if (thread.getName().equals("AWT-EventQueue-0")) {
-                thread.setName("CoreEventBus");
+                thread.setName("Native-Events");
             }
         }
 
         // Add ansi color compatibility in console.
         AnsiConsole.systemInstall();
-        FileUtils.setCwd(References.QBUBBLES_DIR);
+        FileUtils.setCwd(References.GAME_DIR);
 
         // Transparent 16 x 16 pixel cursor image.
         BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
@@ -270,13 +239,13 @@ public final class BubbleBlaster extends Game {
         // Register Game Font.
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
-            gameFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/qbubbles/fonts/ChicleRegular-xpv5.ttf")));
+            gameFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/ChicleRegular-xpv5.ttf")));
             ge.registerFont(getGameFont());
-            pixelFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/qbubbles/fonts/pixel/Pixel-UniCode.ttf")));
+            pixelFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/pixel/Pixel-UniCode.ttf")));
             ge.registerFont(getPixelFont());
-            monospaceFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/qbubbles/fonts/dejavu/DejaVuSansMono.ttf")));
+            monospaceFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/dejavu/DejaVuSansMono.ttf")));
             ge.registerFont(getMonospaceFont());
-            sansFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/qbubbles/fonts/arial-unicode-ms.ttf")));
+            sansFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/arial-unicode-ms.ttf")));
             ge.registerFont(getSansFont());
         } catch (FontFormatException | NullPointerException e) {
             if (e instanceof NullPointerException) {
@@ -297,7 +266,7 @@ public final class BubbleBlaster extends Game {
         getGameWindow().requestFocus();
 
         // Register event bus.
-        getEventBus().register(this);
+        getEventBus().subscribe(this);
 
         // Start scene-manager.
         try {
@@ -341,7 +310,7 @@ public final class BubbleBlaster extends Game {
     @Override
     public void onClose() {
         // Shut-down game.
-        getLogger().warn("QBubbles is now shutting down...");
+        getLogger().warn("Bubble Blaster is now shutting down...");
 
         // Check for exit events.
         checkForExitEvents();
@@ -367,7 +336,7 @@ public final class BubbleBlaster extends Game {
     }
 
     private void checkForExitEvents() {
-        getEventBus().post(new ExitEvent());
+        getEventBus().publish(new ExitEvent());
     }
 
     private void renderScreenEnv(Renderer renderer) {
@@ -467,7 +436,7 @@ public final class BubbleBlaster extends Game {
 
     /**
      * @param screen the screen to switch to.
-     * @param force whether to force switching or not.
+     * @param force  whether to force switching or not.
      */
     public void showScreen(Screen screen, boolean force) {
         this.screenManager.displayScreen(screen, force);
@@ -527,8 +496,6 @@ public final class BubbleBlaster extends Game {
             LoadedGame loadedGame = new LoadedGame(save, this.environment);
             loadedGame.run();
 
-            loadPlayEnvironment();
-
             this.loadedGame = loadedGame;
         } catch (Throwable t) {
             t.printStackTrace();
@@ -537,7 +504,7 @@ public final class BubbleBlaster extends Game {
             throw crashLog.createCrash();
         }
 
-        BubbleBlaster.getInstance().showScreen(null);
+        BubbleBlaster.instance().showScreen(null);
     }
 
     public void quitLoadedGame() {
@@ -554,9 +521,11 @@ public final class BubbleBlaster extends Game {
     public boolean isOnMainThread() {
         return Thread.currentThread() == mainThread;
     }
+
     public boolean isOnRenderThread() {
         return Thread.currentThread() == renderThread;
     }
+
     public boolean isGameLoaded() {
         return getLoadedGame() != null;
     }
@@ -567,9 +536,15 @@ public final class BubbleBlaster extends Game {
     public ScreenManager getScreenManager() {
         return screenManager;
     }
+
     public ResourceManager getResourceManager() {
         return resourceManager;
     }
+
+    public TextureManager getTextureManager() {
+        return textureManager;
+    }
+
 
     /////////////////////////
     //     Loaded Game     //
@@ -577,9 +552,11 @@ public final class BubbleBlaster extends Game {
     public @Nullable LoadedGame getLoadedGame() {
         return loadedGame;
     }
+
     public @Nullable Environment getEnvironment() {
         return environment;
     }
+
     public @Nullable SavedGame getCurrentSave() {
         LoadedGame loadedGame = getLoadedGame();
         if (loadedGame != null) {
@@ -594,12 +571,15 @@ public final class BubbleBlaster extends Game {
     public Font getSansFont() {
         return sansFont;
     }
+
     public Font getMonospaceFont() {
         return monospaceFont;
     }
+
     public Font getPixelFont() {
         return pixelFont;
     }
+
     public Font getGameFont() {
         return gameFont;
     }
@@ -622,15 +602,19 @@ public final class BubbleBlaster extends Game {
     public Cursor getBlankCursor() {
         return blankCursor;
     }
+
     public Cursor getTextCursor() {
         return textCursor;
     }
+
     public Cursor getPointerCursor() {
         return pointerCursor;
     }
+
     public Cursor getDefaultCursor() {
         return defaultCursor;
     }
+
     public String getFontName() {
         return fontName;
     }
@@ -641,6 +625,7 @@ public final class BubbleBlaster extends Game {
     public RenderSettings getRenderSettings() {
         return renderSettings;
     }
+
     public EnvironmentRenderer getEnvironmentRenderer() {
         return environmentRenderer;
     }
@@ -679,6 +664,7 @@ public final class BubbleBlaster extends Game {
     public static boolean isDebugMode() {
         return debugMode;
     }
+
     public static boolean isDevMode() {
         return devMode;
     }
@@ -701,11 +687,13 @@ public final class BubbleBlaster extends Game {
     //     Middle position     //
     /////////////////////////////
     public static double getMiddleX() {
-        return (double) getInstance().getWidth() / 2;
+        return (double) instance().getWidth() / 2;
     }
+
     public static double getMiddleY() {
-        return (double) getInstance().getHeight() / 2;
+        return (double) instance().getHeight() / 2;
     }
+
     public static Point2D getMiddlePoint() {
         return new Point2D.Double(getMiddleX(), getMiddleY());
     }
@@ -728,45 +716,66 @@ public final class BubbleBlaster extends Game {
     //     Reduce ticks to seconds     //
     /////////////////////////////////////
     public static byte reduceTicks2Secs(byte value, byte seconds) {
-        return (byte) ((double) value / ((double)TPS * seconds));
+        return (byte) ((double) value / ((double) TPS * seconds));
     }
+
     public static short reduceTicks2Secs(short value, short seconds) {
-        return (short) ((double) value / ((double)TPS * seconds));
+        return (short) ((double) value / ((double) TPS * seconds));
     }
+
     public static int reduceTicks2Secs(int value, int seconds) {
-        return (int) ((double) value / ((double)TPS * seconds));
+        return (int) ((double) value / ((double) TPS * seconds));
     }
+
     public static long reduceTicks2Secs(long value, long seconds) {
-        return (long) ((double) value / ((double)TPS * seconds));
+        return (long) ((double) value / ((double) TPS * seconds));
     }
+
     public static float reduceTicks2Secs(float value, float seconds) {
-        return (float) ((double) value / ((double)TPS * seconds));
+        return (float) ((double) value / ((double) TPS * seconds));
     }
+
     public static double reduceTicks2Secs(double value, double seconds) {
         return value / ((double) TPS * seconds);
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean isPaused() {
-        Screen currentScreen = getInstance().getCurrentScreen();
+        Screen currentScreen = instance().getCurrentScreen();
         return currentScreen != null && currentScreen.doesPauseGame();
     }
 
+    /**
+     * Loads the game.
+     *
+     * @param mainProgress main loading progress.
+     */
     @Override
     protected void load(LoggableProgress mainProgress) {
 
     }
 
+    /**
+     * Prepares the game.
+     */
     @Override
     protected void prepare() {
 
     }
 
+    /**
+     * Prepares the player.
+     */
     @Override
     protected void preparePlayer() {
 
     }
 
+    /**
+     * Creates a player.
+     *
+     * @return the created player.
+     */
     @Override
     protected IPlayer createPlayer() {
         if (environment != null) {
@@ -776,22 +785,38 @@ public final class BubbleBlaster extends Game {
         }
     }
 
+    /**
+     * Creates an instance of the screen manager.
+     *
+     * @return the created screen manager.
+     */
     @Override
     public ScreenManager createScreenManager() {
         return ScreenManager.create(new LoadScreen());
     }
 
+    /**
+     * @return the amount of main loading steps.
+     */
     @Override
     protected int getMainLoadingSteps() {
         return 0;
     }
 
+    /**
+     * Renders the game.
+     *
+     * @param renderer the game renderer.
+     */
     @Override
     protected void render(Renderer renderer) {
 //        environmentRenderer.render(renderer);
         renderScreenEnv(renderer);
     }
 
+    /**
+     * Ticks the game.
+     */
     @Override
     protected void tick() {
         if (this.environment != null) this.environment.tick();
@@ -799,21 +824,80 @@ public final class BubbleBlaster extends Game {
         BubbleBlaster.ticks++;
     }
 
+    /**
+     * Loads the game environment.
+     */
     @Override
     protected void loadEnvironment() {
         preparePlayer();
     }
 
+    /**
+     * Starts loading the game.
+     */
     public void startLoading() {
         getGameWindow().init();
     }
 
+    /**
+     * @return the mod list.
+     * @deprecated use {@link ModList#get()} instead.
+     */
     @Deprecated
     public ModList getModList() {
         return ModList.get();
     }
 
+    /**
+     * @return get the default font.
+     */
     public Font getFont() {
         return getSansFont();
+    }
+
+    /**
+     * @return the name of the game font.
+     */
+    public String getGameFontName() {
+        return getGameFont().getFontName();
+    }
+
+    /**
+     * @return the name of the pixel font.
+     */
+    public String getPixelFontName() {
+        return getPixelFont().getFontName();
+    }
+
+    /**
+     * @return the name of the monospace font.
+     */
+    public String getMonospaceFontName() {
+        return getMonospaceFont().getFontName();
+    }
+
+    /**
+     * @return the name of the sans font.
+     */
+    public String getSansFontName() {
+        return getSansFont().getFontName();
+    }
+
+    /**
+     * @return instrumentation.
+     * @deprecated reason: unused.
+     */
+    @Deprecated(since = "1.0.0", forRemoval = true)
+    public static Instrumentation getInstrumentation() {
+        return instance.instrumentation;
+    }
+
+    /**
+     * Game Events getter.
+     *
+     * @return The game event manager.
+     */
+    public static GameEvents getEventBus() {
+        return GameEvents.get();
     }
 }

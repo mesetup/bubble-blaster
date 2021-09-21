@@ -1,21 +1,20 @@
 package com.ultreon.bubbles.screen;
 
 import com.ultreon.bubbles.BubbleBlaster;
+import com.ultreon.bubbles.save.SaveLoader;
+import com.ultreon.bubbles.save.SavedGame;
+import com.ultreon.bubbles.util.Util;
 import com.ultreon.commons.annotation.FieldsAreNonnullByDefault;
 import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
-import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.hydro.Game;
-import com.ultreon.hydro.event.TickEvent;
 import com.ultreon.hydro.event.SubscribeEvent;
-import com.ultreon.bubbles.save.SaveLoader;
-import com.ultreon.bubbles.util.Util;
+import com.ultreon.hydro.event.TickEvent;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.Screen;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
-import com.ultreon.hydro.screen.Screen;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Collection;
@@ -25,7 +24,7 @@ import java.util.function.Supplier;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 @FieldsAreNonnullByDefault
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
+@SuppressWarnings({"FieldCanBeLocal", "unused", "CommentedOutCode"})
 public class SavesScreen extends Screen {
     @Nullable
     private static SavesScreen instance;
@@ -46,7 +45,7 @@ public class SavesScreen extends Screen {
         // Logging.
         System.out.println("Initializing SavesScene");
 
-        this.saves = SaveLoader.getInstance().getSaves();
+        this.saves = SaveLoader.instance().getSaves();
     }
 
     // Mouse listener.
@@ -64,12 +63,12 @@ public class SavesScreen extends Screen {
 
     private void openSave() {
         if (selectedSave != null) {
-            BubbleBlaster.getInstance().loadSave(selectedSave);
+            BubbleBlaster.instance().loadSave(selectedSave);
         }
     }
 
     @Nullable
-    public static SavesScreen getInstance() {
+    public static SavesScreen instance() {
         return instance;
     }
 
@@ -83,7 +82,7 @@ public class SavesScreen extends Screen {
 
     @Override
     public void init() {
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
 
 //        panel.setVisible(true);
 
@@ -94,7 +93,7 @@ public class SavesScreen extends Screen {
 
     @Override
     public boolean onClose(Screen to) {
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
 
 //        panel.setVisible(false);
 
@@ -131,13 +130,13 @@ public class SavesScreen extends Screen {
 //        cancelButton.setText(I18n.translateToLocal("other.cancel"));
 //        cancelButton.render(game, gg);
 
-//        languageButton.setText(I18n.translateToLocal("scene.qbubbles.options.language"));
+//        languageButton.setText(I18n.translateToLocal("scene.BubbleBlaster.options.language"));
 //        languageButton.render(game, gg);
 
-//        scrollPane.setPreferredSize(new Dimension(800, QBubbles.getInstance().getScaledHeight()));
-//        scrollPane.setSize(new Dimension(800, QBubbles.getInstance().getScaledHeight()));
-//        panel.setPreferredSize(new Dimension(800, QBubbles.getInstance().getScaledHeight()));
-//        panel.setSize(new Dimension(800, QBubbles.getInstance().getScaledHeight()));
+//        scrollPane.setPreferredSize(new Dimension(800, BubbleBlaster.getInstance().getScaledHeight()));
+//        scrollPane.setSize(new Dimension(800, BubbleBlaster.getInstance().getScaledHeight()));
+//        panel.setPreferredSize(new Dimension(800, BubbleBlaster.getInstance().getScaledHeight()));
+//        panel.setSize(new Dimension(800, BubbleBlaster.getInstance().getScaledHeight()));
 //        scrollPane.setLocation(Game.instance().getWidth() / 2 - 300, 0);
 
 //        scrollPane.paintAll(gg.create(Game.instance().getWidth() / 2 - 400, 0, 800, Game.instance().getHeight()));

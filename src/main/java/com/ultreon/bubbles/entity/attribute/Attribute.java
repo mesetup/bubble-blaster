@@ -5,12 +5,12 @@ import java.util.HashMap;
 public class Attribute {
     private static final HashMap<String, Attribute> attributeMap = new HashMap<>();
 
-    public static final Attribute SCORE_MULTIPLIER = new Attribute("qbubbles.score_multiplier");
-    public static final Attribute MAX_DAMAGE = new Attribute("qbubbles.max_health");
-    public static final Attribute DEFENSE = new Attribute("qbubbles.defense");
-    public static final Attribute ATTACK = new Attribute("qbubbles.attack");
-    public static final Attribute SPEED = new Attribute("qbubbles.speed");
-    public static final Attribute LUCK = new Attribute("qbubbles.luck");
+    public static final Attribute SCORE_MULTIPLIER = new Attribute("bubbleblaster.score_multiplier");
+    public static final Attribute MAX_DAMAGE = new Attribute("bubbleblaster.max_health");
+    public static final Attribute DEFENSE = new Attribute("bubbleblaster.defense");
+    public static final Attribute ATTACK = new Attribute("bubbleblaster.attack");
+    public static final Attribute SPEED = new Attribute("bubbleblaster.speed");
+    public static final Attribute LUCK = new Attribute("bubbleblaster.luck");
 
     private final String name;
 

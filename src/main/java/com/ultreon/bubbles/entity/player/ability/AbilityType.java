@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
- *
  * @param <T>
  */
 public class AbilityType<T extends Ability<T>> extends RegistryEntry {

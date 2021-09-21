@@ -8,14 +8,14 @@ import java.io.File;
 
 public class References {
     // Dirs
-    public static final File QBUBBLES_DIR = BubbleBlaster.getGameDir();
-    public static final File LOGS_DIR = new File(QBUBBLES_DIR.getAbsolutePath(), "Logs");
-    public static final File ADDONS_DIR = new File(QBUBBLES_DIR.getAbsolutePath(), "Addons");
-    public static final File SAVES_DIR = new File(QBUBBLES_DIR, "Saves");
+    public static final File GAME_DIR = BubbleBlaster.getGameDir();
+    public static final File LOGS_DIR = new File(GAME_DIR.getAbsolutePath(), "Logs");
+    public static final File MODS_DIR = new File(GAME_DIR.getAbsolutePath(), "Mods");
+    public static final File SAVES_DIR = new File(GAME_DIR, "Saves");
 
     // Files
-    public static final File SETTINGS_FILE = new File(QBUBBLES_DIR, "Settings.json");
-    public static final File CRASH_REPORTS = new File(QBUBBLES_DIR, "CrashReports");
+    public static final File SETTINGS_FILE = new File(GAME_DIR, "Settings.json");
+    public static final File CRASH_REPORTS = new File(GAME_DIR, "CrashReports");
 
     static {
         //noinspection ResultOfMethodCallIgnored

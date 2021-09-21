@@ -6,21 +6,23 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.ultreon.bubbles.BubbleBlaster;
-import com.ultreon.bubbles.mod.ModContainer;
-import com.ultreon.bubbles.mod.ModInformation;
 import com.ultreon.bubbles.common.References;
 import com.ultreon.bubbles.common.mod.Mod;
 import com.ultreon.bubbles.common.mod.ModInstance;
 import com.ultreon.bubbles.common.mod.ModObject;
 import com.ultreon.bubbles.common.text.translation.LanguageMap;
-import com.ultreon.bubbles.event.load.AddonSetupEvent;
-import com.ultreon.bubbles.registry.AddonManager;
+import com.ultreon.bubbles.core.GameClassLoader;
+import com.ultreon.bubbles.core.ModClassLoader;
+import com.ultreon.bubbles.event.load.ModSetupEvent;
+import com.ultreon.bubbles.mod.ModContainer;
+import com.ultreon.bubbles.mod.ModInformation;
 import com.ultreon.bubbles.registry.LocaleManager;
 import com.ultreon.bubbles.screen.LoadScreen;
 import com.ultreon.bubbles.settings.GameSettings;
 import com.ultreon.commons.crash.CrashCategory;
 import com.ultreon.commons.crash.CrashLog;
 import com.ultreon.hydro.common.ResourceEntry;
+import com.ultreon.hydro.core.AntiMod;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,120 +33,122 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+@AntiMod
 @SuppressWarnings("unused")
 public class ModLoader {
-    public static final File ADDONS_DIR = References.ADDONS_DIR;
-    private final ArrayList<Object> addons = new ArrayList<>();
+    public static final File MODS_DIR = References.MODS_DIR;
+    private final ArrayList<Object> mods = new ArrayList<>();
     private final LoadScreen loadScreen;
-    private final ModClassLoader modClassLoader;
-    private static final Logger LOGGER = LogManager.getLogger("Addon-Loader");
-    private final HashMap<File, Scanner.ScanResult> scanResults = new HashMap<>();
-//    private final List<AddonContainer> containers = new ArrayList<>();
+    private static final Logger LOGGER = LogManager.getLogger("Mod-Loader");
+    private final HashMap<File, Scanner.Result> scanResults = new HashMap<>();
+//    private final List<ModContainer> containers = new ArrayList<>();
 
     public ModLoader(LoadScreen loadScreen) {
         this.loadScreen = loadScreen;
         boolean existsBefore = true;
 
-        modClassLoader = new ModClassLoader(BubbleBlaster.getMainClassLoader());
+//        modClassLoader = new ModClassLoader(BubbleBlaster.getMainClassLoader(), );
 
-        if (!ADDONS_DIR.exists()) {
+        GameClassLoader.get().scan();
+
+        if (!MODS_DIR.exists()) {
             existsBefore = false;
-            boolean flag = ADDONS_DIR.mkdirs();
+            boolean flag = MODS_DIR.mkdirs();
             if (!flag) {
-                throw new IllegalStateException("Addons directory wasn't created. (" + ADDONS_DIR.getPath() + ")");
+                throw new IllegalStateException("Mods directory wasn't created. (" + MODS_DIR.getPath() + ")");
             }
-        } else if (ADDONS_DIR.isFile()) {
+        } else if (MODS_DIR.isFile()) {
             existsBefore = false;
-            boolean flag1 = ADDONS_DIR.delete();
-            boolean flag2 = ADDONS_DIR.mkdir();
+            boolean flag1 = MODS_DIR.delete();
+            boolean flag2 = MODS_DIR.mkdir();
 
             if (!flag1) {
-                throw new IllegalStateException("Addons directory wasn't deleted. (" + ADDONS_DIR.getPath() + ")");
+                throw new IllegalStateException("Mods directory wasn't deleted. (" + MODS_DIR.getPath() + ")");
             }
             if (!flag2) {
-                throw new IllegalStateException("Addons directory wasn't created. (" + ADDONS_DIR.getPath() + ")");
+                throw new IllegalStateException("Mods directory wasn't created. (" + MODS_DIR.getPath() + ")");
             }
         }
 
         URL location = BubbleBlaster.class.getProtectionDomain().getCodeSource().getLocation();
-        try {
-            File file = new File(location.toURI());
-
-            boolean flag = loadJar(file.getPath(), loadScreen);
-            if (!flag) {
-                LOGGER.info("No flag.");
-                loadScreen.logInfo(String.format("Found non-addon file: %s", file.getName()));
-                LOGGER.info(String.format("Found non-addon file: %s", file.getName()));
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            File file = new File(location.toURI());
+//
+//            boolean flag = loadJar(file.getPath(), loadScreen);
+//            if (!flag) {
+//                LOGGER.info("No flag.");
+//                loadScreen.logInfo(String.format("Found non-mod file: %s", file.getName()));
+//                LOGGER.info(String.format("Found non-mod file: %s", file.getName()));
+//            }
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
 
         if (existsBefore) {
-            for (File file : Objects.requireNonNull(ADDONS_DIR.listFiles())) {
+            for (File file : Objects.requireNonNull(MODS_DIR.listFiles())) {
                 if (file.getName().endsWith(".jar")) {
+                    ModClassLoader modClassLoader = GameClassLoader.get().addMod(file);
                     LOGGER.debug("Loading jar file: " + file.getName());
                     boolean flag = loadJar(file.getPath(), loadScreen);
                     if (!flag) {
                         LOGGER.info("No flag.");
-                        loadScreen.logInfo(String.format("Found non-addon file: %s", file.getName()));
-                        LOGGER.info(String.format("Found non-addon file: %s", file.getName()));
+                        loadScreen.logInfo(String.format("Found non-mod file: %s", file.getName()));
+                        LOGGER.info(String.format("Found non-mod file: %s", file.getName()));
                     }
                 } else {
-                    loadScreen.logInfo(String.format("Found non-addon file: %s", file.getName()));
-                    LOGGER.info(String.format("Found non-addon file: %s", file.getName()));
+                    loadScreen.logInfo(String.format("Found non-mod file: %s", file.getName()));
+                    LOGGER.info(String.format("Found non-mod file: %s", file.getName()));
                 }
             }
         }
     }
 
-    public void constructAddons() {
-        if (AddonManager.instance().keys().isEmpty()) {
+    public void constructMods() {
+        if (ModManager.instance().getModIds().isEmpty()) {
             return;
         }
 
-        ModManager modManager = ModManager.getInstance();
+        com.ultreon.bubbles.mod.loader.ModManager modManager = com.ultreon.bubbles.mod.loader.ModManager.instance();
 
-        LOGGER.info(String.format("Constructing Mods: %s", StringUtils.join(AddonManager.instance().keys(), ", ")));
+        LOGGER.info(String.format("Constructing Mods: %s", StringUtils.join(ModManager.instance().getModIds(), ", ")));
 
         ModObject<?> modObject;
-        for (ModObject<?> object : AddonManager.instance().values()) {
+        for (ModObject<?> object : ModManager.instance().getModObjects()) {
             loadScreen.logInfo(object.getNamespace());
             try {
-                // Create eventbus and logger for addon.
-                Logger logger = LogManager.getLogger(object.getAnnotation().addonId());
+                // Create eventbus and logger for mod.
+                Logger logger = LogManager.getLogger(object.getAnnotation().modId());
 
-                // Register addon object.
-                modManager.registerAddonObject(object);
+                // Register mod object.
+                modManager.registerModObject(object);
 
-                // Create java addon instance.
-                Class<? extends ModInstance> addonClass = object.getAddonClass();
-                Constructor<? extends ModInstance> constructor = addonClass.getConstructor(Logger.class, String.class, ModObject.class);
+                // Create java mod instance.
+                Class<? extends ModInstance> modClass = object.getModClass();
+                Constructor<? extends ModInstance> constructor = modClass.getConstructor(Logger.class, String.class, ModObject.class);
                 constructor.setAccessible(true);
-                ModInstance addon = constructor.newInstance(logger, object.getAnnotation().addonId(), object);
+                ModInstance mod = constructor.newInstance(logger, object.getAnnotation().modId(), object);
 
-                // Register java addon.
-                modManager.registerAddon(addon);
+                // Register java mod.
+                modManager.registerMod(mod);
 
-                addons.add(addon);
+                mods.add(mod);
             } catch (Throwable t) {
-                CrashLog crashLog = new CrashLog("Constructing addon", t);
-                CrashCategory addonCategory = new CrashCategory("Addon was constructing");
-                addonCategory.add("Addon ID", object);
-                addonCategory.add("File", object.getContainer().getSource().getPath());
+                CrashLog crashLog = new CrashLog("Constructing mod", t);
+                CrashCategory modCategory = new CrashCategory("Mod was constructing");
+                modCategory.add("Mod ID", object);
+                modCategory.add("File", object.getContainer().getSource().getPath());
                 throw crashLog.createCrash();
             }
         }
     }
 
-    public void addonSetup() {
-        BubbleBlaster.getEventBus().post(new AddonSetupEvent(this));
+    public void modSetup() {
+        BubbleBlaster.getEventBus().publish(new ModSetupEvent(this));
 
         LocaleManager.getManager().register("af_za");
         LocaleManager.getManager().register("el_gr");
@@ -161,7 +165,7 @@ public class ModLoader {
         for (Locale locale : locales) {
             LanguageMap langMap = new LanguageMap(locale);
 
-            String resourcePath = "/assets/qbubbles/lang/" + locale.toString().toLowerCase() + ".lang";
+            String resourcePath = "/assets/bubbleblaster/lang/" + locale.toString().toLowerCase() + ".lang";
 
             InputStream stream = getClass().getResourceAsStream(resourcePath);
             if (stream == null) {
@@ -170,12 +174,12 @@ public class ModLoader {
                 langMap.injectInst(stream);
             }
 
-            for (ModObject<?> object : AddonManager.instance().values()) {
-                String addonId = object.getAnnotation().addonId();
+            for (ModObject<?> object : ModManager.instance().getModObjects()) {
+                String modId = object.getAnnotation().modId();
 
-                resourcePath = "/assets/" + addonId + "/lang/" + locale.toString().toLowerCase() + ".lang";
+                resourcePath = "/assets/" + modId + "/lang/" + locale.toString().toLowerCase() + ".lang";
 
-                stream = object.getAddonClass().getResourceAsStream(resourcePath);
+                stream = object.getModClass().getResourceAsStream(resourcePath);
                 if (stream == null) {
 //                    LOGGER.warn(String.format("Cannot find language file: %s", resourcePath));
                     continue;
@@ -185,7 +189,7 @@ public class ModLoader {
             }
         }
 
-        String resourcePath = "/assets/qbubbles/lang/" + GameSettings.instance().getLanguage() + ".lang";
+        String resourcePath = "/assets/bubbleblaster/lang/" + GameSettings.instance().getLanguage() + ".lang";
 
         InputStream stream = getClass().getResourceAsStream(resourcePath);
         //noinspection StatementWithEmptyBody
@@ -194,12 +198,12 @@ public class ModLoader {
         } else {
             LanguageMap.inject(stream);
         }
-        for (ModObject<?> object : AddonManager.instance().values()) {
-            String addonId = object.getAnnotation().addonId();
+        for (ModObject<?> object : ModManager.instance().getModObjects()) {
+            String modId = object.getAnnotation().modId();
 
-            resourcePath = "/assets/" + addonId + "/lang/" + GameSettings.instance().getLanguage() + ".lang";
+            resourcePath = "/assets/" + modId + "/lang/" + GameSettings.instance().getLanguage() + ".lang";
 
-            stream = object.getAddonClass().getResourceAsStream(resourcePath);
+            stream = object.getModClass().getResourceAsStream(resourcePath);
             if (stream == null) {
 //                Game.getLogger().warn(String.format("Cannot find language file: %s", resourcePath));
                 continue;
@@ -212,56 +216,71 @@ public class ModLoader {
     @SuppressWarnings("unchecked")
     public boolean loadJar(String pathToJar, @Nullable LoadScreen loadScreen) {
         try {
-            Enumeration<JarEntry> e;
-            int internalAddons = 0;
+            Enumeration<JarEntry> entryEnumeration;
+            int internalMods = 0;
 
-            File file = new File(pathToJar);
+            File modFile = new File(pathToJar);
 
-            Scanner scanner = new Scanner(file, modClassLoader);
-            if (loadScreen != null) {
-                loadScreen.logInfo("Scanning jar file: " + file.getPath());
+//            Scanner scanner = new Scanner(modFile, modClassLoader);
+//            if (loadScreen != null) {
+//                loadScreen.logInfo("Scanning jar file: " + modFile.getPath());
+//            }
+//            Scanner.Result result = scanner.scanJar(loadScreen);
+//            JarFile jarFile = result.getScanner().getJarFile();
+//            File dir = result.getScanner().getFile();
+
+            GameClassLoader loader = GameClassLoader.get();
+            String modFileId = loader.getModFileId(modFile);
+            LOGGER.info("Loading mod file with id: {}", modFileId);
+            loader.scan(modFileId);
+
+            JarFile jarFile = null;
+            File dir = null;
+            if (modFile.isFile()) {
+                jarFile = new JarFile(modFile);
+            } else {
+                dir = modFile;
             }
-            Scanner.ScanResult scanResult = scanner.scanJar(loadScreen);
-            JarFile jarFile = scanResult.getScanner().getJarFile();
-            File dir = scanResult.getScanner().getFile();
+
             InputStream inputStream;
             if (jarFile == null) {
-                File file1 = new File(dir, "../../../resources/main/META-INF/addons.json").getCanonicalFile();
+                File file1 = new File(dir, "../../../resources/main/META-INF/mods.json").getCanonicalFile();
                 inputStream = new FileInputStream(file1);
             } else {
-                JarEntry addonMetaEntry = jarFile.getJarEntry("META-INF/addons.json");
-                inputStream = jarFile.getInputStream(addonMetaEntry);
+                JarEntry modMetaEntry = jarFile.getJarEntry("META-INF/mods.json");
+                inputStream = jarFile.getInputStream(modMetaEntry);
             }
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             JsonReader jsonReader = new JsonReader(inputStreamReader);
             JsonObject jsonObject = new Gson().fromJson(jsonReader, JsonObject.class);
-            JsonArray addons = jsonObject.getAsJsonArray("addons");
-            if (addons == null) {
-                throw new IllegalStateException("No addons were not found in addon metadata of " + file.getAbsolutePath());
+            JsonArray mods = jsonObject.getAsJsonArray("mods");
+            if (mods == null) {
+                throw new IllegalStateException("No mods were not found in mod metadata of " + modFile.getAbsolutePath());
             }
 
             HashSet<String> fromJson = new HashSet<>();
             HashSet<String> missing = new HashSet<>();
             HashSet<String> fromScan = new HashSet<>();
             HashSet<String> current = new HashSet<>();
-            HashMap<String, JsonObject> addonJsons = new HashMap<>();
+            HashMap<String, JsonObject> modJsons = new HashMap<>();
 
-            for (JsonElement element : addons) {
+            for (JsonElement element : mods) {
                 if (element.isJsonObject()) {
-                    JsonObject addonJson = element.getAsJsonObject();
-                    String addonId = addonJson.getAsJsonPrimitive("addonId").getAsString();
-                    ResourceEntry.testNamespace(addonId);
+                    JsonObject modJson = element.getAsJsonObject();
+                    String modId = modJson.getAsJsonPrimitive("modId").getAsString();
+                    ResourceEntry.testNamespace(modId);
 
-                    missing.add(addonId);
-                    fromJson.add(addonId);
+                    missing.add(modId);
+                    fromJson.add(modId);
 
-                    addonJsons.put(addonId, addonJson);
+                    modJsons.put(modId, modJson);
                 }
             }
 
-            scanResults.put(file, scanResult);
+            Scanner.Result result = loader.getResult(modFileId);
+            scanResults.put(modFile, result);
 
-            List<Class<?>> classes = scanResult.getClasses(Mod.class);
+            List<Class<?>> classes = result.getClasses(Mod.class);
             for (Class<?> clazz : classes) {
                 Mod mod = clazz.getDeclaredAnnotation(Mod.class);
                 if (mod != null) {
@@ -274,49 +293,56 @@ public class ModLoader {
                     }
 
                     if (!flag) {
-                        throw new IllegalArgumentException("Addon has no constructor with 3 parameters. (" + clazz.getName() + ")");
+                        throw new IllegalArgumentException("Mod has no constructor with 3 parameters. (" + clazz.getName() + ")");
                     }
 
-                    ResourceEntry.testNamespace(mod.addonId());
+                    ResourceEntry.testNamespace(mod.modId());
 
-                    internalAddons++;
+                    internalMods++;
 
+                    JarFile finalJarFile = jarFile;
                     ModContainer modContainer = new ModContainer() {
-                        private final ModInformation addonInfo = new ModInformation(this);
-                        private final ModObject<ModInstance> addonObject;
-                        private final JsonObject addonJson = addonJsons.get(mod.addonId());
+                        private final ModInformation modInfo = new ModInformation(this);
+                        private final ModObject<ModInstance> modObject;
+                        private final JsonObject modJson = modJsons.get(mod.modId());
 
                         {
                             if (ModInstance.class.isAssignableFrom(clazz)) {
-                                addonObject = new ModObject<>(mod.addonId(), this, mod, (Class<ModInstance>) clazz);
+                                modObject = new ModObject<>(mod.modId(), this, mod, (Class<ModInstance>) clazz);
                             } else {
-                                throw new ClassCastException("Tried to cast invalid class for addon: " + getModId());
+                                throw new ClassCastException("Tried to cast invalid class for mod: " + getModId());
                             }
                         }
 
                         @Override
                         public String getModId() {
-                            return mod.addonId();
+                            return mod.modId();
+                        }
+
+                        @Override
+                        public String getModFileId() {
+                            return modFileId;
                         }
 
                         @Override
                         public JsonObject getModProperties() {
-                            return addonJson;
+                            return modJson;
                         }
 
                         @Override
                         public File getSource() {
-                            return file;
+                            return modFile;
                         }
 
+                        @Nullable
                         @Override
                         public JarFile getJarFile() {
-                            return jarFile;
+                            return finalJarFile;
                         }
 
                         @Override
                         public ModInformation getModInfo() {
-                            return addonInfo;
+                            return modInfo;
                         }
 
                         @Override
@@ -326,22 +352,22 @@ public class ModLoader {
 
                         @Override
                         public ModObject<? extends ModInstance> getModObject() {
-                            return addonObject;
+                            return modObject;
                         }
 
                         @Override
                         public ModInstance getModInstance() {
-                            return getModObject().getAddon();
+                            return getModObject().getMod();
                         }
                     };
 
-                    ModManager.registerContainer(modContainer);
-                    AddonManager.instance().register(mod.addonId(), modContainer.getModObject());
+                    com.ultreon.bubbles.mod.loader.ModManager.registerContainer(modContainer);
+                    ModManager.instance().registerModObject(modContainer.getModObject());
 
-                    if (!fromJson.contains(mod.addonId())) {
-                        throw new IllegalArgumentException("Missing addon with ID " + mod.addonId() + " in the addon metadata.");
+                    if (!fromJson.contains(mod.modId())) {
+                        throw new IllegalArgumentException("Missing mod with ID " + mod.modId() + " in the mod metadata.");
                     }
-                    missing.remove(mod.addonId());
+                    missing.remove(mod.modId());
                 }
             }
 
@@ -352,36 +378,37 @@ public class ModLoader {
             }
 
             if (sb.length() > 0) {
-                throw new IllegalStateException("Missing addon classes with ids: " + sb.substring(0, sb.length() - 2));
+                throw new IllegalStateException("Missing mod classes with ids: " + sb.substring(0, sb.length() - 2));
             }
 
-            if (internalAddons == 0) {
-                LOGGER.warn("Addon has no annotated classes.");
+            if (internalMods == 0) {
+                LOGGER.warn("Mod has no annotated classes.");
             }
 
-            return internalAddons != 0;
+            return internalMods != 0;
         } catch (Throwable t) {
-            CrashLog crashLog = new CrashLog("Loading addons", t);
-            CrashCategory addonCategory = new CrashCategory("Addon Loading");
-            addonCategory.add("File", pathToJar);
-            crashLog.addCategory(addonCategory);
+            CrashLog crashLog = new CrashLog("Loading mods", t);
+            CrashCategory modCategory = new CrashCategory("Mod Loading");
+            modCategory.add("File", pathToJar);
+            crashLog.addCategory(modCategory);
             throw crashLog.createCrash();
         }
     }
 
-    public Scanner.ScanResult getScanResult(File file) {
+    public Scanner.Result getScanResult(File file) {
         return scanResults.get(file);
     }
 
-    public static File getAddonsDir() {
-        return ADDONS_DIR;
+    public static File getModsDir() {
+        return MODS_DIR;
     }
 
-    public ArrayList<Object> getAddons() {
-        return addons;
+    public ArrayList<Object> getMods() {
+        return mods;
     }
 
-    public ModClassLoader getAddonClassLoader() {
-        return modClassLoader;
+    @Deprecated
+    public ModClassLoader getModClassLoader() {
+        return null;
     }
 }

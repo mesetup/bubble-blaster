@@ -1,9 +1,10 @@
 package com.ultreon.bubbles.mod.loader;
 
 import com.ultreon.bubbles.BubbleBlaster;
+import com.ultreon.bubbles.screen.LoadScreen;
 import com.ultreon.commons.crash.CrashCategory;
 import com.ultreon.commons.crash.CrashLog;
-import com.ultreon.bubbles.screen.LoadScreen;
+import com.ultreon.hydro.core.AntiMod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
@@ -27,32 +28,33 @@ import java.util.stream.Stream;
 
 import static java.io.File.pathSeparator;
 
+@AntiMod
 @SuppressWarnings("unused")
 public final class Scanner {
     private final File file;
-    private final ModClassLoader classLoader;
-    private final boolean isQBubbles;
-    private File qbubblesFile = null;
+    private final ClassLoader classLoader;
+    private final boolean isGame;
+    private File gameFile = null;
     private JarFile jarFile;
     private static final Logger logger = LogManager.getLogger("Scanner");
 
-    public Scanner(File file, ModClassLoader classLoader) {
+    public Scanner(File file, ClassLoader classLoader) {
         this.classLoader = classLoader;
         this.file = file;
 
         URL location = BubbleBlaster.class.getProtectionDomain().getCodeSource().getLocation();
         try {
-            qbubblesFile = new File(location.toURI());
+            gameFile = new File(location.toURI());
         } catch (URISyntaxException ignored) {
 
         }
 
-        logger.info("Found QBubbles file instance: " + qbubblesFile.toString());
+        logger.info("Found Bubble Blaster file instance: " + gameFile.toString());
 
-        isQBubbles = file.getAbsolutePath().equals(qbubblesFile.getAbsolutePath());
+        isGame = file.getAbsolutePath().equals(gameFile.getAbsolutePath());
     }
 
-    public ScanResult scanJar(@Nullable LoadScreen loadScreen) {
+    public Result scanJar(@Nullable LoadScreen loadScreen) {
         HashMap<Class<? extends Annotation>, ArrayList<Class<?>>> classes = new HashMap<>();
         String className = null;
         JarEntry jarEntry = null;
@@ -83,7 +85,7 @@ public final class Scanner {
                 if (file.isDirectory()) {
                     logger.warn("Running from game development environment (GDE)");
 
-                    if (!isQBubbles) {
+                    if (!isGame) {
                         for (File file : Files.walk(file.toPath(), 30)
                                 .map(Path::toFile)
                                 .collect(Collectors.toList())) {
@@ -115,16 +117,16 @@ public final class Scanner {
                             className = className1.replace('/', '.');
                             try {
                                 Class<?> aClass = Class.forName(className);
-                                if (classLoader.isInternalPackage(aClass.getPackage().getName())) {
-                                    throw new IllegalArgumentException("Classname already defined in classpath: " + className);
-                                }
+//                                if (classLoader.isInternalPackage(aClass.getPackage().getName())) {
+//                                    throw new IllegalArgumentException("Classname already defined in classpath: " + className);
+//                                }
                             } catch (ClassNotFoundException ignored) {
 
                             }
                         }
                     }
 
-                    classLoader.addFile(file);
+//                    classLoader.addFile(file);
                     annotationScan = true;
 
                     Stream<Path> walk = Files.walk(file.toPath(), 30, FileVisitOption.FOLLOW_LINKS);
@@ -156,7 +158,7 @@ public final class Scanner {
 
                         logger.debug("Scanning file: " + file.getPath());
 
-                        if (isQBubbles) {
+                        if (isGame) {
                             if (!substring.startsWith("com/ultreon")) {
                                 continue;
                             }
@@ -186,7 +188,7 @@ public final class Scanner {
                     }
                 } else if (file.isFile()) {
                     jarFile = new JarFile(file.getPath());
-                    if (!isQBubbles) {
+                    if (!isGame) {
                         e = jarFile.entries();
                         while (e.hasMoreElements()) {
                             JarEntry je = e.nextElement();
@@ -200,16 +202,16 @@ public final class Scanner {
                             className = className1.replace('/', '.');
                             try {
                                 Class<?> aClass = Class.forName(className);
-                                if (classLoader.isInternalPackage(aClass.getPackage().getName())) {
-                                    throw new IllegalArgumentException("Classname already defined in classpath: " + className);
-                                }
+//                                if (classLoader.isInternalPackage(aClass.getPackage().getName())) {
+//                                    throw new IllegalArgumentException("Classname already defined in classpath: " + className);
+//                                }
                             } catch (ClassNotFoundException ignored) {
 
                             }
                         }
                     }
 
-                    classLoader.addFile(file);
+//                    classLoader.addFile(file);
 
                     e = jarFile.entries();
 
@@ -222,7 +224,7 @@ public final class Scanner {
                             continue;
                         }
 
-                        if (isQBubbles) {
+                        if (isGame) {
                             if (!je.getName().startsWith("com/ultreon")) {
                                 continue;
                             }
@@ -266,14 +268,14 @@ public final class Scanner {
             }
         } catch (Throwable t) {
             CrashLog crashLog = new CrashLog("Jar File being scanned", t);
-            CrashCategory addonCategory = new CrashCategory("Jar Entry being scanned");
-            addonCategory.add("Class Name", className);
-            addonCategory.add("Entry", jarEntry != null ? jarEntry.getName() : null);
-            addonCategory.add("Annotation Scan", annotationScan);
-            crashLog.addCategory(addonCategory);
+            CrashCategory modCategory = new CrashCategory("Jar Entry being scanned");
+            modCategory.add("Class Name", className);
+            modCategory.add("Entry", jarEntry != null ? jarEntry.getName() : null);
+            modCategory.add("Annotation Scan", annotationScan);
+            crashLog.addCategory(modCategory);
             throw crashLog.createCrash();
         }
-        return new ScanResult(this, classes);
+        return new Result(this, classes);
     }
 
     public File getFile() {
@@ -285,11 +287,11 @@ public final class Scanner {
         return jarFile;
     }
 
-    public static class ScanResult {
+    public static class Result {
         private final HashMap<Class<? extends Annotation>, ArrayList<Class<?>>> classes;
         private final Scanner scanner;
 
-        public ScanResult(Scanner scanner, HashMap<Class<? extends Annotation>, ArrayList<Class<?>>> classes) {
+        public Result(Scanner scanner, HashMap<Class<? extends Annotation>, ArrayList<Class<?>>> classes) {
             this.classes = classes;
             this.scanner = scanner;
         }
@@ -297,7 +299,7 @@ public final class Scanner {
         @SuppressWarnings({"UnusedReturnValue"})
         public List<Class<?>> getClasses(Class<? extends Annotation> annotation) {
             if (!this.classes.containsKey(annotation)) {
-//                System.out.println(this.classes.containsKey(Addon.class));
+//                System.out.println(this.classes.containsKey(Mod.class));
 //                throw new NullPointerException(null);
                 return new ArrayList<>();
             }
@@ -310,7 +312,7 @@ public final class Scanner {
         }
     }
 
-    public File getQbubblesFile() {
-        return qbubblesFile;
+    public File getGameFile() {
+        return gameFile;
     }
 }

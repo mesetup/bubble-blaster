@@ -5,9 +5,9 @@ import org.bson.BsonDouble;
 import org.bson.BsonString;
 
 public class Modifier {
-    public static final ModifierType ATTACK = new ModifierType("qbubbles.attack");
-    public static final ModifierType DEFENSE = new ModifierType("qbubbles.defense");
-    public static final ModifierType SCORE = new ModifierType("qbubbles.score");
+    public static final ModifierType ATTACK = new ModifierType("bubbleblaster.attack");
+    public static final ModifierType DEFENSE = new ModifierType("bubbleblaster.defense");
+    public static final ModifierType SCORE = new ModifierType("bubbleblaster.score");
 
     private final ModifierType type;
     private final double value;

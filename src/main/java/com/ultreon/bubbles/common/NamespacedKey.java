@@ -41,8 +41,8 @@ public record NamespacedKey(String namespace, String key) implements Serializabl
         }
     }
 
-    public static NamespacedKey qbubbles(String key) {
-        return new NamespacedKey("qbubbles", key);
+    public static NamespacedKey bubbleblaster(String key) {
+        return new NamespacedKey("bubbleblaster", key);
     }
 
     @Override

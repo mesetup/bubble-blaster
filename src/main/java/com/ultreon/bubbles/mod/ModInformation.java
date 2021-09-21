@@ -1,8 +1,8 @@
 package com.ultreon.bubbles.mod;
 
 import com.google.gson.JsonObject;
-
 import org.jetbrains.annotations.Nullable;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URL;
@@ -179,8 +179,8 @@ public class ModInformation {
         }
     }
 
-    public String getAddonId() {
-        return getString("addonId");
+    public String getModId() {
+        return getString("modId");
     }
 
     public String getVersion() {

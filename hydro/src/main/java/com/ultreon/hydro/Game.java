@@ -10,7 +10,7 @@ import com.ultreon.hydro.event.RenderScreenEvent;
 import com.ultreon.hydro.player.IPlayer;
 import com.ultreon.hydro.player.PlayerController;
 import com.ultreon.hydro.event.TickEvent;
-import com.ultreon.hydro.event.bus.GameEventBus;
+import com.ultreon.hydro.event.bus.GameEvents;
 import com.ultreon.hydro.render.FilterApplier;
 import com.ultreon.hydro.render.RenderSettings;
 import com.ultreon.hydro.render.Renderer;
@@ -300,7 +300,7 @@ public abstract class Game {
 
         // Call tick event.
         if (isLoaded() && (currentScreen == null || !currentScreen.doesPauseGame())) {
-            GameEventBus.get().post(new TickEvent(this));
+            GameEvents.get().publish(new TickEvent(this));
         }
     }
 
@@ -367,9 +367,9 @@ public abstract class Game {
     private void filteredRender(Renderer renderer) {
 
         // Call to game environment rendering.
-        GameEventBus.get().post(new RenderGameEvent.Before(renderer));
+        GameEvents.get().publish(new RenderGameEvent.Before(renderer));
         render(renderer);
-        GameEventBus.get().post(new RenderGameEvent.After(renderer));
+        GameEvents.get().publish(new RenderGameEvent.After(renderer));
 
         // Get screen.
         @Nullable Screen screen = this.screenManager.getCurrentScreen();
@@ -378,10 +378,10 @@ public abstract class Game {
         if (screen != null) {
 
             // Render the screen.
-            GameEventBus.get().post(new RenderScreenEvent.Before(screen, renderer));
+            GameEvents.get().publish(new RenderScreenEvent.Before(screen, renderer));
             screen.render(this, renderer);
             screen.renderGUI(this, renderer);
-            GameEventBus.get().post(new RenderScreenEvent.After(screen, renderer));
+            GameEvents.get().publish(new RenderScreenEvent.After(screen, renderer));
         }
     }
 

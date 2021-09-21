@@ -27,7 +27,7 @@ public class GlobalSaveData extends GameData {
 
     public void dump() {
         try {
-            File file = new File(References.QBUBBLES_DIR, "global.bson");
+            File file = new File(References.GAME_DIR, "global.bson");
             if (file.exists()) {
                 if (!file.delete()) {
                     throw new RuntimeException(new IOException("Failed to delete file."));
@@ -42,7 +42,7 @@ public class GlobalSaveData extends GameData {
 
     public void load() {
         try {
-            FileInputStream fis = new FileInputStream(new File(References.QBUBBLES_DIR, "global.bson"));
+            FileInputStream fis = new FileInputStream(new File(References.GAME_DIR, "global.bson"));
             this.load(fis);
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,7 +73,7 @@ public class GlobalSaveData extends GameData {
     }
 
     public boolean isCreated() {
-        File file = new File(References.QBUBBLES_DIR, "global.dat");
+        File file = new File(References.GAME_DIR, "global.dat");
         return file.exists();
     }
 

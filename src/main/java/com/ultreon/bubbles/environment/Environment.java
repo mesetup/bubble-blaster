@@ -1,7 +1,6 @@
 package com.ultreon.bubbles.environment;
 
 import com.ultreon.bubbles.BubbleBlaster;
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.gamestate.GameEvent;
 import com.ultreon.bubbles.common.gametype.AbstractGameType;
 import com.ultreon.bubbles.entity.Entity;
@@ -10,6 +9,7 @@ import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.entity.types.EntityType;
 import com.ultreon.bubbles.registry.Registers;
 import com.ultreon.commons.time.DateTime;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.bson.BsonDocument;
 
 import java.awt.*;
@@ -38,8 +38,8 @@ public class Environment {
      * @param entityData the data of the entity to spawn.
      */
     public final void spawnEntityFromState(BsonDocument entityData) {
-        if (!BubbleBlaster.getInstance().isOnMainThread()) {
-            BubbleBlaster.getInstance().runLater(() -> loadAndSpawnEntity(entityData));
+        if (!BubbleBlaster.instance().isOnMainThread()) {
+            BubbleBlaster.instance().runLater(() -> loadAndSpawnEntity(entityData));
             return;
         }
         loadAndSpawnEntity(entityData);
@@ -56,7 +56,7 @@ public class Environment {
     }
 
     private void gameEventHandlerThread() {
-        while (BubbleBlaster.getInstance().environment == this) {
+        while (BubbleBlaster.instance().environment == this) {
             if (currentGameEvent != null) {
                 if (!currentGameEvent.isActive(DateTime.current())) {
                     currentGameEvent = null;
@@ -79,8 +79,8 @@ public class Environment {
      * @param entityType type of entity to spawn.
      */
     public final void spawn(EntityType<?> entityType) {
-        if (!BubbleBlaster.getInstance().isOnMainThread()) {
-            BubbleBlaster.getInstance().runLater(() -> {
+        if (!BubbleBlaster.instance().isOnMainThread()) {
+            BubbleBlaster.instance().runLater(() -> {
                 Entity entity = entityType.create(gameType);
                 Point pos = gameType.getSpawnLocation(entity);
                 spawn(entity, pos);
@@ -99,8 +99,8 @@ public class Environment {
      * @param pos    spawn location.
      */
     public final void spawn(Entity entity, Point pos) {
-        if (!BubbleBlaster.getInstance().isOnMainThread()) {
-            BubbleBlaster.getInstance().runLater(() -> {
+        if (!BubbleBlaster.instance().isOnMainThread()) {
+            BubbleBlaster.instance().runLater(() -> {
                 entity.prepareSpawn(EntitySpawnData.fromNaturalSpawn(pos));
                 entity.onSpawn(pos, this);
                 this.entities.add(entity);
@@ -144,8 +144,8 @@ public class Environment {
      */
     @Deprecated
     public void removeEntity(Entity entity) {
-        if (!BubbleBlaster.getInstance().isOnMainThread()) {
-            BubbleBlaster.getInstance().runLater(entity::delete);
+        if (!BubbleBlaster.instance().isOnMainThread()) {
+            BubbleBlaster.instance().runLater(entity::delete);
         }
         entity.delete();
     }

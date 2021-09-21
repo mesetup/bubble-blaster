@@ -1,22 +1,22 @@
 package com.ultreon.bubbles.screen;
 
 import com.ultreon.bubbles.BubbleBlaster;
+import com.ultreon.bubbles.data.GlobalSaveData;
 import com.ultreon.hydro.Game;
+import com.ultreon.hydro.event.bus.AbstractEvents;
+import com.ultreon.hydro.render.Renderer;
 import com.ultreon.hydro.screen.Screen;
 import com.ultreon.hydro.util.GraphicsUtils;
-import com.ultreon.bubbles.data.GlobalSaveData;
-import com.ultreon.hydro.event.bus.EventBus;
 
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 
 public class GameOverScreen extends Screen {
     private final boolean isHighScore;
-    private final Font titleFont = new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 64);
-    private final Font descriptionFont = new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 14);
-    private final Font scoreFont = new Font(BubbleBlaster.getInstance().getSansFontName(), Font.BOLD, 32);
+    private final Font titleFont = new Font(BubbleBlaster.instance().getSansFontName(), Font.BOLD, 64);
+    private final Font descriptionFont = new Font(BubbleBlaster.instance().getSansFontName(), Font.BOLD, 14);
+    private final Font scoreFont = new Font(BubbleBlaster.instance().getSansFontName(), Font.BOLD, 32);
     private long score;
-    private EventBus.Handler binding;
+    private AbstractEvents.AbstractSubscription binding;
 
     public GameOverScreen(long score) {
         this.score = score;

@@ -1,12 +1,12 @@
 package com.ultreon.bubbles.init;
 
-import com.ultreon.bubbles.InternalAddon;
+import com.ultreon.bubbles.InternalMod;
 import com.ultreon.bubbles.common.gamestate.GameEvent;
-import com.ultreon.hydro.registry.ObjectInit;
-import com.ultreon.hydro.registry.DeferredRegister;
 import com.ultreon.bubbles.registry.Registers;
-import com.ultreon.hydro.registry.object.RegistryObject;
 import com.ultreon.bubbles.state.BloodMoonEvent;
+import com.ultreon.hydro.registry.DeferredRegister;
+import com.ultreon.hydro.registry.ObjectInit;
+import com.ultreon.hydro.registry.object.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  */
 @SuppressWarnings("unused")
 public class GameEvents implements ObjectInit<GameEvent> {
-    public static final DeferredRegister<GameEvent> GAME_EVENTS = DeferredRegister.create(InternalAddon.ADDON_ID, Registers.GAME_EVENTS);
+    public static final DeferredRegister<GameEvent> GAME_EVENTS = DeferredRegister.create(InternalMod.MOD_ID, Registers.GAME_EVENTS);
 
     // Bubbles
     public static final RegistryObject<BloodMoonEvent> BLOOD_MOON_EVENT = register("blood_moon", BloodMoonEvent::new);

@@ -1,38 +1,58 @@
 package com.ultreon.hydro.event.bus;
 
-import com.ultreon.commons.lang.Pair;
-import com.ultreon.hydro.event.Event;
 import com.ultreon.commons.lang.ICancellable;
-import org.apache.logging.log4j.LogManager;
+import com.ultreon.commons.lang.Pair;
+import com.ultreon.hydro.event.AbstractEvent;
+import com.ultreon.hydro.event.SubscribeEvent;
+import com.ultreon.hydro.event.Subscriber;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Modifier;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-@SuppressWarnings({"unused", "unchecked", "DuplicatedCode"})
-public class GameEventBus extends EventBus {
-    private static final Logger LOGGER = LogManager.getLogger("Game-Events");
-    private static final GameEventBus instance = new GameEventBus();
-    public List<Handler> handlers = new ArrayList<>();
-    public Map<Long, Class<? extends Event>> classMap = new HashMap<>();
-    public final Map<Class<? extends Event>, CopyOnWriteArraySet<Pair<Object, Method>>> eventToMethod = new HashMap<>();
+public abstract class AbstractEvents<T extends AbstractEvent> {
+    protected static final Predicate<Method> classPredicate;
 
-    public final HashMap<Pair<Object, Method>, CopyOnWriteArraySet<Class<? extends Event>>> methodToEvent = new HashMap<>();
-
-    public static GameEventBus get() {
-        return instance;
+    protected static final Predicate<Method> instancePredicate;
+    static {
+        Predicate<Method> isHandler = AbstractEvents::isSubscriber;
+        Predicate<Method> isSubscriber = AbstractEvents::isSubscribing;
+        classPredicate = isHandler.and(isSubscriber).and((method) -> Modifier.isStatic(method.getModifiers()));
+        instancePredicate = isHandler.and(isSubscriber).and((method) -> !Modifier.isStatic(method.getModifiers()));
     }
 
-    @Override
-    public <T extends Event> boolean post(T event) {
+    public List<AbstractSubscription> subscriptions = new ArrayList<>();
+    public Map<Long, Class<? extends AbstractEvent>> classMap = new HashMap<>();
+
+    public final Map<Class<? extends AbstractEvent>, CopyOnWriteArraySet<Pair<Object, Method>>> eventToMethod = new HashMap<>();
+    public final Map<Pair<Object, Method>, CopyOnWriteArraySet<Class<? extends AbstractEvent>>> methodToEvent = new HashMap<>();
+
+    protected final Logger logger;
+
+    public AbstractEvents(Logger logger) {
+        this.logger = logger;
+    }
+
+    private static boolean isSubscribing(Method method) {
+        return method.isAnnotationPresent(SubscribeEvent.class);
+    }
+
+    private static boolean isSubscriber(Method method) {
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        if (parameterTypes.length == 1) {
+            Class<?> clazz1 = parameterTypes[0];
+            return AbstractEvent.class.isAssignableFrom(clazz1);
+        }
+        return false;
+    }
+
+    public <E extends T> boolean publish(E event) {
         if (!eventToMethod.containsKey(event.getClass())) {
             return false;
         }
@@ -42,7 +62,7 @@ public class GameEventBus extends EventBus {
             try {
                 method.getSecond().invoke(method.getFirst(), event);
             } catch (InvocationTargetException e) {
-                LOGGER.error("Cannot invoke event handler error follows:");
+                logger.error("Cannot invoke event handler error follows:");
                 e.getCause().printStackTrace();
             } catch (Throwable t) {
                 t.printStackTrace();
@@ -52,29 +72,26 @@ public class GameEventBus extends EventBus {
         return event instanceof ICancellable && ((ICancellable) event).isCancelled();
     }
 
-    @Override
-    public void register(Class<?> clazz) {
+    public void subscribe(Class<?> clazz) {
         loopDeclaredMethods(clazz, (method) -> {
             // Get types and values.
-            Class<? extends Event> event = (Class<? extends Event>) method.getParameterTypes()[0];
+            Class<? extends AbstractEvent> event = (Class<? extends AbstractEvent>) method.getParameterTypes()[0];
             addHandlers(event, null, method);
         });
     }
 
-    @Override
-    public void register(Object o) {
+    public void subscribe(Object o) {
         loopMethods(o, (method) -> {
             // Get types and values.
-            Class<? extends Event> event = (Class<? extends Event>) method.getParameterTypes()[0];
+            Class<? extends AbstractEvent> event = (Class<? extends AbstractEvent>) method.getParameterTypes()[0];
             addHandlers(event, o, method);
         });
     }
 
-    @Override
-    public void unregister(Class<? extends Event> event, Class<?> clazz) {
+    public void unsubscribe(Class<? extends T> event, Class<?> clazz) {
         loopDeclaredMethods(clazz, (method) -> {
             // Get and check event.
-            Class<? extends Event> evt = (Class<? extends Event>) method.getParameterTypes()[0];
+            Class<? extends AbstractEvent> evt = (Class<? extends AbstractEvent>) method.getParameterTypes()[0];
             if (event == evt) {
                 // Remove handler.
                 try {
@@ -86,11 +103,10 @@ public class GameEventBus extends EventBus {
         });
     }
 
-    @Override
-    public void unregister(Class<? extends Event> event, Object o) {
+    public void unsubscribe(Class<? extends T> event, Object o) {
         loopMethods(o, (method) -> {
             // Get types and values.
-            Class<? extends Event> evt = (Class<? extends Event>) method.getParameterTypes()[0];
+            Class<? extends AbstractEvent> evt = (Class<? extends AbstractEvent>) method.getParameterTypes()[0];
             if (event == evt) {
                 // Remove handler.
                 try {
@@ -102,11 +118,10 @@ public class GameEventBus extends EventBus {
         });
     }
 
-    @Override
-    public void unregister(Class<?> clazz) {
+    public void unsubscribe(Class<?> clazz) {
         loopDeclaredMethods(clazz, (method) -> {
             // Get and check event.
-            Class<? extends Event> evt = (Class<? extends Event>) method.getParameterTypes()[0];
+            Class<? extends AbstractEvent> evt = (Class<? extends AbstractEvent>) method.getParameterTypes()[0];
 
             // Remove handler.
             try {
@@ -117,11 +132,10 @@ public class GameEventBus extends EventBus {
         });
     }
 
-    @Override
-    public void unregister(Object o) {
+    public void unsubscribe(Object o) {
         loopMethods(o, (method) -> {
             // Get types and values.
-            Class<? extends Event> evt = (Class<? extends Event>) method.getParameterTypes()[0];
+            Class<? extends AbstractEvent> evt = (Class<? extends AbstractEvent>) method.getParameterTypes()[0];
 
             // Remove handler.
             try {
@@ -146,7 +160,7 @@ public class GameEventBus extends EventBus {
         // Check all methods for event subscribers.
         for (Method method : methods) {
             // Check is instance method.
-            if (instancePredicate.test(method)) {
+            if (predicate.test(method)) {
                 // Set accessible.
                 method.setAccessible(true);
                 consumer.accept(method);
@@ -154,7 +168,7 @@ public class GameEventBus extends EventBus {
         }
     }
 
-    private void removeHandlers(Class<? extends Event> event, @Nullable Object obj, Method method) {
+    private void removeHandlers(Class<? extends AbstractEvent> event, @Nullable Object obj, Method method) {
         Pair<Object, Method> pair = new Pair<>(obj, method);
         if (!eventToMethod.containsKey(event)) {
             throw new IllegalStateException("Cannot unregister method for a non-registered event.");
@@ -185,7 +199,7 @@ public class GameEventBus extends EventBus {
         methodToEvent.remove(pair);
     }
 
-    protected void addHandlers(Class<? extends Event> event, @Nullable Object obj, Method method) {
+    protected void addHandlers(Class<? extends AbstractEvent> event, @Nullable Object obj, Method method) {
         Pair<Object, Method> pair = new Pair<>(obj, method);
         if (!eventToMethod.containsKey(event)) {
             eventToMethod.put(event, new CopyOnWriteArraySet<>());
@@ -200,77 +214,27 @@ public class GameEventBus extends EventBus {
 //        System.out.println(hashCode());
     }
 
-//    public <T extends Event> Handler register(Class<T> clazz, EventHandler<T> eventHandler) {
-//        return register(clazz, eventHandler, EventPriority.NORMAL);
-//    }
-//
-//    @SuppressWarnings("unchecked")
-//    public <T extends Event> Handler register(Class<T> clazz, EventHandler<T> eventHandler, EventPriority priority) {
-//        long id = System.nanoTime();
-//        Handler handler = new Handler() {
-//            private final SequencedHashMap<Class<? extends Event>, ArrayList<EventHandler<Event>>> handlers = new SequencedHashMap<>();
-//
-//            {
-//                handlers.put(clazz, new ArrayList<>());
-//                handlers.get(clazz).add(new EventHandler<>() {
-//                    @Override
-//                    public void handle(Event event1) {
-////                        System.out.println(method);
-////                        System.out.println(o);
-////                        System.out.println(event1);
-//
-////                        System.out.println(event);
-////                        System.out.println(event1);
-//                        eventHandler.handle((T) event1);
-//                    }
-//
-//                    @Override
-//                    public EventPriority getPriority() {
-//                        return priority;
-//                    }
-//
-//                    @Override
-//                    public SubscribeEvent getAnnotation() {
-//                        return null;
-//                    }
-//
-//                    @Override
-//                    public Class<? extends Event> getType() {
-//                        return clazz;
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onRemove() {
-//
-//            }
-//
-//            @SuppressWarnings("unchecked")
-//            @Override
-//            public <U extends Event> Collection<EventHandler<U>> getHandlers(Class<U> clazz) {
-//                Collection<EventHandler<U>> handlers1 = new ArrayList<>();
-//
-//                if (!handlers.containsKey(clazz)) {
-//                    return handlers1;
-//                }
-//
-//                for (EventHandler<? extends Event> handler : handlers.get(clazz)) {
-//                    if (handler.getType().isAssignableFrom(clazz)) {
-//                        handlers1.add((EventHandler<U>) handler);
-//                    }
-//                }
-//                return handlers1;
-//            }
-//
-//            @Override
-//            public long id() {
-//                return id;
-//            }
-//        };
-//
-//        handlers.add(handler);
-//
-//        return handler;
-//    }
+    public static abstract class AbstractSubscription {
+        protected abstract void onRemove();
+
+        public abstract <T extends AbstractEvent> Collection<Subscriber<T>> getSubscribers(Class<T> clazz);
+
+        public abstract long id();
+
+        public void unsubscribe() {
+            onRemove();
+        }
+
+        @SuppressWarnings("unchecked")
+        <T extends AbstractEvent> void onPublish(T event) {
+            Collection<Subscriber<T>> handlers = getSubscribers((Class<T>) event.getClass());
+            if (handlers == null) {
+                return;
+            }
+
+            for (Subscriber<T> handler : handlers) {
+                handler.handle(event);
+            }
+        }
+    }
 }

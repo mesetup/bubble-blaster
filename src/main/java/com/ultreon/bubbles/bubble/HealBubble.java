@@ -1,10 +1,10 @@
 package com.ultreon.bubbles.bubble;
 
-import com.ultreon.hydro.common.ResourceEntry;
-import com.ultreon.commons.util.ColorUtils;
 import com.ultreon.bubbles.entity.BubbleEntity;
 import com.ultreon.bubbles.entity.Entity;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
+import com.ultreon.commons.util.ColorUtils;
+import com.ultreon.hydro.common.ResourceEntry;
 import org.apache.commons.lang.math.DoubleRange;
 import org.apache.commons.lang.math.IntRange;
 
@@ -16,7 +16,7 @@ public class HealBubble extends AbstractBubble {
     public HealBubble() {
         colors = ColorUtils.multiConvertHexToRgb("#ffffff");
         colors = new Color[]{new Color(0, 192, 0), new Color(0, 0, 0, 0), new Color(0, 192, 0), new Color(0, 192, 0)};
-        setRegistryName(ResourceEntry.fromString("qbubbles:heal_bubble"));
+        setRegistryName(ResourceEntry.fromString("bubbleblaster:heal_bubble"));
 
         setPriority(4000000);
         setRadius(new IntRange(17, 70));

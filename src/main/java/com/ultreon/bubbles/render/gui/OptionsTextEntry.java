@@ -2,13 +2,13 @@ package com.ultreon.bubbles.render.gui;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.api.event.keyboard.KeyboardModifiers;
-import com.ultreon.hydro.screen.gui.IGuiListener;
 import com.ultreon.bubbles.util.Util;
 import com.ultreon.bubbles.util.helpers.MathHelper;
 import com.ultreon.hydro.event.SubscribeEvent;
 import com.ultreon.hydro.event.input.KeyboardEvent;
 import com.ultreon.hydro.event.type.KeyEventType;
 import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.screen.gui.IGuiListener;
 import com.ultreon.hydro.screen.gui.Rectangle;
 import com.ultreon.hydro.screen.gui.Widget;
 import com.ultreon.hydro.util.GraphicsUtils;
@@ -151,13 +151,13 @@ public class OptionsTextEntry extends Widget implements com.ultreon.bubbles.api.
     @Override
     public void make() {
         eventsActive = true;
-        BubbleBlaster.getEventBus().register(this);
+        BubbleBlaster.getEventBus().subscribe(this);
     }
 
     @Override
     public void destroy() {
         eventsActive = false;
-        BubbleBlaster.getEventBus().unregister(this);
+        BubbleBlaster.getEventBus().unsubscribe(this);
     }
 
     @Override

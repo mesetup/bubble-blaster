@@ -1,6 +1,8 @@
 package com.ultreon.bubbles.common.mod;
 
-import com.ultreon.hydro.event.bus.EventBus;
+import com.ultreon.bubbles.event.bus.EventManagers;
+import com.ultreon.hydro.event.bus.AbstractEvents;
+import com.ultreon.hydro.event.bus.GameEvents;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,37 +13,37 @@ import java.util.function.Supplier;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Mod {
-    String addonId();
+    String modId();
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
     @interface EventBusSubscriber {
-        String addonId() default "";
+        String modId() default "";
 
-        Bus bus() default Bus.QBUBBLES;
+        Bus bus() default Bus.BUBBLE_BLASTER;
 
         enum Bus {
             /**
              * The main Forge Event Bus.
              *
-             * @see com.ultreon.bubbles.event.bus.Bus#getQBubblesEventBus()
+             * @see GameEvents#get()
              */
-            QBUBBLES(com.ultreon.bubbles.event.bus.Bus::getQBubblesEventBus),
+            BUBBLE_BLASTER(),
+
             /**
-             * The addon specific Event bus.
+             * The mod specific Event bus.
              *
-             * @see com.ultreon.bubbles.event.bus.Bus#getAddonEventBus()
+             * @see EventManagers#getModEvents(String)
              */
-            MOD(com.ultreon.bubbles.event.bus.Bus::getAddonEventBus);
+            MOD();
 
-            private final Supplier<EventBus> busSupplier;
-
-            Bus(final Supplier<EventBus> eventBusSupplier) {
-                this.busSupplier = eventBusSupplier;
-            }
-
-            public Supplier<EventBus> bus() {
-                return busSupplier;
+            /**
+             * @return supplier to the event manager.
+             * @deprecated should be used in another way in the future
+             */
+            @Deprecated
+            public Supplier<AbstractEvents> bus() {
+                return () -> null;
             }
         }
     }

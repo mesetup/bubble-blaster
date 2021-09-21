@@ -2,20 +2,15 @@ package com.ultreon.bubbles.common.gametype;
 
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.LoadedGame;
-import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
 import com.ultreon.bubbles.bubble.AbstractBubble;
 import com.ultreon.bubbles.common.Difficulty;
-import com.ultreon.commons.lang.InfoTransporter;
-import com.ultreon.hydro.common.ResourceEntry;
 import com.ultreon.bubbles.common.gamestate.GameEvent;
 import com.ultreon.bubbles.common.interfaces.DefaultStateHolder;
-import com.ultreon.hydro.screen.gui.IGuiListener;
 import com.ultreon.bubbles.common.interfaces.StateHolder;
 import com.ultreon.bubbles.common.random.BubbleRandomizer;
 import com.ultreon.bubbles.common.random.PseudoRandom;
 import com.ultreon.bubbles.common.random.QBRandom;
 import com.ultreon.bubbles.common.random.Rng;
-import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.bubbles.entity.AbstractBubbleEntity;
 import com.ultreon.bubbles.entity.BubbleEntity;
 import com.ultreon.bubbles.entity.DamageableEntity;
@@ -24,16 +19,22 @@ import com.ultreon.bubbles.entity.bubble.BubbleSystem;
 import com.ultreon.bubbles.entity.damage.DamageSource;
 import com.ultreon.bubbles.entity.player.PlayerEntity;
 import com.ultreon.bubbles.environment.Environment;
-import com.ultreon.hydro.event.RenderEvent;
 import com.ultreon.bubbles.gametype.ClassicType;
-import com.ultreon.hydro.render.ValueAnimator;
 import com.ultreon.bubbles.init.Bubbles;
 import com.ultreon.bubbles.init.GameEvents;
 import com.ultreon.bubbles.registry.Registers;
-import com.ultreon.hydro.registry.Registry;
-import com.ultreon.hydro.common.RegistryEntry;
-import com.ultreon.hydro.screen.Screen;
+import com.ultreon.bubbles.save.SavedGame;
 import com.ultreon.bubbles.util.CollectionsUtils;
+import com.ultreon.commons.annotation.MethodsReturnNonnullByDefault;
+import com.ultreon.commons.lang.InfoTransporter;
+import com.ultreon.hydro.common.RegistryEntry;
+import com.ultreon.hydro.common.ResourceEntry;
+import com.ultreon.hydro.event.RenderEvent;
+import com.ultreon.hydro.registry.Registry;
+import com.ultreon.hydro.render.Renderer;
+import com.ultreon.hydro.render.ValueAnimator;
+import com.ultreon.hydro.screen.Screen;
+import com.ultreon.hydro.screen.gui.IGuiListener;
 import org.bson.*;
 import org.bson.codecs.BsonDocumentCodec;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +42,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
-import com.ultreon.hydro.render.Renderer;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
@@ -68,7 +68,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     protected final List<BubbleEntity> bubbles = new ArrayList<>();
 
     // Types.
-    protected final BubbleBlaster game = BubbleBlaster.getInstance();
+    protected final BubbleBlaster game = BubbleBlaster.instance();
 
     // Flags.
     protected boolean gameOver = false;
@@ -134,10 +134,6 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     protected BubbleRandomizer bubbleRandomizer = new BubbleRandomizer(this);
     protected final HashMap<ResourceEntry, Rng> rngTypes = new HashMap<>();
 
-    // Initial entities:
-    @Deprecated
-    protected PlayerEntity player;
-
     /**
      * Game-type constructor.
      */
@@ -154,14 +150,14 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
      * @see #addRNG(String, int, int)
      */
     protected void initDefaults() {
-        bubbleTypesRng = addRNG("qbubbles:bubbles_system", 0, 0);
-        bubblesXPosRng = addRNG("qbubbles:bubbles_x", 0, 1);
-        bubblesYPosRng = addRNG("qbubbles:bubbles_y", 0, 2);
-        bubblesSpeedRng = addRNG("qbubbles:bubbles_speed", 0, 3);
-        bubblesRadiusRng = addRNG("qbubbles:bubbles_radius", 0, 4);
-        bubblesDefenseRng = addRNG("qbubbles:bubbles_defense", 0, 5);
-        bubblesAttackRng = addRNG("qbubbles:bubbles_attack", 0, 6);
-        bubblesScoreRng = addRNG("qbubbles:bubbles_score", 0, 7);
+        bubbleTypesRng = addRNG("bubbleblaster:bubbles_system", 0, 0);
+        bubblesXPosRng = addRNG("bubbleblaster:bubbles_x", 0, 1);
+        bubblesYPosRng = addRNG("bubbleblaster:bubbles_y", 0, 2);
+        bubblesSpeedRng = addRNG("bubbleblaster:bubbles_speed", 0, 3);
+        bubblesRadiusRng = addRNG("bubbleblaster:bubbles_radius", 0, 4);
+        bubblesDefenseRng = addRNG("bubbleblaster:bubbles_defense", 0, 5);
+        bubblesAttackRng = addRNG("bubbleblaster:bubbles_attack", 0, 6);
+        bubblesScoreRng = addRNG("bubbleblaster:bubbles_score", 0, 7);
     }
 
     /**
@@ -239,7 +235,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
      * @see SavedGame
      */
     public void dumpDefaultState(SavedGame savedGame, InfoTransporter infoTransporter) {
-        if (!BubbleBlaster.getInstance().isGameLoaded()) {
+        if (!BubbleBlaster.instance().isGameLoaded()) {
             return;
         }
 
@@ -259,7 +255,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
      */
     public void dumpState(OutputStream output) throws IOException {
         BsonDocument document = getState();
-        SavedGame currentSave = BubbleBlaster.getInstance().getCurrentSave();
+        SavedGame currentSave = BubbleBlaster.instance().getCurrentSave();
 
         assert currentSave != null;
         output.write(new RawBsonDocument(document, new BsonDocumentCodec()).getByteBuffer().array());
@@ -649,7 +645,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     public void bloodMoonUpdate() {
-        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.instance().getLoadedGame();
         if (loadedGame == null) {
             return;
         }
@@ -703,11 +699,11 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
             System.out.println("Blood moon already triggered!");
         }
 
-        BubbleBlaster.getInstance().getRenderSettings().disableAntialiasing();
+        BubbleBlaster.instance().getRenderSettings().disableAntialiasing();
     }
 
     public void stopBloodMoon() {
-        LoadedGame loadedGame = BubbleBlaster.getInstance().getLoadedGame();
+        LoadedGame loadedGame = BubbleBlaster.instance().getLoadedGame();
         if (loadedGame == null) {
             return;
         }
@@ -719,7 +715,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
             loadedGame.getAmbientAudio().stop();
         }
 
-        BubbleBlaster.getInstance().getRenderSettings().resetAntialiasing();
+        BubbleBlaster.instance().getRenderSettings().resetAntialiasing();
     }
 
     public long getResultScore() {
