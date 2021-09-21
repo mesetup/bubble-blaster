@@ -31,14 +31,16 @@ public class InternalMod extends ModInstance {
 
         eventBus = EventManagers.getModEvents(this);
         EventManagers.getGameEvents().subscribe(this);
-        Bubbles.BUBBLES.register(eventBus);
-        AmmoTypes.AMMO_TYPES.register(eventBus);
-        Entities.ENTITIES.register(eventBus);
-        Effects.EFFECTS.register(eventBus);
-        Abilities.ABILITY_TYPES.register(eventBus);
-        GameEvents.GAME_EVENTS.register(eventBus);
-        GameTypes.GAME_TYPES.register(eventBus);
-        TextureCollections.register(eventBus);
+
+        com.ultreon.hydro.event.bus.GameEvents gameEvents = com.ultreon.hydro.event.bus.GameEvents.get();
+        Bubbles.BUBBLES.register(gameEvents);
+        AmmoTypes.AMMO_TYPES.register(gameEvents);
+        Entities.ENTITIES.register(gameEvents);
+        Effects.EFFECTS.register(gameEvents);
+        Abilities.ABILITY_TYPES.register(gameEvents);
+        GameEvents.GAME_EVENTS.register(gameEvents);
+        GameTypes.GAME_TYPES.register(gameEvents);
+        TextureCollections.register(gameEvents);
     }
 
     /**

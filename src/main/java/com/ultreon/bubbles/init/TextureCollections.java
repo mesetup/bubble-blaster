@@ -4,6 +4,7 @@ import com.ultreon.bubbles.InternalMod;
 import com.ultreon.bubbles.common.mod.ModInstance;
 import com.ultreon.bubbles.event.bus.ModEvents;
 import com.ultreon.bubbles.registry.Registers;
+import com.ultreon.hydro.event.bus.GameEvents;
 import com.ultreon.hydro.registry.DeferredRegister;
 import com.ultreon.hydro.registry.object.RegistryObject;
 import com.ultreon.hydro.render.TextureCollection;
@@ -26,7 +27,7 @@ public class TextureCollections {
         return TEXTURE_COLLECTIONS.register(name, supplier);
     }
 
-    public static void register(ModEvents<? extends ModInstance> eventBus) {
+    public static void register(GameEvents eventBus) {
         TEXTURE_COLLECTIONS.register(eventBus);
     }
 }
