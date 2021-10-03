@@ -1,7 +1,7 @@
 {
   "license": "(C) Copyright 2021 - QTech Community - All Rights Reserved",
   "fileId": "com.ultreon.bubbleblaster",
-  "addons": [
+  "mods": [
     {
       "description": [
         "The core of the Game. Containing core features."
@@ -17,7 +17,7 @@
           "id": ""
         }
       ],
-      "addonId": "qbubbles",
+      "modId": "bubbleblaster",
       "name": "QBubbles",
       "version": "$$ADDON_VERSION$$",
       "license": "(C) Copyright 2021 - QTech Community - All Rights Reserved",

@@ -10,7 +10,7 @@ public class AWTWidgetPercentagePosition extends PercentagePosition {
     private RelativeAnchor anchor;
 
     /**
-     * <h1>AWT Widget Relative Position</h1>
+     * AWT Widget Relative Position
      * A class to calculate the relative position from a AWT Widget.
      *
      * @param component the component to create a relative position from.
@@ -26,7 +26,7 @@ public class AWTWidgetPercentagePosition extends PercentagePosition {
     }
 
     /**
-     * <h1>Update</h1>
+     * Update
      * Updates the data, so it will be relative when changed data.
      *
      * @throws NullPointerException when the anchor parameter is invalid.

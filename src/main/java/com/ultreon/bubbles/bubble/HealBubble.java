@@ -33,8 +33,7 @@ public class HealBubble extends AbstractBubble {
     public void onCollision(BubbleEntity source, Entity target) {
         super.onCollision(source, target);
 
-        if (target instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) target;
+        if (target instanceof PlayerEntity player) {
             player.restoreDamage(1.8f * (source.getGameType().getLocalDifficulty() / 20.0f + (1.8f / 20.0f)));
         }
     }

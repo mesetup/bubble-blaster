@@ -37,7 +37,7 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 
 /**
- * <h1>Bubble Entity.</h1>
+ * Bubble Entity.
  * One of the most important parts of the game.
  *
  * @see AbstractBubbleEntity
@@ -125,7 +125,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
     }
 
     /**
-     * <h1>Spawn Event Handler</h1>
+     * Spawn Event Handler
      * On-spawn.
      *
      * @param spawnData the entity's spawn data.
@@ -191,7 +191,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
     }
 
     /**
-     * <h1>Bind Events</h1>
+     * Bind Events
      * <p><b>Warning: </b><i>Unsafe method! Use {@link Environment#spawn(EntityType)} instead.</i></p>
      * <p>Events:</p>
      * <ul>
@@ -210,7 +210,7 @@ public class BubbleEntity extends AbstractBubbleEntity {
     }
 
     /**
-     * <h1>Unbind Events</h1>
+     * Unbind Events
      * <p><b>Warning: </b><i>Unsafe method! Use {@link #delete()}  removeBubble of GameType} instead.</i></p>
      * <p>Events:</p>
      * <ul>

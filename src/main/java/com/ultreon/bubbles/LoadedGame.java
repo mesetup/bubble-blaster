@@ -328,10 +328,10 @@ public class LoadedGame implements Runnable {
 
     /**
      * Renders the game, such as the HUD, or environment.
+     * Should not being called, for internal use only.
      *
      * @param game the game instance.
      * @param gfx  a 2D graphics instance.
-     * @apiNote should not being called, for internal use only.
      */
     public void render(BubbleBlaster game, Renderer gfx) {
         if (this.gameType.isInitialized()) {
@@ -342,10 +342,10 @@ public class LoadedGame implements Runnable {
 
     /**
      * Renders the hud, in this method only the system and chat messages.
+     * Should not being called, for internal use only.
      *
      * @param game the game instance.
      * @param gfx  a 2D graphics instance.
-     * @apiNote should not being called, for internal use only.
      */
     public void renderHUD(@SuppressWarnings({"unused", "RedundantSuppression"}) BubbleBlaster game, Renderer gfx) {
         int i = 0;
@@ -376,7 +376,7 @@ public class LoadedGame implements Runnable {
     ////////////////////
 
     /**
-     * <h1>Keyboard Event-Handler</h1>
+     * Keyboard Event-Handler
      * Keyboard event-handler, handles screen changing and debug-mode activations.
      *
      * @param evt the keyboard event.

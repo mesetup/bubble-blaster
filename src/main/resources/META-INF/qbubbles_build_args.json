@@ -1,24 +1,24 @@
 {
    "version": {
-      "name": "1.0.1008-a1",
-      "version": 1,
-      "release": 0,
-      "build": 1008,
-      "stage": "a",
-      "stage_release": 1
+     "name": "1.0.1076-a1",
+     "version": 1,
+     "release": 0,
+     "build": 1076,
+     "stage": "a",
+     "stage_release": 1
    },
    "build_info": {
-      "date": "2021-09-21T17:50:23.906899600",
-      "compile": {
-         "name": "compileJava",
-         "source_compat": "16",
-         "target_compat": "16",
-         "gradle": {
-            "version": "7.2"
-         }
-      },
-      "project": {
-         "name": "bubble-blaster",
+     "date": "2021-10-04T00:17:48.501806",
+     "compile": {
+       "name": "compileJava",
+       "source_compat": "16",
+       "target_compat": "16",
+       "gradle": {
+         "version": "7.2"
+       }
+     },
+     "project": {
+       "name": "bubble-blaster",
          "display_name": "root project \u0027bubble-blaster\u0027"
       }
    }

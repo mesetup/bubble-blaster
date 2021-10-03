@@ -115,7 +115,7 @@ public class ClassicType extends AbstractGameType {
     }
 
     /**
-     * <h1>Load Game Type.</h1>
+     * Load Game Type.
      * Used for initializing the game.
      */
     @Override
@@ -333,7 +333,7 @@ public class ClassicType extends AbstractGameType {
     }
 
     /**
-     * <h1>Trigger Game Over</h1>
+     * Trigger Game Over
      * Deletes player and set game over flag in ClassicHUD. Showing Game Over message.
      *
      * @see ClassicHUD#setGameOver()

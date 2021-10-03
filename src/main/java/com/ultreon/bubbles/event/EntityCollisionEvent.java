@@ -7,7 +7,7 @@ import com.ultreon.hydro.event.bus.AbstractEvents;
 import com.ultreon.hydro.render.Renderer;
 
 /**
- * <h1>Render Event</h1>
+ * Render Event
  * This event is for rendering the game objects on the canvas.
  *
  * @see Renderer

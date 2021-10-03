@@ -16,7 +16,7 @@ public class EnvironmentRenderer implements IRenderer {
     }
 
     /**
-     * <h1>Draw bubble.</h1>
+     * Draw bubble.
      * Draws bubble on screen.
      *
      * @param g      the graphics-2D instance
@@ -58,7 +58,7 @@ public class EnvironmentRenderer implements IRenderer {
     }
 
     /**
-     * <h1>Get Ellipse</h1>
+     * Get Ellipse
      * Get ellipse from x, y, radius, delta-radius and delta-value.
      *
      * @param x the x-coordinate.

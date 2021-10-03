@@ -36,7 +36,7 @@ public final class SvgHelper {
     private final SVGDocument svgDocument;
 
     /**
-     * Load the svg resource from a URL & InputStream into a document.
+     * Load the svg resource from a URL &amp; InputStream into a document.
      *
      * @param url location of svg resource.
      * @throws java.io.IOException when svg resource cannot be read.

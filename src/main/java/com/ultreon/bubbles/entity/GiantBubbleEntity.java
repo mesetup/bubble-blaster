@@ -11,7 +11,7 @@ import com.ultreon.bubbles.init.Entities;
 import java.awt.*;
 
 /**
- * <h1>Bubble Entity.</h1>
+ * Bubble Entity.
  * One of the most important parts of the game.
  *
  * @see AbstractBubbleEntity
@@ -27,7 +27,7 @@ public class GiantBubbleEntity extends BubbleEntity {
     }
 
     /**
-     * <h1>Spawn Event Handler</h1>
+     * Spawn Event Handler
      * On-spawn.
      *
      * @param pos         the position for spawn.

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 
 /**
- * <h1>ItemType Entity base class</h1>
+ * ItemType Entity base class
  * For entities such as a {@link BubbleEntity bubble}
  *
  * @see Entity

@@ -13,7 +13,7 @@ public class AWTWidgetRelativePosition extends RelativePosition {
     private RelativeAnchor anchor;
 
     /**
-     * <h1>Create relative point</h1>
+     * Create relative point
      * Creates a point relative to the component, based on the anchor that is given by a parameter.
      *
      * @param component the {@link Component AWT component} to create relative point to.
@@ -48,7 +48,7 @@ public class AWTWidgetRelativePosition extends RelativePosition {
     }
 
     /**
-     * <h1>AWT Widget Relative Position</h1>
+     * AWT Widget Relative Position
      * A class to calculate the relative position from a AWT Widget.
      *
      * @param component the component to create a relative position from.
@@ -69,7 +69,7 @@ public class AWTWidgetRelativePosition extends RelativePosition {
     }
 
     /**
-     * <h1>Update</h1>
+     * Update
      * Updates the data, so it will be relative when changed data.
      *
      * @throws NullPointerException when the anchor parameter is invalid.

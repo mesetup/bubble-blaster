@@ -15,7 +15,7 @@ import java.awt.*;
 import java.util.function.Supplier;
 
 /**
- * <h1>Bubble Initialization</h1>
+ * Bubble Initialization
  * Bubble init, used for initialize bubbles.
  * For example, the {@link DefenseBoostBubble} instance is assigned here.
  *

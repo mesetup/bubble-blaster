@@ -7,16 +7,19 @@ import com.ultreon.bubbles.screen.LoadScreen;
 import lombok.SneakyThrows;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 public class GameClassLoader extends URLClassLoader {
+    private static final String INTERNAL_ID = "com.ultreon.bubbleblaster";
     private final Map<String, ModClassLoader> modClassLoaders = new HashMap<>();
     private final Map<String, Scanner.Result> scans = new HashMap<>();
     private static final Gson gson = new Gson();
@@ -43,14 +46,27 @@ public class GameClassLoader extends URLClassLoader {
 
     @SneakyThrows
     public ModClassLoader addMod(File file) {
-        JarFile jarFile = new JarFile(file);
-        JarEntry jarEntry = jarFile.getJarEntry("META-INF/modFile.json");
-        InputStream inputStream = jarFile.getInputStream(jarEntry);
-        JsonObject modFileData = gson.fromJson(new InputStreamReader(inputStream), JsonObject.class);
+        JsonObject modFileData = null;
+        if (file.isFile()) {
+            JarFile jarFile = new JarFile(file);
+            JarEntry jarEntry = jarFile.getJarEntry("META-INF/modFile.json");
+            InputStream inputStream = jarFile.getInputStream(jarEntry);
+            modFileData = gson.fromJson(new InputStreamReader(inputStream), JsonObject.class);
+        } else if (file.isDirectory()) {
+            File modFile = new File(file, "META-INF/modFile.json");
+            if (!modFile.exists()) {
+                modFile = new File(file, "../../../resources/main/META-INF/modFile.json");
+            }
+
+            InputStream inputStream = new FileInputStream(modFile);
+            modFileData = gson.fromJson(new InputStreamReader(inputStream), JsonObject.class);
+        } else {
+            throw new IllegalStateException("Expected path to be either a file or directory: " + file.getPath());
+        }
 
         String fileId;
         if (modFileData.has("fileId")) {
-            JsonElement jsonElement = modFileData.get("");
+            JsonElement jsonElement = modFileData.get("fileId");
             if (jsonElement.isJsonPrimitive()) {
                 JsonPrimitive asJsonPrimitive = jsonElement.getAsJsonPrimitive();
                 if (asJsonPrimitive.isString()) {
@@ -71,6 +87,10 @@ public class GameClassLoader extends URLClassLoader {
     }
 
     public void scan(String modFileId) {
+        if (Objects.equals(modFileId, INTERNAL_ID)) {
+            if (scanResult == null) scan();
+            return;
+        }
         ModClassLoader loader = this.modClassLoaders.get(modFileId);
         Scanner.Result scanResult = loader.scan();
         this.scans.put(modFileId, scanResult);
@@ -78,7 +98,9 @@ public class GameClassLoader extends URLClassLoader {
 
     public Scanner.Result scan() {
         Scanner scanner = new Scanner(gameFile, this);
-        return this.scanResult = scanner.scanJar(LoadScreen.get());
+        Scanner.Result scanResult = scanner.scanJar(LoadScreen.get());
+        this.scans.put(INTERNAL_ID, scanResult);
+        return this.scanResult = scanResult;
     }
 
     public String getModFileId(File modFile) {

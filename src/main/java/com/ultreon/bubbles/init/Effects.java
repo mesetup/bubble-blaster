@@ -9,7 +9,7 @@ import com.ultreon.hydro.registry.object.RegistryObject;
 import java.util.function.Supplier;
 
 /**
- * <h1>Effect Initialization</h1>
+ * Effect Initialization
  * Effect init, used for initialize effects (temporary effects for players / bubbles that do something overtime).
  * For example, the {@link DefenseBoostEffect} instance is assigned here.
  *

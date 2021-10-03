@@ -4,7 +4,7 @@ import com.ultreon.bubbles.mod.loader.ModLoader;
 import com.ultreon.hydro.event.Event;
 
 /**
- * <h1>Mod Setup Event</h1>
+ * Mod Setup Event
  * This event is for post-initialize mods.
  *
  * @since 1.0.0

@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 /**
  * Base class for all NBT tags.
  *
- * <h1>Nesting</h1>
+ * Nesting
  * <p>All methods serializing instances or deserializing data track the nesting levels to prevent
  * circular references or malicious data which could, when deserialized, result in thousands
  * of instances causing a denial of service.</p>

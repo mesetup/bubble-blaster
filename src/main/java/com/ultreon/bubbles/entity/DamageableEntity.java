@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <h1>Living Entity base class.</h1>
+ * Living Entity base class.
  * The class for all living entities, such as {@link PlayerEntity the player}.
  *
  * @see Entity
@@ -71,7 +71,7 @@ public abstract class DamageableEntity extends Entity {
     // Attack & heal.
 
     /**
-     * <h1>Attack!!!</h1>
+     * Attack!!!
      *
      * @param value The attack value.
      * @deprecated Use {@link #damage(double, DamageSource)} instead.
@@ -87,7 +87,7 @@ public abstract class DamageableEntity extends Entity {
     }
 
     /**
-     * <h1>Attack!!!</h1>
+     * Attack!!!
      *
      * @param value  the attack value.
      * @param source the damage source.

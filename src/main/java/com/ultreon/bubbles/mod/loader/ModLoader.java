@@ -54,7 +54,7 @@ public class ModLoader {
 
 //        modClassLoader = new ModClassLoader(BubbleBlaster.getMainClassLoader(), );
 
-        GameClassLoader.get().scan();
+//        GameClassLoader.get().scan();
 
         if (!MODS_DIR.exists()) {
             existsBefore = false;
@@ -76,6 +76,9 @@ public class ModLoader {
         }
 
         URL location = BubbleBlaster.class.getProtectionDomain().getCodeSource().getLocation();
+        GameClassLoader.get().addMod(new File(location.getPath()));
+        loadJar(location.getPath(), loadScreen);
+//        scanResults.put(new File(location.getPath()), result);
 //        try {
 //            File file = new File(location.toURI());
 //
@@ -278,6 +281,7 @@ public class ModLoader {
             }
 
             Scanner.Result result = loader.getResult(modFileId);
+            LOGGER.info("ModLoader[c27a7e34]: " + result);
             scanResults.put(modFile, result);
 
             List<Class<?>> classes = result.getClasses(Mod.class);

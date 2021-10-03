@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
- * <h1>Save Laoder</h1>
+ * Save Laoder
  * Save loader for saved game instances.
  *
  * @author Qboi (Qboi)

@@ -52,7 +52,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * <h1>GameType baseclass</h1>
+ * GameType baseclass
  * Baseclass for all game-types, such as {@link ClassicType}
  *
  * @see ClassicType
@@ -144,7 +144,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
 
 
     /**
-     * <h1>Initialize Randomizers.</h1>
+     * Initialize Randomizers.
      * Initializes the randomizers such as for bubble coords, or radius.
      *
      * @see #addRNG(String, int, int)
@@ -161,7 +161,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Add Randomizer</h1>
+     * Add Randomizer
      * Adds a randomizer to the game type.
      *
      * @param key The key (name) to save it to.
@@ -174,13 +174,13 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Load Game Type.</h1>
+     * Load Game Type.
      * Used for start the game-type.
      */
     public abstract void start();
 
     /**
-     * <h1>Initialize Game Type.</h1>
+     * Initialize Game Type.
      * Used for initialize the game-type.
      *
      * @param infoTransporter info transporter, used for showing info about loading the game-type.
@@ -188,7 +188,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     public abstract void init(Environment environment, InfoTransporter infoTransporter);
 
     /**
-     * <h1>Load Game Type.</h1>
+     * Load Game Type.
      * Used for loading the game-type.
      *
      * @param infoTransporter info transporter, used for showing info about loading the game-type.
@@ -196,7 +196,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     public abstract void load(Environment environment, InfoTransporter infoTransporter);
 
     /**
-     * <h1>Create Save Data</h1>
+     * Create Save Data
      * Used for creating the save data.
      *
      * @param savedGame       the saved game to create the data for.
@@ -205,14 +205,14 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     public abstract void createSaveData(SavedGame savedGame, InfoTransporter infoTransporter);
 
     /**
-     * <h1>Load Save Data</h1>
+     * Load Save Data
      * Used for loading the save data.
      */
     @SuppressWarnings("EmptyMethod")
     public abstract void loadSaveData(SavedGame savedGame, InfoTransporter infoTransporter);
 
     /**
-     * <h1>Dump Save Data</h1>
+     * Dump Save Data
      * Used for storing the save data.
      *
      * @param savedGame the saved game to write the data to.
@@ -220,7 +220,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     public abstract void dumpSaveData(SavedGame savedGame);
 
     /**
-     * <h1>Render Event</h1>
+     * Render Event
      * Render event, renders objects to the canvas.
      *
      * @see RenderEvent
@@ -229,7 +229,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     public abstract void render(Renderer gg);
 
     /**
-     * <h1>Dump Default State</h1>
+     * Dump Default State
      * Dumps the default state to the given saved game.
      *
      * @see SavedGame
@@ -247,7 +247,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Dump State to Output Stream</h1>
+     * Dump State to Output Stream
      * Dumps the game-type state to the output stream.
      *
      * @param output the output stream to write the state to.
@@ -262,7 +262,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Load State from Bytearray.</h1>
+     * Load State from Bytearray.
      * Loads the game-type state from a bytearray.
      *
      * @param save            an bytearray of data to get the game-type from.
@@ -395,7 +395,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Update Event</h1>
+     * Update Event
      * Update event, ticks data.
      */
     public void tick() {
@@ -406,7 +406,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Attack an entity.</h1>
+     * Attack an entity.
      * Attacks an entity no matter if it is a {@link DamageableEntity} or a {@link AbstractBubbleEntity}.
      *
      * @param entity The {@link Entity} to attack.
@@ -423,7 +423,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Get a Random Bubble</h1>
+     * Get a Random Bubble
      * Gets a random bubble from the bubble system.
      * Uses the randoms initiated in {@link #initDefaults()}.
      *
@@ -485,7 +485,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Get State from the Game-type to a Bson Document</h1>
+     * Get State from the Game-type to a Bson Document
      * Dumps the game-type's state to a bson document.
      */
     @Override
@@ -498,7 +498,7 @@ public abstract class AbstractGameType extends RegistryEntry implements StateHol
     }
 
     /**
-     * <h1>Load State from a Bson Document to the Game-type</h1>
+     * Load State from a Bson Document to the Game-type
      * Loads the game-type's state from a bson document.
      *
      * @param document the bson document containing the game-type data.

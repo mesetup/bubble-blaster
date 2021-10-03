@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * <h1>Classic HUD</h1>
+ * Classic HUD
  * The HUD that was is older versions and editions of the game.
  *
  * @see HUD
@@ -178,7 +178,7 @@ public class ClassicHUD extends HUD {
     }
 
     /**
-     * <h1>Update Event</h1>
+     * Update Event
      * Used for updating values.
      *
      * @see TickEvent
@@ -190,7 +190,7 @@ public class ClassicHUD extends HUD {
     }
 
     /**
-     * <h1>Sets Game Over flag</h1>
+     * Sets Game Over flag
      * Yes, as the title says: it sets the game over flag in the HUD.
      *
      * @see ClassicType#triggerGameOver()

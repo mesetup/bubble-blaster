@@ -4,7 +4,7 @@ import com.ultreon.bubbles.gametype.hud.ClassicHUD;
 import com.ultreon.hydro.render.Renderer;
 
 /**
- * <h1>HUD Baseclass</h1>
+ * HUD Baseclass
  * The baseclass for all HUD's.
  *
  * @see ClassicHUD

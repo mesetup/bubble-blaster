@@ -64,7 +64,8 @@ public class BubbleSystem {
      * Bubble initialization for random spawning.
      *
      * @see AbstractBubble
-     * @see Registry <Bubble>
+     * @see Registry<AbstractBubble>
+     * @see Registers#BUBBLES
      */
     public static void init() {
 //        if (bubbleTypes == null)

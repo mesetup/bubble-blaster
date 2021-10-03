@@ -135,7 +135,7 @@ public class Environment {
     }
 
     /**
-     * <h1>Safe Remove Entity</h1>
+     * Safe Remove Entity
      * Safely removes a entity. Removes the entity from the game-objects set, then removes it from
      * the gameObjects in {@link Environment#getEntities()}  GameScene}
      *

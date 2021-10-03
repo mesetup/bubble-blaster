@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * <h1>The renewed and better version of the internal {@link Random}</h1>
+ * The renewed and better version of the internal {@link Random}
  * Just added the ability to get seed.
  *
  * @see java.util.Random
@@ -68,7 +68,7 @@ public class QBRandom extends Random {
     }
 
     /**
-     * <h1>Get that Seed!</h1>
+     * Get that Seed!
      * Returns the internal seed.
      *
      * @return The internal seed.
@@ -79,7 +79,7 @@ public class QBRandom extends Random {
     }
 
     /**
-     * <h1>The random integer like in <a href="https://www.python.org">Python</a></h1>
+     * The random integer like in <a href="https://www.python.org">Python</a>
      *
      * @param a The minimum
      * @param b The maximum
@@ -95,7 +95,7 @@ public class QBRandom extends Random {
     }
 
     /**
-     * <h1>The random integer like in <a href="https://www.python.org">Python</a></h1>
+     * The random integer like in <a href="https://www.python.org">Python</a>
      *
      * @param min The minimum
      * @param max The maximum
@@ -113,7 +113,7 @@ public class QBRandom extends Random {
     }
 
     /**
-     * <h1>The random integer like in <a href="https://www.python.org">Python</a></h1>
+     * The random integer like in <a href="https://www.python.org">Python</a>
      *
      * @param min The minimum
      * @param max The maximum
@@ -131,7 +131,7 @@ public class QBRandom extends Random {
     }
 
     /**
-     * <h1>The random integer like in <a href="https://www.python.org">Python</a></h1>
+     * The random integer like in <a href="https://www.python.org">Python</a>
      *
      * @param min The minimum
      * @param max The maximum
@@ -149,7 +149,7 @@ public class QBRandom extends Random {
     }
 
     /**
-     * <h1>Addend</h1>
+     * Addend
      * <p>
      * The internal state associated with this pseudorandom number generator.
      * (The specs for the methods in this class describe the ongoing

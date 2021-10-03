@@ -103,7 +103,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     private final Logger logger = LogManager.getLogger("Player");
 
     /**
-     * <h1>Player entity.</h1>
+     * Player entity.
      * The player is controlled be the keyboard and is one of the important features of the game. (Almost any game).
      *
      * @see DamageableEntity
@@ -149,7 +149,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     }
 
     /**
-     * <h1>Prepare spawn</h1>
+     * Prepare spawn
      * Called when the entity was spawned.
      *
      * @param spawnData the data to spawn with.
@@ -525,7 +525,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     }
 
     /**
-     * <h1>Trigger a Reflection</h1>
+     * Trigger a Reflection
      * Triggers a reflection, there are some problems with the velocity.
      * That's why it's currently in beta.
      *
@@ -540,7 +540,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     }
 
     /**
-     * <h1>Delete method</h1>
+     * Delete method
      * <i><b>WARNING: </b><u>This is an unsafe method, use {@link AbstractGameType#triggerGameOver()} instead.</u></i>
      *
      * @see AbstractGameType#triggerGameOver()
@@ -551,7 +551,7 @@ public class PlayerEntity extends DamageableEntity implements IPlayer {
     }
 
     /**
-     * <h1>Checks health</h1>
+     * Checks health
      * Checks health, if health is zero or less, it will trigger game-over.
      */
     @Override

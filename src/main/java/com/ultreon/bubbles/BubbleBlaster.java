@@ -239,13 +239,13 @@ public final class BubbleBlaster extends Game {
         // Register Game Font.
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
-            gameFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/ChicleRegular-xpv5.ttf")));
+            gameFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/Chicle-Regular-xpv5.ttf")));
             ge.registerFont(getGameFont());
             pixelFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/pixel/Pixel-UniCode.ttf")));
             ge.registerFont(getPixelFont());
             monospaceFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/dejavu/DejaVuSansMono.ttf")));
             ge.registerFont(getMonospaceFont());
-            sansFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/arial-unicode-ms.ttf")));
+            sansFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(BubbleBlaster.class.getResourceAsStream("/assets/bubbleblaster/fonts/Arial-Unicode-MS.ttf")));
             ge.registerFont(getSansFont());
         } catch (FontFormatException | NullPointerException e) {
             if (e instanceof NullPointerException) {
@@ -389,6 +389,7 @@ public final class BubbleBlaster extends Game {
 
         // Boot the game.
         try {
+            Game.initEngine(BubbleBlaster.debugMode, BubbleBlaster.devMode);
             new BubbleBlaster();
         } catch (IOException e) {
             e.printStackTrace();

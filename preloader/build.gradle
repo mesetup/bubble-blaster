@@ -106,9 +106,9 @@ dependencies {
     implementation project(":commons")
     implementation project(":javax-annotations")
 
-    implementation 'it.unimi.dsi:fastutil-core:8.5.4'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    implementation 'it.unimi.dsi:fastutil-core:8.5.6'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
 
     extraLibs group: 'org.ow2.asm', name: 'asm', version: '9.2'

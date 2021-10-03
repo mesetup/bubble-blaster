@@ -26,7 +26,7 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * <h1>Entity base class.</h1>
+ * Entity base class.
  * The base for all entities, such as the player or a bubble.
  *
  * @author Qboi
