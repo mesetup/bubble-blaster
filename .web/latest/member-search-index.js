@@ -1,0 +1,9567 @@
+memberSearchIndex = [{
+    "p": "com.ultreon.bubbles.registry",
+    "c": "Registers",
+    "l": "ABILITIES"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Abilities",
+    "l": "Abilities()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Abilities",
+    "l": "ABILITY_TYPES"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "Ability(AbilityType<T>)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.player.ability.AbilityType)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityContainer",
+    "l": "AbilityContainer(Entity)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers",
+    "c": "AbilityKeyTrigger",
+    "l": "AbilityKeyTrigger(KeyboardEvent, Entity)",
+    "u": "%3Cinit%3E(com.ultreon.hydro.event.input.KeyboardEvent,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers.types",
+    "c": "AbilityKeyTriggerType",
+    "l": "AbilityKeyTriggerType()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityTrigger",
+    "l": "AbilityTrigger(AbilityTriggerType, Entity)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.player.ability.AbilityTriggerType,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityTriggerType",
+    "l": "AbilityTriggerType()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityType",
+    "l": "AbilityType(Supplier<T>)",
+    "u": "%3Cinit%3E(java.util.function.Supplier)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AbsolutePosition",
+    "l": "AbsolutePosition(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AbsoluteSize",
+    "l": "AbsoluteSize(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "AbstractBubble()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "AbstractBubbleEntity(EntityType<?>, AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.types.EntityType,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "AbstractGameType()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "AbstractInventory",
+    "l": "AbstractInventory()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "AbstractVersion",
+    "l": "AbstractVersion()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "ACCELERATE_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AccelerateBubble",
+    "l": "AccelerateBubble()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.common.interfaces", "c": "EventConsumer", "l": "accept(T)"}, {
+    "p": "net.querz.io",
+    "c": "ExceptionBiFunction",
+    "l": "accept(T, U)",
+    "u": "accept(T,U)"
+}, {
+    "p": "net.querz.io",
+    "c": "ExceptionTriConsumer",
+    "l": "accept(T, U, V)",
+    "u": "accept(T,U,V)"
+}, {"p": "com.ultreon.bubbles.state", "c": "BloodMoonEvent", "l": "activate()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "activated"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "activeEffects"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityContainer",
+    "l": "add(Ability<? extends Ability<?>>)",
+    "u": "add(com.ultreon.bubbles.entity.player.ability.Ability)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioPlayer",
+    "l": "add(AudioSlot)",
+    "u": "add(com.ultreon.bubbles.media.AudioSlot)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSpec.Builder",
+    "l": "add(Color)",
+    "u": "add(java.awt.Color)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.ModifierMap",
+    "l": "add(Difficulty.Modifier.Type<T>, Difficulty.Modifier<T>)",
+    "u": "add(com.ultreon.bubbles.common.Difficulty.Modifier.Type,com.ultreon.bubbles.common.Difficulty.Modifier)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "add(double, T)",
+    "u": "add(double,T)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "add(int, T)",
+    "u": "add(int,T)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QContainer",
+    "l": "add(QComponent)",
+    "u": "add(com.ultreon.bubbles.render.gui.QComponent)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollPane",
+    "l": "add(QComponent)",
+    "u": "add(com.ultreon.bubbles.render.gui.QComponent)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSpec.Builder",
+    "l": "add(String)",
+    "u": "add(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "CommandConstructor",
+    "l": "add(String, CommandExecutor)",
+    "u": "add(java.lang.String,com.ultreon.bubbles.command.CommandExecutor)"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "add(T)"}, {
+    "p": "com.ultreon.bubbles.render.gui.view",
+    "c": "ScrollView",
+    "l": "add(Widget)",
+    "u": "add(com.ultreon.hydro.screen.gui.Widget)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "addAll(Collection<T>)",
+    "u": "addAll(java.util.Collection)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "addAll(int, Collection<T>)",
+    "u": "addAll(int,java.util.Collection)"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "addBoolean(boolean)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "addByte(byte)"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "addByteArray(byte[])"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "addCollidable(Entity)",
+    "u": "addCollidable(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "addCollidable(EntityType<?>)",
+    "u": "addCollidable(com.ultreon.bubbles.entity.types.EntityType)"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "addDouble(double)"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "addEffect(StatusEffectInstance)",
+    "u": "addEffect(com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "ModClassLoader",
+    "l": "addFile(File)",
+    "u": "addFile(java.io.File)"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "addFloat(float)"}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "addGameStateActive(GameEvent)",
+    "u": "addGameStateActive(com.ultreon.bubbles.common.gamestate.GameEvent)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioPlayer",
+    "l": "addIf(AudioSlot, Predicate<AudioSlot>)",
+    "u": "addIf(com.ultreon.bubbles.media.AudioSlot,java.util.function.Predicate)"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "addInt(int)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "addIntArray(int[])"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "addLong(long)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "addLongArray(long[])"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "addMod(File)",
+    "u": "addMod(java.io.File)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "ModClassLoader",
+    "l": "addMod(String)",
+    "u": "addMod(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.core.handler",
+    "c": "Handler",
+    "l": "addObject(Entity)",
+    "u": "addObject(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "addRNG(String, int, int)",
+    "u": "addRNG(java.lang.String,int,int)"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "addScore(double)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "addShort(short)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "addStrength()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "addStrength(byte)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "addString(String)",
+    "u": "addString(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.effect", "c": "StatusEffectInstance", "l": "addTime(long)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "addUnchecked(Tag<?>)",
+    "u": "addUnchecked(net.querz.nbt.tag.Tag)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "addValue(int)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "allowMerge()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion.TYPE",
+    "l": "ALPHA"
+}, {
+    "p": "com.ultreon.bubbles.api.event.keyboard",
+    "c": "KeyboardModifiers",
+    "l": "alt()"
+}, {"p": "com.ultreon.bubbles.init", "c": "Entities", "l": "AMMO"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "AmmoTypes",
+    "l": "AMMO_TYPES"
+}, {"p": "com.ultreon.bubbles.registry", "c": "Registers", "l": "AMMO_TYPES"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "AmmoEntity(AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "AmmoEntity(AmmoType, AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.ammo.AmmoType,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "AmmoItem",
+    "l": "AmmoItem()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "AmmoType",
+    "l": "AmmoType()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "AmmoTypes",
+    "l": "AmmoTypes()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "SystemEnum",
+    "l": "ANDROID"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BLACK"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BLUE"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BRIGHT_BLACK"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BRIGHT_BLUE"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BRIGHT_CYAN"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BRIGHT_GREEN"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BRIGHT_PURPLE"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BRIGHT_RED"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BRIGHT_WHITE"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_BRIGHT_YELLOW"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_CYAN"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_GREEN"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_PURPLE"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_RED"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_RESET"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "ANSI_WHITE"
+}, {"p": "com.ultreon.bubbles.common.logging", "c": "ANSI", "l": "ANSI_YELLOW"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty",
+    "l": "APOCALYPSE"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "areEventsBinded"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Listener",
+    "l": "areEventsBound()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "AmmoEntity", "l": "areEventsBound()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "areEventsBound()"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "areEventsBound()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ArrayTag",
+    "l": "ArrayTag(T)",
+    "u": "%3Cinit%3E(T)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ArrayTag",
+    "l": "arrayToString(String, String)",
+    "u": "arrayToString(java.lang.String,java.lang.String)"
+}, {"p": "net.querz.nbt.tag", "c": "ByteTag", "l": "asBoolean()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "NumberTag",
+    "l": "asByte()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "asByteArrayTagList()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "asByteTagList()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "asCompoundTagList()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "NumberTag",
+    "l": "asDouble()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "asDoubleTagList()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "NumberTag",
+    "l": "asFloat()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "asFloatTagList()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "NumberTag",
+    "l": "asInt()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "asIntArrayTagList()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "asIntTagList()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "asListTagList()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "NumberTag",
+    "l": "asLong()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "asLongArrayTagList()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "asLongTagList()"
+}, {"p": "com.ultreon.bubbles.common", "c": "DataType", "l": "ASSETS"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "NumberTag",
+    "l": "asShort()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "asShortTagList()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "asStringTagList()"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "asTypedList(Class<L>)",
+    "u": "asTypedList(java.lang.Class)"
+}, {
+    "p": "com.ultreon.bubbles.entity.attribute",
+    "c": "Attribute",
+    "l": "ATTACK"
+}, {"p": "com.ultreon.bubbles.entity.modifier", "c": "Modifier", "l": "ATTACK"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Effects",
+    "l": "ATTACK_BOOST"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "ATTACK_BOOST_BUBBLE"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "attack(Entity, double)",
+    "u": "attack(com.ultreon.bubbles.entity.Entity,double)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "attack(Entity, double, DamageSource)",
+    "u": "attack(com.ultreon.bubbles.entity.Entity,double,com.ultreon.bubbles.entity.damage.DamageSource)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "attack(float)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AttackBoostBubble",
+    "l": "AttackBoostBubble()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "AttackBoostEffect",
+    "l": "AttackBoostEffect()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.attribute",
+    "c": "Attribute",
+    "l": "Attribute(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "AttributeMap()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "attributes"}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioPlayer",
+    "l": "AudioPlayer(int)",
+    "u": "%3Cinit%3E(int)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "AudioSlot(File)",
+    "u": "%3Cinit%3E(java.io.File)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "AudioSlot(File, String)",
+    "u": "%3Cinit%3E(java.io.File,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "AudioSlot(URI)",
+    "u": "%3Cinit%3E(java.net.URI)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "AudioSlot(URI, String)",
+    "u": "%3Cinit%3E(java.net.URI,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "AudioSlot(URL)",
+    "u": "%3Cinit%3E(java.net.URL)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "AudioSlot(URL, String)",
+    "u": "%3Cinit%3E(java.net.URL,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentagePosition",
+    "l": "AWTWidgetPercentagePosition(Component, int, int)",
+    "u": "%3Cinit%3E(java.awt.Component,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentageSize",
+    "l": "AWTWidgetPercentageSize(Component, double, double)",
+    "u": "%3Cinit%3E(java.awt.Component,double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "AWTWidgetRelativePosition(Component, int, int, RelativeAnchor)",
+    "u": "%3Cinit%3E(java.awt.Component,int,int,com.ultreon.bubbles.util.position.util.RelativeAnchor)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativeSize",
+    "l": "AWTWidgetRelativeSize(Component, double, double)",
+    "u": "%3Cinit%3E(java.awt.Component,double,double)"
+}, {"p": "com.ultreon.bubbles.common", "c": "Difficulty", "l": "BABY"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "Background",
+    "l": "Background()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "backgroundColor"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "backward(boolean)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "baseBounceAmount"
+}, {
+    "p": "com.ultreon.bubbles.datapack",
+    "c": "BaseData",
+    "l": "BaseData(DataProperties)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.datapack.DataProperties)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "baseRadius"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "bases"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "baseSpeed"
+}, {"p": "com.ultreon.bubbles.entity", "c": "DamageableEntity", "l": "baseSpeed"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "AmmoTypes",
+    "l": "BASIC"
+}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "BasicAmmoType",
+    "l": "BasicAmmoType()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion.TYPE",
+    "l": "BETA"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.BigDecimalRange",
+    "l": "BigDecimalRange(BigDecimal, BigDecimal)",
+    "u": "%3Cinit%3E(java.math.BigDecimal,java.math.BigDecimal)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.BigIntegerRange",
+    "l": "BigIntegerRange(BigInteger, BigInteger)",
+    "u": "%3Cinit%3E(java.math.BigInteger,java.math.BigInteger)"
+}, {"p": "com.ultreon.bubbles.common", "c": "Listener", "l": "bindEvents()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "bindEvents()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "bindEvents()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "bindEvents()"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "bindEvents()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "bindEvents()"
+}, {"p": "com.ultreon.bubbles.init", "c": "Effects", "l": "BLINDNESS"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "BLINDNESS_BUBBLE"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BlindnessBubble",
+    "l": "BlindnessBubble()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BlindnessEffect",
+    "l": "BlindnessEffect()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.init", "c": "GameEvents", "l": "BLOOD_MOON_EVENT"}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "BloodMoonCommand",
+    "l": "BloodMoonCommand()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "BloodMoonEvent",
+    "l": "BloodMoonEvent()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bloodMoonUpdate()"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "RelativeAnchor",
+    "l": "BOTTOM"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "BOUNCE_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "bounceAmount"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "bounceAmount(float)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry.Builder",
+    "l": "bounds"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton.Builder",
+    "l": "bounds(int, int, int, int)",
+    "u": "bounds(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton.Builder",
+    "l": "bounds(int, int, int, int)",
+    "u": "bounds(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton.Builder",
+    "l": "bounds(int, int, int, int)",
+    "u": "bounds(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton.Builder",
+    "l": "bounds(int, int, int, int)",
+    "u": "bounds(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton.Builder",
+    "l": "bounds(Rectangle)",
+    "u": "bounds(com.ultreon.hydro.screen.gui.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry.Builder",
+    "l": "bounds(Rectangle)",
+    "u": "bounds(com.ultreon.hydro.screen.gui.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton.Builder",
+    "l": "bounds(Rectangle)",
+    "u": "bounds(java.awt.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton.Builder",
+    "l": "bounds(Rectangle)",
+    "u": "bounds(java.awt.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton.Builder",
+    "l": "bounds(Rectangle)",
+    "u": "bounds(java.awt.Rectangle)"
+}, {"p": "com.ultreon.bubbles.init", "c": "Entities", "l": "BUBBLE"}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "Mod.EventBusSubscriber.Bus",
+    "l": "BUBBLE_BLASTER"
+}, {"p": "com.ultreon.bubbles.init", "c": "Effects", "l": "BUBBLE_FREEZE"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "BUBBLE_FREEZE_BUBBLE"
+}, {"p": "com.ultreon.bubbles.init", "c": "TextureCollections", "l": "BUBBLE_TEXTURES"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "BubbleBlaster()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "NamespacedKey",
+    "l": "bubbleblaster(String)",
+    "u": "bubbleblaster(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleCircle",
+    "l": "BubbleCircle(int, Color)",
+    "u": "%3Cinit%3E(int,java.awt.Color)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "BubbleEntity(AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BubbleFreezeEffect",
+    "l": "BubbleFreezeEffect()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "bubblePriorities"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "BubbleProperties(AbstractBubble, float, double, int, int, int, AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.bubble.AbstractBubble,float,double,int,int,int,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "BubbleProperties(AbstractBubble, float, double, int, int, int, AbstractGameType, Rng)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.bubble.AbstractBubble,float,double,int,int,int,com.ultreon.bubbles.common.gametype.AbstractGameType,com.ultreon.bubbles.common.random.Rng)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "BubbleProperties(AbstractBubble, float, double, int, int, int, float, float, float)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.bubble.AbstractBubble,float,double,int,int,int,float,float,float)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubbleRandomizer"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "BubbleRandomizer(AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubbles"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "BUBBLES"}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "Registers",
+    "l": "BUBBLES"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "Bubbles()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubblesAttackRng"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubblesDefenseRng"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSpec",
+    "l": "BubbleSpec(BubbleSpec)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.bubble.BubbleSpec)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubblesRadiusRng"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubblesScoreRng"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubblesSpeedRng"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubblesXPosRng"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubblesYPosRng"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "BubbleSystem()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "bubbleType"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "bubbleTypesRng"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "build()"
+}, {
+    "p": "com.ultreon.bubbles.datapack",
+    "c": "DataProperties.Builder",
+    "l": "build()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSpec.Builder",
+    "l": "build()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton.Builder",
+    "l": "build()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton.Builder",
+    "l": "build()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry.Builder",
+    "l": "build()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton.Builder",
+    "l": "build()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton.Builder",
+    "l": "build()"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "builder()"}, {
+    "p": "com.ultreon.bubbles.datapack",
+    "c": "DataProperties",
+    "l": "builder()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSpec.Builder",
+    "l": "Builder()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton.Builder",
+    "l": "Builder()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton.Builder",
+    "l": "Builder()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry.Builder",
+    "l": "Builder()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton.Builder",
+    "l": "Builder()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton.Builder",
+    "l": "Builder()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.python",
+    "c": "Builtins",
+    "l": "Builtins()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "Mod.EventBusSubscriber",
+    "l": "bus()"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "Mod.EventBusSubscriber.Bus", "l": "bus()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteArrayTag",
+    "l": "ByteArrayTag()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteArrayTag",
+    "l": "ByteArrayTag(byte[])",
+    "u": "%3Cinit%3E(byte[])"
+}, {"p": "net.querz.nbt.tag", "c": "ByteTag", "l": "ByteTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteTag",
+    "l": "ByteTag(boolean)",
+    "u": "%3Cinit%3E(boolean)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteTag",
+    "l": "ByteTag(byte)",
+    "u": "%3Cinit%3E(byte)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "IFormula",
+    "l": "calculate(double)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "AttackBoostEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BlindnessEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BubbleFreezeEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "DefenseBoostEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "LuckEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "MultiScoreEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "ParalyzeEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "PoisonEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "SpeedBoostEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "canExecute(Entity, StatusEffectInstance)",
+    "u": "canExecute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "canSpawn(AbstractGameType)",
+    "u": "canSpawn(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "LevelUpBubble",
+    "l": "canSpawn(AbstractGameType)",
+    "u": "canSpawn(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "I18n",
+    "l": "canTranslate(String)",
+    "u": "canTranslate(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "RelativeAnchor",
+    "l": "CENTER"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "checkDamage()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "checkDamage()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "checkDamage()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "checkRegistry(SavedGame)",
+    "u": "checkRegistry(com.ultreon.bubbles.save.SavedGame)"
+}, {"p": "net.querz.nbt.tag", "c": "Tag", "l": "checkValue(T)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "EndTag",
+    "l": "checkValue(Void)",
+    "u": "checkValue(java.lang.Void)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(BigDecimal, BigDecimal, BigDecimal)",
+    "u": "clamp(java.math.BigDecimal,java.math.BigDecimal,java.math.BigDecimal)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(BigInteger, BigInteger, BigInteger)",
+    "u": "clamp(java.math.BigInteger,java.math.BigInteger,java.math.BigInteger)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(byte, byte, byte)",
+    "u": "clamp(byte,byte,byte)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(byte, int, int)",
+    "u": "clamp(byte,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(double, double, double)",
+    "u": "clamp(double,double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(float, float, float)",
+    "u": "clamp(float,float,float)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(int, int, int)",
+    "u": "clamp(int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(long, long, long)",
+    "u": "clamp(long,long,long)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(short, int, int)",
+    "u": "clamp(short,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "clamp(short, short, short)",
+    "u": "clamp(short,short,short)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "ClassExistsError",
+    "l": "ClassExistsError(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.init", "c": "GameTypes", "l": "CLASSIC_TYPE"}, {
+    "p": "com.ultreon.bubbles.gametype.hud",
+    "c": "ClassicHUD",
+    "l": "ClassicHUD(AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "ClassicType()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "clear()"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "IInventory",
+    "l": "clear()"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "PlayerInventory",
+    "l": "clear()"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioPlayer", "l": "clear()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "clear()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "clear()"}, {
+    "p": "com.ultreon.bubbles.core.handler",
+    "c": "Handler",
+    "l": "clearEnemies()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "clickCount"
+}, {
+    "p": "com.ultreon.bubbles.api.event.keyboard",
+    "c": "KeyboardModifiers",
+    "l": "clone()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QDimension", "l": "clone()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteArrayTag",
+    "l": "clone()"
+}, {"p": "net.querz.nbt.tag", "c": "ByteTag", "l": "clone()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "clone()"
+}, {"p": "net.querz.nbt.tag", "c": "DoubleTag", "l": "clone()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "EndTag",
+    "l": "clone()"
+}, {"p": "net.querz.nbt.tag", "c": "FloatTag", "l": "clone()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntArrayTag",
+    "l": "clone()"
+}, {"p": "net.querz.nbt.tag", "c": "IntTag", "l": "clone()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "clone()"
+}, {"p": "net.querz.nbt.tag", "c": "LongArrayTag", "l": "clone()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongTag",
+    "l": "clone()"
+}, {"p": "net.querz.nbt.tag", "c": "ShortTag", "l": "clone()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "StringTag",
+    "l": "clone()"
+}, {"p": "net.querz.nbt.tag", "c": "Tag", "l": "clone()"}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "cloneOf()"
+}, {"p": "com.ultreon.bubbles.common.logging.old", "c": "GameLoggingHandler", "l": "close()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "close()"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTOutputStream", "l": "close()"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "CollectionsUtils",
+    "l": "CollectionsUtils()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.damage",
+    "c": "DamageSourceType",
+    "l": "COLLISION"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "collisionWith"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "colors"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "colors(Color...)",
+    "u": "colors(java.awt.Color...)"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "OptionsButton", "l": "command"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData.SpawnReason",
+    "l": "COMMAND"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton.Builder",
+    "l": "command(Runnable)",
+    "u": "command(java.lang.Runnable)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton.Builder",
+    "l": "command(Runnable)",
+    "u": "command(java.lang.Runnable)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton.Builder",
+    "l": "command(Runnable)",
+    "u": "command(java.lang.Runnable)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton.Builder",
+    "l": "command(Runnable)",
+    "u": "command(java.lang.Runnable)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "Command",
+    "l": "Command(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "CommandConstructor",
+    "l": "CommandConstructor()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.command", "c": "CommandConstructor", "l": "commands"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CommandScreen",
+    "l": "CommandScreen()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ComparableVersion",
+    "l": "ComparableVersion(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "compareTo(ArtifactVersion)",
+    "u": "compareTo(com.ultreon.bubbles.common.versioning.ArtifactVersion)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteArrayTag",
+    "l": "compareTo(ByteArrayTag)",
+    "u": "compareTo(net.querz.nbt.tag.ByteArrayTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteTag",
+    "l": "compareTo(ByteTag)",
+    "u": "compareTo(net.querz.nbt.tag.ByteTag)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ComparableVersion",
+    "l": "compareTo(ComparableVersion)",
+    "u": "compareTo(com.ultreon.bubbles.common.versioning.ComparableVersion)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "compareTo(CompoundTag)",
+    "u": "compareTo(net.querz.nbt.tag.CompoundTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "DoubleTag",
+    "l": "compareTo(DoubleTag)",
+    "u": "compareTo(net.querz.nbt.tag.DoubleTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "FloatTag",
+    "l": "compareTo(FloatTag)",
+    "u": "compareTo(net.querz.nbt.tag.FloatTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntArrayTag",
+    "l": "compareTo(IntArrayTag)",
+    "u": "compareTo(net.querz.nbt.tag.IntArrayTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntTag",
+    "l": "compareTo(IntTag)",
+    "u": "compareTo(net.querz.nbt.tag.IntTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "compareTo(ListTag<T>)",
+    "u": "compareTo(net.querz.nbt.tag.ListTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongArrayTag",
+    "l": "compareTo(LongArrayTag)",
+    "u": "compareTo(net.querz.nbt.tag.LongArrayTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongTag",
+    "l": "compareTo(LongTag)",
+    "u": "compareTo(net.querz.nbt.tag.LongTag)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "compareTo(QVersion)",
+    "u": "compareTo(com.ultreon.bubbles.common.versioning.QVersion)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ShortTag",
+    "l": "compareTo(ShortTag)",
+    "u": "compareTo(net.querz.nbt.tag.ShortTag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "StringTag",
+    "l": "compareTo(StringTag)",
+    "u": "compareTo(net.querz.nbt.tag.StringTag)"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "CompareUtils",
+    "l": "CompareUtils()",
+    "u": "%3Cinit%3E()"
+}, {"p": "net.querz.nbt.tag", "c": "CompoundTag", "l": "CompoundTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "CompoundTag(int)",
+    "u": "%3Cinit%3E(int)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModLoader",
+    "l": "constructMods()"
+}, {"p": "com.ultreon.bubbles.entity.bubble", "c": "Range", "l": "contains(double)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "contains(T)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "containsAll(Collection<Tag<?>>)",
+    "u": "containsAll(java.util.Collection)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "containsKey(String)",
+    "u": "containsKey(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "containsValue(Tag<?>)",
+    "u": "containsValue(net.querz.nbt.tag.Tag)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ArtifactVersion",
+    "l": "containsVersion(ArtifactVersion)",
+    "u": "containsVersion(com.ultreon.bubbles.common.versioning.ArtifactVersion)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "containsVersion(ArtifactVersion)",
+    "u": "containsVersion(com.ultreon.bubbles.common.versioning.ArtifactVersion)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "containsVersion(ArtifactVersion)",
+    "u": "containsVersion(com.ultreon.bubbles.common.versioning.ArtifactVersion)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "containsVersion(ArtifactVersion)",
+    "u": "containsVersion(com.ultreon.bubbles.common.versioning.ArtifactVersion)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "convert(SavedGame)",
+    "u": "convert(com.ultreon.bubbles.save.SavedGame)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "convert(SavedGame)",
+    "u": "convert(com.ultreon.bubbles.save.SavedGame)"
+}, {"p": "com.ultreon.bubbles.util.python.os", "c": "Path", "l": "CR"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "References",
+    "l": "CRASH_REPORTS"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton",
+    "l": "CrashButton(int, int, int, int)",
+    "u": "%3Cinit%3E(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "CrashedException",
+    "l": "CrashedException()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CrashScreen",
+    "l": "CrashScreen(CrashLog)",
+    "u": "%3Cinit%3E(com.ultreon.commons.crash.CrashLog)"
+}, {"p": "com.ultreon.bubbles.data", "c": "GlobalSaveData", "l": "create()"}, {
+    "p": "com.ultreon.bubbles.entity.types",
+    "c": "EntityFactory",
+    "l": "create(AbstractGameType)",
+    "u": "create(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.entity.types",
+    "c": "EntityType",
+    "l": "create(AbstractGameType)",
+    "u": "create(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.entity.types",
+    "c": "EntityType",
+    "l": "create(AbstractGameType, BsonDocument)",
+    "u": "create(com.ultreon.bubbles.common.gametype.AbstractGameType,org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "createAndLoadSave(String)",
+    "u": "createAndLoadSave(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "createFolders(String)",
+    "u": "createFolders(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "createFromVersion(String, ArtifactVersion)",
+    "u": "createFromVersion(java.lang.String,com.ultreon.bubbles.common.versioning.ArtifactVersion)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "createFromVersionSpec(String)",
+    "u": "createFromVersionSpec(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "createPlayer()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "createSaveData(SavedGame, InfoTransporter)",
+    "u": "createSaveData(com.ultreon.bubbles.save.SavedGame,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "createSaveData(SavedGame, InfoTransporter)",
+    "u": "createSaveData(com.ultreon.bubbles.save.SavedGame,com.ultreon.commons.lang.InfoTransporter)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "createScreenManager()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "createUnchecked(Class<?>)",
+    "u": "createUnchecked(java.lang.Class)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "createUnchecked(Class<?>, int)",
+    "u": "createUnchecked(java.lang.Class,int)"
+}, {"p": "com.ultreon.bubbles.api.event.keyboard", "c": "KeyboardModifiers", "l": "ctrl()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "StringPointer",
+    "l": "currentChar()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "cursorIndex"
+}, {"p": "com.ultreon.bubbles.registry", "c": "Registers", "l": "CURSORS"}, {
+    "p": "com.ultreon.bubbles.common.streams",
+    "c": "CustomOutputStream",
+    "l": "CustomOutputStream(String, Level)",
+    "u": "%3Cinit%3E(java.lang.String,org.apache.logging.log4j.Level)"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "DAMAGE_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "damage(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "damage(double, DamageSource)",
+    "u": "damage(double,com.ultreon.bubbles.entity.damage.DamageSource)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "damage(double, DamageSource)",
+    "u": "damage(double,com.ultreon.bubbles.entity.damage.DamageSource)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "damage(double, DamageSource)",
+    "u": "damage(double,com.ultreon.bubbles.entity.damage.DamageSource)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "DamageableEntity(EntityType<?>, AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.types.EntityType,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "DamageBubble",
+    "l": "DamageBubble()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.damage",
+    "c": "DamageSource",
+    "l": "DamageSource(Entity, DamageSourceType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.entity.damage.DamageSourceType)"
+}, {
+    "p": "com.ultreon.bubbles.entity.damage",
+    "c": "DamageSourceType",
+    "l": "DamageSourceType(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "damageValue"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "SystemEnum", "l": "DARWIN"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "DataType",
+    "l": "DATA"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "DataManager",
+    "l": "DataManager()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "BloodMoonEvent",
+    "l": "deactivate()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "DEBUG"
+}, {
+    "p": "com.ultreon.bubbles.common.logging.old",
+    "c": "GameLoggingLevels",
+    "l": "DEBUG"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "debug(String)",
+    "u": "debug(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.save", "c": "SavedGame", "l": "debugInfoData()"}, {
+    "p": "net.querz.io",
+    "c": "MaxDepthIO",
+    "l": "decrementMaxDepth(int)"
+}, {"p": "net.querz.nbt.tag", "c": "Tag", "l": "DEFAULT_MAX_DEPTH"}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "DefaultArtifactVersion(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "DefaultArtifactVersion(String, String)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "DefaultArtifactVersion(String, VersionRange)",
+    "u": "%3Cinit%3E(java.lang.String,com.ultreon.bubbles.common.versioning.VersionRange)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "defaultFont"
+}, {
+    "p": "com.ultreon.bubbles.entity.attribute",
+    "c": "Attribute",
+    "l": "DEFENSE"
+}, {"p": "com.ultreon.bubbles.entity.modifier", "c": "Modifier", "l": "DEFENSE"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Effects",
+    "l": "DEFENSE_BOOST"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "DEFENSE_BOOST_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "defense(float)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "DefenseBoostBubble",
+    "l": "DefenseBoostBubble()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "DefenseBoostEffect",
+    "l": "DefenseBoostEffect()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "AmmoEntity", "l": "delete()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "delete()"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "delete()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "destroy()"
+}, {"p": "com.ultreon.bubbles.gametype", "c": "ClassicType", "l": "destroy()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "destroy()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "destroy()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "destroy()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui.view",
+    "c": "ScrollView",
+    "l": "destroy()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "difficulty"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "DimensionDouble",
+    "l": "DimensionDouble(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {"p": "com.ultreon.bubbles.data", "c": "GameData", "l": "document"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "PauseScreen",
+    "l": "doesPauseGame()"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "DOUBLE_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "DOUBLE_STATE_BUBBLE"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.DoubleRange",
+    "l": "DoubleRange(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "DoubleStateBubble",
+    "l": "DoubleStateBubble()",
+    "u": "%3Cinit%3E()"
+}, {"p": "net.querz.nbt.tag", "c": "DoubleTag", "l": "DoubleTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "DoubleTag",
+    "l": "DoubleTag(double)",
+    "u": "%3Cinit%3E(double)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "drawBubble(Renderer, double, double, int, Color...)",
+    "u": "drawBubble(com.ultreon.hydro.render.Renderer,double,double,int,java.awt.Color...)"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "EnvironmentRenderer",
+    "l": "drawBubble(Renderer, int, int, int, Color...)",
+    "u": "drawBubble(com.ultreon.hydro.render.Renderer,int,int,int,java.awt.Color...)"
+}, {"p": "com.ultreon.bubbles.data", "c": "GlobalSaveData", "l": "dump()"}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GameData",
+    "l": "dump(File)",
+    "u": "dump(java.io.File)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GameData",
+    "l": "dump(OutputStream)",
+    "u": "dump(java.io.OutputStream)"
+}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "dumpData(String, BsonDocument)",
+    "u": "dumpData(java.lang.String,org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "dumpDefaultState(SavedGame, InfoTransporter)",
+    "u": "dumpDefaultState(com.ultreon.bubbles.save.SavedGame,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "dumpSaveData(SavedGame)",
+    "u": "dumpSaveData(com.ultreon.bubbles.save.SavedGame)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "dumpSaveData(SavedGame)",
+    "u": "dumpSaveData(com.ultreon.bubbles.save.SavedGame)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "dumpState(OutputStream)",
+    "u": "dumpState(java.io.OutputStream)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "DynamicPartitions()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.common", "c": "Difficulty", "l": "EASY"}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "edit(T, Double)",
+    "u": "edit(T,java.lang.Double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "edit(T, Double, T)",
+    "u": "edit(T,java.lang.Double,T)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "editLengths(Applier<T, Double>)",
+    "u": "editLengths(com.ultreon.commons.function.Applier)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "effect(AbstractBubble.BubbleEffectCallback)",
+    "u": "effect(com.ultreon.bubbles.bubble.AbstractBubble.BubbleEffectCallback)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "EffectCommand",
+    "l": "EffectCommand()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.init", "c": "Effects", "l": "EFFECTS"}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "Registers",
+    "l": "EFFECTS"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Effects",
+    "l": "Effects()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "EMPTY"
+}, {"p": "com.ultreon.bubbles.util.python.os", "c": "Path", "l": "EMPTY"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Entities",
+    "l": "ENTITIES"
+}, {"p": "com.ultreon.bubbles.registry", "c": "Registers", "l": "ENTITIES"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Entities",
+    "l": "Entities()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "Entity(EntityType<?>, AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.types.EntityType,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "EntityCollisionEvent",
+    "l": "EntityCollisionEvent(Game, double, Entity, Entity)",
+    "u": "%3Cinit%3E(com.ultreon.hydro.Game,double,com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntityFlag",
+    "l": "EntityFlag(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "entityId"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "EntityProperties",
+    "l": "EntityProperties(int, int)",
+    "u": "%3Cinit%3E(int,int)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "EntityRandomizer",
+    "l": "EntityRandomizer()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.types",
+    "c": "EntityType",
+    "l": "EntityType(EntityFactory<T>)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.types.EntityFactory)"
+}, {"p": "com.ultreon.bubbles.registry", "c": "LocaleManager", "l": "entries()"}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "entries()"
+}, {"p": "net.querz.nbt.tag", "c": "CompoundTag", "l": "entrySet()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "environment"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "environment"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "environment"}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "Environment(AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "EnvironmentRenderer",
+    "l": "EnvironmentRenderer()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers.types",
+    "c": "AbilityKeyTriggerType",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.api.event.keyboard",
+    "c": "KeyboardModifiers",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier.Type",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "NamespacedKey",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ComparableVersion",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.entity.damage",
+    "c": "DamageSourceType",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "ModifierType",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityTriggerType",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityType",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.entity.types",
+    "c": "EntityType",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "OS",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteArrayTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "DoubleTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "FloatTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntArrayTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongArrayTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ShortTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "StringTag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "Tag",
+    "l": "equals(Object)",
+    "u": "equals(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "OS",
+    "l": "equalsIgnoreVersion(Object)",
+    "u": "equalsIgnoreVersion(java.lang.Object)"
+}, {"p": "com.ultreon.bubbles.util", "c": "Fluid", "l": "error"}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "ERROR"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "error(String)",
+    "u": "error(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTWriter",
+    "l": "escapeString(String)",
+    "u": "escapeString(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "Tag",
+    "l": "escapeString(String, boolean)",
+    "u": "escapeString(java.lang.String,boolean)"
+}, {
+    "p": "com.ultreon.bubbles.api.event",
+    "c": "Event",
+    "l": "Event(Class<T>)",
+    "u": "%3Cinit%3E(java.lang.Class)"
+}, {"p": "com.ultreon.bubbles", "c": "InternalMod", "l": "eventBus"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Listener",
+    "l": "eventsActive"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "OptionsButton", "l": "eventsActive"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "eventsAreActive()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "EVERYTHING"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "AttackBoostEffect",
+    "l": "execute(Entity, StatusEffectInstance)",
+    "u": "execute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "DefenseBoostEffect",
+    "l": "execute(Entity, StatusEffectInstance)",
+    "u": "execute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "PoisonEffect",
+    "l": "execute(Entity, StatusEffectInstance)",
+    "u": "execute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "execute(Entity, StatusEffectInstance)",
+    "u": "execute(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "BloodMoonCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "CommandExecutor",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "EffectCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "GameOverCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "HealCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "LevelCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ScoreCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ShutdownCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "SpawnCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "TeleportCommand",
+    "l": "execute(PlayerEntity, String[])",
+    "u": "execute(com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "CommandConstructor",
+    "l": "execute(String, PlayerEntity, String[])",
+    "u": "execute(java.lang.String,com.ultreon.bubbles.entity.player.PlayerEntity,java.lang.String[])"
+}, {"p": "net.querz.nbt.io", "c": "StringPointer", "l": "expectChar(char)"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty",
+    "l": "EXPERT"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "FATAL"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "fatal(String)",
+    "u": "fatal(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "findClass(String)",
+    "u": "findClass(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "ModClassLoader",
+    "l": "findClass(String)",
+    "u": "findClass(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "findClass(String, String)",
+    "u": "findClass(java.lang.String,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.FloatRange",
+    "l": "FloatRange(float, float)",
+    "u": "%3Cinit%3E(float,float)"
+}, {"p": "net.querz.nbt.tag", "c": "FloatTag", "l": "FloatTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "FloatTag",
+    "l": "FloatTag(float)",
+    "u": "%3Cinit%3E(float)"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "Fluid",
+    "l": "Fluid()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.common.logging.old", "c": "GameLoggingHandler", "l": "flush()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "flush()"
+}, {"p": "net.querz.nbt.io", "c": "NBTOutput", "l": "flush()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "forEach(BiConsumer<String, Tag<?>>)",
+    "u": "forEach(java.util.function.BiConsumer)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "forEach(Consumer<? super T>)",
+    "u": "forEach(java.util.function.Consumer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "foregroundColor"
+}, {
+    "p": "com.ultreon.bubbles.common.logging.old",
+    "c": "GameLoggingFormatter",
+    "l": "format(LogRecord)",
+    "u": "format(java.util.logging.LogRecord)"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "forward(boolean)"}, {
+    "p": "net.querz.io",
+    "c": "Deserializer",
+    "l": "fromBytes(byte[])"
+}, {"p": "net.querz.io", "c": "StringDeserializer", "l": "fromBytes(byte[])"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "fromCommand(Command)",
+    "u": "fromCommand(com.ultreon.bubbles.command.Command)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "fromCommand(Command, Environment)",
+    "u": "fromCommand(com.ultreon.bubbles.command.Command,com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "fromFile(File)",
+    "u": "fromFile(java.io.File)"
+}, {
+    "p": "net.querz.io",
+    "c": "Deserializer",
+    "l": "fromFile(File)",
+    "u": "fromFile(java.io.File)"
+}, {
+    "p": "net.querz.io",
+    "c": "StringDeserializer",
+    "l": "fromFile(File)",
+    "u": "fromFile(java.io.File)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "fromLoadSpawn(BsonDocument)",
+    "u": "fromLoadSpawn(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity.attribute",
+    "c": "Attribute",
+    "l": "fromName(String)",
+    "u": "fromName(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "fromNaturalSpawn(Point)",
+    "u": "fromNaturalSpawn(java.awt.Point)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "fromNaturalSpawn(Point, Environment)",
+    "u": "fromNaturalSpawn(java.awt.Point,com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "fromPath(Path)",
+    "u": "fromPath(java.nio.file.Path)"
+}, {
+    "p": "net.querz.io",
+    "c": "StringDeserializer",
+    "l": "fromReader(Reader)",
+    "u": "fromReader(java.io.Reader)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTDeserializer",
+    "l": "fromReader(Reader)",
+    "u": "fromReader(java.io.Reader)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTDeserializer",
+    "l": "fromReader(Reader, int)",
+    "u": "fromReader(java.io.Reader,int)"
+}, {
+    "p": "net.querz.io",
+    "c": "Deserializer",
+    "l": "fromResource(Class<?>, String)",
+    "u": "fromResource(java.lang.Class,java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTUtil",
+    "l": "fromSNBT(String)",
+    "u": "fromSNBT(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTUtil",
+    "l": "fromSNBT(String, boolean)",
+    "u": "fromSNBT(java.lang.String,boolean)"
+}, {
+    "p": "net.querz.io",
+    "c": "Deserializer",
+    "l": "fromStream(InputStream)",
+    "u": "fromStream(java.io.InputStream)"
+}, {
+    "p": "net.querz.io",
+    "c": "StringDeserializer",
+    "l": "fromStream(InputStream)",
+    "u": "fromStream(java.io.InputStream)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTDeserializer",
+    "l": "fromStream(InputStream)",
+    "u": "fromStream(java.io.InputStream)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "NamespacedKey",
+    "l": "fromString(String)",
+    "u": "fromString(java.lang.String)"
+}, {
+    "p": "net.querz.io",
+    "c": "StringDeserializer",
+    "l": "fromString(String)",
+    "u": "fromString(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "fromStringPath(String)",
+    "u": "fromStringPath(java.lang.String)"
+}, {
+    "p": "net.querz.io",
+    "c": "Deserializer",
+    "l": "fromURL(URL)",
+    "u": "fromURL(java.net.URL)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "game"
+}, {"p": "com.ultreon.bubbles.screen", "c": "MessageScreen", "l": "game"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SaveLoadingScreen",
+    "l": "game"
+}, {"p": "com.ultreon.bubbles.common", "c": "References", "l": "GAME_DIR"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier.Type",
+    "l": "GAME_EVENT"
+}, {"p": "com.ultreon.bubbles.init", "c": "GameEvents", "l": "GAME_EVENTS"}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "Registers",
+    "l": "GAME_EVENTS"
+}, {"p": "com.ultreon.bubbles.init", "c": "GameTypes", "l": "GAME_TYPES"}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "Registers",
+    "l": "GAME_TYPES"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "GameClassLoader()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.data", "c": "GameData", "l": "GameData()", "u": "%3Cinit%3E()"}, {
+    "p": "com.ultreon.dev",
+    "c": "GameDevMain",
+    "l": "GameDevMain()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.gamestate",
+    "c": "GameEvent",
+    "l": "GameEvent()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "GameEvents",
+    "l": "GameEvents()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.save", "c": "SavedGame", "l": "gameInfoFile"}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogFormatter",
+    "l": "GameLogFormatter()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "GameLogger(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging.old",
+    "c": "GameLoggingFormatter",
+    "l": "GameLoggingFormatter()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging.old",
+    "c": "GameLoggingHandler",
+    "l": "GameLoggingHandler()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging.old",
+    "c": "GameLoggingLevels",
+    "l": "GameLoggingLevels(String, int)",
+    "u": "%3Cinit%3E(java.lang.String,int)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging.old",
+    "c": "GameLoggingLevels",
+    "l": "GameLoggingLevels(String, int, String)",
+    "u": "%3Cinit%3E(java.lang.String,int,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogRecord",
+    "l": "GameLogRecord(String, GameLogger, GameLogLevel)",
+    "u": "%3Cinit%3E(java.lang.String,com.ultreon.bubbles.common.logging.GameLogger,com.ultreon.bubbles.common.logging.GameLogLevel)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "gameOver"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "gameOver(PlayerEntity)",
+    "u": "gameOver(com.ultreon.bubbles.entity.player.PlayerEntity)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "GameOverCommand",
+    "l": "GameOverCommand()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "GameOverScreen",
+    "l": "GameOverScreen(long)",
+    "u": "%3Cinit%3E(long)"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "GameSettings()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.event.load",
+    "c": "GameSetupEvent",
+    "l": "GameSetupEvent(ModLoader)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.mod.loader.ModLoader)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "gameType"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "GameTypes",
+    "l": "GameTypes()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "gcThread()"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "BsonUtils",
+    "l": "generateTagDocument(BsonDocument, BsonDocument)",
+    "u": "generateTagDocument(org.bson.BsonDocument,org.bson.BsonDocument)"
+}, {"p": "com.ultreon.bubbles.core", "c": "GameClassLoader", "l": "get()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModList",
+    "l": "get()"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "get()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityContainer",
+    "l": "get(AbilityType<? extends Ability<?>>)",
+    "u": "get(com.ultreon.bubbles.entity.player.ability.AbilityType)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.BubbleEffectCallback",
+    "l": "get(BubbleEntity, Entity)",
+    "u": "get(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier.Type",
+    "l": "get(Class<T>)",
+    "u": "get(java.lang.Class)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "Translation",
+    "l": "get(int)"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioPlayer", "l": "get(int)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "get(int)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "LocaleManager",
+    "l": "get(Locale)",
+    "u": "get(java.util.Locale)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "CommandConstructor",
+    "l": "get(String)",
+    "u": "get(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "get(String)",
+    "u": "get(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "get(String)",
+    "u": "get(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "get(String, Class<C>)",
+    "u": "get(java.lang.String,java.lang.Class)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityType",
+    "l": "getAbility()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getAbilityCompound(AbilityType<?>)",
+    "u": "getAbilityCompound(com.ultreon.bubbles.entity.player.ability.AbilityType)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getAbilityContainer()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getAccelerateX()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getAccelerateY()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getActiveEffects()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.ModifierMap",
+    "l": "getAll(Difficulty.Modifier.Type<T>)",
+    "u": "getAll(com.ultreon.bubbles.common.Difficulty.Modifier.Type)"
+}, {"p": "com.ultreon.bubbles", "c": "LoadedGame", "l": "getAmbientAudio()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "getAmmoType()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentagePosition",
+    "l": "getAnchor()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "getAnchor()"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "ModObject",
+    "l": "getAnnotation()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "getAnsiColor()"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "getArrayList(String...)",
+    "u": "getArrayList(java.lang.String...)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getArrowArea()"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "getAttack()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "getAttack()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getAttack(AbstractGameType, Rng)",
+    "u": "getAttack(com.ultreon.bubbles.common.gametype.AbstractGameType,com.ultreon.bubbles.common.random.Rng)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getAttackRng()"
+}, {
+    "p": "com.ultreon.bubbles.entity.meta",
+    "c": "MetaData",
+    "l": "getAttribute(Attribute)",
+    "u": "getAttribute(com.ultreon.bubbles.entity.attribute.Attribute)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getAttributeMap()"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "AttackBoostEffect",
+    "l": "getAttributeModifiers()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "DefenseBoostEffect",
+    "l": "getAttributeModifiers()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "LuckEffect",
+    "l": "getAttributeModifiers()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "MultiScoreEffect",
+    "l": "getAttributeModifiers()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "SpeedBoostEffect",
+    "l": "getAttributeModifiers()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "getAttributeModifiers()"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getAudioPlayer()"
+}, {
+    "p": "com.ultreon.bubbles.common.gamestate",
+    "c": "GameEvent",
+    "l": "getBackgroundColor()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "getBackgroundColor()"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioSlot", "l": "getBalance()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "getBase(Attribute)",
+    "u": "getBase(com.ultreon.bubbles.entity.attribute.Attribute)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "getBaseBounceAmount()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "getBaseDuration()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "getBaseRadius()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "getBaseSpeed()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "DamageableEntity", "l": "getBaseSpeed()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getBlankCursor()"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getBoolean(String)",
+    "u": "getBoolean(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "getBoolean(String...)",
+    "u": "getBoolean(java.lang.String...)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getBounceAmount()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "getBounceAmount()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "getBounds()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getBounds()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "getBounds()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getBubbleRandomizer()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "getBubbleType()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModInformation",
+    "l": "getBuildNumber()"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getByte(String)",
+    "u": "getByte(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getByteArray(String)",
+    "u": "getByteArray(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getByteArrayTag(String)",
+    "u": "getByteArrayTag(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getByteTag(String)",
+    "u": "getByteTag(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getCenter()"
+}, {"p": "com.ultreon.bubbles.entity.bubble", "c": "BubbleSpec", "l": "getCircles()"}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "getClass(String, String)",
+    "u": "getClass(java.lang.String,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "Scanner.Result",
+    "l": "getClasses(Class<? extends Annotation>)",
+    "u": "getClasses(java.lang.Class)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "getClassOrNull(String, String)",
+    "u": "getClassOrNull(java.lang.String,java.lang.String)"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioSlot", "l": "getClip()"}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleCircle",
+    "l": "getColor()"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "SvgHelper",
+    "l": "getColoredImage(int, int, Color)",
+    "u": "getColoredImage(int,int,java.awt.Color)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "SvgHelper",
+    "l": "getColoredImage(int, int, Color, Color)",
+    "u": "getColoredImage(int,int,java.awt.Color,java.awt.Color)"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "getColors()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "getCommand()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton",
+    "l": "getCommand()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "getCommand()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton",
+    "l": "getCommand()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentagePosition",
+    "l": "getComponent()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentageSize",
+    "l": "getComponent()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "getComponent()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativeSize",
+    "l": "getComponent()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QContainer",
+    "l": "getComponent(int)"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QContainer", "l": "getComponents()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getCompoundTag(String)",
+    "u": "getCompoundTag(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "ModObject",
+    "l": "getContainer()"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "getContainer(String)",
+    "u": "getContainer(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModList",
+    "l": "getContainerById(String)",
+    "u": "getContainerById(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModManager",
+    "l": "getContainerFromId(String)",
+    "u": "getContainerFromId(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "ModManager", "l": "getContainers()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModList",
+    "l": "getContainers()"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers",
+    "c": "AbilityKeyTrigger",
+    "l": "getController()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "getCooldown()"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "User",
+    "l": "getCountryName()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityContainer",
+    "l": "getCurrent()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getCurrentAmmo()"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "getCurrentGameEvent()"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers",
+    "c": "AbilityKeyTrigger",
+    "l": "getCurrentlyPressed()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getCurrentSave()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getCurrentScreen()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "getDamageValue()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "getDamageValue()"
+}, {
+    "p": "com.ultreon.bubbles.command.tabcomplete",
+    "c": "TabCompleter",
+    "l": "getDecimals(String)",
+    "u": "getDecimals(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "AmmoType",
+    "l": "getDefaultAttributes()"
+}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "BasicAmmoType",
+    "l": "getDefaultAttributes()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getDefaultCursor()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "getDefaultCursor()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "getDefaultPercentageChance(AbstractBubble)",
+    "u": "getDefaultPercentageChance(com.ultreon.bubbles.bubble.AbstractBubble)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "getDefaultPriority(AbstractBubble)",
+    "u": "getDefaultPriority(com.ultreon.bubbles.bubble.AbstractBubble)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "getDefaultsPriorities()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getDefaultState()"
+}, {
+    "p": "com.ultreon.bubbles.common.interfaces",
+    "c": "DefaultStateHolder",
+    "l": "getDefaultState()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "getDefaultTotalPriority()"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "getDefense()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "getDefense()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getDefense(AbstractGameType, Rng)",
+    "u": "getDefense(com.ultreon.bubbles.common.gametype.AbstractGameType,com.ultreon.bubbles.common.random.Rng)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "HardenedBubble",
+    "l": "getDefense(AbstractGameType, Rng)",
+    "u": "getDefense(com.ultreon.bubbles.common.gametype.AbstractGameType,com.ultreon.bubbles.common.random.Rng)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getDefenseRng()"
+}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "EntityCollisionEvent",
+    "l": "getDeltaTime()"
+}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModInformation",
+    "l": "getDescription()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getDifficulty()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "User", "l": "getDir()"}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "getDirectory()"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getDouble(String)",
+    "u": "getDouble(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "getDouble(String...)",
+    "u": "getDouble(java.lang.String...)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getDoubleTag(String)",
+    "u": "getDoubleTag(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "getEffect()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getEffect(BubbleEntity, Entity)",
+    "u": "getEffect(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AttackBoostBubble",
+    "l": "getEffect(BubbleEntity, Entity)",
+    "u": "getEffect(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BlindnessBubble",
+    "l": "getEffect(BubbleEntity, Entity)",
+    "u": "getEffect(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "DefenseBoostBubble",
+    "l": "getEffect(BubbleEntity, Entity)",
+    "u": "getEffect(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "DoubleStateBubble",
+    "l": "getEffect(BubbleEntity, Entity)",
+    "u": "getEffect(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "SpeedBoostBubble",
+    "l": "getEffect(BubbleEntity, Entity)",
+    "u": "getEffect(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "TripleStateBubble",
+    "l": "getEffect(BubbleEntity, Entity)",
+    "u": "getEffect(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "EnvironmentRenderer",
+    "l": "getEllipse(double, double, double, double)",
+    "u": "getEllipse(double,double,double,double)"
+}, {"p": "com.ultreon.bubbles.entity.bubble", "c": "Range", "l": "getEnd()"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "getEndTime()"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "getEntities()"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "getEntitiesByClass(Class<T>)",
+    "u": "getEntitiesByClass(java.lang.Class)"
+}, {
+    "p": "com.ultreon.bubbles.entity.damage",
+    "c": "DamageSource",
+    "l": "getEntity()"
+}, {
+    "p": "com.ultreon.bubbles.entity.meta",
+    "c": "MetaData",
+    "l": "getEntity()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityContainer",
+    "l": "getEntity()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityTrigger",
+    "l": "getEntity()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getEntity(AbstractGameType, BsonDocument)",
+    "u": "getEntity(com.ultreon.bubbles.common.gametype.AbstractGameType,org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getEntityId()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getEntityId(Entity)",
+    "u": "getEntityId(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "getEntityId(Entity)",
+    "u": "getEntityId(com.ultreon.bubbles.entity.Entity)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getEnvironment()"}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "SpawnCommand",
+    "l": "getEnvironment()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getEnvironment()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "getEnvironment()"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "EnvironmentRenderer",
+    "l": "getEnvironment()"
+}, {"p": "com.ultreon.bubbles", "c": "LoadedGame", "l": "getEnvironment()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getEnvironmentRenderer()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getEventBus()"}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "ModInstance",
+    "l": "getEventBus()"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "ModObject", "l": "getEventBus()"}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "EntityCollisionEvent",
+    "l": "getEventBus()"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "Scanner", "l": "getFile()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getFilters(BubbleEntity)",
+    "u": "getFilters(com.ultreon.bubbles.entity.BubbleEntity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "UltraBubble",
+    "l": "getFilters(BubbleEntity)",
+    "u": "getFilters(com.ultreon.bubbles.entity.BubbleEntity)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getFloat(String)",
+    "u": "getFloat(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "getFloat(String...)",
+    "u": "getFloat(java.lang.String...)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getFloatTag(String)",
+    "u": "getFloatTag(java.lang.String)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getFont()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getFontName()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "getForegroundColor()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QFormula", "l": "getFormula()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getFrame()"
+}, {"p": "com.ultreon.bubbles.event", "c": "LanguageChangeEvent", "l": "getFrom()"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "Util",
+    "l": "getGame()"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getGameBounds()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getGameBounds()"
+}, {"p": "com.ultreon.bubbles.gametype", "c": "ClassicType", "l": "getGameBounds()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getGameDir()"
+}, {
+    "p": "com.ultreon.bubbles.event.bus",
+    "c": "EventManagers",
+    "l": "getGameEvents()"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "getGameFile()"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "Scanner", "l": "getGameFile()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getGameFont()"
+}, {"p": "com.ultreon.bubbles.util", "c": "Util", "l": "getGameFont()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getGameFontName()"
+}, {"p": "com.ultreon.bubbles.common.gametype", "c": "HUD", "l": "getGameType()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getGameType()"
+}, {"p": "com.ultreon.bubbles.environment", "c": "Environment", "l": "getGameType()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "getGameType()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getGameTypeFromState(BsonDocument)",
+    "u": "getGameTypeFromState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getGameTypeVersion()"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "getGameTypeVersion()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getGlobalBubbleSpeedModifier()"
+}, {"p": "com.ultreon.bubbles.datapack", "c": "BaseData", "l": "getGson()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getHardness()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getHardnessRng()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "getHeight()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QDimension",
+    "l": "getHeight()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "Size",
+    "l": "getHeight()"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "DimensionDouble",
+    "l": "getHeight()"
+}, {"p": "com.ultreon.bubbles.data", "c": "GlobalSaveData", "l": "getHighScore()"}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GlobalSaveData",
+    "l": "getHighScoreTime()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "User", "l": "getHome()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModInformation",
+    "l": "getHomepage()"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "getHud()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getHUD()"
+}, {"p": "com.ultreon.bubbles.gametype", "c": "ClassicType", "l": "getHUD()"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "getIcon(int, int, Color)",
+    "u": "getIcon(int,int,java.awt.Color)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "getIconResource()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "getIconResourceAsStream()"
+}, {"p": "com.ultreon.bubbles.datapack", "c": "DataProperties", "l": "getId()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteArrayTag",
+    "l": "getID()"
+}, {"p": "net.querz.nbt.tag", "c": "ByteTag", "l": "getID()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getID()"
+}, {"p": "net.querz.nbt.tag", "c": "DoubleTag", "l": "getID()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "EndTag",
+    "l": "getID()"
+}, {"p": "net.querz.nbt.tag", "c": "FloatTag", "l": "getID()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntArrayTag",
+    "l": "getID()"
+}, {"p": "net.querz.nbt.tag", "c": "IntTag", "l": "getID()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "getID()"
+}, {"p": "net.querz.nbt.tag", "c": "LongArrayTag", "l": "getID()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongTag",
+    "l": "getID()"
+}, {"p": "net.querz.nbt.tag", "c": "ShortTag", "l": "getID()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "StringTag",
+    "l": "getID()"
+}, {"p": "net.querz.nbt.tag", "c": "Tag", "l": "getID()"}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "SvgHelper",
+    "l": "getImage(int, int)",
+    "u": "getImage(int,int)"
+}, {"p": "com.ultreon.bubbles.common.random", "c": "Rng", "l": "getIndex()"}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleCircle",
+    "l": "getIndex()"
+}, {"p": "net.querz.nbt.io", "c": "StringPointer", "l": "getIndex()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "MessageScreen",
+    "l": "getInfoTransporter()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getInstrumentation()"}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "InstrumentHook",
+    "l": "getInstrumentation()"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getInt(String)",
+    "u": "getInt(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "getInt(String...)",
+    "u": "getInt(java.lang.String...)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getIntArray(String)",
+    "u": "getIntArray(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getIntArrayTag(String)",
+    "u": "getIntArrayTag(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.command.tabcomplete",
+    "c": "TabCompleter",
+    "l": "getInts(String)",
+    "u": "getInts(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getIntTag(String)",
+    "u": "getIntTag(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.item", "c": "IItemProvider", "l": "getItem()"}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "Item",
+    "l": "getItem()"
+}, {"p": "com.ultreon.bubbles.item", "c": "ItemType", "l": "getItem()"}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "IInventory",
+    "l": "getItem(int)"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "PlayerInventory",
+    "l": "getItem(int)"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "IInventory",
+    "l": "getItems()"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "PlayerInventory",
+    "l": "getItems()"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "Scanner", "l": "getJarFile()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModContainer",
+    "l": "getJarFile()"
+}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModInformation",
+    "l": "getJson()"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers",
+    "c": "AbilityKeyTrigger",
+    "l": "getKeyCode()"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers",
+    "c": "AbilityKeyTrigger",
+    "l": "getKeyEventType()"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "getKeyTriggerType()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "getKeyTriggerType()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ArtifactVersion",
+    "l": "getLabel()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "getLabel()"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "getLanguage()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "User", "l": "getLanguage()"}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "getLanguageLocale()"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "I18n",
+    "l": "getLastTranslationUpdateTimeInMilliseconds()"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "getLastUpdateTimeInMilliseconds()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogRecord",
+    "l": "getLevel()"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "getLevel()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getListTag(String)",
+    "u": "getListTag(java.lang.String)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getLoadedGame()"}, {
+    "p": "com.ultreon.bubbles.event.load",
+    "c": "GameSetupEvent",
+    "l": "getLoader()"
+}, {
+    "p": "com.ultreon.bubbles.event.load",
+    "c": "LoadCompleteEvent",
+    "l": "getLoader()"
+}, {
+    "p": "com.ultreon.bubbles.event.load",
+    "c": "ModSetupEvent",
+    "l": "getLoader()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getLocalDifficulty()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QComponent", "l": "getLocation()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getLogger()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "getLogger()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogRecord",
+    "l": "getLogger()"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "ModInstance",
+    "l": "getLogger()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "getLoggerInstance(String)",
+    "u": "getLoggerInstance(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogRecord",
+    "l": "getLoggerName()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "getLoggers()"
+}, {"p": "com.ultreon.bubbles.util.python", "c": "OS", "l": "getLogin()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getLong(String)",
+    "u": "getLong(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getLongArray(String)",
+    "u": "getLongArray(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getLongArrayTag(String)",
+    "u": "getLongArrayTag(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getLongTag(String)",
+    "u": "getLongTag(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "getLowerBound()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "getLowerBoundString()"
+}, {"p": "com.ultreon.bubbles.event", "c": "EntityCollisionEvent", "l": "getMain()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getMainClassLoader()"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getMainLoadingSteps()"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "LocaleManager",
+    "l": "getManager()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "getMax()"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "getMaxBubbles()"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "getMaxBubbles()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "getMaxDamageValue()"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioPlayer", "l": "getMaximal()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getMaxRadius()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getMaxSpeed()"
+}, {"p": "com.ultreon.bubbles.common.logging", "c": "GameLogRecord", "l": "getMessage()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getMiddlePoint()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getMiddleX()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getMiddleY()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogRecord",
+    "l": "getMilliTime()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "getMin()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getMinRadius()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getMinSpeed()"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "ModObject", "l": "getMod()"}, {
+    "p": "com.ultreon.bubbles.event.bus",
+    "c": "ModEvents",
+    "l": "getMod()"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModManager",
+    "l": "getMod(String)",
+    "u": "getMod(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "getMod(String)",
+    "u": "getMod(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "ModObject", "l": "getModClass()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModContainer",
+    "l": "getModClass()"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModLoader",
+    "l": "getModClassLoader()"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "getModClassLoader(String)",
+    "u": "getModClassLoader(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.event.bus",
+    "c": "EventManagers",
+    "l": "getModEvents(ModInstance)",
+    "u": "getModEvents(com.ultreon.bubbles.common.mod.ModInstance)"
+}, {
+    "p": "com.ultreon.bubbles.event.bus",
+    "c": "EventManagers",
+    "l": "getModEvents(ModObject<T>)",
+    "u": "getModEvents(com.ultreon.bubbles.common.mod.ModObject)"
+}, {
+    "p": "com.ultreon.bubbles.event.bus",
+    "c": "EventManagers",
+    "l": "getModEvents(String)",
+    "u": "getModEvents(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.mod", "c": "ModContainer", "l": "getModFileId()"}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "getModFileId(File)",
+    "u": "getModFileId(java.io.File)"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "ModInstance", "l": "getModId()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModContainer",
+    "l": "getModId()"
+}, {"p": "com.ultreon.bubbles.mod", "c": "ModInformation", "l": "getModId()"}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModManager",
+    "l": "getModIds()"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "getModified(Attribute, BiFloat2FloatFunction, AttributeMap...)",
+    "u": "getModified(com.ultreon.bubbles.entity.attribute.Attribute,com.ultreon.commons.function.primitive.BiFloat2FloatFunction,com.ultreon.bubbles.common.AttributeMap...)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "getModified(Attribute, BiFloat2FloatFunction, List<AttributeMap>)",
+    "u": "getModified(com.ultreon.bubbles.entity.attribute.Attribute,com.ultreon.commons.function.primitive.BiFloat2FloatFunction,java.util.List)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "getModified(Attribute, Float2FloatFunction...)",
+    "u": "getModified(com.ultreon.bubbles.entity.attribute.Attribute,com.ultreon.commons.function.primitive.Float2FloatFunction...)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "getModified(Attribute, List<Float2FloatFunction>)",
+    "u": "getModified(com.ultreon.bubbles.entity.attribute.Attribute,java.util.List)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getModifiedPriority(double)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "DamageBubble",
+    "l": "getModifiedPriority(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.meta",
+    "c": "MetaData",
+    "l": "getModifier(Modifier)",
+    "u": "getModifier(com.ultreon.bubbles.entity.modifier.Modifier)"
+}, {"p": "com.ultreon.bubbles.mod", "c": "ModContainer", "l": "getModInfo()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModContainer",
+    "l": "getModInstance()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getModList()"}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "ModInstance",
+    "l": "getModObject()"
+}, {"p": "com.ultreon.bubbles.event.bus", "c": "ModEvents", "l": "getModObject()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModContainer",
+    "l": "getModObject()"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModManager",
+    "l": "getModObject(String)",
+    "u": "getModObject(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "ModManager", "l": "getModObjects()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModContainer",
+    "l": "getModProperties()"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "ModLoader", "l": "getMods()"}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModManager",
+    "l": "getMods()"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "ModLoader", "l": "getModsDir()"}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "ModClassLoader",
+    "l": "getModSource()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getMonospaceFont()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getMonospaceFontName()"
+}, {"p": "com.ultreon.bubbles.command", "c": "Command", "l": "getName()"}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "getName()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "getName()"
+}, {
+    "p": "com.ultreon.bubbles.entity.attribute",
+    "c": "Attribute",
+    "l": "getName()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "EntityFlag", "l": "getName()"}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "getName()"
+}, {"p": "com.ultreon.bubbles.mod", "c": "ModInformation", "l": "getName()"}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "OS",
+    "l": "getName()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "User", "l": "getName()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "NamedTag",
+    "l": "getName()"
+}, {
+    "p": "com.ultreon.bubbles.common.interfaces",
+    "c": "NamespaceHolder",
+    "l": "getNamespace()"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "ModObject", "l": "getNamespace()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Namespace",
+    "l": "getNamespace()"
+}, {
+    "p": "com.ultreon.bubbles.common.setable",
+    "c": "SetableNamespace",
+    "l": "getNamespace()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogRecord",
+    "l": "getNanoTime()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(BigDecimal, BigDecimal, BigInteger...)",
+    "u": "getNumber(java.math.BigDecimal,java.math.BigDecimal,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(BigDecimal, BigDecimal, BigInteger...)",
+    "u": "getNumber(java.math.BigDecimal,java.math.BigDecimal,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(BigDecimal, BigDecimal, byte[])",
+    "u": "getNumber(java.math.BigDecimal,java.math.BigDecimal,byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(BigDecimal, BigDecimal, int...)",
+    "u": "getNumber(java.math.BigDecimal,java.math.BigDecimal,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(BigDecimal, BigDecimal, int...)",
+    "u": "getNumber(java.math.BigDecimal,java.math.BigDecimal,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(BigDecimal, BigDecimal, long...)",
+    "u": "getNumber(java.math.BigDecimal,java.math.BigDecimal,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(BigDecimal, BigDecimal, long...)",
+    "u": "getNumber(java.math.BigDecimal,java.math.BigDecimal,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(BigInteger, BigInteger, BigInteger...)",
+    "u": "getNumber(java.math.BigInteger,java.math.BigInteger,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(BigInteger, BigInteger, BigInteger...)",
+    "u": "getNumber(java.math.BigInteger,java.math.BigInteger,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(BigInteger, BigInteger, byte[])",
+    "u": "getNumber(java.math.BigInteger,java.math.BigInteger,byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(BigInteger, BigInteger, int...)",
+    "u": "getNumber(java.math.BigInteger,java.math.BigInteger,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(BigInteger, BigInteger, int...)",
+    "u": "getNumber(java.math.BigInteger,java.math.BigInteger,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(BigInteger, BigInteger, long...)",
+    "u": "getNumber(java.math.BigInteger,java.math.BigInteger,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(BigInteger, BigInteger, long...)",
+    "u": "getNumber(java.math.BigInteger,java.math.BigInteger,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(double, double, BigInteger...)",
+    "u": "getNumber(double,double,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(double, double, BigInteger...)",
+    "u": "getNumber(double,double,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(double, double, byte[])",
+    "u": "getNumber(double,double,byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(double, double, int...)",
+    "u": "getNumber(double,double,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(double, double, int...)",
+    "u": "getNumber(double,double,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(double, double, long...)",
+    "u": "getNumber(double,double,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(double, double, long...)",
+    "u": "getNumber(double,double,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(float, float, BigInteger...)",
+    "u": "getNumber(float,float,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(float, float, BigInteger...)",
+    "u": "getNumber(float,float,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(float, float, byte[])",
+    "u": "getNumber(float,float,byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(float, float, int...)",
+    "u": "getNumber(float,float,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(float, float, int...)",
+    "u": "getNumber(float,float,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(float, float, long...)",
+    "u": "getNumber(float,float,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(float, float, long...)",
+    "u": "getNumber(float,float,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(int, int, BigInteger...)",
+    "u": "getNumber(int,int,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(int, int, BigInteger...)",
+    "u": "getNumber(int,int,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(int, int, byte[])",
+    "u": "getNumber(int,int,byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(int, int, int...)",
+    "u": "getNumber(int,int,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(int, int, int...)",
+    "u": "getNumber(int,int,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(int, int, long...)",
+    "u": "getNumber(int,int,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(int, int, long...)",
+    "u": "getNumber(int,int,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(long, long, BigInteger...)",
+    "u": "getNumber(long,long,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(long, long, BigInteger...)",
+    "u": "getNumber(long,long,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(long, long, byte[])",
+    "u": "getNumber(long,long,byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(long, long, int...)",
+    "u": "getNumber(long,long,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(long, long, int...)",
+    "u": "getNumber(long,long,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(long, long, long...)",
+    "u": "getNumber(long,long,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getNumber(long, long, long...)",
+    "u": "getNumber(long,long,long...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(PseudoRandom.Range<T>, BigInteger...)",
+    "u": "getNumber(com.ultreon.bubbles.common.random.PseudoRandom.Range,java.math.BigInteger...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(PseudoRandom.Range<T>, byte[])",
+    "u": "getNumber(com.ultreon.bubbles.common.random.PseudoRandom.Range,byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(PseudoRandom.Range<T>, int...)",
+    "u": "getNumber(com.ultreon.bubbles.common.random.PseudoRandom.Range,int...)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getNumber(PseudoRandom.Range<T>, long...)",
+    "u": "getNumber(com.ultreon.bubbles.common.random.PseudoRandom.Range,long...)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getNumber(String)",
+    "u": "getNumber(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getNumberTag(String)",
+    "u": "getNumberTag(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "getObject(String...)",
+    "u": "getObject(java.lang.String...)"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "RegistryUtils",
+    "l": "getObjectHolder(Class<?>)",
+    "u": "getObjectHolder(java.lang.Class)"
+}, {"p": "com.ultreon.bubbles.util.python", "c": "Platform", "l": "getOS()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "DataType",
+    "l": "getPath()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "getPercentageChance(AbstractBubble)",
+    "u": "getPercentageChance(com.ultreon.bubbles.bubble.AbstractBubble)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "getPercentHeight()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "getPercentWidth()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "getPercentX()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "getPercentY()"
+}, {"p": "com.ultreon.bubbles.util.python", "c": "OS", "l": "getPID()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getPixelFont()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getPixelFontName()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty",
+    "l": "getPlainModifier()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getPlayer()"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "getPlayer()"
+}, {"p": "com.ultreon.bubbles.item.inventory", "c": "PlayerInventory", "l": "getPlayer()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getPlayerController()"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "BloodMoonEvent",
+    "l": "getPlayerDefenses()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "getPoint()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QFormula",
+    "l": "getPoint(double)"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "BubbleProperties", "l": "getPoint2D()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getPointerCursor()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getPos()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "getPos()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "getPosition()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "getPriorities()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getPriority()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "getPriority(AbstractBubble)",
+    "u": "getPriority(com.ultreon.bubbles.bubble.AbstractBubble)"
+}, {"p": "com.ultreon.bubbles.datapack", "c": "BaseData", "l": "getProperties()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getRadius()"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "BubbleProperties", "l": "getRadius()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "getRadius()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getRadiusRnd()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getRandom()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getRandomBubble()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getRandomProperties(Rectangle2D, AbstractGameType)",
+    "u": "getRandomProperties(java.awt.geom.Rectangle2D,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "EntityRandomizer",
+    "l": "getRandomProperties(Rectangle2D, AbstractGameType)",
+    "u": "getRandomProperties(java.awt.geom.Rectangle2D,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "getRandomType(Screen, AbstractGameType)",
+    "u": "getRandomType(com.ultreon.hydro.screen.Screen,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "getRange()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "getRange(int)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "getRanges()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ArtifactVersion",
+    "l": "getRangeString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "getRangeString()"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "getRarity()"}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "getRate()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "getRawHeight()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "getRawWidth()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "getRawX()"
+}, {"p": "com.ultreon.bubbles.util.position", "c": "PercentagePosition", "l": "getRawY()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTParser",
+    "l": "getReadChars()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "getReason()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "getRecommendedVersion()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "getRegenerationSpeed()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getRegistryName()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "getRelease()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativeSize",
+    "l": "getRelHeight()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativeSize",
+    "l": "getRelHeight()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativeSize",
+    "l": "getRelWidth()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativeSize",
+    "l": "getRelWidth()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "getRelX()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativePosition",
+    "l": "getRelX()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "getRelY()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativePosition",
+    "l": "getRelY()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "getRemainingTime()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getRenderSettings()"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "TextUtils",
+    "l": "getRepresentationString(String)",
+    "u": "getRepresentationString(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getResourceManager()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "getRestrictions()"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "getResult(String)",
+    "u": "getResult(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getResultScore()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getRNG()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getRNG()"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "SvgHelper",
+    "l": "getRootSvgNode()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "AmmoEntity", "l": "getRotation()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getRotation()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getRotation()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getRotationSpeed()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getSansFont()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getSansFontName()"
+}, {"p": "com.ultreon.bubbles", "c": "LoadedGame", "l": "getSavedGame()"}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SaveLoader",
+    "l": "getSavedGame(String)",
+    "u": "getSavedGame(java.lang.String)"
+}, {"p": "com.ultreon.bubbles", "c": "LoadedGame", "l": "getSaveDir()"}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SaveLoader",
+    "l": "getSaveDir()"
+}, {"p": "com.ultreon.bubbles.save", "c": "SaveLoader", "l": "getSaves()"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "Util",
+    "l": "getSaves()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getScale()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getScaledHeight()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getScaledWidth()"}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "Scanner.Result",
+    "l": "getScanner()"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "getScanResult()"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModLoader",
+    "l": "getScanResult(File)",
+    "u": "getScanResult(java.io.File)"
+}, {"p": "com.ultreon.bubbles.util", "c": "Util", "l": "getSceneManager()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getScore()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getScore()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "getScore(AbstractGameType, Rng)",
+    "u": "getScore(com.ultreon.bubbles.common.gametype.AbstractGameType,com.ultreon.bubbles.common.random.Rng)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "getScoreMultiplier()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getScoreMultiplierRng()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getScreen()"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getScreenManager()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getSeed()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "getSeed()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "QBRandom",
+    "l": "getSeed()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getSeedBytes()"
+}, {"p": "com.ultreon.bubbles.util.python", "c": "OS", "l": "getSep()"}, {
+    "p": "com.ultreon.bubbles.util.python",
+    "c": "OS.Path",
+    "l": "getSeperator()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "Path", "l": "getSeperator()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "getShape()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "getShape()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getShape()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getShape()"
+}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "AmmoType",
+    "l": "getShape(AmmoEntity)",
+    "u": "getShape(com.ultreon.bubbles.entity.AmmoEntity)"
+}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "BasicAmmoType",
+    "l": "getShape(AmmoEntity)",
+    "u": "getShape(com.ultreon.bubbles.entity.AmmoEntity)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "Background",
+    "l": "getShape(int, int, int, int)",
+    "u": "getShape(int,int,int,int)"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "getShipArea()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getShort(String)",
+    "u": "getShort(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getShortTag(String)",
+    "u": "getShortTag(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QComponent", "l": "getSize()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QDimension",
+    "l": "getSize()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "getSize(int)"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioPlayer", "l": "getSlots()"}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "EntityCollisionEvent",
+    "l": "getSource()"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioSlot", "l": "getSource()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModContainer",
+    "l": "getSource()"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "getSpawner()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getSpawnLocation(Entity)",
+    "u": "getSpawnLocation(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "getSpawnLocation(Entity)",
+    "u": "getSpawnLocation(com.ultreon.bubbles.entity.Entity)"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "getSpeed()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "getSpeed()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "getSpeed()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "getSpeed()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getSpeedRng()"
+}, {"p": "com.ultreon.bubbles.entity.bubble", "c": "Range", "l": "getStart()"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BlindnessEffect",
+    "l": "getStartTime()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "getStartTime()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getState()"
+}, {
+    "p": "com.ultreon.bubbles.common.interfaces",
+    "c": "StateHolder",
+    "l": "getState()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "getState()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "getState()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "getState()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getState()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "getState()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "getState()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "getState()"
+}, {"p": "com.ultreon.bubbles.gametype", "c": "ClassicType", "l": "getState()"}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "Item",
+    "l": "getState()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getStateDifficultyModifier(GameEvent)",
+    "u": "getStateDifficultyModifier(com.ultreon.bubbles.common.gamestate.GameEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "Range",
+    "l": "getStep()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "getStream()"
+}, {"p": "com.ultreon.bubbles.effect", "c": "StatusEffectInstance", "l": "getStrength()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getString(String)",
+    "u": "getString(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "getString(String...)",
+    "u": "getString(java.lang.String...)"
+}, {
+    "p": "com.ultreon.bubbles.command.tabcomplete",
+    "c": "TabCompleter",
+    "l": "getStrings(String, String...)",
+    "u": "getStrings(java.lang.String,java.lang.String...)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "getStringTag(String)",
+    "u": "getStringTag(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "getSubIndex()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "getSubversion()"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "SvgHelper",
+    "l": "getSvgDocument()"
+}, {"p": "com.ultreon.bubbles.util.python", "c": "Platform", "l": "getSystem()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "TagHolder",
+    "l": "getTag()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "getTag()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getTag()"}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "Item",
+    "l": "getTag()"
+}, {"p": "net.querz.nbt.io", "c": "NamedTag", "l": "getTag()"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "BsonUtils",
+    "l": "getTagDocument(BsonDocument)",
+    "u": "getTagDocument(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "EntityCollisionEvent",
+    "l": "getTarget()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton",
+    "l": "getText()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "getText()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "getText()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton",
+    "l": "getText()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QLabel", "l": "getText()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton",
+    "l": "getText()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getTextCursor()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "getTextureManager()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getTicks()"}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "getTicks()"
+}, {"p": "com.ultreon.bubbles.util.python", "c": "OS", "l": "getTID()"}, {
+    "p": "com.ultreon.bubbles.util.python",
+    "c": "OS",
+    "l": "getTID(Thread)",
+    "u": "getTID(java.lang.Thread)"
+}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "LanguageChangeEvent",
+    "l": "getTo()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "getTotalPriority()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "getTotalSize()"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Translatable",
+    "l": "getTranslationId()"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "getTriggerKey()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "getTriggerKey()"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "getTriggerType()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "getTriggerType()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "BubbleProperties",
+    "l": "getType()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "getType()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "getType()"
+}, {
+    "p": "com.ultreon.bubbles.entity.damage",
+    "c": "DamageSource",
+    "l": "getType()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getType()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "getType()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityTrigger",
+    "l": "getType()"
+}, {"p": "com.ultreon.bubbles.item", "c": "Item", "l": "getType()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "getTypeClass()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getTypeRng()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getUniqueId()"}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModInformation",
+    "l": "getUpdateUrl()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "getUpperBound()"
+}, {"p": "com.ultreon.bubbles.util.python", "c": "OS", "l": "getUser()"}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "Modifier",
+    "l": "getValue()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "getValue()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "OptionsNumberInput", "l": "getValue()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ArrayTag",
+    "l": "getValue()"
+}, {"p": "net.querz.nbt.tag", "c": "StringTag", "l": "getValue()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "Tag",
+    "l": "getValue()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "getValue(double)"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "User", "l": "getVariant()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getVelocity()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getVelX()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getVelY()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "getVersion()"
+}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModInformation",
+    "l": "getVersion()"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "OS",
+    "l": "getVersion()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ArtifactVersion",
+    "l": "getVersionString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "getVersionString()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollPane",
+    "l": "getViewport()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "getViewportLocation()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "getViewportSize()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "getVisualX()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "getVisualX()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "getVisualY()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "getVisualY()"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioSlot", "l": "getVolume()"}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "PlayerInventory",
+    "l": "getWatchers()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "getWidth()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QDimension",
+    "l": "getWidth()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "Size",
+    "l": "getWidth()"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "DimensionDouble",
+    "l": "getWidth()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "getWindow()"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "Util",
+    "l": "getWindow()"
+}, {"p": "com.ultreon.bubbles.util", "c": "Util", "l": "getWindowCanvas()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "EntityProperties",
+    "l": "getX()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "getX()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "getX()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getXRng()"
+}, {"p": "com.ultreon.bubbles.common", "c": "EntityProperties", "l": "getY()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "getY()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QComponent", "l": "getY()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QFormula",
+    "l": "getY(double)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "BubbleRandomizer",
+    "l": "getYRng()"
+}, {"p": "com.ultreon.bubbles.init", "c": "Entities", "l": "GIANT_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "GiantBubbleEntity",
+    "l": "GiantBubbleEntity(AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "globalBubbleFreeze"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GlobalExceptionHandler",
+    "l": "GlobalExceptionHandler()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GlobalSaveData",
+    "l": "GlobalSaveData()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.settings", "c": "GameSettings", "l": "gson"}, {
+    "p": "com.ultreon.bubbles.core.handler",
+    "c": "Handler",
+    "l": "Handler()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.common", "c": "Difficulty", "l": "HARD"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "HARDENED_BUBBLE"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "HardenedBubble",
+    "l": "HardenedBubble()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "hardness(double)"
+}, {"p": "net.querz.nbt.io", "c": "StringPointer", "l": "hasCharsLeft(int)"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "hash"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers.types",
+    "c": "AbilityKeyTriggerType",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.api.event.keyboard",
+    "c": "KeyboardModifiers",
+    "l": "hashCode()"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "hashCode()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier.Type",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "NamespacedKey",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ComparableVersion",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "hashCode()"
+}, {"p": "com.ultreon.bubbles.effect", "c": "StatusEffect", "l": "hashCode()"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.entity.damage",
+    "c": "DamageSourceType",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "ModifierType",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityTriggerType",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityType",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.entity.types",
+    "c": "EntityType",
+    "l": "hashCode()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "hashCode()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "OS", "l": "hashCode()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteArrayTag",
+    "l": "hashCode()"
+}, {"p": "net.querz.nbt.tag", "c": "IntArrayTag", "l": "hashCode()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "hashCode()"
+}, {"p": "net.querz.nbt.tag", "c": "LongArrayTag", "l": "hashCode()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "Tag",
+    "l": "hashCode()"
+}, {"p": "com.ultreon.bubbles.save", "c": "SavedGame", "l": "hasMainState()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "StringPointer",
+    "l": "hasNext()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "hasRestrictions()"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "HEAL_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "HealBubble",
+    "l": "HealBubble()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "HealCommand",
+    "l": "HealCommand()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QDimension", "l": "height"}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ShutdownCommand.Types",
+    "l": "HIBERNATE"
+}, {
+    "p": "com.ultreon.bubbles.ability.triggers.types",
+    "c": "AbilityKeyTriggerType",
+    "l": "HOLD"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "hovered"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "HUD",
+    "l": "HUD(AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "HYPER_BUBBLE"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "I18n",
+    "l": "I18n()",
+    "u": "%3Cinit%3E()"
+}, {"p": "net.querz.nbt.tag", "c": "ByteArrayTag", "l": "ID"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteTag",
+    "l": "ID"
+}, {"p": "net.querz.nbt.tag", "c": "CompoundTag", "l": "ID"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "DoubleTag",
+    "l": "ID"
+}, {"p": "net.querz.nbt.tag", "c": "EndTag", "l": "ID"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "FloatTag",
+    "l": "ID"
+}, {"p": "net.querz.nbt.tag", "c": "IntArrayTag", "l": "ID"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntTag",
+    "l": "ID"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "ID"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongArrayTag",
+    "l": "ID"
+}, {"p": "net.querz.nbt.tag", "c": "LongTag", "l": "ID"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ShortTag",
+    "l": "ID"
+}, {"p": "net.querz.nbt.tag", "c": "StringTag", "l": "ID"}, {
+    "p": "com.ultreon.bubbles.datapack",
+    "c": "DataProperties.Builder",
+    "l": "id(String)",
+    "u": "id(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "IllegalCharacterException",
+    "l": "IllegalCharacterException(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.effect", "c": "StatusEffect", "l": "image"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty",
+    "l": "IMPOSSIBLE"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "INDEX_NOT_FOUND"
+}, {"p": "com.ultreon.bubbles.entity.bubble", "c": "DynamicPartitions", "l": "indexOf(T)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "indexOf(T)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "INFO"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "info(String)",
+    "u": "info(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.entity.bubble", "c": "BubbleSystem", "l": "init()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CommandScreen",
+    "l": "init()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "CrashScreen", "l": "init()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "GameOverScreen",
+    "l": "init()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "LanguageScreen", "l": "init()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "init()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "MessageScreen", "l": "init()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "init()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "PauseScreen", "l": "init()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SaveLoadingScreen",
+    "l": "init()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "SavesScreen", "l": "init()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "TitleScreen",
+    "l": "init()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "init(Environment, InfoTransporter)",
+    "u": "init(com.ultreon.bubbles.environment.Environment,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "init(Environment, InfoTransporter)",
+    "u": "init(com.ultreon.bubbles.environment.Environment,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "initDefaults()"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "initialize()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "initialized"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "inject(InputStream)",
+    "u": "inject(java.io.InputStream)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "injectInst(InputStream)",
+    "u": "injectInst(java.io.InputStream)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "insert(int, Double, T)",
+    "u": "insert(int,java.lang.Double,T)"
+}, {"p": "com.ultreon.bubbles.registry", "c": "ModManager", "l": "INSTANCE"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "EndTag",
+    "l": "INSTANCE"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "instance()"}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GlobalSaveData",
+    "l": "instance()"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "ModManager", "l": "instance()"}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "instance()"
+}, {"p": "com.ultreon.bubbles.save", "c": "SaveLoader", "l": "instance()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LanguageScreen",
+    "l": "instance()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "OptionsScreen", "l": "instance()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SavesScreen",
+    "l": "instance()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "TitleScreen", "l": "instance()"}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "instance()"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "InstrumentHook",
+    "l": "InstrumentHook()",
+    "u": "%3Cinit%3E()"
+}, {"p": "net.querz.nbt.tag", "c": "IntArrayTag", "l": "IntArrayTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntArrayTag",
+    "l": "IntArrayTag(int[])",
+    "u": "%3Cinit%3E(int[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.IntegerRange",
+    "l": "IntegerRange(int, int)",
+    "u": "%3Cinit%3E(int,int)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "InternalMod",
+    "l": "InternalMod(Logger, String, ModObject<InternalMod>)",
+    "u": "%3Cinit%3E(org.apache.logging.log4j.Logger,java.lang.String,com.ultreon.bubbles.common.mod.ModObject)"
+}, {"p": "net.querz.nbt.tag", "c": "IntTag", "l": "IntTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntTag",
+    "l": "IntTag(int)",
+    "u": "%3Cinit%3E(int)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "InvalidVersionSpecificationException",
+    "l": "InvalidVersionSpecificationException()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "InvalidVersionSpecificationException",
+    "l": "InvalidVersionSpecificationException(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "InvalidVersionSpecificationException",
+    "l": "InvalidVersionSpecificationException(String, Throwable)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Throwable)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "InvalidVersionSpecificationException",
+    "l": "InvalidVersionSpecificationException(String, Throwable, boolean, boolean)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Throwable,boolean,boolean)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "InvalidVersionSpecificationException",
+    "l": "InvalidVersionSpecificationException(Throwable)",
+    "u": "%3Cinit%3E(java.lang.Throwable)"
+}, {"p": "com.ultreon.bubbles.item", "c": "AmmoItem", "l": "inventoryTick()"}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "SystemEnum",
+    "l": "IOS"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AbsolutePosition",
+    "l": "isAbsolute()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AbsoluteSize",
+    "l": "isAbsolute()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "isAbsolute()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "isAbsolute()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "Position",
+    "l": "isAbsolute()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativePosition",
+    "l": "isAbsolute()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativeSize",
+    "l": "isAbsolute()"
+}, {"p": "com.ultreon.bubbles.util.position", "c": "Size", "l": "isAbsolute()"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "isActive()"
+}, {
+    "p": "com.ultreon.bubbles.common.gamestate",
+    "c": "GameEvent",
+    "l": "isActive(DateTime)",
+    "u": "isActive(com.ultreon.commons.time.DateTime)"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "BloodMoonEvent",
+    "l": "isActive(DateTime)",
+    "u": "isActive(com.ultreon.commons.time.DateTime)"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "PauseState",
+    "l": "isActive(DateTime)",
+    "u": "isActive(com.ultreon.commons.time.DateTime)"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "isAntialiasEnabled()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "isAttackRandom()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "isBloodMoonActive()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "isCollidingWith(Entity)",
+    "u": "isCollidingWith(com.ultreon.bubbles.entity.Entity)"
+}, {"p": "com.ultreon.bubbles.data", "c": "GlobalSaveData", "l": "isCreated()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "isDebugMode()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "isDefenseRandom()"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "HardenedBubble", "l": "isDefenseRandom()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "isDevMode()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "LoadScreen", "l": "isDone()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "isEffectApplied()"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "CompareUtils",
+    "l": "isEqual(Comparable<T>, T)",
+    "u": "isEqual(java.lang.Comparable,T)"
+}, {"p": "com.ultreon.bubbles.gametype", "c": "ClassicType", "l": "isEventActive()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "isGameLoaded()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "isGameOver()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "isGameStateActive(GameEvent)",
+    "u": "isGameStateActive(com.ultreon.bubbles.common.gamestate.GameEvent)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "isGlobalBubbleFreeze()"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "CompareUtils",
+    "l": "isGreater(Comparable<T>, T)",
+    "u": "isGreater(java.lang.Comparable,T)"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "CompareUtils",
+    "l": "isGreaterOrEqual(Comparable<T>, T)",
+    "u": "isGreaterOrEqual(java.lang.Comparable,T)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "GameOverScreen",
+    "l": "isHighScore()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "isHovered()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "isInitialized()"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "ModClassLoader",
+    "l": "isInternalPackage(String)",
+    "u": "isInternalPackage(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.meta",
+    "c": "MetaData",
+    "l": "isInvulnerable()"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "isKeyTranslated(String)",
+    "u": "isKeyTranslated(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "CompareUtils",
+    "l": "isLess(Comparable<T>, T)",
+    "u": "isLess(java.lang.Comparable,T)"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "CompareUtils",
+    "l": "isLessEqual(Comparable<T>, T)",
+    "u": "isLessEqual(java.lang.Comparable,T)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GlobalSaveData",
+    "l": "isLoaded()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "isLowerBoundInclusive()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "isMarkedForDeletion()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "isMarkedForDeletion()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "isMotionEnabled()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "isOnMainThread()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "isOnRenderThread()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "isPaused()"}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "isPlaying()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "isPressed()"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "isRegenerateable()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "isRegenerateable()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "isRunning()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "isScoreRandom()"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioPlayer", "l": "isSilent()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "isSpawned()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "AbstractVersion",
+    "l": "isStable()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "isStable()"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioSlot", "l": "isStopped()"}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "isTextAntialiasEnabled()"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "isTriggerable(Entity)",
+    "u": "isTriggerable(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "isTriggerable(Entity)",
+    "u": "isTriggerable(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "isUnboundedAbove()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "isUpperBoundInclusive()"
+}, {"p": "com.ultreon.bubbles.gametype", "c": "ClassicType", "l": "isValid()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "isValid()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "isValid()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "isValid()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui.view",
+    "c": "ScrollView",
+    "l": "isValid()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "TitleScreen", "l": "isValid()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "isWrapped()"
+}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "Item",
+    "l": "Item()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.registry", "c": "Registers", "l": "ITEMS"}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "ItemType",
+    "l": "ItemType()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "Range",
+    "l": "iterable()"
+}, {"p": "com.ultreon.bubbles.entity.bubble", "c": "Range", "l": "iterator()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "iterator()"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "iterator()"}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(byte[], char)",
+    "u": "join(byte[],char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(byte[], char, int, int)",
+    "u": "join(byte[],char,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(char[], char)",
+    "u": "join(char[],char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(char[], char, int, int)",
+    "u": "join(char[],char,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(double[], char)",
+    "u": "join(double[],char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(double[], char, int, int)",
+    "u": "join(double[],char,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(float[], char)",
+    "u": "join(float[],char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(float[], char, int, int)",
+    "u": "join(float[],char,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(int[], char)",
+    "u": "join(int[],char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(int[], char, int, int)",
+    "u": "join(int[],char,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(Iterable<?>, char)",
+    "u": "join(java.lang.Iterable,char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(Iterable<?>, String)",
+    "u": "join(java.lang.Iterable,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(Iterator<?>, char)",
+    "u": "join(java.util.Iterator,char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(Iterator<?>, String)",
+    "u": "join(java.util.Iterator,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(List<?>, char, int, int)",
+    "u": "join(java.util.List,char,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(List<?>, String, int, int)",
+    "u": "join(java.util.List,java.lang.String,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(long[], char)",
+    "u": "join(long[],char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(long[], char, int, int)",
+    "u": "join(long[],char,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(Object[], char)",
+    "u": "join(java.lang.Object[],char)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(Object[], char, int, int)",
+    "u": "join(java.lang.Object[],char,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(Object[], String)",
+    "u": "join(java.lang.Object[],java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(Object[], String, int, int)",
+    "u": "join(java.lang.Object[],java.lang.String,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "join(String, String...)",
+    "u": "join(java.lang.String,java.lang.String...)"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "joinPlayer(PlayerEntity)",
+    "u": "joinPlayer(com.ultreon.bubbles.entity.player.PlayerEntity)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityTriggerType",
+    "l": "KEY_TRIGGER"
+}, {"p": "com.ultreon.bubbles.common", "c": "Difficulty.Modifier", "l": "key()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "NamespacedKey",
+    "l": "key()"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "keybindBackward"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "keybindForward"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "keybindRotateLeft"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "keybindRotateRight"
+}, {
+    "p": "com.ultreon.bubbles.api.event",
+    "c": "KeyboardEvent",
+    "l": "KeyboardEvent()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.api.event.keyboard",
+    "c": "KeyboardModifiers",
+    "l": "KeyboardModifiers(boolean, boolean, boolean)",
+    "u": "%3Cinit%3E(boolean,boolean,boolean)"
+}, {"p": "com.ultreon.bubbles.registry", "c": "LocaleManager", "l": "keys()"}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "keys()"
+}, {"p": "net.querz.nbt.tag", "c": "CompoundTag", "l": "keySet()"}, {
+    "p": "com.ultreon.bubbles.util.python",
+    "c": "OS",
+    "l": "kill(long)"
+}, {"p": "com.ultreon.bubbles.util.python", "c": "OS", "l": "killThread()"}, {
+    "p": "com.ultreon.bubbles.util.python",
+    "c": "OS",
+    "l": "killThread(long)"
+}, {
+    "p": "com.ultreon.bubbles.util.python",
+    "c": "OS",
+    "l": "killThread(Thread)",
+    "u": "killThread(java.lang.Thread)"
+}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "LanguageChangeEvent",
+    "l": "LanguageChangeEvent(Locale, Locale)",
+    "u": "%3Cinit%3E(java.util.Locale,java.util.Locale)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "LanguageMap(Locale)",
+    "u": "%3Cinit%3E(java.util.Locale)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LanguageScreen",
+    "l": "LanguageScreen(Screen)",
+    "u": "%3Cinit%3E(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "RelativeAnchor",
+    "l": "LEFT"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "left(boolean)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ArrayTag",
+    "l": "length()"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "LEVEL_UP_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "LevelCommand",
+    "l": "LevelCommand()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "levelDown()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "levelUp()"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "LevelUpBubble",
+    "l": "LevelUpBubble()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.util.python.os", "c": "Path", "l": "LF"}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "SystemEnum",
+    "l": "LINUX"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Listener",
+    "l": "Listener()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "ListTag(Class<? super T>)",
+    "u": "%3Cinit%3E(java.lang.Class)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "ListTag(Class<? super T>, int)",
+    "u": "%3Cinit%3E(java.lang.Class,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "LittleEndianNBTInputStream(DataInputStream)",
+    "u": "%3Cinit%3E(java.io.DataInputStream)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "LittleEndianNBTInputStream(InputStream)",
+    "u": "%3Cinit%3E(java.io.InputStream)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "LittleEndianNBTOutputStream(DataOutputStream)",
+    "u": "%3Cinit%3E(java.io.DataOutputStream)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "LittleEndianNBTOutputStream(OutputStream)",
+    "u": "%3Cinit%3E(java.io.OutputStream)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData.SpawnReason",
+    "l": "LOAD"
+}, {"p": "com.ultreon.bubbles.data", "c": "GlobalSaveData", "l": "load()"}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "load(Environment, InfoTransporter)",
+    "u": "load(com.ultreon.bubbles.environment.Environment,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "load(Environment, InfoTransporter)",
+    "u": "load(com.ultreon.bubbles.environment.Environment,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GameData",
+    "l": "load(File)",
+    "u": "load(java.io.File)"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GameData",
+    "l": "load(InputStream)",
+    "u": "load(java.io.InputStream)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "load(LoggableProgress)",
+    "u": "load(com.ultreon.commons.lang.LoggableProgress)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "loadClass(String)",
+    "u": "loadClass(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "ModClassLoader",
+    "l": "loadClass(String)",
+    "u": "loadClass(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "loadClass(String, boolean)",
+    "u": "loadClass(java.lang.String,boolean)"
+}, {
+    "p": "com.ultreon.bubbles.event.load",
+    "c": "LoadCompleteEvent",
+    "l": "LoadCompleteEvent(ModLoader)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.mod.loader.ModLoader)"
+}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "loadData(String)",
+    "u": "loadData(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "LoadedGame(SavedGame, Environment)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.save.SavedGame,com.ultreon.bubbles.environment.Environment)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "loadEnvironment()"}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "LoaderException",
+    "l": "LoaderException()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "LoaderException",
+    "l": "LoaderException(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "LoaderException",
+    "l": "LoaderException(String, Throwable)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Throwable)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "LoaderException",
+    "l": "LoaderException(String, Throwable, boolean, boolean)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Throwable,boolean,boolean)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "LoaderException",
+    "l": "LoaderException(Throwable)",
+    "u": "%3Cinit%3E(java.lang.Throwable)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "loadGame()"}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "loadInfoData()"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModLoader",
+    "l": "loadJar(String, LoadScreen)",
+    "u": "loadJar(java.lang.String,com.ultreon.bubbles.screen.LoadScreen)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "loadSave(SavedGame)",
+    "u": "loadSave(com.ultreon.bubbles.save.SavedGame)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "loadSave(String)",
+    "u": "loadSave(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "loadSaveData(SavedGame, InfoTransporter)",
+    "u": "loadSaveData(com.ultreon.bubbles.save.SavedGame,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "loadSaveData(SavedGame, InfoTransporter)",
+    "u": "loadSaveData(com.ultreon.bubbles.save.SavedGame,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "LoadScreen()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "loadState(SavedGame, InfoTransporter)",
+    "u": "loadState(com.ultreon.bubbles.save.SavedGame,com.ultreon.commons.lang.InfoTransporter)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "LocaleManager",
+    "l": "LocaleManager()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "ModInstance", "l": "logger"}, {
+    "p": "com.ultreon.bubbles.logger",
+    "c": "Logger",
+    "l": "Logger()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.streams",
+    "c": "LoggingPrintStream",
+    "l": "LoggingPrintStream(OutputStream)",
+    "u": "%3Cinit%3E(java.io.OutputStream)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "logInfo(String)",
+    "u": "logInfo(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.common", "c": "References", "l": "LOGS_DIR"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongArrayTag",
+    "l": "LongArrayTag()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongArrayTag",
+    "l": "LongArrayTag(long[])",
+    "u": "%3Cinit%3E(long[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.LongRange",
+    "l": "LongRange(long, long)",
+    "u": "%3Cinit%3E(long,long)"
+}, {"p": "net.querz.nbt.tag", "c": "LongTag", "l": "LongTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongTag",
+    "l": "LongTag(long)",
+    "u": "%3Cinit%3E(long)"
+}, {"p": "net.querz.nbt.io", "c": "StringPointer", "l": "lookAhead(int)"}, {
+    "p": "com.ultreon.bubbles.entity.attribute",
+    "c": "Attribute",
+    "l": "LUCK"
+}, {"p": "com.ultreon.bubbles.init", "c": "Effects", "l": "LUCK"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "LuckEffect",
+    "l": "LuckEffect()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "Main",
+    "l": "Main()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "main(String[])",
+    "u": "main(java.lang.String[])"
+}, {
+    "p": "com.ultreon.dev",
+    "c": "GameDevMain",
+    "l": "main(String[])",
+    "u": "main(java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "main(String[], PreClassLoader)",
+    "u": "main(java.lang.String[],com.ultreon.preloader.PreClassLoader)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "Main",
+    "l": "main(String[], PreClassLoader)",
+    "u": "main(java.lang.String[],com.ultreon.preloader.PreClassLoader)"
+}, {"p": "com.ultreon.bubbles", "c": "Main", "l": "mainClassLoader"}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "make()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "OptionsButton", "l": "make()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "make()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "make()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui.view",
+    "c": "ScrollView",
+    "l": "make()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "matchVersion(List<ArtifactVersion>)",
+    "u": "matchVersion(java.util.List)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "MathHelper()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.BigDecimalRange",
+    "l": "max"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.BigIntegerRange",
+    "l": "max"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.DoubleRange",
+    "l": "max"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.FloatRange",
+    "l": "max"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.IntegerRange",
+    "l": "max"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.LongRange",
+    "l": "max"
+}, {"p": "com.ultreon.bubbles.entity.attribute", "c": "Attribute", "l": "MAX_DAMAGE"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "CollectionsUtils",
+    "l": "max(Collection<T>, T)",
+    "u": "max(java.util.Collection,T)"
+}, {
+    "p": "net.querz.io",
+    "c": "MaxDepthReachedException",
+    "l": "MaxDepthReachedException(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "maxPriority"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "MessageScreen",
+    "l": "MessageScreen()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.common", "c": "DataType", "l": "META_INFO"}, {
+    "p": "com.ultreon.bubbles.entity.meta",
+    "c": "MetaData",
+    "l": "MetaData(Entity)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.BigDecimalRange",
+    "l": "min"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.BigIntegerRange",
+    "l": "min"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.DoubleRange",
+    "l": "min"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.FloatRange",
+    "l": "min"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.IntegerRange",
+    "l": "min"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.LongRange",
+    "l": "min"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "Mod.EventBusSubscriber.Bus", "l": "MOD"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "InternalMod",
+    "l": "MOD_ID"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "ModClassLoader",
+    "l": "ModClassLoader(ClassLoader, File, String)",
+    "u": "%3Cinit%3E(java.lang.ClassLoader,java.io.File,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "ModEvent",
+    "l": "ModEvent()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.event.bus",
+    "c": "ModEvents",
+    "l": "ModEvents(J)",
+    "u": "%3Cinit%3E(J)"
+}, {
+    "p": "com.ultreon.bubbles.event.bus",
+    "c": "ModEvents",
+    "l": "ModEvents(ModObject<J>)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.mod.ModObject)"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "Mod.EventBusSubscriber",
+    "l": "modId()"
+}, {"p": "com.ultreon.bubbles.common.mod", "c": "Mod", "l": "modId()"}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "Modifier",
+    "l": "Modifier(ModifierType, double)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.modifier.ModifierType,double)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier",
+    "l": "Modifier(T, float)",
+    "u": "%3Cinit%3E(T,float)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.ModifierMap",
+    "l": "ModifierMap()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "ModifierType",
+    "l": "ModifierType(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.mod",
+    "c": "ModInformation",
+    "l": "ModInformation(ModContainer)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.mod.ModContainer)"
+}, {
+    "p": "com.ultreon.bubbles.event",
+    "c": "ModInitializationEvent",
+    "l": "ModInitializationEvent()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "ModInstance",
+    "l": "ModInstance(Logger, String, ModObject<? extends ModInstance>)",
+    "u": "%3Cinit%3E(org.apache.logging.log4j.Logger,java.lang.String,com.ultreon.bubbles.common.mod.ModObject)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModLoader",
+    "l": "ModLoader(LoadScreen)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.screen.LoadScreen)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "ModManager()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "ModObject",
+    "l": "ModObject(String, ModContainer, Mod, Class<T>)",
+    "u": "%3Cinit%3E(java.lang.String,com.ultreon.bubbles.mod.ModContainer,com.ultreon.bubbles.common.mod.Mod,java.lang.Class)"
+}, {"p": "com.ultreon.bubbles.common", "c": "References", "l": "MODS_DIR"}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModLoader",
+    "l": "MODS_DIR"
+}, {"p": "com.ultreon.bubbles.mod.loader", "c": "ModLoader", "l": "modSetup()"}, {
+    "p": "com.ultreon.bubbles.event.load",
+    "c": "ModSetupEvent",
+    "l": "ModSetupEvent(ModLoader)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.mod.loader.ModLoader)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "EntityFlag", "l": "MOTION_ENABLED"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "move(double, double)",
+    "u": "move(double,double)"
+}, {"p": "com.ultreon.bubbles.init", "c": "Effects", "l": "MULTI_SCORE"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "MultiScoreEffect",
+    "l": "MultiScoreEffect()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "SystemEnum",
+    "l": "name"
+}, {"p": "com.ultreon.bubbles.entity.modifier", "c": "ModifierType", "l": "name()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "name(String)",
+    "u": "name(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NamedTag",
+    "l": "NamedTag(String, Tag<?>)",
+    "u": "%3Cinit%3E(java.lang.String,net.querz.nbt.tag.Tag)"
+}, {"p": "com.ultreon.bubbles.common", "c": "NamespacedKey", "l": "namespace()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Namespace",
+    "l": "Namespace(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "NamespacedKey",
+    "l": "NamespacedKey(String, String)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.String)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "EntitySpawnData.SpawnReason", "l": "NATURAL"}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTDeserializer",
+    "l": "NBTDeserializer()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTDeserializer",
+    "l": "NBTDeserializer(boolean)",
+    "u": "%3Cinit%3E(boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTDeserializer",
+    "l": "NBTDeserializer(boolean, boolean)",
+    "u": "%3Cinit%3E(boolean,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTInputStream",
+    "l": "NBTInputStream(InputStream)",
+    "u": "%3Cinit%3E(java.io.InputStream)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTOutputStream",
+    "l": "NBTOutputStream(OutputStream)",
+    "u": "%3Cinit%3E(java.io.OutputStream)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTSerializer",
+    "l": "NBTSerializer()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTSerializer",
+    "l": "NBTSerializer(boolean)",
+    "u": "%3Cinit%3E(boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTSerializer",
+    "l": "NBTSerializer(boolean, boolean)",
+    "u": "%3Cinit%3E(boolean,boolean)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "newRange(ArtifactVersion, List<Restriction>)",
+    "u": "newRange(com.ultreon.bubbles.common.versioning.ArtifactVersion,java.util.List)"
+}, {"p": "net.querz.nbt.io", "c": "StringPointer", "l": "next()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "StringPointer",
+    "l": "nextArrayElement()"
+}, {"p": "com.ultreon.bubbles.common", "c": "Difficulty", "l": "NORMAL"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "NORMAL_BUBBLE"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput.NumberInputButton",
+    "l": "NumberInputButton(int, int, int, int)",
+    "u": "%3Cinit%3E(int,int,int,int)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "NumberTag",
+    "l": "NumberTag(T)",
+    "u": "%3Cinit%3E(T)"
+}, {"p": "com.ultreon.bubbles.common", "c": "DataType", "l": "OBJECT"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "onClose()"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CommandScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CrashScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "GameOverScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LanguageScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "PauseScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SavesScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "TitleScreen",
+    "l": "onClose(Screen)",
+    "u": "onClose(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "InternalMod",
+    "l": "onCollectTextures(CollectTexturesEvent)",
+    "u": "onCollectTextures(com.ultreon.hydro.event.CollectTexturesEvent)"
+}, {"p": "com.ultreon.bubbles.entity.ammo", "c": "AmmoType", "l": "onCollision()"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "onCollision(BubbleEntity, Entity)",
+    "u": "onCollision(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AccelerateBubble",
+    "l": "onCollision(BubbleEntity, Entity)",
+    "u": "onCollision(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "HealBubble",
+    "l": "onCollision(BubbleEntity, Entity)",
+    "u": "onCollision(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "LevelUpBubble",
+    "l": "onCollision(BubbleEntity, Entity)",
+    "u": "onCollision(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "UltraBubble",
+    "l": "onCollision(BubbleEntity, Entity)",
+    "u": "onCollision(com.ultreon.bubbles.entity.BubbleEntity,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "onCollision(Entity)",
+    "u": "onCollision(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "onCollision(EntityCollisionEvent)",
+    "u": "onCollision(com.ultreon.bubbles.event.EntityCollisionEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "onCollision(EntityCollisionEvent)",
+    "u": "onCollision(com.ultreon.bubbles.event.EntityCollisionEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "onCollision(EntityCollisionEvent)",
+    "u": "onCollision(com.ultreon.bubbles.event.EntityCollisionEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "onCollision(EntityCollisionEvent)",
+    "u": "onCollision(com.ultreon.bubbles.event.EntityCollisionEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "onCollision(EntityCollisionEvent)",
+    "u": "onCollision(com.ultreon.bubbles.event.EntityCollisionEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "onCollision(EntityCollisionEvent)",
+    "u": "onCollision(com.ultreon.bubbles.event.EntityCollisionEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "onEntityTick()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityContainer",
+    "l": "onEntityTick()"
+}, {"p": "com.ultreon.bubbles.item", "c": "ItemType", "l": "onEntityTick()"}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "Item",
+    "l": "onEntityTick(Entity)",
+    "u": "onEntityTick(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "onFilter(FilterEvent)",
+    "u": "onFilter(com.ultreon.hydro.event.FilterEvent)"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "BloodMoonEvent",
+    "l": "onFilter(FilterEvent)",
+    "u": "onFilter(com.ultreon.hydro.event.FilterEvent)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BlindnessEffect",
+    "l": "onFilter(StatusEffectInstance, FilterEvent)",
+    "u": "onFilter(com.ultreon.bubbles.effect.StatusEffectInstance,com.ultreon.hydro.event.FilterEvent)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "PoisonEffect",
+    "l": "onFilter(StatusEffectInstance, FilterEvent)",
+    "u": "onFilter(com.ultreon.bubbles.effect.StatusEffectInstance,com.ultreon.hydro.event.FilterEvent)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "onFilter(StatusEffectInstance, FilterEvent)",
+    "u": "onFilter(com.ultreon.bubbles.effect.StatusEffectInstance,com.ultreon.hydro.event.FilterEvent)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "onKeyboard(KeyboardEvent)",
+    "u": "onKeyboard(com.ultreon.hydro.event.input.KeyboardEvent)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "onKeyboard(KeyboardEvent)",
+    "u": "onKeyboard(com.ultreon.hydro.event.input.KeyboardEvent)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "onKeyboard(KeyboardEvent)",
+    "u": "onKeyboard(com.ultreon.hydro.event.input.KeyboardEvent)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CommandScreen",
+    "l": "onKeyboard(KeyboardEvent)",
+    "u": "onKeyboard(com.ultreon.hydro.event.input.KeyboardEvent)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "PauseScreen",
+    "l": "onKeyboard(KeyboardEvent)",
+    "u": "onKeyboard(com.ultreon.hydro.event.input.KeyboardEvent)"
+}, {
+    "p": "com.ultreon.bubbles.api.event",
+    "c": "KeyboardEvent.KeyboardEventListener",
+    "l": "onKeyboard(KeyEventType, char, int, KeyboardModifiers)",
+    "u": "onKeyboard(com.ultreon.hydro.event.type.KeyEventType,char,int,com.ultreon.bubbles.api.event.keyboard.KeyboardModifiers)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "onKeyboard(KeyEventType, char, int, KeyboardModifiers)",
+    "u": "onKeyboard(com.ultreon.hydro.event.type.KeyEventType,char,int,com.ultreon.bubbles.api.event.keyboard.KeyboardModifiers)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "onKeyboardEvent(KeyboardEvent)",
+    "u": "onKeyboardEvent(com.ultreon.hydro.event.input.KeyboardEvent)"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "onKeyTrigger(AbilityKeyTrigger)",
+    "u": "onKeyTrigger(com.ultreon.bubbles.ability.triggers.AbilityKeyTrigger)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "onKeyTrigger(AbilityKeyTrigger)",
+    "u": "onKeyTrigger(com.ultreon.bubbles.ability.triggers.AbilityKeyTrigger)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "onMouse(MouseEvent)",
+    "u": "onMouse(com.ultreon.hydro.event.input.MouseEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "onMouse(MouseMotionEvent)",
+    "u": "onMouse(com.ultreon.hydro.event.input.MouseMotionEvent)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "onMousePress(int, int, int)",
+    "u": "onMousePress(int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "onMousePress(int, int, int)",
+    "u": "onMousePress(int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "onMouseRelease(int, int, int)",
+    "u": "onMouseRelease(int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "onMouseRelease(int, int, int)",
+    "u": "onMouseRelease(int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.common.interfaces",
+    "c": "PauseTickable",
+    "l": "onPauseUpdate(PauseTickEvent)",
+    "u": "onPauseUpdate(com.ultreon.hydro.event.PauseTickEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "onSpawn(Point, Environment)",
+    "u": "onSpawn(java.awt.Point,com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "onSpawn(Point, Environment)",
+    "u": "onSpawn(java.awt.Point,com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "GiantBubbleEntity",
+    "l": "onSpawn(Point, Environment)",
+    "u": "onSpawn(java.awt.Point,com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "onStart(Entity)",
+    "u": "onStart(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BlindnessEffect",
+    "l": "onStart(StatusEffectInstance, Entity)",
+    "u": "onStart(com.ultreon.bubbles.effect.StatusEffectInstance,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BubbleFreezeEffect",
+    "l": "onStart(StatusEffectInstance, Entity)",
+    "u": "onStart(com.ultreon.bubbles.effect.StatusEffectInstance,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "ParalyzeEffect",
+    "l": "onStart(StatusEffectInstance, Entity)",
+    "u": "onStart(com.ultreon.bubbles.effect.StatusEffectInstance,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "PoisonEffect",
+    "l": "onStart(StatusEffectInstance, Entity)",
+    "u": "onStart(com.ultreon.bubbles.effect.StatusEffectInstance,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "onStart(StatusEffectInstance, Entity)",
+    "u": "onStart(com.ultreon.bubbles.effect.StatusEffectInstance,com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BlindnessEffect",
+    "l": "onStop(Entity)",
+    "u": "onStop(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BubbleFreezeEffect",
+    "l": "onStop(Entity)",
+    "u": "onStop(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "ParalyzeEffect",
+    "l": "onStop(Entity)",
+    "u": "onStop(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "PoisonEffect",
+    "l": "onStop(Entity)",
+    "u": "onStop(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "onStop(Entity)",
+    "u": "onStop(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "onStop(Entity)",
+    "u": "onStop(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "onTeleported(Point2D, Point2D)",
+    "u": "onTeleported(java.awt.geom.Point2D,java.awt.geom.Point2D)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "onTeleporting(Point2D, Point2D)",
+    "u": "onTeleporting(java.awt.geom.Point2D,java.awt.geom.Point2D)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "onUpdate(TickEvent)",
+    "u": "onUpdate(com.ultreon.hydro.event.TickEvent)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SavesScreen",
+    "l": "onUpdate(TickEvent)",
+    "u": "onUpdate(com.ultreon.hydro.event.TickEvent)"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "BloodMoonEvent",
+    "l": "onUpdate(TickEvent)",
+    "u": "onUpdate(com.ultreon.hydro.event.TickEvent)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "onXInputEvent(XInputEvent)",
+    "u": "onXInputEvent(com.ultreon.hydro.event.input.XInputEvent)"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "PlayerInventory",
+    "l": "openInventoryTo()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "OptionsButton(int, int, int, int)",
+    "u": "%3Cinit%3E(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "OptionsNumberInput(int, int, int, int, int, int, int)",
+    "u": "%3Cinit%3E(int,int,int,int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "OptionsNumberInput(Rectangle, int, int, int)",
+    "u": "%3Cinit%3E(java.awt.Rectangle,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "OptionsScreen(Screen)",
+    "u": "%3Cinit%3E(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "OptionsTextEntry(int, int, int, int)",
+    "u": "%3Cinit%3E(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "OptionsTextEntry(Rectangle)",
+    "u": "%3Cinit%3E(com.ultreon.hydro.screen.gui.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "OS",
+    "l": "OS()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "OS",
+    "l": "OS(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "OS",
+    "l": "OS(String, String)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.String)"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "SystemEnum", "l": "OSX"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Effects",
+    "l": "PARALYZE"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "PARALYZE_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "ParalyzeEffect",
+    "l": "ParalyzeEffect()",
+    "u": "%3Cinit%3E()"
+}, {"p": "net.querz.nbt.io", "c": "SNBTParser", "l": "parse()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTParser",
+    "l": "parse(int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTParser",
+    "l": "parse(int, boolean)",
+    "u": "parse(int,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "StringPointer",
+    "l": "parseException(String)",
+    "u": "parseException(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "ParseException",
+    "l": "ParseException(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "ParseException",
+    "l": "ParseException(String, String, int)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.String,int)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "parseLangFile(InputStream)",
+    "u": "parseLangFile(java.io.InputStream)"
+}, {"p": "net.querz.nbt.io", "c": "StringPointer", "l": "parseQuotedString()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "StringPointer",
+    "l": "parseSimpleString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ComparableVersion",
+    "l": "parseVersion(String)",
+    "u": "parseVersion(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.os",
+    "c": "Path",
+    "l": "Path()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.python",
+    "c": "OS.Path",
+    "l": "Path()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "Path",
+    "l": "Path()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles", "c": "LoadedGame", "l": "pause()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton",
+    "l": "PauseButton(int, int, int, int)",
+    "u": "%3Cinit%3E(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "PauseScreen",
+    "l": "PauseScreen()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "PauseState",
+    "l": "PauseState()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "PercentagePosition(double, double, double, double)",
+    "u": "%3Cinit%3E(double,double,double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "PercentagePosition(Point2D, double, double)",
+    "u": "%3Cinit%3E(java.awt.geom.Point2D,double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "PercentageSize(Dimension2D, double, double)",
+    "u": "%3Cinit%3E(java.awt.geom.Dimension2D,double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "PercentageSize(double, double, double, double)",
+    "u": "%3Cinit%3E(double,double,double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.python",
+    "c": "Platform",
+    "l": "Platform()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioSlot", "l": "play()"}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioPlayer",
+    "l": "playAll()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "player"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Entities",
+    "l": "PLAYER"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "PlayerEntity(AbstractGameType)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "PlayerInventory",
+    "l": "PlayerInventory(PlayerEntity)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.entity.player.PlayerEntity)"
+}, {"p": "com.ultreon.bubbles.entity.damage", "c": "DamageSourceType", "l": "POISON"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Effects",
+    "l": "POISON"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "POISON_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "PoisonEffect",
+    "l": "PoisonEffect()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "Position",
+    "l": "Position(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.api.event",
+    "c": "Event",
+    "l": "post(Object...)",
+    "u": "post(java.lang.Object...)"
+}, {"p": "com.ultreon.bubbles.common.versioning", "c": "QVersion.TYPE", "l": "PRE"}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "InstrumentHook",
+    "l": "premain(String, Instrumentation)",
+    "u": "premain(java.lang.String,java.lang.instrument.Instrumentation)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "prepare()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "preparePlayer()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "prepareSpawn(EntitySpawnData)",
+    "u": "prepareSpawn(com.ultreon.bubbles.entity.EntitySpawnData)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "prepareSpawn(EntitySpawnData)",
+    "u": "prepareSpawn(com.ultreon.bubbles.entity.EntitySpawnData)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "prepareSpawn(EntitySpawnData)",
+    "u": "prepareSpawn(com.ultreon.bubbles.entity.EntitySpawnData)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "pressed"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "pressedTime"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "priority(long)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(BigDecimal)",
+    "u": "%3Cinit%3E(java.math.BigDecimal)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(BigInteger)",
+    "u": "%3Cinit%3E(java.math.BigInteger)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(byte)",
+    "u": "%3Cinit%3E(byte)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(byte[])",
+    "u": "%3Cinit%3E(byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(ByteBuf)",
+    "u": "%3Cinit%3E(org.bson.ByteBuf)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(ByteBuffer)",
+    "u": "%3Cinit%3E(java.nio.ByteBuffer)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(char[])",
+    "u": "%3Cinit%3E(char[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(InputStream)",
+    "u": "%3Cinit%3E(java.io.InputStream)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(int)",
+    "u": "%3Cinit%3E(int)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(long)",
+    "u": "%3Cinit%3E(long)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(Object)",
+    "u": "%3Cinit%3E(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(Object[])",
+    "u": "%3Cinit%3E(java.lang.Object[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(short)",
+    "u": "%3Cinit%3E(short)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "PseudoRandom(Thread)",
+    "u": "%3Cinit%3E(java.lang.Thread)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogFormatter",
+    "l": "publish(GameLogRecord, PrintWriter)",
+    "u": "publish(com.ultreon.bubbles.common.logging.GameLogRecord,java.io.PrintWriter)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging.old",
+    "c": "GameLoggingHandler",
+    "l": "publish(LogRecord)",
+    "u": "publish(java.util.logging.LogRecord)"
+}, {"p": "com.ultreon.bubbles.event.bus", "c": "ModEvents", "l": "publishAll(T)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "put(String, Tag<?>)",
+    "u": "put(java.lang.String,net.querz.nbt.tag.Tag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putBoolean(String, boolean)",
+    "u": "putBoolean(java.lang.String,boolean)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putByte(String, byte)",
+    "u": "putByte(java.lang.String,byte)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putByteArray(String, byte[])",
+    "u": "putByteArray(java.lang.String,byte[])"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putDouble(String, double)",
+    "u": "putDouble(java.lang.String,double)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putFloat(String, float)",
+    "u": "putFloat(java.lang.String,float)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putIfNotNull(String, Tag<?>)",
+    "u": "putIfNotNull(java.lang.String,net.querz.nbt.tag.Tag)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putInt(String, int)",
+    "u": "putInt(java.lang.String,int)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putIntArray(String, int[])",
+    "u": "putIntArray(java.lang.String,int[])"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putLong(String, long)",
+    "u": "putLong(java.lang.String,long)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putLongArray(String, long[])",
+    "u": "putLongArray(java.lang.String,long[])"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putShort(String, short)",
+    "u": "putShort(java.lang.String,short)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "putString(String, String)",
+    "u": "putString(java.lang.String,java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "QBRandom",
+    "l": "QBRandom()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "QBRandom",
+    "l": "QBRandom(long)",
+    "u": "%3Cinit%3E(long)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "QComponent()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QContainer",
+    "l": "QContainer()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QDimension",
+    "l": "QDimension(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QFormula",
+    "l": "QFormula(IFormula)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.render.gui.IFormula)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "QLabel(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QPanel",
+    "l": "QPanel()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QPoint",
+    "l": "QPoint()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollBar",
+    "l": "QScrollBar()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollPane",
+    "l": "QScrollPane()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "quit()"
+}, {"p": "com.ultreon.bubbles.environment", "c": "Environment", "l": "quit()"}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "quit()"
+}, {"p": "com.ultreon.bubbles", "c": "LoadedGame", "l": "quit()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "quitLoadedGame()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "QVersion(int, int, QVersion.TYPE, int)",
+    "u": "%3Cinit%3E(int,int,com.ultreon.bubbles.common.versioning.QVersion.TYPE,int)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "QVersion(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "QViewport(Rectangle)",
+    "u": "%3Cinit%3E(java.awt.Rectangle)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "radius"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "radius(int, int)",
+    "u": "radius(int,int)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "radius(IntRange)",
+    "u": "radius(org.apache.commons.lang.math.IntRange)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "QBRandom",
+    "l": "randInt(int, int)",
+    "u": "randInt(int,int)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "QBRandom",
+    "l": "randLong(long, long)",
+    "u": "randLong(long,long)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "BubbleSystem",
+    "l": "random(Rng, AbstractGameType)",
+    "u": "random(com.ultreon.bubbles.common.random.Rng,com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "QBRandom",
+    "l": "randRange(double, double)",
+    "u": "randRange(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "QBRandom",
+    "l": "randRange(float, float)",
+    "u": "randRange(float,float)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom.Range",
+    "l": "Range()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "Range",
+    "l": "Range(double)",
+    "u": "%3Cinit%3E(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "Range",
+    "l": "Range(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "Range",
+    "l": "Range(double, double, double)",
+    "u": "%3Cinit%3E(double,double,double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "rangeOf(T)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "rarity(int)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "read(BsonArray)",
+    "u": "read(org.bson.BsonArray)"
+}, {
+    "p": "com.ultreon.bubbles.common.holders",
+    "c": "IArrayDataHolder",
+    "l": "read(BsonArray)",
+    "u": "read(org.bson.BsonArray)"
+}, {
+    "p": "com.ultreon.bubbles.common.holders",
+    "c": "IDataHolder",
+    "l": "read(BsonDocument)",
+    "u": "read(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "Modifier",
+    "l": "read(BsonDocument)",
+    "u": "read(org.bson.BsonDocument)"
+}, {"p": "net.querz.nbt.io", "c": "NBTUtil", "l": "read(File)", "u": "read(java.io.File)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "read(File, boolean)",
+    "u": "read(java.io.File,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "read(String)",
+    "u": "read(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "read(String, boolean)",
+    "u": "read(java.lang.String,boolean)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTInputStream", "l": "readBoolean()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "readByte()"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTInputStream", "l": "readChar()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "readDouble()"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTInputStream", "l": "readFloat()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "readFully(byte[])"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "readFully(byte[], int, int)",
+    "u": "readFully(byte[],int,int)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTInputStream", "l": "readInt()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "readLE(File)",
+    "u": "readLE(java.io.File)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "readLE(File, boolean)",
+    "u": "readLE(java.io.File,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "readLE(String)",
+    "u": "readLE(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "readLE(String, boolean)",
+    "u": "readLE(java.lang.String,boolean)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTInputStream", "l": "readLine()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "readLong()"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTInputStream", "l": "readRawTag(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTInput",
+    "l": "readRawTag(int)"
+}, {"p": "net.querz.nbt.io", "c": "NBTInputStream", "l": "readRawTag(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "readShort()"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTInputStream", "l": "readTag(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTInput",
+    "l": "readTag(int)"
+}, {"p": "net.querz.nbt.io", "c": "NBTInputStream", "l": "readTag(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "readUnsignedByte()"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTInputStream", "l": "readUnsignedShort()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "readUTF()"
+}, {"p": "com.ultreon.bubbles.command", "c": "ShutdownCommand.Types", "l": "REBOOT"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "reduceTicks2Secs(byte, byte)",
+    "u": "reduceTicks2Secs(byte,byte)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "reduceTicks2Secs(double, double)",
+    "u": "reduceTicks2Secs(double,double)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "reduceTicks2Secs(float, float)",
+    "u": "reduceTicks2Secs(float,float)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "reduceTicks2Secs(int, int)",
+    "u": "reduceTicks2Secs(int,int)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "reduceTicks2Secs(long, long)",
+    "u": "reduceTicks2Secs(long,long)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "reduceTicks2Secs(short, short)",
+    "u": "reduceTicks2Secs(short,short)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "References",
+    "l": "References()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.save", "c": "SaveLoader", "l": "refresh()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier.Type",
+    "l": "register(Difficulty.Modifier.Type<T>)",
+    "u": "register(com.ultreon.bubbles.common.Difficulty.Modifier.Type)"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "TextureCollections",
+    "l": "register(GameEvents)",
+    "u": "register(com.ultreon.hydro.event.bus.GameEvents)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "LocaleManager",
+    "l": "register(Locale, LanguageMap)",
+    "u": "register(java.util.Locale,com.ultreon.bubbles.common.text.translation.LanguageMap)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "register(ModContainer)",
+    "u": "register(com.ultreon.bubbles.mod.ModContainer)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "register(ModInstance)",
+    "u": "register(com.ultreon.bubbles.common.mod.ModInstance)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "register(ModObject<?>)",
+    "u": "register(com.ultreon.bubbles.common.mod.ModObject)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "LocaleManager",
+    "l": "register(String)",
+    "u": "register(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "register(String, ModObject<?>)",
+    "u": "register(java.lang.String,com.ultreon.bubbles.common.mod.ModObject)"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "register(String, Supplier<T>)",
+    "u": "register(java.lang.String,java.util.function.Supplier)"
+}, {"p": "com.ultreon.bubbles.api.event", "c": "Event", "l": "register(T)"}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModManager",
+    "l": "registerMod(ModInstance)",
+    "u": "registerMod(com.ultreon.bubbles.common.mod.ModInstance)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "ModManager",
+    "l": "registerModObject(ModObject<? extends ModInstance>)",
+    "u": "registerModObject(com.ultreon.bubbles.common.mod.ModObject)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "Registers",
+    "l": "Registers()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "registerSpawnedEntity(Entity)",
+    "u": "registerSpawnedEntity(com.ultreon.bubbles.entity.Entity)"
+}, {"p": "com.ultreon.bubbles.registry", "c": "LocaleManager", "l": "registry"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "RegistryUtils",
+    "l": "RegistryUtils()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativePosition",
+    "l": "RelativePosition(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativePosition",
+    "l": "RelativePosition(Point2D)",
+    "u": "%3Cinit%3E(java.awt.geom.Point2D)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativeSize",
+    "l": "RelativeSize(DimensionDouble)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.util.position.util.DimensionDouble)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativeSize",
+    "l": "RelativeSize(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion.TYPE",
+    "l": "RELEASE"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "reload()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityContainer",
+    "l": "remove(AbilityType<? extends Ability<?>>)",
+    "u": "remove(com.ultreon.bubbles.entity.player.ability.AbilityType)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioPlayer",
+    "l": "remove(AudioSlot)",
+    "u": "remove(com.ultreon.bubbles.media.AudioSlot)"
+}, {
+    "p": "com.ultreon.bubbles.entity.bubble",
+    "c": "DynamicPartitions",
+    "l": "remove(int)"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioPlayer", "l": "remove(int)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "remove(int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QContainer",
+    "l": "remove(QComponent)",
+    "u": "remove(com.ultreon.bubbles.render.gui.QComponent)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollPane",
+    "l": "remove(QComponent)",
+    "u": "remove(com.ultreon.bubbles.render.gui.QComponent)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "remove(String)",
+    "u": "remove(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QContainer",
+    "l": "removeComponent(int)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "removeEffect(StatusEffectInstance)",
+    "u": "removeEffect(com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "removeEntity(Entity)",
+    "u": "removeEntity(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "removeGameStateActive(GameEvent)",
+    "u": "removeGameStateActive(com.ultreon.bubbles.common.gamestate.GameEvent)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioPlayer",
+    "l": "removeIf(Predicate<AudioSlot>)",
+    "u": "removeIf(java.util.function.Predicate)"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "IInventory",
+    "l": "removeItem(int)"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "PlayerInventory",
+    "l": "removeItem(int)"
+}, {
+    "p": "com.ultreon.bubbles.core.handler",
+    "c": "Handler",
+    "l": "removeObject(Entity)",
+    "u": "removeObject(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioPlayer",
+    "l": "removePlaying()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "removeStateDifficultyModifier(GameEvent)",
+    "u": "removeStateDifficultyModifier(com.ultreon.bubbles.common.gamestate.GameEvent)"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioPlayer", "l": "removeStopped()"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "removeStrength()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "removeStrength(byte)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "removeTime(long)"
+}, {"p": "com.ultreon.bubbles.core.handler", "c": "Handler", "l": "render()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "render(BubbleBlaster, Renderer)",
+    "u": "render(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CommandScreen",
+    "l": "render(BubbleBlaster, Renderer)",
+    "u": "render(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "GameOverScreen",
+    "l": "render(BubbleBlaster, Renderer)",
+    "u": "render(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LanguageScreen",
+    "l": "render(BubbleBlaster, Renderer)",
+    "u": "render(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "render(BubbleBlaster, Renderer)",
+    "u": "render(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "TitleScreen",
+    "l": "render(BubbleBlaster, Renderer)",
+    "u": "render(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CommandScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CrashScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "GameOverScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LanguageScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "MessageScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "PauseScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SaveLoadingScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SavesScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "TitleScreen",
+    "l": "render(Game, Renderer)",
+    "u": "render(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui.view",
+    "c": "ScrollView",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "HUD",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.common.renderer",
+    "c": "IRenderer",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "EnvironmentRenderer",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput.NumberInputButton",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QPanel",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollBar",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollPane",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton",
+    "l": "render(Renderer)",
+    "u": "render(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "AmmoType",
+    "l": "render(Renderer, AmmoEntity)",
+    "u": "render(com.ultreon.hydro.render.Renderer,com.ultreon.bubbles.entity.AmmoEntity)"
+}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "BasicAmmoType",
+    "l": "render(Renderer, AmmoEntity)",
+    "u": "render(com.ultreon.hydro.render.Renderer,com.ultreon.bubbles.entity.AmmoEntity)"
+}, {
+    "p": "com.ultreon.bubbles.common.gamestate",
+    "c": "GameEvent",
+    "l": "renderBackground(BubbleBlaster, Renderer)",
+    "u": "renderBackground(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "renderBackground(BubbleBlaster, Renderer)",
+    "u": "renderBackground(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SavesScreen",
+    "l": "renderBackground(BubbleBlaster, Renderer)",
+    "u": "renderBackground(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LanguageScreen",
+    "l": "renderBackground(Renderer)",
+    "u": "renderBackground(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "renderComponent(Renderer)",
+    "u": "renderComponent(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "renderComponent(Renderer)",
+    "u": "renderComponent(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QPanel",
+    "l": "renderComponent(Renderer)",
+    "u": "renderComponent(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollBar",
+    "l": "renderComponent(Renderer)",
+    "u": "renderComponent(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollPane",
+    "l": "renderComponent(Renderer)",
+    "u": "renderComponent(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "renderComponent(Renderer)",
+    "u": "renderComponent(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QContainer",
+    "l": "renderComponents(Renderer)",
+    "u": "renderComponents(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QPanel",
+    "l": "renderComponents(Renderer)",
+    "u": "renderComponents(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollPane",
+    "l": "renderComponents(Renderer)",
+    "u": "renderComponents(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "renderComponents(Renderer)",
+    "u": "renderComponents(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "GameOverScreen",
+    "l": "renderGUI(BubbleBlaster, Renderer)",
+    "u": "renderGUI(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LanguageScreen",
+    "l": "renderGUI(BubbleBlaster, Renderer)",
+    "u": "renderGUI(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "renderGUI(BubbleBlaster, Renderer)",
+    "u": "renderGUI(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "TitleScreen",
+    "l": "renderGUI(BubbleBlaster, Renderer)",
+    "u": "renderGUI(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "CrashScreen",
+    "l": "renderGUI(Game, Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "GameOverScreen",
+    "l": "renderGUI(Game, Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LanguageScreen",
+    "l": "renderGUI(Game, Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "renderGUI(Game, Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "OptionsScreen",
+    "l": "renderGUI(Game, Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SaveLoadingScreen",
+    "l": "renderGUI(Game, Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SavesScreen",
+    "l": "renderGUI(Game, Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "TitleScreen",
+    "l": "renderGUI(Game, Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.Game,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "renderGUI(Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "renderGUI(Renderer)",
+    "u": "renderGUI(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "renderHUD(BubbleBlaster, Renderer)",
+    "u": "renderHUD(com.ultreon.bubbles.BubbleBlaster,com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "renderHUD(Renderer)",
+    "u": "renderHUD(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "renderHUD(Renderer)",
+    "u": "renderHUD(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.gametype.hud",
+    "c": "ClassicHUD",
+    "l": "renderHUD(Renderer)",
+    "u": "renderHUD(com.ultreon.hydro.render.Renderer)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "repair(SavedGame)",
+    "u": "repair(com.ultreon.bubbles.save.SavedGame)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "repair(SavedGame)",
+    "u": "repair(com.ultreon.bubbles.save.SavedGame)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "replaceWith(Map<String, String>)",
+    "u": "replaceWith(java.util.Map)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "resetSeed()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "restoreDamage(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "restoreDamage(float)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "restrict(VersionRange)",
+    "u": "restrict(com.ultreon.bubbles.common.versioning.VersionRange)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "Restriction(ArtifactVersion, boolean, ArtifactVersion, boolean)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.versioning.ArtifactVersion,boolean,com.ultreon.bubbles.common.versioning.ArtifactVersion,boolean)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "Scanner.Result",
+    "l": "Result(Scanner, HashMap<Class<? extends Annotation>, ArrayList<Class<?>>>)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.mod.loader.Scanner,java.util.HashMap)"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "RelativeAnchor",
+    "l": "RIGHT"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "right(boolean)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "rng"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "Rng",
+    "l": "Rng(PseudoRandom, int, int)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.common.random.PseudoRandom,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "rngIndex"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "rngTypes"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "root(int, int)",
+    "u": "root(int,int)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "rotateDelta(int)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "rotation"}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "MathHelper",
+    "l": "round(double, int)",
+    "u": "round(double,int)"
+}, {"p": "com.ultreon.bubbles", "c": "LoadedGame", "l": "run()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "LoadScreen",
+    "l": "run()"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "runLater(Runnable)",
+    "u": "runLater(java.lang.Runnable)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "RuntimeError",
+    "l": "RuntimeError()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.settings", "c": "GameSettings", "l": "save()"}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "saveData"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "SaveData",
+    "l": "SaveData()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "savedGame"
+}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "SavedGame(File)",
+    "u": "%3Cinit%3E(java.io.File)"
+}, {
+    "p": "com.ultreon.bubbles.save",
+    "c": "SavedGame",
+    "l": "SavedGame(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SaveLoadingScreen",
+    "l": "SaveLoadingScreen(SavedGame)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.save.SavedGame)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SaveLoadingScreen",
+    "l": "SaveLoadingScreen(SavedGame, Supplier<AbstractGameType>)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.save.SavedGame,java.util.function.Supplier)"
+}, {"p": "com.ultreon.bubbles.common", "c": "References", "l": "SAVES_DIR"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "SavesScreen",
+    "l": "SavesScreen(Screen)",
+    "u": "%3Cinit%3E(com.ultreon.hydro.screen.Screen)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "scale"}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "scan()"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GameClassLoader",
+    "l": "scan(String)",
+    "u": "scan(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "Scanner",
+    "l": "scanJar(LoadScreen)",
+    "u": "scanJar(com.ultreon.bubbles.screen.LoadScreen)"
+}, {
+    "p": "com.ultreon.bubbles.mod.loader",
+    "c": "Scanner",
+    "l": "Scanner(File, ClassLoader)",
+    "u": "%3Cinit%3E(java.io.File,java.lang.ClassLoader)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "SceneParameterCountError",
+    "l": "SceneParameterCountError(int, int)",
+    "u": "%3Cinit%3E(int,int)"
+}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "Modifier",
+    "l": "SCORE"
+}, {
+    "p": "com.ultreon.bubbles.entity.attribute",
+    "c": "Attribute",
+    "l": "SCORE_MULTIPLIER"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "score(float)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ScoreCommand",
+    "l": "ScoreCommand()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "screen"
+}, {
+    "p": "com.ultreon.bubbles.render.gui.view",
+    "c": "ScrollView",
+    "l": "ScrollView(Screen, Rectangle, Rectangle)",
+    "u": "%3Cinit%3E(com.ultreon.hydro.screen.Screen,com.ultreon.hydro.screen.gui.Rectangle,com.ultreon.hydro.screen.gui.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "seed"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "sendMessage(String)",
+    "u": "sendMessage(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "Translation",
+    "l": "set(int, Object)",
+    "u": "set(int,java.lang.Object)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "set(int, T)",
+    "u": "set(int,T)"
+}, {
+    "p": "com.ultreon.bubbles.common.setable",
+    "c": "SetableNamespace",
+    "l": "SetableNamespace(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "setAccelerateX(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "setAccelerateY(double)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "setAll(AttributeMap)",
+    "u": "setAll(com.ultreon.bubbles.common.AttributeMap)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "setAmmoType(AmmoType)",
+    "u": "setAmmoType(com.ultreon.bubbles.entity.ammo.AmmoType)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentagePosition",
+    "l": "setAnchor(RelativeAnchor)",
+    "u": "setAnchor(com.ultreon.bubbles.util.position.util.RelativeAnchor)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "setAnchor(RelativeAnchor)",
+    "u": "setAnchor(com.ultreon.bubbles.util.position.util.RelativeAnchor)"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "setAntialiasEnabled(boolean)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setAttack(float)"
+}, {
+    "p": "com.ultreon.bubbles.entity.meta",
+    "c": "MetaData",
+    "l": "setAttribute(Attribute, T)",
+    "u": "setAttribute(com.ultreon.bubbles.entity.attribute.Attribute,T)"
+}, {
+    "p": "com.ultreon.bubbles.common.gamestate",
+    "c": "GameEvent",
+    "l": "setBackgroundColor(Color)",
+    "u": "setBackgroundColor(java.awt.Color)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "setBackgroundColor(Color)",
+    "u": "setBackgroundColor(java.awt.Color)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "setBase(Attribute, float)",
+    "u": "setBase(com.ultreon.bubbles.entity.attribute.Attribute,float)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setBounceAmount(float)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "setBounceAmount(float)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "setBounds(Rectangle)",
+    "u": "setBounds(java.awt.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "setBubbleRandomizer(BubbleRandomizer)",
+    "u": "setBubbleRandomizer(com.ultreon.bubbles.common.random.BubbleRandomizer)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "setBubbleType(AbstractBubble)",
+    "u": "setBubbleType(com.ultreon.bubbles.bubble.AbstractBubble)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setColors(Color[])",
+    "u": "setColors(java.awt.Color[])"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "setCommand(Command)",
+    "u": "setCommand(com.ultreon.bubbles.command.Command)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton",
+    "l": "setCommand(Runnable)",
+    "u": "setCommand(java.lang.Runnable)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "setCommand(Runnable)",
+    "u": "setCommand(java.lang.Runnable)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton",
+    "l": "setCommand(Runnable)",
+    "u": "setCommand(java.lang.Runnable)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentagePosition",
+    "l": "setComponent(Component)",
+    "u": "setComponent(java.awt.Component)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentageSize",
+    "l": "setComponent(Component)",
+    "u": "setComponent(java.awt.Component)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "setComponent(Component)",
+    "u": "setComponent(java.awt.Component)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativeSize",
+    "l": "setComponent(Component)",
+    "u": "setComponent(java.awt.Component)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "setCooldown(int)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityContainer",
+    "l": "setCurrent(AbilityType<? extends Ability<?>>)",
+    "u": "setCurrent(com.ultreon.bubbles.entity.player.ability.AbilityType)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "setCurrentAmmo(AmmoType)",
+    "u": "setCurrentAmmo(com.ultreon.bubbles.entity.ammo.AmmoType)"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "setCurrentGameEvent(GameEvent)",
+    "u": "setCurrentGameEvent(com.ultreon.bubbles.common.gamestate.GameEvent)"
+}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "Util",
+    "l": "setCursor(Cursor)",
+    "u": "setCursor(java.awt.Cursor)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "setDamageValue(float)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "setDamageValue(float)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setDefense(float)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "MessageScreen",
+    "l": "setDescription(String)",
+    "u": "setDescription(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "setDifficulty(Difficulty)",
+    "u": "setDifficulty(com.ultreon.bubbles.common.Difficulty)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setEffect(AbstractBubble.BubbleEffectCallback)",
+    "u": "setEffect(com.ultreon.bubbles.bubble.AbstractBubble.BubbleEffectCallback)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "setEffectApplied(boolean)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "setEndTime(long)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "setEnvironment(Environment)",
+    "u": "setEnvironment(com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "setForegroundColor(Color)",
+    "u": "setForegroundColor(java.awt.Color)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QFormula",
+    "l": "setFormula(IFormula)",
+    "u": "setFormula(com.ultreon.bubbles.render.gui.IFormula)"
+}, {
+    "p": "com.ultreon.bubbles.gametype.hud",
+    "c": "ClassicHUD",
+    "l": "setGameOver()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "setGlobalBubbleFreeze(boolean)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "setGlobalBubbleSpeedModifier(double)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setHardness(double)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QDimension",
+    "l": "setHeight(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "Size",
+    "l": "setHeight(double)"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QComponent", "l": "setHeight(int)"}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "GlobalSaveData",
+    "l": "setHighScore(double, long)",
+    "u": "setHighScore(double,long)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui.view",
+    "c": "ScrollView",
+    "l": "setInnerBounds(Rectangle)",
+    "u": "setInnerBounds(com.ultreon.hydro.screen.gui.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.entity.meta",
+    "c": "MetaData",
+    "l": "setInvulnerable(boolean)"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "IInventory",
+    "l": "setItem(int, Item)",
+    "u": "setItem(int,com.ultreon.bubbles.item.Item)"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "PlayerInventory",
+    "l": "setItem(int, Item)",
+    "u": "setItem(int,com.ultreon.bubbles.item.Item)"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "setLanguage(Locale)",
+    "u": "setLanguage(java.util.Locale)"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "setLanguage(String)",
+    "u": "setLanguage(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "setLevel(int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "setLocation(Point)",
+    "u": "setLocation(java.awt.Point)"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GlobalExceptionHandler",
+    "l": "setLogger(Logger)",
+    "u": "setLogger(org.apache.logging.log4j.Logger)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "setMax(int)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "setMaxBubbles(int)"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "setMaxBubbles(int)"
+}, {"p": "com.ultreon.bubbles.media", "c": "AudioPlayer", "l": "setMaximal(int)"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setMaxRadius(int)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setMaxSpeed(double)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "setMin(int)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setMinRadius(int)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setMinSpeed(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.meta",
+    "c": "MetaData",
+    "l": "setModifier(Modifier, double)",
+    "u": "setModifier(com.ultreon.bubbles.entity.modifier.Modifier,double)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "setMotionEnabled(boolean)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "setMute(double)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "setName(String)",
+    "u": "setName(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NamedTag",
+    "l": "setName(String)",
+    "u": "setName(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.interfaces",
+    "c": "NamespaceHolder",
+    "l": "setNamespace(String)",
+    "u": "setNamespace(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "ModObject",
+    "l": "setNamespace(String)",
+    "u": "setNamespace(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Namespace",
+    "l": "setNamespace(String)",
+    "u": "setNamespace(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.setable",
+    "c": "SetableNamespace",
+    "l": "setNamespace(String)",
+    "u": "setNamespace(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui.view",
+    "c": "ScrollView",
+    "l": "setOuterBounds(Rectangle)",
+    "u": "setOuterBounds(com.ultreon.hydro.screen.gui.Rectangle)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "setPercentHeight(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "setPercentWidth(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "setPercentX(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "setPercentY(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "setPos(Point)",
+    "u": "setPos(java.awt.Point)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setPriority(double)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "setRadius(int)"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setRadius(IntRange)",
+    "u": "setRadius(org.apache.commons.lang.math.IntRange)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setRarity(int)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "setRawHeight(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "setRawWidth(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "setRawX(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "setRawY(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "setReason(EntitySpawnData.SpawnReason)",
+    "u": "setReason(com.ultreon.bubbles.entity.EntitySpawnData.SpawnReason)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativeSize",
+    "l": "setRelHeight(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativeSize",
+    "l": "setRelHeight(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativeSize",
+    "l": "setRelWidth(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativeSize",
+    "l": "setRelWidth(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "setRelX(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativePosition",
+    "l": "setRelX(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "setRelY(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativePosition",
+    "l": "setRelY(double)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "setRemainingTime(long)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "setResultScore(long)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "setRotation(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "setRotation(double)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "setRotation(int)"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "setScale(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "setScale(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "setScore(double)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setScore(float)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(BigDecimal)",
+    "u": "setSeed(java.math.BigDecimal)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(BigInteger)",
+    "u": "setSeed(java.math.BigInteger)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(byte)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(byte[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(ByteBuf)",
+    "u": "setSeed(org.bson.ByteBuf)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(ByteBuffer)",
+    "u": "setSeed(java.nio.ByteBuffer)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(char[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(InputStream)",
+    "u": "setSeed(java.io.InputStream)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(int)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(long)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(Object)",
+    "u": "setSeed(java.lang.Object)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(Object[])",
+    "u": "setSeed(java.lang.Object[])"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(short)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(String)",
+    "u": "setSeed(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.random",
+    "c": "PseudoRandom",
+    "l": "setSeed(Thread)",
+    "u": "setSeed(java.lang.Thread)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "setSize(Dimension)",
+    "u": "setSize(java.awt.Dimension)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QDimension",
+    "l": "setSize(double, double)",
+    "u": "setSize(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "Size",
+    "l": "setSize(double, double)",
+    "u": "setSize(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "DimensionDouble",
+    "l": "setSize(double, double)",
+    "u": "setSize(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QDimension",
+    "l": "setSize(QDimension)",
+    "u": "setSize(com.ultreon.bubbles.render.gui.QDimension)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "setSpeed(double)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "setSpeed(double)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble",
+    "l": "setSpeed(DoubleRange)",
+    "u": "setSpeed(org.apache.commons.lang.math.DoubleRange)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.common.interfaces",
+    "c": "StateHolder",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "Item",
+    "l": "setState(BsonDocument)",
+    "u": "setState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "setStateDifficultyModifier(GameEvent, float)",
+    "u": "setStateDifficultyModifier(com.ultreon.bubbles.common.gamestate.GameEvent,float)"
+}, {"p": "com.ultreon.bubbles.effect", "c": "StatusEffectInstance", "l": "setStrength(byte)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "NamedTag",
+    "l": "setTag(Tag<?>)",
+    "u": "setTag(net.querz.nbt.tag.Tag)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton",
+    "l": "setText(String)",
+    "u": "setText(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "setText(String)",
+    "u": "setText(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "setText(String)",
+    "u": "setText(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton",
+    "l": "setText(String)",
+    "u": "setText(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "setText(String)",
+    "u": "setText(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton",
+    "l": "setText(String)",
+    "u": "setText(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.settings",
+    "c": "GameSettings",
+    "l": "setTextAntialiasEnabled(boolean)"
+}, {"p": "com.ultreon.bubbles.common", "c": "References", "l": "SETTINGS_FILE"}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "Item",
+    "l": "setType(ItemType)",
+    "u": "setType(com.ultreon.bubbles.item.ItemType)"
+}, {"p": "net.querz.nbt.tag", "c": "ByteTag", "l": "setValue(byte)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "DoubleTag",
+    "l": "setValue(double)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "FloatTag",
+    "l": "setValue(float)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "setValue(int)"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "OptionsNumberInput", "l": "setValue(int)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntTag",
+    "l": "setValue(int)"
+}, {"p": "net.querz.nbt.tag", "c": "LongTag", "l": "setValue(long)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ShortTag",
+    "l": "setValue(short)"
+}, {
+    "p": "net.querz.nbt.tag",
+    "c": "StringTag",
+    "l": "setValue(String)",
+    "u": "setValue(java.lang.String)"
+}, {"p": "net.querz.nbt.tag", "c": "ArrayTag", "l": "setValue(T)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "Tag",
+    "l": "setValue(T)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "setVelocity(double, double)",
+    "u": "setVelocity(double,double)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "setVelX(double)"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "setVelY(double)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollPane",
+    "l": "setViewport(QViewport)",
+    "u": "setViewport(com.ultreon.bubbles.render.gui.QViewport)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "setViewportLocation(Point)",
+    "u": "setViewportLocation(java.awt.Point)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "setViewportSize(Dimension)",
+    "u": "setViewportSize(java.awt.Dimension)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "setVisualX(Integer)",
+    "u": "setVisualX(java.lang.Integer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "setVisualX(Integer)",
+    "u": "setVisualX(java.lang.Integer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "setVisualY(Integer)",
+    "u": "setVisualY(java.lang.Integer)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "setVisualY(Integer)",
+    "u": "setVisualY(java.lang.Integer)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "setVolume(double)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QDimension",
+    "l": "setWidth(double)"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "Size",
+    "l": "setWidth(double)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "setWidth(int)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "setWrapped(boolean)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "setX(float)"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "setX(int)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "setY(float)"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QComponent",
+    "l": "setY(int)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "shape"}, {
+    "p": "com.ultreon.bubbles.api.event.keyboard",
+    "c": "KeyboardModifiers",
+    "l": "shift()"
+}, {
+    "p": "com.ultreon.bubbles.datapack",
+    "c": "ShopItemData",
+    "l": "ShopItemData()",
+    "u": "%3Cinit%3E()"
+}, {"p": "net.querz.nbt.tag", "c": "ShortTag", "l": "ShortTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ShortTag",
+    "l": "ShortTag(short)",
+    "u": "%3Cinit%3E(short)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "showScreen(Screen)",
+    "u": "showScreen(com.ultreon.hydro.screen.Screen)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "showScreen(Screen, boolean)",
+    "u": "showScreen(com.ultreon.hydro.screen.Screen,boolean)"
+}, {"p": "com.ultreon.bubbles.command", "c": "ShutdownCommand.Types", "l": "SHUTDOWN"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "shutdown()"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ShutdownCommand",
+    "l": "ShutdownCommand()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "IInventory",
+    "l": "size()"
+}, {"p": "com.ultreon.bubbles.item.inventory", "c": "PlayerInventory", "l": "size()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "StringPointer",
+    "l": "size()"
+}, {"p": "net.querz.nbt.tag", "c": "CompoundTag", "l": "size()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "size()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "Size",
+    "l": "Size(double, double)",
+    "u": "%3Cinit%3E(double,double)"
+}, {"p": "net.querz.nbt.io", "c": "StringPointer", "l": "skip(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTInputStream",
+    "l": "skipBytes(int)"
+}, {"p": "net.querz.nbt.io", "c": "StringPointer", "l": "skipWhitespace()"}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ShutdownCommand.Types",
+    "l": "SLEEP"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTDeserializer",
+    "l": "SNBTDeserializer()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTParser",
+    "l": "SNBTParser(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTSerializer",
+    "l": "SNBTSerializer()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTUtil",
+    "l": "SNBTUtil()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "SystemEnum", "l": "SOLARIS"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ListTag",
+    "l": "sort(Comparator<T>)",
+    "u": "sort(java.util.Comparator)"
+}, {"p": "com.ultreon.bubbles.util.python.os", "c": "Path", "l": "SPACE"}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "spawn(Entity, Point)",
+    "u": "spawn(com.ultreon.bubbles.entity.Entity,java.awt.Point)"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "spawn(EntityType<?>)",
+    "u": "spawn(com.ultreon.bubbles.entity.types.EntityType)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "SpawnCommand",
+    "l": "SpawnCommand()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.environment",
+    "c": "Environment",
+    "l": "spawnEntityFromState(BsonDocument)",
+    "u": "spawnEntityFromState(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity.spawn",
+    "c": "Spawner",
+    "l": "Spawner()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "spawnerThread()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "AbstractBubbleEntity", "l": "speed"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "speed"
+}, {"p": "com.ultreon.bubbles.entity.attribute", "c": "Attribute", "l": "SPEED"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Effects",
+    "l": "SPEED_BOOST"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "SPEED_BOOST_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "speed(double, double)",
+    "u": "speed(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "AbstractBubble.Builder",
+    "l": "speed(DoubleRange)",
+    "u": "speed(org.apache.commons.lang.math.DoubleRange)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "SpeedBoostBubble",
+    "l": "SpeedBoostBubble()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "SpeedBoostEffect",
+    "l": "SpeedBoostEffect()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "ANSI",
+    "l": "START_CODE"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "start()"
+}, {"p": "com.ultreon.bubbles.environment", "c": "Environment", "l": "start()"}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "start()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "start(Entity)",
+    "u": "start(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "BubbleBlaster",
+    "l": "start(Window)",
+    "u": "start(com.ultreon.hydro.screen.gui.Window)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "startLoading()"}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "StatusEffect()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "StatusEffectInstance(StatusEffect, long, int)",
+    "u": "%3Cinit%3E(com.ultreon.bubbles.effect.StatusEffect,long,int)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "stop()"}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioSlot",
+    "l": "stop()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "stop(Entity)",
+    "u": "stop(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.media",
+    "c": "AudioPlayer",
+    "l": "stopAll()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "stopBloodMoon()"
+}, {
+    "p": "com.ultreon.bubbles.data",
+    "c": "DataManager",
+    "l": "storeEntity(Entity)",
+    "u": "storeEntity(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "StringPointer",
+    "l": "StringPointer(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {"p": "net.querz.nbt.tag", "c": "StringTag", "l": "StringTag()", "u": "%3Cinit%3E()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "StringTag",
+    "l": "StringTag(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "subtractScore(long)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "subtractValue(int)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "SUCCESS"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "success(String)",
+    "u": "success(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "SvgHelper",
+    "l": "SvgHelper(SVGDocument)",
+    "u": "%3Cinit%3E(org.w3c.dom.svg.SVGDocument)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "SvgHelper",
+    "l": "SvgHelper(URL)",
+    "u": "%3Cinit%3E(java.net.URL)"
+}, {
+    "p": "com.ultreon.bubbles.util.helpers",
+    "c": "SvgHelper",
+    "l": "SvgHelper(URL, InputStream)",
+    "u": "%3Cinit%3E(java.net.URL,java.io.InputStream)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ScoreCommand",
+    "l": "tabComplete(String[])",
+    "u": "tabComplete(java.lang.String[])"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "TabHandler",
+    "l": "tabComplete(String[])",
+    "u": "tabComplete(java.lang.String[])"
+}, {"p": "net.querz.nbt.tag", "c": "Tag", "l": "Tag(T)", "u": "%3Cinit%3E(T)"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Abilities",
+    "l": "TELEPORT_ABILITY"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "teleport(double, double)",
+    "u": "teleport(double,double)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "teleport(Point2D)",
+    "u": "teleport(java.awt.geom.Point2D)"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "TeleportAbility()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "TeleportCommand",
+    "l": "TeleportCommand()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "OptionsButton", "l": "text"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "text"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "CrashButton.Builder",
+    "l": "text(String)",
+    "u": "text(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton.Builder",
+    "l": "text(String)",
+    "u": "text(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry.Builder",
+    "l": "text(String)",
+    "u": "text(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "PauseButton.Builder",
+    "l": "text(String)",
+    "u": "text(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton.Builder",
+    "l": "text(String)",
+    "u": "text(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "Registers",
+    "l": "TEXTURE_COLLECTIONS"
+}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "TextureCollections",
+    "l": "TextureCollections()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "tick()"
+}, {"p": "com.ultreon.bubbles.common.gametype", "c": "HUD", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles.core.handler",
+    "c": "Handler",
+    "l": "tick()"
+}, {"p": "com.ultreon.bubbles.environment", "c": "Environment", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles.gametype",
+    "c": "ClassicType",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.gametype.hud",
+    "c": "ClassicHUD",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.item.inventory",
+    "c": "IInventory",
+    "l": "tick()"
+}, {"p": "com.ultreon.bubbles.item.inventory", "c": "PlayerInventory", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles.item",
+    "c": "Item",
+    "l": "tick()"
+}, {"p": "com.ultreon.bubbles.item", "c": "ItemType", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsTextEntry",
+    "l": "tick()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QComponent", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QLabel",
+    "l": "tick()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QPanel", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QScrollBar",
+    "l": "tick()"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QScrollPane", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "QViewport",
+    "l": "tick()"
+}, {"p": "com.ultreon.bubbles.screen", "c": "LoadScreen", "l": "tick()"}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "TitleScreen",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentagePosition",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetPercentageSize",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativePosition",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "AWTWidgetRelativeSize",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentagePosition",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "PercentageSize",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativePosition",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.util.position",
+    "c": "RelativeSize",
+    "l": "tick()"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "tick(AbstractGameType)",
+    "u": "tick(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsNumberInput.NumberInputButton",
+    "l": "tick(AbstractGameType)",
+    "u": "tick(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton",
+    "l": "tick(AbstractGameType)",
+    "u": "tick(com.ultreon.bubbles.common.gametype.AbstractGameType)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "tick(Entity)",
+    "u": "tick(com.ultreon.bubbles.entity.Entity)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "tick(Entity, StatusEffectInstance)",
+    "u": "tick(com.ultreon.bubbles.entity.Entity,com.ultreon.bubbles.effect.StatusEffectInstance)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "tick(Environment)",
+    "u": "tick(com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "BubbleEntity",
+    "l": "tick(Environment)",
+    "u": "tick(com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "tick(Environment)",
+    "u": "tick(com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "tick(Environment)",
+    "u": "tick(com.ultreon.bubbles.environment.Environment)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "TypeTickable",
+    "l": "tick(T)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "ticks"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "TitleButton",
+    "l": "TitleButton(int, int, int, int)",
+    "u": "%3Cinit%3E(int,int,int,int)"
+}, {
+    "p": "com.ultreon.bubbles.screen",
+    "c": "TitleScreen",
+    "l": "TitleScreen()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "toAdvancedString()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "toAdvancedString()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "toAdvancedString()"}, {
+    "p": "net.querz.io",
+    "c": "Serializer",
+    "l": "toBytes(T)"
+}, {
+    "p": "net.querz.io",
+    "c": "Serializer",
+    "l": "toFile(T, File)",
+    "u": "toFile(T,java.io.File)"
+}, {
+    "p": "net.querz.io",
+    "c": "StringSerializer",
+    "l": "toFile(T, File)",
+    "u": "toFile(T,java.io.File)"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "RelativeAnchor",
+    "l": "TOP"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AbstractBubbleEntity",
+    "l": "toSimpleString()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "DamageableEntity",
+    "l": "toSimpleString()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "toSimpleString()"}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTUtil",
+    "l": "toSNBT(Tag<?>)",
+    "u": "toSNBT(net.querz.nbt.tag.Tag)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTSerializer",
+    "l": "toStream(NamedTag, OutputStream)",
+    "u": "toStream(net.querz.nbt.io.NamedTag,java.io.OutputStream)"
+}, {
+    "p": "net.querz.io",
+    "c": "Serializer",
+    "l": "toStream(T, OutputStream)",
+    "u": "toStream(T,java.io.OutputStream)"
+}, {
+    "p": "net.querz.io",
+    "c": "StringSerializer",
+    "l": "toStream(T, OutputStream)",
+    "u": "toStream(T,java.io.OutputStream)"
+}, {
+    "p": "com.ultreon.bubbles.api.event.keyboard",
+    "c": "KeyboardModifiers",
+    "l": "toString()"
+}, {"p": "com.ultreon.bubbles.bubble", "c": "AbstractBubble", "l": "toString()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier.Type",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common.gamestate",
+    "c": "GameEvent",
+    "l": "toString()"
+}, {"p": "com.ultreon.bubbles.common", "c": "Namespace", "l": "toString()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "NamespacedKey",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "Translation",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "AbstractVersion",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "ComparableVersion",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "DefaultArtifactVersion",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "VersionRange",
+    "l": "toString()"
+}, {"p": "com.ultreon.bubbles.effect", "c": "StatusEffect", "l": "toString()"}, {
+    "p": "com.ultreon.bubbles.entity.ammo",
+    "c": "AmmoType",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "ModifierType",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "AbilityType",
+    "l": "toString()"
+}, {
+    "p": "com.ultreon.bubbles.entity.types",
+    "c": "EntityType",
+    "l": "toString()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "SystemEnum", "l": "toString()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "Tag",
+    "l": "toString()"
+}, {"p": "net.querz.nbt.tag", "c": "Tag", "l": "toString(int)"}, {
+    "p": "net.querz.io",
+    "c": "StringSerializer",
+    "l": "toString(T)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "Restriction",
+    "l": "toStringFriendly()"
+}, {"p": "com.ultreon.bubbles.common.versioning", "c": "VersionRange", "l": "toStringFriendly()"}, {
+    "p": "net.querz.io",
+    "c": "StringSerializer",
+    "l": "toWriter(T, Writer)",
+    "u": "toWriter(T,java.io.Writer)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTSerializer",
+    "l": "toWriter(Tag<?>, Writer)",
+    "u": "toWriter(net.querz.nbt.tag.Tag,java.io.Writer)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTSerializer",
+    "l": "toWriter(Tag<?>, Writer, int)",
+    "u": "toWriter(net.querz.nbt.tag.Tag,java.io.Writer,int)"
+}, {"p": "com.ultreon.bubbles", "c": "BubbleBlaster", "l": "TPS"}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "translateKey(String)",
+    "u": "translateKey(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "LanguageMap",
+    "l": "translateKeyFormat(String, Object...)",
+    "u": "translateKeyFormat(java.lang.String,java.lang.Object...)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "I18n",
+    "l": "translateToFallback(String)",
+    "u": "translateToFallback(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "I18n",
+    "l": "translateToFallbackFormatted(String, Object...)",
+    "u": "translateToFallbackFormatted(java.lang.String,java.lang.Object...)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "I18n",
+    "l": "translateToLocal(String)",
+    "u": "translateToLocal(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "I18n",
+    "l": "translateToLocalFormatted(String, Object...)",
+    "u": "translateToLocalFormatted(java.lang.String,java.lang.Object...)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.translation",
+    "c": "Translation",
+    "l": "Translation(String, Object...)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Object...)"
+}, {
+    "p": "com.ultreon.bubbles.common.text.components",
+    "c": "TranslationTextComponent",
+    "l": "TranslationTextComponent()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "trigger(AbilityTrigger)",
+    "u": "trigger(com.ultreon.bubbles.entity.player.ability.AbilityTrigger)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "trigger(AbilityTrigger)",
+    "u": "trigger(com.ultreon.bubbles.entity.player.ability.AbilityTrigger)"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "triggerBloodMoon()"
+}, {
+    "p": "com.ultreon.bubbles.ability",
+    "c": "TeleportAbility",
+    "l": "triggerEntity()"
+}, {
+    "p": "com.ultreon.bubbles.entity.player.ability",
+    "c": "Ability",
+    "l": "triggerEntity()"
+}, {
+    "p": "com.ultreon.bubbles.common.gametype",
+    "c": "AbstractGameType",
+    "l": "triggerGameOver()"
+}, {"p": "com.ultreon.bubbles.gametype", "c": "ClassicType", "l": "triggerGameOver()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "triggerGameOver()"
+}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "triggerMessage(String)",
+    "u": "triggerMessage(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity.player",
+    "c": "PlayerEntity",
+    "l": "triggerReflect(Point2D, double)",
+    "u": "triggerReflect(java.awt.geom.Point2D,double)"
+}, {"p": "com.ultreon.bubbles.init", "c": "Bubbles", "l": "TRIPLE_BUBBLE"}, {
+    "p": "com.ultreon.bubbles.init",
+    "c": "Bubbles",
+    "l": "TRIPLE_STATE_BUBBLE"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "TripleStateBubble",
+    "l": "TripleStateBubble()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "type"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier.Type",
+    "l": "type()"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier.Type",
+    "l": "Type(Class<T>)",
+    "u": "%3Cinit%3E(java.lang.Class)"
+}, {
+    "p": "com.ultreon.bubbles.bubble",
+    "c": "UltraBubble",
+    "l": "UltraBubble()",
+    "u": "%3Cinit%3E()"
+}, {"p": "com.ultreon.bubbles.common", "c": "Listener", "l": "unbindEvents()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "AmmoEntity",
+    "l": "unbindEvents()"
+}, {"p": "com.ultreon.bubbles.entity", "c": "BubbleEntity", "l": "unbindEvents()"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "unbindEvents()"
+}, {"p": "com.ultreon.bubbles.entity.player", "c": "PlayerEntity", "l": "unbindEvents()"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "unbindEvents()"
+}, {
+    "p": "com.ultreon.bubbles.core",
+    "c": "GlobalExceptionHandler",
+    "l": "uncaughtException(Thread, Throwable)",
+    "u": "uncaughtException(java.lang.Thread,java.lang.Throwable)"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "SystemEnum", "l": "UNIX"}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "SystemEnum",
+    "l": "UNKNOWN"
+}, {"p": "com.ultreon.bubbles.entity.damage", "c": "DamageSourceType", "l": "UNKNOWN"}, {
+    "p": "com.ultreon.bubbles",
+    "c": "LoadedGame",
+    "l": "unpause()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "AttackBoostEffect",
+    "l": "updateStrength()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "BlindnessEffect",
+    "l": "updateStrength()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "ParalyzeEffect",
+    "l": "updateStrength()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "PoisonEffect",
+    "l": "updateStrength()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffect",
+    "l": "updateStrength()"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "updateStrength(int, int)",
+    "u": "updateStrength(int,int)"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "User",
+    "l": "User()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "User",
+    "l": "User(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "User",
+    "l": "User(String, String, String, String, String, String)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)"
+}, {"p": "com.ultreon.bubbles.util", "c": "Util", "l": "Util()", "u": "%3Cinit%3E()"}, {
+    "p": "com.ultreon.bubbles.util",
+    "c": "ExceptionUtils",
+    "l": "utilityClass()"
+}, {
+    "p": "com.ultreon.bubbles.core.utils",
+    "c": "Utils",
+    "l": "Utils()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty.Modifier",
+    "l": "value()"
+}, {
+    "p": "com.ultreon.bubbles.util.python.builtins",
+    "c": "ValueError",
+    "l": "ValueError()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.util.python.builtins",
+    "c": "ValueError",
+    "l": "ValueError(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.builtins",
+    "c": "ValueError",
+    "l": "ValueError(String, Throwable)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Throwable)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.builtins",
+    "c": "ValueError",
+    "l": "ValueError(String, Throwable, boolean, boolean)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Throwable,boolean,boolean)"
+}, {
+    "p": "com.ultreon.bubbles.util.python.builtins",
+    "c": "ValueError",
+    "l": "ValueError(Throwable)",
+    "u": "%3Cinit%3E(java.lang.Throwable)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "ValueExists",
+    "l": "ValueExists()",
+    "u": "%3Cinit%3E()"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "ValueExists",
+    "l": "ValueExists(String)",
+    "u": "%3Cinit%3E(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "ValueExists",
+    "l": "ValueExists(String, Throwable)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Throwable)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "ValueExists",
+    "l": "ValueExists(String, Throwable, boolean, boolean)",
+    "u": "%3Cinit%3E(java.lang.String,java.lang.Throwable,boolean,boolean)"
+}, {
+    "p": "com.ultreon.bubbles.common.exceptions",
+    "c": "ValueExists",
+    "l": "ValueExists(Throwable)",
+    "u": "%3Cinit%3E(java.lang.Throwable)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ShutdownCommand.Types",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "DataType",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "Mod.EventBusSubscriber.Bus",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion.TYPE",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData.SpawnReason",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "RelativeAnchor",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "SystemEnum",
+    "l": "valueOf(String)",
+    "u": "valueOf(java.lang.String)"
+}, {
+    "p": "com.ultreon.bubbles.command",
+    "c": "ShutdownCommand.Types",
+    "l": "values()"
+}, {"p": "com.ultreon.bubbles.common", "c": "DataType", "l": "values()"}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "Difficulty",
+    "l": "values()"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "values()"
+}, {
+    "p": "com.ultreon.bubbles.common.mod",
+    "c": "Mod.EventBusSubscriber.Bus",
+    "l": "values()"
+}, {
+    "p": "com.ultreon.bubbles.common.versioning",
+    "c": "QVersion.TYPE",
+    "l": "values()"
+}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "EntitySpawnData.SpawnReason",
+    "l": "values()"
+}, {"p": "com.ultreon.bubbles.registry", "c": "LocaleManager", "l": "values()"}, {
+    "p": "com.ultreon.bubbles.registry",
+    "c": "ModManager",
+    "l": "values()"
+}, {
+    "p": "com.ultreon.bubbles.util.position.util",
+    "c": "RelativeAnchor",
+    "l": "values()"
+}, {"p": "com.ultreon.bubbles.util.system", "c": "SystemEnum", "l": "values()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "CompoundTag",
+    "l": "values()"
+}, {"p": "net.querz.nbt.tag", "c": "Tag", "l": "valueToString()"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ArrayTag",
+    "l": "valueToString(int)"
+}, {"p": "net.querz.nbt.tag", "c": "CompoundTag", "l": "valueToString(int)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "EndTag",
+    "l": "valueToString(int)"
+}, {"p": "net.querz.nbt.tag", "c": "ListTag", "l": "valueToString(int)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "NumberTag",
+    "l": "valueToString(int)"
+}, {"p": "net.querz.nbt.tag", "c": "StringTag", "l": "valueToString(int)"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "Tag",
+    "l": "valueToString(int)"
+}, {"p": "com.ultreon.bubbles.entity", "c": "Entity", "l": "velX"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "velY"
+}, {"p": "com.ultreon.bubbles.common", "c": "References", "l": "VERSION"}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "visualX"
+}, {
+    "p": "com.ultreon.bubbles.render.gui",
+    "c": "OptionsButton",
+    "l": "visualY"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogLevel",
+    "l": "WARN"
+}, {
+    "p": "com.ultreon.bubbles.common.logging",
+    "c": "GameLogger",
+    "l": "warning(String)",
+    "u": "warning(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.render.gui", "c": "QDimension", "l": "width"}, {
+    "p": "com.ultreon.bubbles.util.system",
+    "c": "SystemEnum",
+    "l": "WINDOWS"
+}, {
+    "p": "com.ultreon.bubbles.state",
+    "c": "BloodMoonEvent",
+    "l": "wouldActive(DateTime)",
+    "u": "wouldActive(com.ultreon.commons.time.DateTime)"
+}, {
+    "p": "com.ultreon.bubbles.common",
+    "c": "AttributeMap",
+    "l": "write(BsonArray)",
+    "u": "write(org.bson.BsonArray)"
+}, {
+    "p": "com.ultreon.bubbles.common.holders",
+    "c": "IArrayDataHolder",
+    "l": "write(BsonArray)",
+    "u": "write(org.bson.BsonArray)"
+}, {
+    "p": "com.ultreon.bubbles.common.holders",
+    "c": "IDataHolder",
+    "l": "write(BsonDocument)",
+    "u": "write(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.effect",
+    "c": "StatusEffectInstance",
+    "l": "write(BsonDocument)",
+    "u": "write(org.bson.BsonDocument)"
+}, {
+    "p": "com.ultreon.bubbles.entity.modifier",
+    "c": "Modifier",
+    "l": "write(BsonDocument)",
+    "u": "write(org.bson.BsonDocument)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTOutputStream", "l": "write(byte[])"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "write(byte[], int, int)",
+    "u": "write(byte[],int,int)"
+}, {"p": "com.ultreon.bubbles.common.streams", "c": "CustomOutputStream", "l": "write(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "write(int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "write(NamedTag, File)",
+    "u": "write(net.querz.nbt.io.NamedTag,java.io.File)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "write(NamedTag, File, boolean)",
+    "u": "write(net.querz.nbt.io.NamedTag,java.io.File,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "write(NamedTag, String)",
+    "u": "write(net.querz.nbt.io.NamedTag,java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "write(NamedTag, String, boolean)",
+    "u": "write(net.querz.nbt.io.NamedTag,java.lang.String,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "write(Tag<?>, File)",
+    "u": "write(net.querz.nbt.tag.Tag,java.io.File)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "write(Tag<?>, File, boolean)",
+    "u": "write(net.querz.nbt.tag.Tag,java.io.File,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "write(Tag<?>, String)",
+    "u": "write(net.querz.nbt.tag.Tag,java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "write(Tag<?>, String, boolean)",
+    "u": "write(net.querz.nbt.tag.Tag,java.lang.String,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTWriter",
+    "l": "write(Tag<?>, Writer)",
+    "u": "write(net.querz.nbt.tag.Tag,java.io.Writer)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "SNBTWriter",
+    "l": "write(Tag<?>, Writer, int)",
+    "u": "write(net.querz.nbt.tag.Tag,java.io.Writer,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "writeBoolean(boolean)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTOutputStream", "l": "writeByte(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "writeBytes(String)",
+    "u": "writeBytes(java.lang.String)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTOutputStream", "l": "writeChar(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "writeChars(String)",
+    "u": "writeChars(java.lang.String)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTOutputStream", "l": "writeDouble(double)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "writeFloat(float)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTOutputStream", "l": "writeInt(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "writeLE(NamedTag, File)",
+    "u": "writeLE(net.querz.nbt.io.NamedTag,java.io.File)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "writeLE(NamedTag, File, boolean)",
+    "u": "writeLE(net.querz.nbt.io.NamedTag,java.io.File,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "writeLE(NamedTag, String)",
+    "u": "writeLE(net.querz.nbt.io.NamedTag,java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "writeLE(NamedTag, String, boolean)",
+    "u": "writeLE(net.querz.nbt.io.NamedTag,java.lang.String,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "writeLE(Tag<?>, File)",
+    "u": "writeLE(net.querz.nbt.tag.Tag,java.io.File)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "writeLE(Tag<?>, File, boolean)",
+    "u": "writeLE(net.querz.nbt.tag.Tag,java.io.File,boolean)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "writeLE(Tag<?>, String)",
+    "u": "writeLE(net.querz.nbt.tag.Tag,java.lang.String)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTUtil",
+    "l": "writeLE(Tag<?>, String, boolean)",
+    "u": "writeLE(net.querz.nbt.tag.Tag,java.lang.String,boolean)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTOutputStream", "l": "writeLong(long)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "writeRawTag(Tag<?>, int)",
+    "u": "writeRawTag(net.querz.nbt.tag.Tag,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTOutputStream",
+    "l": "writeRawTag(Tag<?>, int)",
+    "u": "writeRawTag(net.querz.nbt.tag.Tag,int)"
+}, {"p": "net.querz.nbt.io", "c": "LittleEndianNBTOutputStream", "l": "writeShort(int)"}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "writeTag(NamedTag, int)",
+    "u": "writeTag(net.querz.nbt.io.NamedTag,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTOutput",
+    "l": "writeTag(NamedTag, int)",
+    "u": "writeTag(net.querz.nbt.io.NamedTag,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTOutputStream",
+    "l": "writeTag(NamedTag, int)",
+    "u": "writeTag(net.querz.nbt.io.NamedTag,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "writeTag(Tag<?>, int)",
+    "u": "writeTag(net.querz.nbt.tag.Tag,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTOutput",
+    "l": "writeTag(Tag<?>, int)",
+    "u": "writeTag(net.querz.nbt.tag.Tag,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "NBTOutputStream",
+    "l": "writeTag(Tag<?>, int)",
+    "u": "writeTag(net.querz.nbt.tag.Tag,int)"
+}, {
+    "p": "net.querz.nbt.io",
+    "c": "LittleEndianNBTOutputStream",
+    "l": "writeUTF(String)",
+    "u": "writeUTF(java.lang.String)"
+}, {"p": "com.ultreon.bubbles.common", "c": "EntityProperties", "l": "x"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "x"
+}, {"p": "com.ultreon.bubbles.common", "c": "EntityProperties", "l": "y"}, {
+    "p": "com.ultreon.bubbles.entity",
+    "c": "Entity",
+    "l": "y"
+}, {"p": "net.querz.nbt.tag", "c": "ByteArrayTag", "l": "ZERO_VALUE"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "ByteTag",
+    "l": "ZERO_VALUE"
+}, {"p": "net.querz.nbt.tag", "c": "DoubleTag", "l": "ZERO_VALUE"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "FloatTag",
+    "l": "ZERO_VALUE"
+}, {"p": "net.querz.nbt.tag", "c": "IntArrayTag", "l": "ZERO_VALUE"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "IntTag",
+    "l": "ZERO_VALUE"
+}, {"p": "net.querz.nbt.tag", "c": "LongArrayTag", "l": "ZERO_VALUE"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "LongTag",
+    "l": "ZERO_VALUE"
+}, {"p": "net.querz.nbt.tag", "c": "ShortTag", "l": "ZERO_VALUE"}, {
+    "p": "net.querz.nbt.tag",
+    "c": "StringTag",
+    "l": "ZERO_VALUE"
+}];
+updateSearchResults();

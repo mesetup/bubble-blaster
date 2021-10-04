@@ -1,14 +1,14 @@
 {
    "version": {
-     "name": "1.0.1153-a1",
+     "name": "1.0.1194-a1",
      "version": 1,
      "release": 0,
-     "build": 1153,
+     "build": 1194,
      "stage": "a",
      "stage_release": 1
    },
    "build_info": {
-     "date": "2021-10-04T00:57:18.599167300",
+     "date": "2021-10-04T01:59:08.996300600",
      "compile": {
        "name": "compileJava",
        "source_compat": "16",
@@ -19,7 +19,7 @@
      },
      "project": {
        "name": "preloader",
-         "display_name": "project \u0027:preloader\u0027"
-      }
+       "display_name": "project \u0027:preloader\u0027"
+     }
    }
 }

@@ -3,10 +3,12 @@ package com.ultreon.bubbles.common.text.translation;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
+import com.google.common.io.CharStreams;
 import com.ultreon.bubbles.settings.GameSettings;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.compress.utils.IOUtils;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.IllegalFormatException;
 import java.util.List;
@@ -46,17 +48,18 @@ public class LanguageMap {
         inst.lastUpdateTimeInMilliseconds = System.currentTimeMillis();
     }
 
+    @SuppressWarnings("UnstableApiUsage")
     public static Map<String, String> parseLangFile(InputStream inputstream) {
         Map<String, String> table = Maps.newHashMap();
         try {
             if (inputstream == null) return table;
 
-            List<String> lines = IOUtils.readLines(inputstream, StandardCharsets.UTF_8.displayName());
+            List<String> lines = CharStreams.readLines(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
             for (String s : lines) {
                 if (!s.isEmpty() && s.charAt(0) != '#') {
                     String[] astring = Iterables.toArray(EQUAL_SIGN_SPLITTER.split(s), String.class);
 
-                    if (astring != null && astring.length == 2) {
+                    if (astring.length == 2) {
                         String s1 = astring[0];
                         String s2 = NUMERIC_VARIABLE_PATTERN.matcher(astring[1]).replaceAll("%$1s");
                         table.put(s1, s2);
